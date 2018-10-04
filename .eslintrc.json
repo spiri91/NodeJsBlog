@@ -1,13 +1,16 @@
 {
     "extends": "airbnb-base",
     "rules": {
-        "import/newline-after-import" : "off",
+        "import/newline-after-import": "off",
         "linebreak-style": "off",
         "func-names": "off",
-        "semi" : "off",
+        "semi": "off",
         "no-console": "off",
         "eol-last": "off",
         "prefer-const": "off",
-        "quotes": "off"
+        "quotes": "off",
+        "prefer-destructuring": "off",
+        "curly": "off",
+        "yoda": "off"
     }
 }
