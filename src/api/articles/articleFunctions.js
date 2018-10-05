@@ -1,4 +1,5 @@
-exports.isValidArticle = function (article) {
+exports.isValid = function (article) {
+  console.log(article);
 
-    return true;
+  return true;
 }

@@ -11,6 +11,11 @@
         "quotes": "off",
         "prefer-destructuring": "off",
         "curly": "off",
-        "yoda": "off"
+        "yoda": "off",
+        "comma-dangle": "off",
+        "consistent-return": "off"
+    },
+    "env": {
+        "mocha": true
     }
 }
