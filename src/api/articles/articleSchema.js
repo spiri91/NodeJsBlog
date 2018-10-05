@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+mongoose.connect(process.env.DB_HOST);
 
 const Schema = mongoose.Schema;
 
@@ -11,11 +12,6 @@ const articleSchema = new Schema({
   createdAt: Date,
   tags: Array
 });
-
-
-articleSchema.pre('save', () => {
-  this.content = this.content.replace(' ', '-');
-})
 
 let Article = mongoose.model('Article', articleSchema);
 

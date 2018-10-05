@@ -1,16 +1,10 @@
 const Article = require('./articleSchema');
 
-function callback(err, res) {
-  if (err) throw err;
-
-  return res;
-}
-
-exports.getAll = function () {
+exports.getAll = function (callback) {
   Article.find({}, callback);
 }
 
-exports.getOne = function (condition) {
+exports.getOne = function (condition, callback) {
   Article.findOne(condition, callback);
 }
 
@@ -22,7 +16,7 @@ exports.delete = function (obj) {
   console.log(`delete ${obj}`);
 }
 
-exports.post = function (obj) {
+exports.post = function (obj, callback) {
   let article = Article(obj);
 
   article.save(callback);

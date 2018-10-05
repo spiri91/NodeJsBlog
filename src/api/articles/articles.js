@@ -25,9 +25,11 @@ router.post('/', (req, res) => {
 
   if (false === validArticle.isValid(newElement)) res.status(status.BAD_REQUEST).send();
 
-  repo.post(newElement);
+  repo.post(newElement, (err) => {
+    if (err) res.status(status.BAD_REQUEST).send();
 
-  res.status(status.CREATED).send();
+    res.status(status.CREATED).send();
+  })
 })
 
 router.put('/:id', (req, res) => {
