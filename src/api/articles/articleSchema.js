@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.connect(process.env.DB_HOST);
+mongoose.connect(process.env.DB_HOST, { useNewUrlParser: true });
 
 const Schema = mongoose.Schema;
 
@@ -10,7 +10,11 @@ const articleSchema = new Schema({
   content: { type: String, required: true },
   clicks: { type: Number },
   createdAt: Date,
-  tags: Array
+  comments: [{
+    by: { type: String, required: true },
+    content: { type: String, required: true },
+    date: Date
+  }]
 });
 
 let Article = mongoose.model('Article', articleSchema);

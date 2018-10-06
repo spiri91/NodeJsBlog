@@ -3,3 +3,9 @@ exports.isValid = function (article) {
 
   return true;
 }
+
+exports.isValidComment = function (comment) {
+  console.log(comment);
+
+  return true;
+}
