@@ -3,7 +3,10 @@ const status = require('http-status-codes');
 module.exports.checkErrorResponse = function (err, res) {
   if (!err) return;
 
-  switch (err.code) {
+  switch (Number(err.code)) {
+    case 401:
+      return res.status(status.UNAUTHORIZED).send("Unauthorized!");
+
     case 11000:
       res.status(status.BAD_REQUEST);
       return res.send('Duplicate key error collection');

@@ -12,6 +12,7 @@ const handleResult = function (err, res, statusCode, responseBody, next) {
   if (err) return checkError(err, res, next);
 
   res.status(statusCode);
+  
   return res.send(responseBody);
 }
 
