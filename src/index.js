@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const checkError = require('./misc/checkErrorResponse');
+const path = require('path');
 require('dotenv').config();
 
 const articlesRouter = require('./api/articles/articles');
@@ -11,7 +12,6 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 app.use('/api/articles', articlesRouter);
-app.get('/', (req, res) => res.sendFile(`${__dirname}/index.html`));
 
 app.use((err, req, res, next) => {
   if (res.headersSent) return next(err);
@@ -21,6 +21,10 @@ app.use((err, req, res, next) => {
   res.status(500);
 
   res.render('error', { error: err });
+});
+
+app.get('/', function(req, res) {
+  res.sendFile(path.resolve(`${__dirname}/../site/index.html`));
 });
 
 app.listen(port);

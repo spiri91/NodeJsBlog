@@ -9,10 +9,10 @@ const router = express.Router();
 
 checkAuth = checkAuth.checkAuth();
 const handleResult = function (err, res, statusCode, responseBody, next) {
-  if (err) return checkError(err, res, next);
+  if (err.message.indexOf('validation failed') > 0) return checkError({code : 400, message : err.message}, res, next);
 
   res.status(statusCode);
-  
+
   return res.send(responseBody);
 }
 
