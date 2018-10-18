@@ -2,17 +2,17 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const checkError = require('./misc/checkErrorResponse');
 const path = require('path');
-
-require('dotenv').config();
-
 const articlesRouter = require('./api/articles/articles');
+
 const port = process.env.PORT;
 const app = express();
+require('dotenv').config();
 
 app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 
 app.use('/api/articles', articlesRouter);
+app.use(express.static(`${__dirname}/../site`));
 
 app.use((err, req, res, next) => {
   if (res.headersSent) return next(err);

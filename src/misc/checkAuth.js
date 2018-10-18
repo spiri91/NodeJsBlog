@@ -4,5 +4,7 @@ module.exports.checkAuth = function () {
     let realToken = process.env.TOKEN;
 
     if (!headerValue || headerValue !== realToken) throw new Error(401);
+
+    next();
   }
 }

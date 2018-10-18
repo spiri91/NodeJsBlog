@@ -1,22 +1,26 @@
 const express = require('express');
 const status = require('http-status-codes');
 const repo = require('./articlesRepository');
-const errorChecking = require('../../misc/checkErrorResponse');
+const errorChecking = require('../../misc/checkErrorResponse').checkErrorResponse;
 const checkAuth = require("../../misc/checkAuth").checkAuth();
-const checkError = errorChecking.checkErrorResponse;
 const router = express.Router();
 
 const handleResult = function (err, res, statusCode, responseBody, next) {
-  if (err.message.indexOf('validation failed') > 0) return checkError({code : 400, message : err.message}, res, next);
+  if (err && err.message.indexOf('validation failed') > 0) return errorChecking({ code: 400, message: err.message }, res, next);
+  if (err) return errorChecking({ code: 500, message: err.message }, res, next);
 
-  res.status(statusCode);
-
-  return res.send(responseBody);
+  return res.status(statusCode).send(responseBody);
 }
+
+router.all('/', (req, res, next) => {
+  if (req.method != "GET") checkAuth(req, next);
+
+  next();
+})
 
 router.get('/', (req, res, next) => {
   repo.getAll((err, results) => handleResult(err, res, status.OK, results, next))
-});
+})
 
 router.get('/id/:id', (req, res, next) => {
   repo.getOne({ _id: req.params.id },
@@ -32,26 +36,20 @@ router.get('/dtos/:take/:skip', (req, res, next) => {
   repo.getDTOsWithPagination(req.params.take, req.params.skip, (err, result) => handleResult(err, res, status.OK, result, next));
 })
 
-router.post('/', (req, res, next) => {
-  checkAuth(req, next);
+router.post('/', (req, res, next) =>
+  repo.post(req.body, err => handleResult(err, res, status.CREATED, null, next))
+)
 
-  repo.post(req.body, err => handleResult(err, res, status.CREATED, null, next));
-})
+router.post('/:id/comments', (req, res, next) =>
+  repo.postComment(req.params.id, req.body, err => handleResult(err, res, status.CREATED, null, next))
+)
 
-router.post('/:id/comments', (req, res, next) => {
-  repo.postComment(req.params.id, req.body, err => handleResult(err, res, status.CREATED, null, next));
-})
+router.put('/:id', (req, res, next) =>
+  repo.put(req.params.id, req.body, err => handleResult(err, res, status.ACCEPTED, null, next))
+)
 
-router.put('/:id', (req, res, next) => {
-  checkAuth(req, next);
-
-  repo.put(req.params.id, req.body, err => handleResult(err, res, status.ACCEPTED, null, next));
-});
-
-router.delete('/:id', (req, res, next) => {
-  checkAuth(req, next);
-
-  repo.delete(req.params.id, err => handleResult(err, res, status.ACCEPTED, null, next));
-});
+router.delete('/:id', (req, res, next) =>
+  repo.delete(req.params.id, err => handleResult(err, res, status.ACCEPTED, null, next))
+)
 
 module.exports = router;
