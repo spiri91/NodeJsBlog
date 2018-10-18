@@ -1,3 +1,4 @@
-import { log } from './lib/js/myQuery.js';
+import myQ from './lib/js/myQuery.js';
+import './lib/css/main.css';
 
-log('works awesome');
+myQ.log('works awesome');
