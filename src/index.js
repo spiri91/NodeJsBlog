@@ -14,6 +14,7 @@ app.use(bodyParser.json());
 
 app.use('/api/articles', articlesRouter);
 app.use(express.static(`${__dirname}/../site/`));
+app.use(express.static(`${__dirname}/../dist/`));
 app.use(express.static(`${__dirname}/../node_modules/`));
 
 app.use((err, req, res, next) => {
