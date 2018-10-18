@@ -10,7 +10,7 @@ const articleSchema = new Schema({
   description: { type: String, required: true },
   content: { type: String, required: true },
   clicks: { type: Number },
-  createdAt: Date,
+  createdAt: { type: Date, default: Date.now() },
   comments: [{
     by: { type: String, required: true },
     content: { type: String, required: true },
