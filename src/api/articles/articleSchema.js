@@ -9,7 +9,7 @@ const articleSchema = new Schema({
   smug: { type: String, required: true, unique: true },
   description: { type: String, required: true },
   content: { type: String, required: true },
-  clicks: { type: Number },
+  clicks: { type: Number, default : 0 },
   createdAt: { type: Date, default: Date.now() },
   comments: [{
     by: { type: String, required: true },

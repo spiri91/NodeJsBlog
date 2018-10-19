@@ -744,17 +744,68 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../../../Users/ionuts/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"entry.js":[function(require,module,exports) {
+},{"_css_loader":"../../../Users/ionuts/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"lib/js/article.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Article = function Article(name, description, content) {
+  _classCallCheck(this, Article);
+
+  this.name = name;
+  this.description = description;
+  this.content = content;
+  name && (this.smug = name.replace(' ', '-'));
+};
+
+exports.default = Article;
+},{}],"lib/js/articleRepository.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _article = _interopRequireDefault(require("./../js/article"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var article = new _article.default();
+var _default = {};
+exports.default = _default;
+},{"./../js/article":"lib/js/article.js"}],"lib/js/constants.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var backendApiAddress = "localhost:3000/api/articles";
+var _default = {
+  backendApiAddress: backendApiAddress
+};
+exports.default = _default;
+},{}],"entry.js":[function(require,module,exports) {
 "use strict";
 
 var _myQuery = _interopRequireDefault(require("./lib/js/myQuery.js"));
 
 require("./lib/css/main.css");
 
+var _articleRepository = _interopRequireDefault(require("./lib/js/articleRepository"));
+
+var _constants = _interopRequireDefault(require("./lib/js/constants"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-_myQuery.default.log('works awesome');
-},{"./lib/js/myQuery.js":"lib/js/myQuery.js","./lib/css/main.css":"lib/css/main.css"}],"../../../Users/ionuts/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+_myQuery.default.log(_constants.default.backendApiAddress);
+},{"./lib/js/myQuery.js":"lib/js/myQuery.js","./lib/css/main.css":"lib/css/main.css","./lib/js/articleRepository":"lib/js/articleRepository.js","./lib/js/constants":"lib/js/constants.js"}],"../../../Users/ionuts/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -781,7 +832,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64078" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53443" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
