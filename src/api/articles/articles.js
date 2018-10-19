@@ -33,23 +33,19 @@ router.get('/smug/:smug', (req, res, next) => {
 })
 
 router.get('/dtos/:take/:skip', (req, res, next) => {
-  repo.getDTOsWithPagination(req.params.take, req.params.skip, (err, result) => handleResult(err, res, status.OK, result, next));
+  repo.getDTOsWithPagination(req.params.take, req.params.skip,
+    (err, result) => handleResult(err, res, status.OK, result, next));
 })
 
-router.post('/', (req, res, next) =>
-  repo.post(req.body, err => handleResult(err, res, status.CREATED, null, next))
-)
+router.post('/', (req, res, next) => repo.post(req.body, err => handleResult(err, res, status.CREATED, null, next)))
 
-router.post('/:id/comments', (req, res, next) =>
-  repo.postComment(req.params.id, req.body, err => handleResult(err, res, status.CREATED, null, next))
-)
+router.post('/:id/comments', (req, res, next) => repo.postComment(req.params.id, req.body, 
+  err => handleResult(err, res, status.CREATED, null, next)))
 
-router.put('/:id', (req, res, next) =>
-  repo.put(req.params.id, req.body, err => handleResult(err, res, status.ACCEPTED, null, next))
-)
+router.put('/:id', (req, res, next) => repo.put(req.params.id, req.body, 
+  err => handleResult(err, res, status.ACCEPTED, null, next)))
 
-router.delete('/:id', (req, res, next) =>
-  repo.delete(req.params.id, err => handleResult(err, res, status.ACCEPTED, null, next))
-)
+router.delete('/:id', (req, res, next) => repo.delete(req.params.id, 
+  err => handleResult(err, res, status.ACCEPTED, null, next)))
 
 module.exports = router;

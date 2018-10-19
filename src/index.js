@@ -1,9 +1,8 @@
-require('dotenv').config({path: '.env.default'});
+require('dotenv').config({ path: '.env.default' });
 
 const express = require('express');
 const bodyParser = require('body-parser');
 const checkError = require('./misc/checkErrorResponse');
-const path = require('path');
 const articlesRouter = require('./api/articles/articles');
 
 const port = process.env.PORT;
@@ -20,7 +19,7 @@ app.use(express.static(`${__dirname}/../node_modules/`));
 app.use((err, req, res, next) => {
   if (res.headersSent) return next(err);
 
-  checkError.checkErrorResponse({code : err.message}, res);
+  checkError.checkErrorResponse({ code: err.message }, res);
 });
 
 // app.get('/', (req, res) => res.sendFile(path.resolve(`${__dirname}/../dist/index.html`)));
