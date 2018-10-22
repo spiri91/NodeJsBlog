@@ -18,7 +18,7 @@ putArticle(article, token){
 }
 
 deleteArticle(id, token){
-  
+
 }
 
 export default {

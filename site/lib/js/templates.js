@@ -1,39 +1,53 @@
 import * as consts from './constants';
 
-var mainTemplate = '<h1>{{title}}</h1>' +
-    '<div>{{body}}</div>';
+let mainTemplate = "<h1>{{title}}</h1><br><br></br>"
+  + "<span>{{description}}</span><br><br>";
 
-var articleTemplate = '<h3>{{title}}<h3>' +
-'<span>{{description}}<span></br>' +
-'<span>{{content}}';
+let articleTemplate = '<h3>{{title}}<h3>'
+  + '<span>{{description}}<span></br>'
+  + '<span>{{content}}';
 
-var articleDTOTemplate = '<h3>{{title}}<h3>' +
-'<span>{{description}}<span>';
+let articleDTOTemplate = '<h3>{{title}}<h3>'
+  + '<span>{{description}}<span>';
 
-var body = null;
+let body = null;
 
-function getBody(){
-    if(!body) body = document.getElementById(consts.bodyId);
+function getBody() {
+  if (!body) body = document.getElementById(consts.mainContent);
 }
 
-function set(value){
-    body.innerHTML = value;
+function set(value) {
+  getBody();
+
+  body.innerHTML = value;
+}
+
+function buildCompoment(str, obj) {
+  let val = str;
+  for (let i in obj) val = val.replace('{{' + i + '}}', obj[i]);
+
+  return val;
 }
 
 export default {
-    showArticle: (article) => {
-        getBody();
-        var articleStr = articleTemplate;
-        for(let i in article) articleStr = articleStr.replace('{{'+i+'}}', article[i]);
-        
-        set(articleStr);
-    },
 
-    showArticles: (articles) => {
+  showArticle: (article) => {
+    let articleStr = articleTemplate;
 
-    },
+    articleStr = buildCompoment(articleStr, article);
 
-    createArticle: () => {
+    set(articleStr);
+  },
 
-    }
+  showStartPage: (obj) => {
+    let mainStr = mainTemplate;
+
+    mainStr = buildCompoment(mainStr, obj);
+
+    set(mainStr);
+  },
+
+  createArticle: () => {
+
+  }
 };

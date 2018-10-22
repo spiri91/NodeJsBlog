@@ -1,21 +1,19 @@
-import templates from './templates';
 import Navigo from 'navigo';
+import templates from './templates';
+import startingObj from './startingObject';
 
-var root = null;
-var useHash = true; // Defaults to: false
-var router = new Navigo(root, useHash);
+let root = null;
+let useHash = true; // Defaults to: false
+let router = new Navigo(root, useHash);
 
 router
-    .on({
-        'article/:id': function (params) {
-            //  alert('Products'+ params.id);
-        },
-        'articles': function () {
-            //alert('articles');
-        },
-        '*': function () {
-            //alert('Home')
-        }
-    })
-    .resolve();
-
+  .on({
+    'article/:id': function (params) {
+      //  alert('Products'+ params.id);
+    },
+    'article/create': function () {
+      // alert('articles');
+    },
+    '*': () => {templates.showStartPage(startingObj); }
+  })
+  .resolve();

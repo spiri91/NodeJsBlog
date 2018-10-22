@@ -14,9 +14,14 @@
         "yoda": "off",
         "comma-dangle": "off",
         "consistent-return": "off",
-        "no-trailing-spaces": "off"
+        "no-trailing-spaces": "off",
+        "no-restricted-syntax": "off",
+        "guard-for-in": "off",
+        "prefer-template": "off",
+        "quote-props": "off"
     },
     "env": {
-        "mocha": true
+        "mocha": true,
+        "browser": true
     }
 }

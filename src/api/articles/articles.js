@@ -13,7 +13,7 @@ const handleResult = function (err, res, statusCode, responseBody, next) {
 }
 
 router.all('/', (req, res, next) => {
-  if (req.method != "GET") checkAuth(req, next);
+  if (req.method !== "GET") checkAuth(req, next);
 
   next();
 })
