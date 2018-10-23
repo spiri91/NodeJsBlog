@@ -17,6 +17,10 @@ exports.getDTOsWithPagination = function (take, skip, callback) {
     .exec(callback);
 }
 
+exports.count = function (callback) {
+  Article.count({}, callback);
+}
+
 exports.put = function (id, obj, callback) {
   Article.findOneAndUpdate({ _id: id }, obj, callback);
 }

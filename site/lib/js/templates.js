@@ -1,4 +1,5 @@
 import * as consts from './constants';
+import Mustache from 'mustache';
 
 let mainTemplate = "<h1>{{title}}</h1><br><br></br>"
   + "<span>{{description}}</span><br><br>";
@@ -34,11 +35,9 @@ function buildCompoment(str, obj) {
 export default {
 
   showArticle: (article) => {
-    let articleStr = articleTemplate;
+    let output = Mustache.render(articleTemplate, article);
 
-    articleStr = buildCompoment(articleStr, article);
-
-    set(articleStr);
+    set(output);
   },
 
   showStartPage: (obj) => {
