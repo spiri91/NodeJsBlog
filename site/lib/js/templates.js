@@ -10,6 +10,8 @@ let articleTemplate = '<h3>{{title}}<h3>'
 let articleDTOTemplate = '<h3>{{title}}<h3>'
   + '<span>{{description}}<span>';
 
+let articleEditTemplate = "<h3>{{title}}";
+
 let body = null;
 
 function getBody() {
@@ -49,5 +51,13 @@ export default {
 
   createArticle: () => {
 
+  },
+
+  articleEdit: (obj) => {
+    let mainStr = articleEditTemplate;
+
+    mainStr = buildCompoment(mainStr, obj);
+
+    set(mainStr);
   }
 };
