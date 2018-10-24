@@ -34,13 +34,23 @@ let deleteIt = (id, token) => fetch(`${base}/${id}`, {
   }
 });
 
-let getPage = function(pageNumber){
-  if(pageNumber < 1) pageNumber = 1;
+let getPage = function (pageNumber) {
+  if (pageNumber < 1) pageNumber = 1;
 
   let take = consts.pageSize;
   let skip = (pageNumber - 1) * consts.pageSize;
 
   return get(take, skip);
+}
+
+let addComment = function (articleId, comment) {
+  return fetch(`${base}/${articleId}/comments`, {
+    method: "POST",
+    body: JSON.stringify(comment),
+    headers: {
+      "Content-Type": "application/json; charset=utf-8"
+    }
+  })
 }
 
 export default {
@@ -49,5 +59,6 @@ export default {
   getOneById,
   getPage,
   getOneBySmug,
-  deleteIt
+  deleteIt,
+  addComment
 }

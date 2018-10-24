@@ -14,7 +14,7 @@ const articleSchema = new Schema({
   comments: [{
     by: { type: String, required: true },
     content: { type: String, required: true },
-    date: Date
+    date: { type: Date, default: Date.now() }
   }]
 });
 

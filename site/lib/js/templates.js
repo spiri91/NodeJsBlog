@@ -1,26 +1,21 @@
 import * as consts from './constants';
 import Mustache from 'mustache';
+import articlePage from  '../../src/singleArticlePage';
+import homePage from '../../src/homePage';
+import editArticle from '../../src/editArticlePage';
+import QQ from './myQuery';
 
-let mainTemplate = "<h1>{{title}}</h1><br><br></br>"
+let homeTemplate = "<h1>{{title}}</h1><br><br></br>"
   + "<span>{{description}}</span><br><br>";
 
 let articleTemplate = '<h3>{{title}}<h3>'
   + '<span>{{description}}<span></br>'
   + '<span>{{content}}';
 
-let articleDTOTemplate = '<h3>{{title}}<h3>'
-  + '<span>{{description}}<span>';
-
 let articleEditTemplate = "<h3>{{title}}";
 
-let body = null;
-
-function getBody() {
-  if (!body) body = document.getElementById(consts.mainContent);
-}
-
 function set(value) {
-  getBody();
+  QQ.set.byId.innerHtml(consts.mainContent, value);
 
   body.innerHTML = value;
 }
@@ -33,30 +28,25 @@ function buildCompoment(str, obj) {
 }
 
 export default {
-
   showArticle: (article) => {
     let output = Mustache.render(articleTemplate, article);
-
     set(output);
+
+    articlePage.init();
   },
 
   showStartPage: (obj) => {
-    let mainStr = mainTemplate;
+   buildCompoment(mainStr, obj);
+    let output = Mustache.render(homeTemplate, obj);
+    set(output);
 
-    mainStr = buildCompoment(mainStr, obj);
-
-    set(mainStr);
-  },
-
-  createArticle: () => {
-
+    homePage.init();
   },
 
   articleEdit: (obj) => {
-    let mainStr = articleEditTemplate;
+    let output = Mustache.render(articleEditTemplate, obj);
+    set(output);
 
-    mainStr = buildCompoment(mainStr, obj);
-
-    set(mainStr);
-  }
+    editArticle.init();
+  },
 };
