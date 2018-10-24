@@ -12,7 +12,18 @@ let articleTemplate = '<h3>{{title}}<h3>'
   + '<span>{{description}}<span></br>'
   + '<span>{{content}}';
 
-let articleEditTemplate = "<h3>{{title}}";
+let articleEditTemplate = `
+<div class="editArticle">
+<input type="text" placeholder="token"><br><br>
+<input type="text" placeholder="title" value="{{title}}"><br><br>
+<input type="text" placeholder="description" value="{{description}}"><br><br>
+<div class="content" contenteditable="true">
+    {{content}}
+</div>
+<br>
+<span>END</span>
+</div>
+`
 
 function set(value) {
   QQ.set.byId.innerHtml(consts.mainContent, value);
