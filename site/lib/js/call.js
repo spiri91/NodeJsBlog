@@ -4,18 +4,18 @@ let base = consts.backendApiAddress;
 
 let post = (article, token) => fetch(base, {
   method: "POST",
-  body: JSON.stringify(article),
   headers: {
-    "auth": token,
-    "Content-Type": "application/json; charset=utf-8"
-  }
+    'auth': token,
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(article),
 })
 
 let get = (take, skip) => fetch(`${base}/dtos/${take}/${skip}`);
 
 let getOneById = (id) => fetch(`${base}/id/${id}`);
 
-let getOneBySmug = (smug) => fetch(`${base}/id/${id}`);
+let getOneBySmug = (smug) => fetch(`${base}/smug/${smug}`);
 
 let put = (id, article, token) => fetch(`${base}/${id}`, {
   method: "PUT",

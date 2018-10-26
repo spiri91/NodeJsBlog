@@ -22,8 +22,6 @@ app.use((err, req, res, next) => {
   checkError.checkErrorResponse({ code: err.message }, res);
 });
 
-// app.get('/', (req, res) => res.sendFile(path.resolve(`${__dirname}/../dist/index.html`)));
-
 app.listen(port);
 
 module.exports = app;

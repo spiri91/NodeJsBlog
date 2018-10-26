@@ -7,13 +7,15 @@ const router = express.Router();
 
 const handleResult = function (err, res, statusCode, responseBody, next) {
   if (err && err.message.indexOf('validation failed') > 0) return errorChecking({ code: 400, message: err.message }, res, next);
+  if (err && err.message.indexOf('duplicate key') > 0) return errorChecking({ code: 400, message: err.message }, res, next);
+  
   if (err) return errorChecking({ code: 500, message: err.message }, res, next);
 
   return res.status(statusCode).send(responseBody);
 }
 
 router.all('/', (req, res, next) => {
-  if (req.method !== "GET") checkAuth(req, next);
+  if (req.method === "POST" || req.method === "PUT") checkAuth(req);
 
   next();
 })

@@ -902,17 +902,6 @@ var _default = {
   init: function init() {}
 };
 exports.default = _default;
-},{}],"src/editArticlePage.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _default = {
-  init: function init() {}
-};
-exports.default = _default;
 },{}],"lib/js/myQuery.js":[function(require,module,exports) {
 "use strict";
 
@@ -922,18 +911,28 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 var _default = {
   get: {
-    byId: function byId(id) {}
+    byId: {
+      value: function value(id) {
+        return document.getElementById(id).value;
+      },
+      innerHtml: function innerHtml(id) {
+        return document.getElementById(id).innerHTML;
+      }
+    }
   },
   set: {
     byId: {
       innerHtml: function innerHtml(id, content) {
         document.getElementById(id).innerHTML = content;
+      },
+      click: function click(id, event) {
+        document.getElementById(id).addEventListener('click', event);
       }
     }
   }
 };
 exports.default = _default;
-},{}],"lib/js/templates.js":[function(require,module,exports) {
+},{}],"src/article.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -941,69 +940,19 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var consts = _interopRequireWildcard(require("./constants"));
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var _mustache = _interopRequireDefault(require("mustache"));
+var Article = function Article(name, description, content) {
+  _classCallCheck(this, Article);
 
-var _singleArticlePage = _interopRequireDefault(require("../../src/singleArticlePage"));
-
-var _homePage = _interopRequireDefault(require("../../src/homePage"));
-
-var _editArticlePage = _interopRequireDefault(require("../../src/editArticlePage"));
-
-var _myQuery = _interopRequireDefault(require("./myQuery"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
-
-var homeTemplate = "<h1>{{title}}</h1><br><br></br>" + "<span>{{description}}</span><br><br>";
-var articleTemplate = '<h3>{{title}}<h3>' + '<span>{{description}}<span></br>' + '<span>{{content}}';
-var articleEditTemplate = "\n<div class=\"editArticle\">\n<input type=\"text\" placeholder=\"token\"><br><br>\n<input type=\"text\" placeholder=\"title\" value=\"{{title}}\"><br><br>\n<input type=\"text\" placeholder=\"description\" value=\"{{description}}\"><br><br>\n<div class=\"content\" contenteditable=\"true\">\n    {{content}}\n</div>\n<br>\n<span>END</span>\n</div>\n";
-
-function set(value) {
-  _myQuery.default.set.byId.innerHtml(consts.mainContent, value);
-
-  body.innerHTML = value;
-}
-
-function buildCompoment(str, obj) {
-  var val = str;
-
-  for (var i in obj) {
-    val = val.replace('{{' + i + '}}', obj[i]);
-  }
-
-  return val;
-}
-
-var _default = {
-  showArticle: function showArticle(article) {
-    var output = _mustache.default.render(articleTemplate, article);
-
-    set(output);
-
-    _singleArticlePage.default.init();
-  },
-  showStartPage: function showStartPage(obj) {
-    buildCompoment(mainStr, obj);
-
-    var output = _mustache.default.render(homeTemplate, obj);
-
-    set(output);
-
-    _homePage.default.init();
-  },
-  articleEdit: function articleEdit(obj) {
-    var output = _mustache.default.render(articleEditTemplate, obj);
-
-    set(output);
-
-    _editArticlePage.default.init();
-  }
+  this.name = name;
+  this.description = description;
+  this.content = content;
+  this.smug = name ? name.replace(' ', '-') : "";
 };
-exports.default = _default;
-},{"./constants":"lib/js/constants.js","mustache":"../node_modules/mustache/mustache.js","../../src/singleArticlePage":"src/singleArticlePage.js","../../src/homePage":"src/homePage.js","../../src/editArticlePage":"src/editArticlePage.js","./myQuery":"lib/js/myQuery.js"}],"lib/js/call.js":[function(require,module,exports) {
+
+exports.default = Article;
+},{}],"lib/js/call.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1020,11 +969,11 @@ var base = consts.backendApiAddress;
 var post = function post(article, token) {
   return fetch(base, {
     method: "POST",
-    body: JSON.stringify(article),
     headers: {
-      "auth": token,
-      "Content-Type": "application/json; charset=utf-8"
-    }
+      'auth': token,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(article)
   });
 };
 
@@ -1037,7 +986,7 @@ var getOneById = function getOneById(id) {
 };
 
 var getOneBySmug = function getOneBySmug(smug) {
-  return fetch("".concat(base, "/id/").concat(id));
+  return fetch("".concat(base, "/smug/").concat(smug));
 };
 
 var put = function put(id, article, token) {
@@ -1088,7 +1037,98 @@ var _default = {
   addComment: addComment
 };
 exports.default = _default;
-},{"./constants":"lib/js/constants.js"}],"lib/js/router.js":[function(require,module,exports) {
+},{"./constants":"lib/js/constants.js"}],"src/editArticlePage.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _myQuery = _interopRequireDefault(require("../lib/js/myQuery"));
+
+var _article = _interopRequireDefault(require("./article"));
+
+var _call = _interopRequireDefault(require("../lib/js/call"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var init = function init() {
+  return _myQuery.default.set.byId.click('submit', submit);
+};
+
+function submit() {
+  var token = _myQuery.default.get.byId.value('token');
+
+  var article = new _article.default(_myQuery.default.get.byId.value('title'), _myQuery.default.get.byId.value('description'), _myQuery.default.get.byId.innerHtml('content'));
+  return _call.default.post(article, token).then(function () {
+    return alert(created);
+  }).catch(function (e) {
+    return console.log(e);
+  });
+}
+
+var _default = {
+  init: init
+};
+exports.default = _default;
+},{"../lib/js/myQuery":"lib/js/myQuery.js","./article":"src/article.js","../lib/js/call":"lib/js/call.js"}],"lib/js/templates.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var consts = _interopRequireWildcard(require("./constants"));
+
+var _mustache = _interopRequireDefault(require("mustache"));
+
+var _singleArticlePage = _interopRequireDefault(require("../../src/singleArticlePage"));
+
+var _homePage = _interopRequireDefault(require("../../src/homePage"));
+
+var _editArticlePage = _interopRequireDefault(require("../../src/editArticlePage"));
+
+var _myQuery = _interopRequireDefault(require("./myQuery"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
+
+var homeTemplate = "<h1>{{title}}</h1><br><br></br>" + "<span>{{description}}</span><br><br>";
+var articleTemplate = '<h3>{{title}}<h3>' + '<span>{{description}}<span></br>' + '<span>{{content}}';
+var articleEditTemplate = "\n<div class=\"editArticle\">\n<input type=\"text\" placeholder=\"token\" id=\"token\"><br><br>\n<input type=\"text\" placeholder=\"title\" value=\"{{title}}\" id=\"title\"><br><br>\n<input type=\"text\" placeholder=\"description\" value=\"{{description}}\" id=\"description\"><br><br>\n<div class=\"content\" contenteditable=\"true\" id=\"content\">\n    {{content}}\n</div><br><br>\n<button id=\"submit\"> Submit </button><br><br>\n<span>END</span>\n</div>\n";
+
+function set(value) {
+  _myQuery.default.set.byId.innerHtml(consts.mainContent, value);
+}
+
+var _default = {
+  showArticle: function showArticle(article) {
+    var output = _mustache.default.render(articleTemplate, article);
+
+    set(output);
+
+    _singleArticlePage.default.init();
+  },
+  showStartPage: function showStartPage(obj) {
+    var output = _mustache.default.render(homeTemplate, obj);
+
+    set(output);
+
+    _homePage.default.init();
+  },
+  articleEdit: function articleEdit(obj) {
+    var output = _mustache.default.render(articleEditTemplate, obj);
+
+    set(output);
+
+    _editArticlePage.default.init();
+  }
+};
+exports.default = _default;
+},{"./constants":"lib/js/constants.js","mustache":"../node_modules/mustache/mustache.js","../../src/singleArticlePage":"src/singleArticlePage.js","../../src/homePage":"src/homePage.js","../../src/editArticlePage":"src/editArticlePage.js","./myQuery":"lib/js/myQuery.js"}],"lib/js/router.js":[function(require,module,exports) {
 "use strict";
 
 var _navigo = _interopRequireDefault(require("navigo"));
@@ -1157,7 +1197,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60919" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52636" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

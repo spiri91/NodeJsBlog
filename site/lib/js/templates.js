@@ -1,6 +1,6 @@
 import * as consts from './constants';
 import Mustache from 'mustache';
-import articlePage from  '../../src/singleArticlePage';
+import articlePage from '../../src/singleArticlePage';
 import homePage from '../../src/homePage';
 import editArticle from '../../src/editArticlePage';
 import QQ from './myQuery';
@@ -14,28 +14,19 @@ let articleTemplate = '<h3>{{title}}<h3>'
 
 let articleEditTemplate = `
 <div class="editArticle">
-<input type="text" placeholder="token"><br><br>
-<input type="text" placeholder="title" value="{{title}}"><br><br>
-<input type="text" placeholder="description" value="{{description}}"><br><br>
-<div class="content" contenteditable="true">
+<input type="text" placeholder="token" id="token"><br><br>
+<input type="text" placeholder="title" value="{{title}}" id="title"><br><br>
+<input type="text" placeholder="description" value="{{description}}" id="description"><br><br>
+<div class="content" contenteditable="true" id="content">
     {{content}}
-</div>
-<br>
+</div><br><br>
+<button id="submit"> Submit </button><br><br>
 <span>END</span>
 </div>
 `
 
 function set(value) {
   QQ.set.byId.innerHtml(consts.mainContent, value);
-
-  body.innerHTML = value;
-}
-
-function buildCompoment(str, obj) {
-  let val = str;
-  for (let i in obj) val = val.replace('{{' + i + '}}', obj[i]);
-
-  return val;
 }
 
 export default {
@@ -47,7 +38,6 @@ export default {
   },
 
   showStartPage: (obj) => {
-   buildCompoment(mainStr, obj);
     let output = Mustache.render(homeTemplate, obj);
     set(output);
 
