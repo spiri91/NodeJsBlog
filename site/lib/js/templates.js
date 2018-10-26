@@ -3,6 +3,7 @@ import Mustache from 'mustache';
 import articlePage from '../../src/singleArticlePage';
 import homePage from '../../src/homePage';
 import editArticle from '../../src/editArticlePage';
+import createArticle from '../../src/createArticlePage'
 import QQ from './myQuery';
 
 let homeTemplate = "<h1>{{title}}</h1><br><br></br>"
@@ -17,9 +18,7 @@ let articleEditTemplate = `
 <input type="text" placeholder="token" id="token"><br><br>
 <input type="text" placeholder="title" value="{{title}}" id="title"><br><br>
 <input type="text" placeholder="description" value="{{description}}" id="description"><br><br>
-<div class="content" contenteditable="true" id="content">
-    {{content}}
-</div><br><br>
+<textarea class="content" id="content">{{content}}</textarea><br><br>
 <button id="submit"> Submit </button><br><br>
 <span>END</span>
 </div>
@@ -44,10 +43,17 @@ export default {
     homePage.init();
   },
 
+  articleCreate: () => {
+    let output = Mustache.render(articleEditTemplate, {});
+    set(output);
+
+    createArticle.init();
+  },
+
   articleEdit: (obj) => {
     let output = Mustache.render(articleEditTemplate, obj);
     set(output);
 
-    editArticle.init();
-  },
+    editArticle.init(obj);
+  }
 };

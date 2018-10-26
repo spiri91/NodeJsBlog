@@ -10,7 +10,7 @@ exports.getOne = function (condition, callback) {
 
 exports.getDTOsWithPagination = function (take, skip, callback) {
   Article.find({})
-    .select('_id name smug createdAt description')
+    .select('_id title smug createdAt description')
     .sort('createdAt')
     .limit(Number(take))
     .skip(Number(skip))

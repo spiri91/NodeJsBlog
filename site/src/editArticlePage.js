@@ -2,20 +2,23 @@ import QQ from '../lib/js/myQuery';
 import Article from './article';
 import call from '../lib/js/call';
 
-let init = () => QQ.set.byId.click('submit', submit)
+let etArticle;
 
-function submit(){
+let init = (article) => {
+    etArticle = article;
+    QQ.set.byId.click('submit', submit)
+}
+
+function submit() {
     let token = QQ.get.byId.value('token');
 
-    let article = new Article(
-        QQ.get.byId.value('title'),
-        QQ.get.byId.value('description'),
-        QQ.get.byId.innerHtml('content')
-    );
+    etArticle.title = QQ.get.byId.value('title');
+    etArticle.description = QQ.get.byId.value('description');
+    etArticle.content = QQ.get.byId.innerHtml('content');
 
-    return call.post(article, token)
-        .then(() => alert(created))
-        .catch(e => console.log(e));
+    return call.put(etArticle._id, etArticle, token)
+        .then(() => alert('edited'))
+        .catch(e => { console.log(e); alert('check console'); });
 }
 
 export default {

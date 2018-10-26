@@ -13,17 +13,17 @@ let post = (article, token) => fetch(base, {
 
 let get = (take, skip) => fetch(`${base}/dtos/${take}/${skip}`);
 
-let getOneById = (id) => fetch(`${base}/id/${id}`);
+let getOneById = (id) => fetch(`${base}/id/${id}`).then(r => r.json());
 
 let getOneBySmug = (smug) => fetch(`${base}/smug/${smug}`);
 
 let put = (id, article, token) => fetch(`${base}/${id}`, {
   method: "PUT",
-  body: JSON.stringify(article),
   headers: {
     "auth": token,
     "Content-Type": "application/json; charset=utf-8"
-  }
+  },
+  body: JSON.stringify(article),
 });
 
 let deleteIt = (id, token) => fetch(`${base}/${id}`, {

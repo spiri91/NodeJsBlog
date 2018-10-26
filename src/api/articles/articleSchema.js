@@ -5,7 +5,7 @@ mongoose.connect(process.env.DB_HOST, { useNewUrlParser: true });
 const Schema = mongoose.Schema;
 
 const articleSchema = new Schema({
-  name: { type: String, required: true, unique: true },
+  title: { type: String, required: true, unique: true },
   smug: { type: String, required: true, unique: true },
   description: { type: String, required: true },
   content: { type: String, required: true },

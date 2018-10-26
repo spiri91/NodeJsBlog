@@ -1,8 +1,9 @@
 export default class Article {
-  constructor(name, description, content) {
-    this.name = name;
+  constructor(title, description, content) {
+    this.title = title;
     this.description = description;
     this.content = content;
-    this.smug = name ? name.replace(' ', '-') : "";
+    this.smug = title ? title.replace(' ', '-') : "";
+    this.createdAt = Date.now(); 
   }
 }
