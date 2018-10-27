@@ -1,7 +1,7 @@
 import Navigo from 'navigo';
+import _ from 'underscore';
 import templates from './templates';
 import call from './call';
-import _ from 'underscore';
 
 let root = null;
 let useHash = true;

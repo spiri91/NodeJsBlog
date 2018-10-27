@@ -2,6 +2,13 @@ import * as consts from './constants';
 
 let base = consts.backendApiAddress;
 
+async function handleResult(res) {
+  let result = await res;
+  if (result.status > 204) throw new Error("eror, check console");
+
+  return result.json();
+}
+
 let post = (article, token) => fetch(base, {
   method: "POST",
   headers: {
@@ -11,30 +18,49 @@ let post = (article, token) => fetch(base, {
   body: JSON.stringify(article),
 })
 
-let get = (take, skip) => fetch(`${base}/dtos/${take}/${skip}`);
+let get = async (take, skip) => {
+  let res = await fetch(`${base}/dtos/${take}/${skip}`);
 
-let getOneById = (id) => fetch(`${base}/id/${id}`).then(r => r.json());
+  return handleResult(res);
+}
 
-let getOneBySmug = (smug) => fetch(`${base}/smug/${smug}`);
+let getOneById = async (id) => {
+  let res = fetch(`${base}/id/${id}`);
 
-let put = (id, article, token) => fetch(`${base}/${id}`, {
-  method: "PUT",
-  headers: {
-    "auth": token,
-    "Content-Type": "application/json; charset=utf-8"
-  },
-  body: JSON.stringify(article),
-});
+  return handleResult(res);
+}
 
-let deleteIt = (id, token) => fetch(`${base}/${id}`, {
-  method: "DELETE",
-  headers: {
-    "auth": token,
-    "Content-Type": "application/json; charset=utf-8"
-  }
-});
+let getOneBySmug = async (smug) => {
+  let res = fetch(`${base}/smug/${smug}`);
 
-let getPage = function (pageNumber) {
+  return handleResult(res);
+}
+let put = async (id, article, token) => {
+  let res = await fetch(`${base}/${id}`, {
+    method: "PUT",
+    headers: {
+      "auth": token,
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    body: JSON.stringify(article),
+  });
+
+  return handleResult(res);
+}
+
+let deleteIt = async (id, token) => {
+  let res = await fetch(`${base}/${id}`, {
+    method: "DELETE",
+    headers: {
+      "auth": token,
+      "Content-Type": "application/json; charset=utf-8"
+    }
+  });
+
+  return handleResult(res);
+}
+
+let getPage = async (pageNumber) => {
   if (pageNumber < 1) pageNumber = 1;
 
   let take = consts.pageSize;
@@ -43,14 +69,16 @@ let getPage = function (pageNumber) {
   return get(take, skip);
 }
 
-let addComment = function (articleId, comment) {
-  return fetch(`${base}/${articleId}/comments`, {
+let addComment = async (articleId, comment) => {
+  let res = await fetch(`${base}/${articleId}/comments`, {
     method: "POST",
     body: JSON.stringify(comment),
     headers: {
       "Content-Type": "application/json; charset=utf-8"
     }
-  })
+  });
+
+  return handleResult(res);
 }
 
 export default {
