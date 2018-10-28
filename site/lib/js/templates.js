@@ -1,5 +1,5 @@
-import * as consts from './constants';
 import Mustache from 'mustache';
+import * as consts from './constants';
 import articlePage from '../../src/singleArticlePage';
 import homePage from '../../src/homePage';
 import editArticle from '../../src/editArticlePage';
@@ -9,9 +9,14 @@ import QQ from './myQuery';
 let homeTemplate = "<h1>{{title}}</h1><br><br></br>"
   + "<span>{{description}}</span><br><br>";
 
-let articleTemplate = '<h3>{{title}}<h3>'
-  + '<span>{{description}}<span></br>'
-  + '<span>{{content}}';
+let articleTemplate = `<h3>{{title}}<h3>
+  <span>{{description}}</span></br><br>
+  <div class='articleContent'>{{content}}</div><br>
+  <input type='text' placeholder='comment' id='newCommentText'/><br>
+  <input type='button' value='Post' id='newCommentPost' /><br> 
+  <br>
+  <span>END</span>
+  `;
 
 let articleEditTemplate = `
 <div class="editArticle">
@@ -33,7 +38,7 @@ export default {
     let output = Mustache.render(articleTemplate, article);
     set(output);
 
-    articlePage.init();
+    articlePage.init(article);
   },
 
   showStartPage: (obj) => {

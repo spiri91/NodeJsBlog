@@ -1877,19 +1877,6 @@ var define;
   }
 }());
 
-},{}],"lib/js/constants.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.pageSize = exports.mainContent = exports.backendApiAddress = void 0;
-var backendApiAddress = "http://localhost:3000/api/articles";
-exports.backendApiAddress = backendApiAddress;
-var mainContent = 'MainContent';
-exports.mainContent = mainContent;
-var pageSize = 10;
-exports.pageSize = pageSize;
 },{}],"../node_modules/mustache/mustache.js":[function(require,module,exports) {
 var define;
 var global = arguments[3];
@@ -2576,58 +2563,19 @@ var global = arguments[3];
   return mustache;
 }));
 
-},{}],"src/singleArticlePage.js":[function(require,module,exports) {
+},{}],"lib/js/constants.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.default = void 0;
-var _default = {
-  init: function init() {}
-};
-exports.default = _default;
-},{}],"src/homePage.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _default = {
-  init: function init() {}
-};
-exports.default = _default;
-},{}],"lib/js/myQuery.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _default = {
-  get: {
-    byId: {
-      value: function value(id) {
-        return document.getElementById(id).value;
-      },
-      innerHtml: function innerHtml(id) {
-        return document.getElementById(id).innerHTML;
-      }
-    }
-  },
-  set: {
-    byId: {
-      innerHtml: function innerHtml(id, content) {
-        document.getElementById(id).innerHTML = content;
-      },
-      click: function click(id, event) {
-        document.getElementById(id).addEventListener('click', event);
-      }
-    }
-  }
-};
-exports.default = _default;
+exports.pageSize = exports.mainContent = exports.backendApiAddress = void 0;
+var backendApiAddress = "http://localhost:3000/api/articles";
+exports.backendApiAddress = backendApiAddress;
+var mainContent = 'MainContent';
+exports.mainContent = mainContent;
+var pageSize = 10;
+exports.pageSize = pageSize;
 },{}],"../node_modules/regenerator-runtime/runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 /**
@@ -3432,6 +3380,36 @@ function _asyncToGenerator(fn) {
 }
 
 module.exports = _asyncToGenerator;
+},{}],"lib/js/myQuery.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _default = {
+  get: {
+    byId: {
+      value: function value(id) {
+        return document.getElementById(id).value;
+      },
+      innerHtml: function innerHtml(id) {
+        return document.getElementById(id).innerHTML;
+      }
+    }
+  },
+  set: {
+    byId: {
+      innerHtml: function innerHtml(id, content) {
+        document.getElementById(id).innerHTML = content;
+      },
+      click: function click(id, event) {
+        document.getElementById(id).addEventListener('click', event);
+      }
+    }
+  }
+};
+exports.default = _default;
 },{}],"lib/js/call.js":[function(require,module,exports) {
 "use strict";
 
@@ -3459,62 +3437,59 @@ function handleResult(_x) {
 function _handleResult() {
   _handleResult = (0, _asyncToGenerator2.default)(
   /*#__PURE__*/
-  _regenerator.default.mark(function _callee8(res) {
-    var result;
-    return _regenerator.default.wrap(function _callee8$(_context8) {
+  _regenerator.default.mark(function _callee9(result) {
+    return _regenerator.default.wrap(function _callee9$(_context9) {
       while (1) {
-        switch (_context8.prev = _context8.next) {
+        switch (_context9.prev = _context9.next) {
           case 0:
-            _context8.next = 2;
-            return res;
-
-          case 2:
-            result = _context8.sent;
-
             if (!(result.status > 204)) {
-              _context8.next = 5;
+              _context9.next = 2;
               break;
             }
 
             throw new Error("eror, check console");
 
-          case 5:
-            return _context8.abrupt("return", result.json());
+          case 2:
+            if (!(result.status > 200)) {
+              _context9.next = 4;
+              break;
+            }
 
-          case 6:
+            return _context9.abrupt("return", {});
+
+          case 4:
+            return _context9.abrupt("return", result.json());
+
+          case 5:
           case "end":
-            return _context8.stop();
+            return _context9.stop();
         }
       }
-    }, _callee8, this);
+    }, _callee9, this);
   }));
   return _handleResult.apply(this, arguments);
 }
 
-var post = function post(article, token) {
-  return fetch(base, {
-    method: "POST",
-    headers: {
-      'auth': token,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(article)
-  });
-};
-
-var get =
+var post =
 /*#__PURE__*/
 function () {
   var _ref = (0, _asyncToGenerator2.default)(
   /*#__PURE__*/
-  _regenerator.default.mark(function _callee(take, skip) {
+  _regenerator.default.mark(function _callee(article, token) {
     var res;
     return _regenerator.default.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
             _context.next = 2;
-            return fetch("".concat(base, "/dtos/").concat(take, "/").concat(skip));
+            return fetch(base, {
+              method: "POST",
+              headers: {
+                'auth': token,
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(article)
+            });
 
           case 2:
             res = _context.sent;
@@ -3528,26 +3503,30 @@ function () {
     }, _callee, this);
   }));
 
-  return function get(_x2, _x3) {
+  return function post(_x2, _x3) {
     return _ref.apply(this, arguments);
   };
 }();
 
-var getOneById =
+var get =
 /*#__PURE__*/
 function () {
   var _ref2 = (0, _asyncToGenerator2.default)(
   /*#__PURE__*/
-  _regenerator.default.mark(function _callee2(id) {
+  _regenerator.default.mark(function _callee2(take, skip) {
     var res;
     return _regenerator.default.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
-            res = fetch("".concat(base, "/id/").concat(id));
-            return _context2.abrupt("return", handleResult(res));
+            _context2.next = 2;
+            return fetch("".concat(base, "/dtos/").concat(take, "/").concat(skip));
 
           case 2:
+            res = _context2.sent;
+            return _context2.abrupt("return", handleResult(res));
+
+          case 4:
           case "end":
             return _context2.stop();
         }
@@ -3555,26 +3534,30 @@ function () {
     }, _callee2, this);
   }));
 
-  return function getOneById(_x4) {
+  return function get(_x4, _x5) {
     return _ref2.apply(this, arguments);
   };
 }();
 
-var getOneBySmug =
+var getOneById =
 /*#__PURE__*/
 function () {
   var _ref3 = (0, _asyncToGenerator2.default)(
   /*#__PURE__*/
-  _regenerator.default.mark(function _callee3(smug) {
+  _regenerator.default.mark(function _callee3(id) {
     var res;
     return _regenerator.default.wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
           case 0:
-            res = fetch("".concat(base, "/smug/").concat(smug));
-            return _context3.abrupt("return", handleResult(res));
+            _context3.next = 2;
+            return fetch("".concat(base, "/id/").concat(id));
 
           case 2:
+            res = _context3.sent;
+            return _context3.abrupt("return", handleResult(res));
+
+          case 4:
           case "end":
             return _context3.stop();
         }
@@ -3582,31 +3565,24 @@ function () {
     }, _callee3, this);
   }));
 
-  return function getOneBySmug(_x5) {
+  return function getOneById(_x6) {
     return _ref3.apply(this, arguments);
   };
 }();
 
-var put =
+var getOneBySmug =
 /*#__PURE__*/
 function () {
   var _ref4 = (0, _asyncToGenerator2.default)(
   /*#__PURE__*/
-  _regenerator.default.mark(function _callee4(id, article, token) {
+  _regenerator.default.mark(function _callee4(smug) {
     var res;
     return _regenerator.default.wrap(function _callee4$(_context4) {
       while (1) {
         switch (_context4.prev = _context4.next) {
           case 0:
             _context4.next = 2;
-            return fetch("".concat(base, "/").concat(id), {
-              method: "PUT",
-              headers: {
-                "auth": token,
-                "Content-Type": "application/json; charset=utf-8"
-              },
-              body: JSON.stringify(article)
-            });
+            return fetch("".concat(base, "/smug/").concat(smug));
 
           case 2:
             res = _context4.sent;
@@ -3620,17 +3596,17 @@ function () {
     }, _callee4, this);
   }));
 
-  return function put(_x6, _x7, _x8) {
+  return function getOneBySmug(_x7) {
     return _ref4.apply(this, arguments);
   };
 }();
 
-var deleteIt =
+var put =
 /*#__PURE__*/
 function () {
   var _ref5 = (0, _asyncToGenerator2.default)(
   /*#__PURE__*/
-  _regenerator.default.mark(function _callee5(id, token) {
+  _regenerator.default.mark(function _callee5(id, article, token) {
     var res;
     return _regenerator.default.wrap(function _callee5$(_context5) {
       while (1) {
@@ -3638,11 +3614,12 @@ function () {
           case 0:
             _context5.next = 2;
             return fetch("".concat(base, "/").concat(id), {
-              method: "DELETE",
+              method: "PUT",
               headers: {
                 "auth": token,
                 "Content-Type": "application/json; charset=utf-8"
-              }
+              },
+              body: JSON.stringify(article)
             });
 
           case 2:
@@ -3657,26 +3634,34 @@ function () {
     }, _callee5, this);
   }));
 
-  return function deleteIt(_x9, _x10) {
+  return function put(_x8, _x9, _x10) {
     return _ref5.apply(this, arguments);
   };
 }();
 
-var getPage =
+var deleteIt =
 /*#__PURE__*/
 function () {
   var _ref6 = (0, _asyncToGenerator2.default)(
   /*#__PURE__*/
-  _regenerator.default.mark(function _callee6(pageNumber) {
-    var take, skip;
+  _regenerator.default.mark(function _callee6(id, token) {
+    var res;
     return _regenerator.default.wrap(function _callee6$(_context6) {
       while (1) {
         switch (_context6.prev = _context6.next) {
           case 0:
-            if (pageNumber < 1) pageNumber = 1;
-            take = consts.pageSize;
-            skip = (pageNumber - 1) * consts.pageSize;
-            return _context6.abrupt("return", get(take, skip));
+            _context6.next = 2;
+            return fetch("".concat(base, "/").concat(id), {
+              method: "DELETE",
+              headers: {
+                "auth": token,
+                "Content-Type": "application/json; charset=utf-8"
+              }
+            });
+
+          case 2:
+            res = _context6.sent;
+            return _context6.abrupt("return", handleResult(res));
 
           case 4:
           case "end":
@@ -3686,34 +3671,26 @@ function () {
     }, _callee6, this);
   }));
 
-  return function getPage(_x11) {
+  return function deleteIt(_x11, _x12) {
     return _ref6.apply(this, arguments);
   };
 }();
 
-var addComment =
+var getPage =
 /*#__PURE__*/
 function () {
   var _ref7 = (0, _asyncToGenerator2.default)(
   /*#__PURE__*/
-  _regenerator.default.mark(function _callee7(articleId, comment) {
-    var res;
+  _regenerator.default.mark(function _callee7(pageNumber) {
+    var take, skip;
     return _regenerator.default.wrap(function _callee7$(_context7) {
       while (1) {
         switch (_context7.prev = _context7.next) {
           case 0:
-            _context7.next = 2;
-            return fetch("".concat(base, "/").concat(articleId, "/comments"), {
-              method: "POST",
-              body: JSON.stringify(comment),
-              headers: {
-                "Content-Type": "application/json; charset=utf-8"
-              }
-            });
-
-          case 2:
-            res = _context7.sent;
-            return _context7.abrupt("return", handleResult(res));
+            if (pageNumber < 1) pageNumber = 1;
+            take = consts.pageSize;
+            skip = (pageNumber - 1) * consts.pageSize;
+            return _context7.abrupt("return", get(take, skip));
 
           case 4:
           case "end":
@@ -3723,8 +3700,45 @@ function () {
     }, _callee7, this);
   }));
 
-  return function addComment(_x12, _x13) {
+  return function getPage(_x13) {
     return _ref7.apply(this, arguments);
+  };
+}();
+
+var addComment =
+/*#__PURE__*/
+function () {
+  var _ref8 = (0, _asyncToGenerator2.default)(
+  /*#__PURE__*/
+  _regenerator.default.mark(function _callee8(articleId, comment) {
+    var res;
+    return _regenerator.default.wrap(function _callee8$(_context8) {
+      while (1) {
+        switch (_context8.prev = _context8.next) {
+          case 0:
+            _context8.next = 2;
+            return fetch("".concat(base, "/").concat(articleId, "/comments"), {
+              method: "POST",
+              body: JSON.stringify(comment),
+              headers: {
+                "Content-Type": "application/json; charset=utf-8"
+              }
+            });
+
+          case 2:
+            res = _context8.sent;
+            return _context8.abrupt("return", handleResult(res));
+
+          case 4:
+          case "end":
+            return _context8.stop();
+        }
+      }
+    }, _callee8, this);
+  }));
+
+  return function addComment(_x14, _x15) {
+    return _ref8.apply(this, arguments);
   };
 }();
 
@@ -3738,7 +3752,109 @@ var _default = {
   addComment: addComment
 };
 exports.default = _default;
-},{"@babel/runtime/regenerator":"../node_modules/@babel/runtime/regenerator/index.js","@babel/runtime/helpers/asyncToGenerator":"../node_modules/@babel/runtime/helpers/asyncToGenerator.js","./constants":"lib/js/constants.js"}],"src/editArticlePage.js":[function(require,module,exports) {
+},{"@babel/runtime/regenerator":"../node_modules/@babel/runtime/regenerator/index.js","@babel/runtime/helpers/asyncToGenerator":"../node_modules/@babel/runtime/helpers/asyncToGenerator.js","./constants":"lib/js/constants.js"}],"../node_modules/@babel/runtime/helpers/classCallCheck.js":[function(require,module,exports) {
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+module.exports = _classCallCheck;
+},{}],"src/comment.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/classCallCheck"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Comment = function Comment(by, content) {
+  (0, _classCallCheck2.default)(this, Comment);
+  this.by = by;
+  this.content = content;
+  this.date = Date.now();
+};
+
+exports.default = Comment;
+},{"@babel/runtime/helpers/classCallCheck":"../node_modules/@babel/runtime/helpers/classCallCheck.js"}],"src/singleArticlePage.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
+
+var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
+
+var _myQuery = _interopRequireDefault(require("../lib/js/myQuery"));
+
+var _call = _interopRequireDefault(require("../lib/js/call"));
+
+var _comment = _interopRequireDefault(require("./comment"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _article;
+
+var _default = {
+  init: function init(article) {
+    _article = article;
+
+    _myQuery.default.set.byId.click('newCommentPost',
+    /*#__PURE__*/
+    (0, _asyncToGenerator2.default)(
+    /*#__PURE__*/
+    _regenerator.default.mark(function _callee() {
+      var commentValue, comment;
+      return _regenerator.default.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              commentValue = _myQuery.default.get.byId.value('newCommentText');
+
+              if (commentValue) {
+                _context.next = 3;
+                break;
+              }
+
+              return _context.abrupt("return");
+
+            case 3:
+              comment = new _comment.default('me', commentValue);
+              _context.next = 6;
+              return _call.default.addComment(_article._id, comment);
+
+            case 6:
+              alert('added');
+
+            case 7:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee, this);
+    })));
+  }
+};
+exports.default = _default;
+},{"@babel/runtime/regenerator":"../node_modules/@babel/runtime/regenerator/index.js","@babel/runtime/helpers/asyncToGenerator":"../node_modules/@babel/runtime/helpers/asyncToGenerator.js","../lib/js/myQuery":"lib/js/myQuery.js","../lib/js/call":"lib/js/call.js","./comment":"src/comment.js"}],"src/homePage.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _default = {
+  init: function init() {}
+};
+exports.default = _default;
+},{}],"src/editArticlePage.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3778,15 +3894,7 @@ var _default = {
   init: init
 };
 exports.default = _default;
-},{"../lib/js/myQuery":"lib/js/myQuery.js","../lib/js/call":"lib/js/call.js"}],"../node_modules/@babel/runtime/helpers/classCallCheck.js":[function(require,module,exports) {
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-}
-
-module.exports = _classCallCheck;
-},{}],"src/article.js":[function(require,module,exports) {
+},{"../lib/js/myQuery":"lib/js/myQuery.js","../lib/js/call":"lib/js/call.js"}],"src/article.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3852,9 +3960,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
-var consts = _interopRequireWildcard(require("./constants"));
-
 var _mustache = _interopRequireDefault(require("mustache"));
+
+var consts = _interopRequireWildcard(require("./constants"));
 
 var _singleArticlePage = _interopRequireDefault(require("../../src/singleArticlePage"));
 
@@ -3866,12 +3974,12 @@ var _createArticlePage = _interopRequireDefault(require("../../src/createArticle
 
 var _myQuery = _interopRequireDefault(require("./myQuery"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 var homeTemplate = "<h1>{{title}}</h1><br><br></br>" + "<span>{{description}}</span><br><br>";
-var articleTemplate = '<h3>{{title}}<h3>' + '<span>{{description}}<span></br>' + '<span>{{content}}';
+var articleTemplate = "<h3>{{title}}<h3>\n  <span>{{description}}</span></br><br>\n  <div class='articleContent'>{{content}}</div><br>\n  <input type='text' placeholder='comment' id='newCommentText'/><br>\n  <input type='button' value='Post' id='newCommentPost' /><br> \n  <br>\n  <span>END</span>\n  ";
 var articleEditTemplate = "\n<div class=\"editArticle\">\n<input type=\"text\" placeholder=\"token\" id=\"token\"><br><br>\n<input type=\"text\" placeholder=\"title\" value=\"{{title}}\" id=\"title\"><br><br>\n<input type=\"text\" placeholder=\"description\" value=\"{{description}}\" id=\"description\"><br><br>\n<textarea class=\"content\" id=\"content\">{{content}}</textarea><br><br>\n<button id=\"submit\"> Submit </button><br><br>\n<span>END</span>\n</div>\n";
 
 function set(value) {
@@ -3884,7 +3992,7 @@ var _default = {
 
     set(output);
 
-    _singleArticlePage.default.init();
+    _singleArticlePage.default.init(article);
   },
   showStartPage: function showStartPage(obj) {
     var output = _mustache.default.render(homeTemplate, obj);
@@ -3909,7 +4017,7 @@ var _default = {
   }
 };
 exports.default = _default;
-},{"./constants":"lib/js/constants.js","mustache":"../node_modules/mustache/mustache.js","../../src/singleArticlePage":"src/singleArticlePage.js","../../src/homePage":"src/homePage.js","../../src/editArticlePage":"src/editArticlePage.js","../../src/createArticlePage":"src/createArticlePage.js","./myQuery":"lib/js/myQuery.js"}],"lib/js/router.js":[function(require,module,exports) {
+},{"mustache":"../node_modules/mustache/mustache.js","./constants":"lib/js/constants.js","../../src/singleArticlePage":"src/singleArticlePage.js","../../src/homePage":"src/homePage.js","../../src/editArticlePage":"src/editArticlePage.js","../../src/createArticlePage":"src/createArticlePage.js","./myQuery":"lib/js/myQuery.js"}],"lib/js/router.js":[function(require,module,exports) {
 "use strict";
 
 var _navigo = _interopRequireDefault(require("navigo"));
@@ -3929,10 +4037,10 @@ router.on({
   'article/i/:id': function articleIId(params) {
     return _call.default.getOneById(params.id).then(_templates.default.showArticle);
   },
-  'article/s/:smug': function articleSSmug(params) {
+  'article/:smug': function articleSmug(params) {
     return _call.default.getOneBySmug(params.smug).then(_templates.default.showArticle);
   },
-  'article/create': function articleCreate() {
+  'article/create/new': function articleCreateNew() {
     return _templates.default.articleCreate();
   },
   'article/:id/edit': function articleIdEdit(params) {
@@ -3983,7 +4091,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58658" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52493" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

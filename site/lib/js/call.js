@@ -2,22 +2,25 @@ import * as consts from './constants';
 
 let base = consts.backendApiAddress;
 
-async function handleResult(res) {
-  let result = await res;
+async function handleResult(result) {
   if (result.status > 204) throw new Error("eror, check console");
+  if (result.status > 200) return {};
 
   return result.json();
 }
 
-let post = (article, token) => fetch(base, {
-  method: "POST",
-  headers: {
-    'auth': token,
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify(article),
-})
+let post = async (article, token) => {
+  let res = await fetch(base, {
+    method: "POST",
+    headers: {
+      'auth': token,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(article),
+  });
 
+  return handleResult(res);
+}
 let get = async (take, skip) => {
   let res = await fetch(`${base}/dtos/${take}/${skip}`);
 
@@ -25,13 +28,13 @@ let get = async (take, skip) => {
 }
 
 let getOneById = async (id) => {
-  let res = fetch(`${base}/id/${id}`);
+  let res = await fetch(`${base}/id/${id}`);
 
   return handleResult(res);
 }
 
 let getOneBySmug = async (smug) => {
-  let res = fetch(`${base}/smug/${smug}`);
+  let res = await fetch(`${base}/smug/${smug}`);
 
   return handleResult(res);
 }
