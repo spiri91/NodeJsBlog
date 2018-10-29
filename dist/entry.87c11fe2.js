@@ -3406,6 +3406,34 @@ var _default = {
       click: function click(id, event) {
         document.getElementById(id).addEventListener('click', event);
       }
+    },
+    byClass: {
+      click: function click(className, event) {
+        var elements = document.getElementsByClassName(className);
+        var _iteratorNormalCompletion = true;
+        var _didIteratorError = false;
+        var _iteratorError = undefined;
+
+        try {
+          for (var _iterator = elements[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+            var e = _step.value;
+            e.addEventListener('click', event);
+          }
+        } catch (err) {
+          _didIteratorError = true;
+          _iteratorError = err;
+        } finally {
+          try {
+            if (!_iteratorNormalCompletion && _iterator.return != null) {
+              _iterator.return();
+            }
+          } finally {
+            if (_didIteratorError) {
+              throw _iteratorError;
+            }
+          }
+        }
+      }
     }
   }
 };
@@ -3820,11 +3848,26 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+
+var _myQuery = _interopRequireDefault(require("../lib/js/myQuery"));
+
+var _router = _interopRequireDefault(require("../lib/js/router"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 var _default = {
-  init: function init() {}
+  init: function init() {
+    _myQuery.default.set.byClass.click('mainPageArticle', function (e) {
+      e.preventDefault();
+      var smug = e.srcElement.getAttribute('data-target-smug');
+      window.location.pathname = "#/".concat({
+        smug: smug
+      });
+    });
+  }
 };
 exports.default = _default;
-},{}],"src/editArticlePage.js":[function(require,module,exports) {
+},{"../lib/js/myQuery":"lib/js/myQuery.js","../lib/js/router":"lib/js/router.js"}],"src/editArticlePage.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3948,7 +3991,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var homeTemplate = "<h1>{{title}}</h1><br><br></br>" + "<span>{{description}}</span><br><br>";
+var homeTemplate = "\n<div class='mainPageArticles'>\n  {{#.}}\n    <div class='mainPageArticle' data-target-smug='{{smug}}'>\n      <h5>{{title}}</h5>\n      <span>{{description}}</span><br>\n      <br>\n    <div>\n  {{/.}}\n</div>\n";
 var articleTemplate = "<h3>{{title}}<h3>\n  <span>{{description}}</span></br><br>\n  <div class='articleContent' id='articleContent'></div><br>\n  <input type='text' placeholder='comment' id='newCommentText'/><br>\n  <input type='text' placeholder='name' id='newCommentPoster'/> <br>\n  <input type='button' value='Post' id='newCommentPost' /><br> \n  <br>\n  <span>END</span>\n  <h3>Comments<h3>\n  <ul>\n    {{#comments}}\n      <li>{{by}}: {{content}}  || {{date}}}</li>\n    {{/comments}}\n  </ul>\n  ";
 var articleEditTemplate = "\n<div class=\"editArticle\">\n<input type=\"text\" placeholder=\"token\" id=\"token\"><br><br>\n<input type=\"text\" placeholder=\"title\" value=\"{{title}}\" id=\"title\"><br><br>\n<input type=\"text\" placeholder=\"description\" value=\"{{description}}\" id=\"description\"><br><br>\n<textarea class=\"content\" id=\"content\">{{content}}</textarea><br><br>\n<button id=\"submit\"> Submit </button><br><br>\n<span>END</span>\n</div>\n";
 
@@ -8511,6 +8554,7 @@ var _moment = _interopRequireDefault(require("moment"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var generalDateFormat = 'DD/MM/YYYY hh:mm';
 var _default = {
   sanitiseArticle: function sanitiseArticle(article) {
     article.content = _underscore.default.unescape(article.content);
@@ -8521,7 +8565,7 @@ var _default = {
     try {
       for (var _iterator = article.comments[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
         var c = _step.value;
-        c.date = (0, _moment.default)(c.date).format('DD/MM/YYYY hh:mm');
+        c.date = (0, _moment.default)(c.date).format(generalDateFormat);
       }
     } catch (err) {
       _didIteratorError = true;
@@ -8539,11 +8583,43 @@ var _default = {
     }
 
     return article;
+  },
+  sanitiseArticles: function sanitiseArticles(articles) {
+    var _iteratorNormalCompletion2 = true;
+    var _didIteratorError2 = false;
+    var _iteratorError2 = undefined;
+
+    try {
+      for (var _iterator2 = articles[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+        var a = _step2.value;
+        a.date = (0, _moment.default)(a.date).format(generalDateFormat);
+      }
+    } catch (err) {
+      _didIteratorError2 = true;
+      _iteratorError2 = err;
+    } finally {
+      try {
+        if (!_iteratorNormalCompletion2 && _iterator2.return != null) {
+          _iterator2.return();
+        }
+      } finally {
+        if (_didIteratorError2) {
+          throw _iteratorError2;
+        }
+      }
+    }
+
+    return articles;
   }
 };
 exports.default = _default;
 },{"underscore":"../node_modules/underscore/underscore.js","moment":"../node_modules/moment/moment.js"}],"lib/js/router.js":[function(require,module,exports) {
 "use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
 
 var _navigo = _interopRequireDefault(require("navigo"));
 
@@ -8577,9 +8653,13 @@ router.on({
     return _call.default.getPage(params.number).then(_templates.default.showStartPage);
   },
   '*': function _() {
-    return _call.default.getPage(1).then(_templates.default.showStartPage);
+    return _call.default.getPage(1).then(_sanitizer.default.sanitiseArticles).then(_templates.default.showStartPage);
   }
 }).resolve();
+var _default = {
+  router: router
+};
+exports.default = _default;
 },{"navigo":"../node_modules/navigo/lib/navigo.min.js","underscore":"../node_modules/underscore/underscore.js","./templates":"lib/js/templates.js","./call":"lib/js/call.js","./sanitizer":"lib/js/sanitizer.js"}],"entry.js":[function(require,module,exports) {
 "use strict";
 
@@ -8615,7 +8695,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60266" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57135" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

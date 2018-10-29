@@ -6,8 +6,17 @@ import editArticle from '../../src/editArticlePage';
 import createArticle from '../../src/createArticlePage'
 import QQ from './myQuery';
 
-let homeTemplate = "<h1>{{title}}</h1><br><br></br>"
-  + "<span>{{description}}</span><br><br>";
+let homeTemplate = `
+<div class='mainPageArticles'>
+  {{#.}}
+    <div class='mainPageArticle' data-target-smug='{{smug}}'>
+      <h5>{{title}}</h5>
+      <span>{{description}}</span><br>
+      <br>
+    <div>
+  {{/.}}
+</div>
+`
 
 let articleTemplate = `<h3>{{title}}<h3>
   <span>{{description}}</span></br><br>
@@ -51,7 +60,6 @@ export default {
   showStartPage: (obj) => {
     let output = Mustache.render(homeTemplate, obj);
     set(output);
-
     homePage.init();
   },
 

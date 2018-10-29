@@ -13,6 +13,12 @@ export default {
       click: (id, event) => {
         document.getElementById(id).addEventListener('click', event);
       }
+    },
+    byClass: {
+      click: (className, event) => {
+        let elements = document.getElementsByClassName(className);
+        for(let e of elements) e.addEventListener('click', event);
+      }
     }
   }
 }

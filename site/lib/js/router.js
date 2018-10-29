@@ -15,6 +15,10 @@ router
     'article/create/new': () => templates.articleCreate(),
     'article/:id/edit': params => call.getOneById(params.id).then(sanitizer.sanitiseArticle).then(templates.articleEdit),
     'page/:number': params => call.getPage(params.number).then(templates.showStartPage),
-    '*': () => call.getPage(1).then(templates.showStartPage)
+    '*': () => call.getPage(1).then(sanitizer.sanitiseArticles).then(templates.showStartPage)
   })
   .resolve();
+
+  export default {
+    router : router
+  }
