@@ -9,13 +9,15 @@ export default {
 
   init: (article) => {
     _article = article;
+    QQ.set.byId.innerHtml('articleContent', article.content);
 
     QQ.set.byId.click('newCommentPost', async () => {
       let commentValue = QQ.get.byId.value('newCommentText');
+      let by = QQ.get.byId.value('newCommentPoster');
 
-      if (!commentValue) return;
+      if (!commentValue || !by) return;
 
-      let comment = new Comment('me', commentValue);
+      let comment = new Comment(by, commentValue);
 
       await call.addComment(_article._id, comment);
 

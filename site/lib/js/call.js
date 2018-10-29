@@ -2,7 +2,8 @@ import * as consts from './constants';
 
 let base = consts.backendApiAddress;
 
-async function handleResult(result) {
+function handleResult(result) {
+  if(!result.status) return;
   if (result.status > 204) throw new Error("eror, check console");
   if (result.status > 200) return {};
 

@@ -11,6 +11,7 @@ exports.getOne = function (condition, callback) {
 exports.getDTOsWithPagination = function (take, skip, callback) {
   Article.find({})
     .select('_id title smug createdAt description')
+    .where('visible').equals(true)
     .sort('createdAt')
     .limit(Number(take))
     .skip(Number(skip))
