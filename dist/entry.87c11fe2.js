@@ -3395,6 +3395,9 @@ var _default = {
       },
       innerHtml: function innerHtml(id) {
         return document.getElementById(id).innerHTML;
+      },
+      checkedState: function checkedState(id) {
+        return document.getElementById(id).checked;
       }
     }
   },
@@ -3859,10 +3862,10 @@ var _default = {
   init: function init() {
     _myQuery.default.set.byClass.click('mainPageArticle', function (e) {
       e.preventDefault();
-      var smug = e.srcElement.getAttribute('data-target-smug');
-      window.location.pathname = "#/".concat({
-        smug: smug
-      });
+      e.stopPropagation();
+      var smug = e.srcElement.getAttribute('data-target-smug') || e.srcElement.parentElement.getAttribute('data-target-smug');
+
+      _router.default.navigateToArticleBySmug(smug);
     });
   }
 };
@@ -3889,6 +3892,7 @@ function submit() {
   etArticle.title = _myQuery.default.get.byId.value('title');
   etArticle.description = _myQuery.default.get.byId.value('description');
   etArticle.content = _myQuery.default.get.byId.value('content');
+  etArticle.visible = _myQuery.default.get.byId.checkedState('isVisible');
   return _call.default.put(etArticle._id, etArticle, token).then(function () {
     return alert('edited');
   }).catch(function (e) {
@@ -3898,6 +3902,7 @@ function submit() {
 }
 
 var init = function init(article) {
+  delete article.comments;
   etArticle = article;
 
   _myQuery.default.set.byId.click('submit', submit);
@@ -3919,13 +3924,14 @@ var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/cl
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Article = function Article(title, description, content) {
+var Article = function Article(title, description, content, visible) {
   (0, _classCallCheck2.default)(this, Article);
   this.title = title;
   this.description = description;
   this.content = content;
   this.smug = title ? title.replace(' ', '-') : "";
   this.createdAt = Date.now();
+  this.visible = visible;
 };
 
 exports.default = Article;
@@ -3948,7 +3954,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function submit() {
   var token = _myQuery.default.get.byId.value('token');
 
-  var article = new _article.default(_myQuery.default.get.byId.value('title'), _myQuery.default.get.byId.value('description'), _myQuery.default.get.byId.value('content'));
+  var article = new _article.default(_myQuery.default.get.byId.value('title'), _myQuery.default.get.byId.value('description'), _myQuery.default.get.byId.value('content'), _myQuery.default.get.byId.checkedState('isVisible'));
   return _call.default.post(article, token).then(function () {
     return alert('created');
   }).catch(function (e) {
@@ -3965,7 +3971,40 @@ var _default = {
   init: init
 };
 exports.default = _default;
-},{"../lib/js/myQuery":"lib/js/myQuery.js","./article":"src/article.js","../lib/js/call":"lib/js/call.js"}],"lib/js/templates.js":[function(require,module,exports) {
+},{"../lib/js/myQuery":"lib/js/myQuery.js","./article":"src/article.js","../lib/js/call":"lib/js/call.js"}],"lib/templates/homeTemplate.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _default = {
+  home: "<div class='mainPageArticles'>\n        {{#.}}\n            <div class='mainPageArticle' data-target-smug='{{smug}}'>\n            <h5>{{title}}</h5>\n            <span>{{description}}</span><br>\n            <span>{{date}}</span><br>\n            <br>\n            <div>\n        {{/.}}\n    </div>"
+};
+exports.default = _default;
+},{}],"lib/templates/editArticleTemplate.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _default = {
+  edit: "<div class=\"editArticle\">\n        <input type=\"text\" placeholder=\"token\" id=\"token\"><br><br>\n        <input type=\"text\" placeholder=\"title\" value=\"{{title}}\" id=\"title\"><br><br>\n        <input type=\"text\" placeholder=\"description\" value=\"{{description}}\" id=\"description\"><br><br>\n        <textarea class=\"content\" id=\"content\">{{content}}</textarea><br><br>\n        <button id=\"submit\"> Submit </button><br><br>\n        <input type=\"checkbox\" id=\"isVisible\" {{#visible}} checked {{/visible}}> Visible<br>\n        <span>END</span>\n    </div>"
+};
+exports.default = _default;
+},{}],"lib/templates/showArticleTemplate.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var _default = {
+  show: "<div>\n        <h3>{{title}}<h3>\n        <span>{{description}}</span></br><br>\n        <div class='articleContent' id='articleContent'></div><br>\n        <input type='text' placeholder='comment' id='newCommentText'/><br>\n        <input type='text' placeholder='name' id='newCommentPoster'/> <br>\n        <input type='button' value='Post' id='newCommentPost' /><br> \n        <br>\n        <span>END</span>\n        <h3>Comments<h3>\n        <ul>\n        {{#comments}}\n            <li>{{by}}: {{content}}  || {{date}}}</li>\n        {{/comments}}\n        </ul>\n    </div>"
+};
+exports.default = _default;
+},{}],"lib/js/templates.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -3987,13 +4026,15 @@ var _createArticlePage = _interopRequireDefault(require("../../src/createArticle
 
 var _myQuery = _interopRequireDefault(require("./myQuery"));
 
+var _homeTemplate = _interopRequireDefault(require("../templates/homeTemplate"));
+
+var _editArticleTemplate = _interopRequireDefault(require("../templates/editArticleTemplate"));
+
+var _showArticleTemplate = _interopRequireDefault(require("../templates/showArticleTemplate"));
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var homeTemplate = "\n<div class='mainPageArticles'>\n  {{#.}}\n    <div class='mainPageArticle' data-target-smug='{{smug}}'>\n      <h5>{{title}}</h5>\n      <span>{{description}}</span><br>\n      <br>\n    <div>\n  {{/.}}\n</div>\n";
-var articleTemplate = "<h3>{{title}}<h3>\n  <span>{{description}}</span></br><br>\n  <div class='articleContent' id='articleContent'></div><br>\n  <input type='text' placeholder='comment' id='newCommentText'/><br>\n  <input type='text' placeholder='name' id='newCommentPoster'/> <br>\n  <input type='button' value='Post' id='newCommentPost' /><br> \n  <br>\n  <span>END</span>\n  <h3>Comments<h3>\n  <ul>\n    {{#comments}}\n      <li>{{by}}: {{content}}  || {{date}}}</li>\n    {{/comments}}\n  </ul>\n  ";
-var articleEditTemplate = "\n<div class=\"editArticle\">\n<input type=\"text\" placeholder=\"token\" id=\"token\"><br><br>\n<input type=\"text\" placeholder=\"title\" value=\"{{title}}\" id=\"title\"><br><br>\n<input type=\"text\" placeholder=\"description\" value=\"{{description}}\" id=\"description\"><br><br>\n<textarea class=\"content\" id=\"content\">{{content}}</textarea><br><br>\n<button id=\"submit\"> Submit </button><br><br>\n<span>END</span>\n</div>\n";
 
 function set(value) {
   _myQuery.default.set.byId.innerHtml(consts.mainContent, value);
@@ -4001,28 +4042,28 @@ function set(value) {
 
 var _default = {
   showArticle: function showArticle(article) {
-    var output = _mustache.default.render(articleTemplate, article);
+    var output = _mustache.default.render(_showArticleTemplate.default.show, article);
 
     set(output);
 
     _singleArticlePage.default.init(article);
   },
   showStartPage: function showStartPage(obj) {
-    var output = _mustache.default.render(homeTemplate, obj);
+    var output = _mustache.default.render(_homeTemplate.default.home, obj);
 
     set(output);
 
     _homePage.default.init();
   },
   articleCreate: function articleCreate() {
-    var output = _mustache.default.render(articleEditTemplate, {});
+    var output = _mustache.default.render(_editArticleTemplate.default.edit, {});
 
     set(output);
 
     _createArticlePage.default.init();
   },
   articleEdit: function articleEdit(obj) {
-    var output = _mustache.default.render(articleEditTemplate, obj);
+    var output = _mustache.default.render(_editArticleTemplate.default.edit, obj);
 
     set(output);
 
@@ -4030,7 +4071,7 @@ var _default = {
   }
 };
 exports.default = _default;
-},{"mustache":"../node_modules/mustache/mustache.js","./constants":"lib/js/constants.js","../../src/singleArticlePage":"src/singleArticlePage.js","../../src/homePage":"src/homePage.js","../../src/editArticlePage":"src/editArticlePage.js","../../src/createArticlePage":"src/createArticlePage.js","./myQuery":"lib/js/myQuery.js"}],"../node_modules/moment/moment.js":[function(require,module,exports) {
+},{"mustache":"../node_modules/mustache/mustache.js","./constants":"lib/js/constants.js","../../src/singleArticlePage":"src/singleArticlePage.js","../../src/homePage":"src/homePage.js","../../src/editArticlePage":"src/editArticlePage.js","../../src/createArticlePage":"src/createArticlePage.js","./myQuery":"lib/js/myQuery.js","../templates/homeTemplate":"lib/templates/homeTemplate.js","../templates/editArticleTemplate":"lib/templates/editArticleTemplate.js","../templates/showArticleTemplate":"lib/templates/showArticleTemplate.js"}],"../node_modules/moment/moment.js":[function(require,module,exports) {
 var define;
 var global = arguments[3];
 //! moment.js
@@ -8657,7 +8698,9 @@ router.on({
   }
 }).resolve();
 var _default = {
-  router: router
+  navigateToArticleBySmug: function navigateToArticleBySmug(smug) {
+    router.navigate("/article/".concat(smug));
+  }
 };
 exports.default = _default;
 },{"navigo":"../node_modules/navigo/lib/navigo.min.js","underscore":"../node_modules/underscore/underscore.js","./templates":"lib/js/templates.js","./call":"lib/js/call.js","./sanitizer":"lib/js/sanitizer.js"}],"entry.js":[function(require,module,exports) {
@@ -8695,7 +8738,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57135" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55171" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

@@ -9,6 +9,7 @@ function submit() {
   etArticle.title = QQ.get.byId.value('title');
   etArticle.description = QQ.get.byId.value('description');
   etArticle.content = QQ.get.byId.value('content');
+  etArticle.visible = QQ.get.byId.checkedState('isVisible');
 
   return call.put(etArticle._id, etArticle, token)
     .then(() => alert('edited'))
@@ -16,6 +17,8 @@ function submit() {
 }
 
 let init = (article) => {
+  delete article.comments;
+
   etArticle = article;
   QQ.set.byId.click('submit', submit)
 }

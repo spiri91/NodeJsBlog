@@ -2,23 +2,16 @@ const express = require('express');
 const status = require('http-status-codes');
 const repo = require('./articlesRepository');
 const errorChecking = require('../../misc/checkErrorResponse').checkErrorResponse;
-const checkAuth = require("../../misc/checkAuth").checkAuth();
 const router = express.Router();
 
 const handleResult = function (err, res, statusCode, responseBody, next) {
   if (err && err.message.indexOf('validation failed') > 0) return errorChecking({ code: 400, message: err.message }, res, next);
   if (err && err.message.indexOf('duplicate key') > 0) return errorChecking({ code: 400, message: err.message }, res, next);
-  
+
   if (err) return errorChecking({ code: 500, message: err.message }, res, next);
 
   return res.status(statusCode).send(responseBody);
 }
-
-router.all('/', (req, res, next) => {
-  if (req.method === "POST" || req.method === "PUT") checkAuth(req);
-
-  next();
-})
 
 router.get('/', (req, res, next) => {
   repo.getAll((err, results) => handleResult(err, res, status.OK, results, next))
@@ -45,13 +38,13 @@ router.get('/count', (req, res, next) => {
 
 router.post('/', (req, res, next) => repo.post(req.body, err => handleResult(err, res, status.CREATED, null, next)))
 
-router.post('/:id/comments', (req, res, next) => repo.postComment(req.params.id, req.body, 
+router.post('/:id/comments', (req, res, next) => repo.postComment(req.params.id, req.body,
   err => handleResult(err, res, status.CREATED, null, next)))
 
-router.put('/:id', (req, res, next) => repo.put(req.params.id, req.body, 
+router.put('/:id', (req, res, next) => repo.put(req.params.id, req.body,
   err => handleResult(err, res, status.ACCEPTED, null, next)))
 
-router.delete('/:id', (req, res, next) => repo.delete(req.params.id, 
+router.delete('/:id', (req, res, next) => repo.delete(req.params.id,
   err => handleResult(err, res, status.ACCEPTED, null, next)))
 
 module.exports = router;

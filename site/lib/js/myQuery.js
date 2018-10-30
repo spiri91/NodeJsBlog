@@ -3,6 +3,7 @@ export default {
     byId: {
       value: id => document.getElementById(id).value,
       innerHtml: id => document.getElementById(id).innerHTML,
+      checkedState: id => document.getElementById(id).checked
     },
   },
   set: {

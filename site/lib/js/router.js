@@ -19,6 +19,8 @@ router
   })
   .resolve();
 
-  export default {
-    router : router
+  export default{
+    navigateToArticleBySmug : (smug) => {
+      router.navigate(`/article/${smug}`);
+    },
   }
