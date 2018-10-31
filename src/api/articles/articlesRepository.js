@@ -31,7 +31,7 @@ exports.delete = function (id, callback) {
 }
 
 exports.post = function (obj, callback) {
-  let article = Article(obj);
+  let article = new Article(obj);
 
   article.save(callback);
 }

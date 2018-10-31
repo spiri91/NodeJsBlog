@@ -10,6 +10,7 @@ function submit() {
   etArticle.description = QQ.get.byId.value('description');
   etArticle.content = QQ.get.byId.value('content');
   etArticle.visible = QQ.get.byId.checkedState('isVisible');
+  etArticle.smug = etArticle.title.replace(' ','-');
 
   return call.put(etArticle._id, etArticle, token)
     .then(() => alert('edited'))

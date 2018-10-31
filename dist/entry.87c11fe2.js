@@ -3893,6 +3893,7 @@ function submit() {
   etArticle.description = _myQuery.default.get.byId.value('description');
   etArticle.content = _myQuery.default.get.byId.value('content');
   etArticle.visible = _myQuery.default.get.byId.checkedState('isVisible');
+  etArticle.smug = etArticle.title.replace(' ', '-');
   return _call.default.put(etArticle._id, etArticle, token).then(function () {
     return alert('edited');
   }).catch(function (e) {
@@ -3926,10 +3927,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var Article = function Article(title, description, content, visible) {
   (0, _classCallCheck2.default)(this, Article);
-  this.title = title;
-  this.description = description;
-  this.content = content;
-  this.smug = title ? title.replace(' ', '-') : "";
+  this.title = title.trim();
+  this.description = description.trim();
+  this.content = content.trim();
+  this.smug = this.title ? this.title.replace(' ', '-') : "";
   this.createdAt = Date.now();
   this.visible = visible;
 };
@@ -8738,7 +8739,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55171" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57984" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
