@@ -7,7 +7,11 @@ export default {
             <span>{{description}}</span><br>
             <span>{{date}}</span><br>
             <br>
-            <div>
+            </div>
         {{/.}}
+
+        <br> <br>
+        <input type="button" value="previous" id="movePrevious"/>
+        <input type="button" value="next" id="moveNext"/>
     </div>` 
 }

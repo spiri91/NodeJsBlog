@@ -3740,6 +3740,37 @@ function () {
   };
 }();
 
+var getCount =
+/*#__PURE__*/
+function () {
+  var _ref9 = (0, _asyncToGenerator2.default)(
+  /*#__PURE__*/
+  _regenerator.default.mark(function _callee9() {
+    var res;
+    return _regenerator.default.wrap(function _callee9$(_context9) {
+      while (1) {
+        switch (_context9.prev = _context9.next) {
+          case 0:
+            _context9.next = 2;
+            return fetch("".concat(base, "/count"));
+
+          case 2:
+            res = _context9.sent;
+            return _context9.abrupt("return", handleResult(res));
+
+          case 4:
+          case "end":
+            return _context9.stop();
+        }
+      }
+    }, _callee9, this);
+  }));
+
+  return function getCount() {
+    return _ref9.apply(this, arguments);
+  };
+}();
+
 var _default = {
   post: post,
   put: put,
@@ -3747,7 +3778,8 @@ var _default = {
   getPage: getPage,
   getOneBySmug: getOneBySmug,
   deleteIt: deleteIt,
-  addComment: addComment
+  addComment: addComment,
+  getCount: getCount
 };
 exports.default = _default;
 },{"@babel/runtime/regenerator":"../node_modules/@babel/runtime/regenerator/index.js","@babel/runtime/helpers/asyncToGenerator":"../node_modules/@babel/runtime/helpers/asyncToGenerator.js","./constants":"lib/js/constants.js"}],"../node_modules/@babel/runtime/helpers/classCallCheck.js":[function(require,module,exports) {
@@ -3858,6 +3890,12 @@ var _router = _interopRequireDefault(require("../lib/js/router"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function getCurrentPageFromUrl() {
+  var page = window.location.href.substr(window.location.href.lastIndexOf("/") + 1) || 1;
+  return Number(page);
+}
+
+;
 var _default = {
   init: function init() {
     _myQuery.default.set.byClass.click('mainPageArticle', function (e) {
@@ -3866,6 +3904,16 @@ var _default = {
       var smug = e.srcElement.getAttribute('data-target-smug') || e.srcElement.parentElement.getAttribute('data-target-smug');
 
       _router.default.navigateToArticleBySmug(smug);
+    });
+
+    _myQuery.default.set.byId.click('moveNext', function () {
+      _router.default.navigateToPageNumber(getCurrentPageFromUrl() + 1);
+    });
+
+    _myQuery.default.set.byId.click('movePrevious', function () {
+      getCurrentPageFromUrl();
+
+      _router.default.navigateToPageNumber(getCurrentPageFromUrl() - 1);
     });
   }
 };
@@ -3980,7 +4028,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _default = {
-  home: "<div class='mainPageArticles'>\n        {{#.}}\n            <div class='mainPageArticle' data-target-smug='{{smug}}'>\n            <h5>{{title}}</h5>\n            <span>{{description}}</span><br>\n            <span>{{date}}</span><br>\n            <br>\n            <div>\n        {{/.}}\n    </div>"
+  home: "<div class='mainPageArticles'>\n        {{#.}}\n            <div class='mainPageArticle' data-target-smug='{{smug}}'>\n            <h5>{{title}}</h5>\n            <span>{{description}}</span><br>\n            <span>{{date}}</span><br>\n            <br>\n            </div>\n        {{/.}}\n\n        <br> <br>\n        <input type=\"button\" value=\"previous\" id=\"movePrevious\"/>\n        <input type=\"button\" value=\"next\" id=\"moveNext\"/>\n    </div>"
 };
 exports.default = _default;
 },{}],"lib/templates/editArticleTemplate.js":[function(require,module,exports) {
@@ -8701,6 +8749,9 @@ router.on({
 var _default = {
   navigateToArticleBySmug: function navigateToArticleBySmug(smug) {
     router.navigate("/article/".concat(smug));
+  },
+  navigateToPageNumber: function navigateToPageNumber(pageNumber) {
+    router.navigate("/page/".concat(pageNumber));
   }
 };
 exports.default = _default;
@@ -8739,7 +8790,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57984" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51815" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

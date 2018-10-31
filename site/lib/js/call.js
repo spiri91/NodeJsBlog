@@ -22,6 +22,7 @@ let post = async (article, token) => {
 
   return handleResult(res);
 }
+
 let get = async (take, skip) => {
   let res = await fetch(`${base}/dtos/${take}/${skip}`);
 
@@ -39,6 +40,7 @@ let getOneBySmug = async (smug) => {
 
   return handleResult(res);
 }
+
 let put = async (id, article, token) => {
   let res = await fetch(`${base}/${id}`, {
     method: "PUT",
@@ -85,6 +87,12 @@ let addComment = async (articleId, comment) => {
   return handleResult(res);
 }
 
+let getCount = async () => {
+  let res = await fetch(`${base}/count`);
+
+  return handleResult(res);
+}
+
 export default {
   post,
   put,
@@ -92,5 +100,6 @@ export default {
   getPage,
   getOneBySmug,
   deleteIt,
-  addComment
+  addComment,
+  getCount
 }

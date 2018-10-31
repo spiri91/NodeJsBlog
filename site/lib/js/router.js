@@ -23,4 +23,7 @@ router
     navigateToArticleBySmug : (smug) => {
       router.navigate(`/article/${smug}`);
     },
+    navigateToPageNumber : (pageNumber) => {
+      router.navigate(`/page/${pageNumber}`);
+    }
   }
