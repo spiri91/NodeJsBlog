@@ -18,12 +18,10 @@ export default {
         });
 
         QQ.set.byId.click('moveNext', () => {
-            
             router.navigateToPageNumber(getCurrentPageFromUrl() + 1);
         });
 
         QQ.set.byId.click('movePrevious', () => {
-            getCurrentPageFromUrl();
             router.navigateToPageNumber(getCurrentPageFromUrl() - 1);
         });
     }
