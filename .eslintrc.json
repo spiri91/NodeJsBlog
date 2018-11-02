@@ -20,7 +20,8 @@
         "prefer-template": "off",
         "quote-props": "off",
         "no-underscore-dangle": "off",
-        "no-param-reassign": "off"
+        "no-param-reassign": "off",
+        "import/prefer-default-export": "off"
     },
     "env": {
         "mocha": true,

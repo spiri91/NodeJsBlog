@@ -101,5 +101,5 @@ export default {
   getOneBySmug,
   deleteIt,
   addComment,
-  getCount
+  getCount, 
 }
