@@ -33,7 +33,7 @@ router.get('/dtos/:take/:skip', (req, res, next) => {
 })
 
 router.get('/count', (req, res, next) => {
-  repo.count((err, result) => handleResult(err, res, status.OK, result, next));
+  repo.count((err, result) => handleResult(err, res, status.OK, { 'count': result }, next));
 })
 
 router.post('/', (req, res, next) => repo.post(req.body, err => handleResult(err, res, status.CREATED, null, next)))

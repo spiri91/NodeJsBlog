@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 const Article = require('./articleSchema');
 
 exports.getAll = function (callback) {
@@ -19,7 +20,9 @@ exports.getDTOsWithPagination = function (take, skip, callback) {
 }
 
 exports.count = function (callback) {
-  Article.count({}, callback);
+  const { db } = mongoose.connection;
+
+  db.collection('articles').countDocuments(callback);
 }
 
 exports.put = function (id, obj, callback) {

@@ -20937,7 +20937,16 @@ var _default = {
   }
 };
 exports.default = _default;
-},{"@babel/runtime/regenerator":"../node_modules/@babel/runtime/regenerator/index.js","@babel/runtime/helpers/asyncToGenerator":"../node_modules/@babel/runtime/helpers/asyncToGenerator.js","../lib/js/myQuery":"lib/js/myQuery.js","../lib/js/call":"lib/js/call.js","./comment":"src/comment.js"}],"src/homePage.js":[function(require,module,exports) {
+},{"@babel/runtime/regenerator":"../node_modules/@babel/runtime/regenerator/index.js","@babel/runtime/helpers/asyncToGenerator":"../node_modules/@babel/runtime/helpers/asyncToGenerator.js","../lib/js/myQuery":"lib/js/myQuery.js","../lib/js/call":"lib/js/call.js","./comment":"src/comment.js"}],"lib/templates/pagination.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.pagination = void 0;
+var pagination = "\n  <nav aria-label=\"Page navigation example\">\n    <ul class=\"pagination\">\n        <li class=\"page-item disabled\" disabled><a class=\"page-link\" disabled>Page: </a></li>\n        <li class=\"page-item\"><a class=\"page-link\" href=\"#/page/{{pageNr}}\">{{pageNr}}</a></li>\n    </ul>\n  </nav>\n";
+exports.pagination = pagination;
+},{}],"src/homePage.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -20945,39 +20954,52 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
+var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
+
+var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
+
 var _myQuery = _interopRequireDefault(require("../lib/js/myQuery"));
 
-var _router = _interopRequireDefault(require("../lib/js/router"));
+var _pagination = require("../lib/templates/pagination");
+
+var _call = _interopRequireDefault(require("../lib/js/call"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function getCurrentPageFromUrl() {
-  var page = window.location.href.substr(window.location.href.lastIndexOf("/") + 1) || 1;
-  return Number(page);
-}
-
-;
 var _default = {
-  init: function init() {
-    _myQuery.default.set.byClass.click('mainPageArticle', function (e) {
-      e.preventDefault();
-      e.stopPropagation();
-      var smug = e.srcElement.getAttribute('data-target-smug') || e.srcElement.parentElement.getAttribute('data-target-smug');
+  init: function () {
+    var _init = (0, _asyncToGenerator2.default)(
+    /*#__PURE__*/
+    _regenerator.default.mark(function _callee() {
+      var res;
+      return _regenerator.default.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return _call.default.getCount();
 
-      _router.default.navigateToArticleBySmug(smug);
-    });
+            case 2:
+              res = _context.sent;
+              alert(res.count);
 
-    _myQuery.default.set.byId.click('moveNext', function () {
-      _router.default.navigateToPageNumber(getCurrentPageFromUrl() + 1);
-    });
+              _myQuery.default.set.byId.innerHtml("Pagination", _pagination.pagination);
 
-    _myQuery.default.set.byId.click('movePrevious', function () {
-      _router.default.navigateToPageNumber(getCurrentPageFromUrl() - 1);
-    });
-  }
+            case 5:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee, this);
+    }));
+
+    return function init() {
+      return _init.apply(this, arguments);
+    };
+  }()
 };
 exports.default = _default;
-},{"../lib/js/myQuery":"lib/js/myQuery.js","../lib/js/router":"lib/js/router.js"}],"src/editArticlePage.js":[function(require,module,exports) {
+},{"@babel/runtime/regenerator":"../node_modules/@babel/runtime/regenerator/index.js","@babel/runtime/helpers/asyncToGenerator":"../node_modules/@babel/runtime/helpers/asyncToGenerator.js","../lib/js/myQuery":"lib/js/myQuery.js","../lib/templates/pagination":"lib/templates/pagination.js","../lib/js/call":"lib/js/call.js"}],"src/editArticlePage.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -21087,7 +21109,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _default = {
-  home: "<div class='mainPageArticles'>\n        {{#.}}\n            <div class='mainPageArticle' data-target-smug='{{smug}}'>\n            <h5>{{title}}</h5>\n            <span>{{description}}</span><br>\n            <span>{{date}}</span><br>\n            <br>\n            </div>\n        {{/.}}\n\n        <br> <br>\n        <input type=\"button\" value=\"previous\" id=\"movePrevious\"/>\n        <input type=\"button\" value=\"next\" id=\"moveNext\"/>\n    </div>"
+  home: "<div class='mainPageArticles'>\n        {{#.}}\n            <a class='mainPageArticle' href='#/article/{{smug}}'>\n            <h5>{{title}}</h5>\n            <span>{{description}}</span><br>\n            <span>{{date}}</span><br>\n            <br>\n            </a>\n        {{/.}}\n\n        <br> <br>\n        <div id=\"Pagination\"></div>\n    </div>"
 };
 exports.default = _default;
 },{}],"lib/templates/editArticleTemplate.js":[function(require,module,exports) {
@@ -25830,7 +25852,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.footer = void 0;
-var footer = "\n  footer here\n";
+var footer = "\n  <div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">\n  <strong>Holy guacamole!</strong> You should check in on some of those fields below.\n  <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n    <span aria-hidden=\"true\">&times;</span>\n  </button>\n</div>\n";
 exports.footer = footer;
 },{}],"lib/js/NavAndFooter.js":[function(require,module,exports) {
 "use strict";
@@ -25910,7 +25932,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50155" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54783" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

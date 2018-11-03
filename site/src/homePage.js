@@ -1,28 +1,13 @@
 import QQ from '../lib/js/myQuery';
-import router from '../lib/js/router';
-
-function getCurrentPageFromUrl(){
-    let page = window.location.href.substr(window.location.href.lastIndexOf("/") + 1) || 1;
-
-    return Number(page);
-};
+import { pagination } from '../lib/templates/pagination';
+import call from '../lib/js/call';
 
 export default {
-    init : () => {
-        QQ.set.byClass.click('mainPageArticle', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
+  init: async () => {
+    let res = await call.getCount();
 
-            let smug = e.srcElement.getAttribute('data-target-smug') || e.srcElement.parentElement.getAttribute('data-target-smug');
-            router.navigateToArticleBySmug(smug);
-        });
+    alert(res.count);
 
-        QQ.set.byId.click('moveNext', () => {
-            router.navigateToPageNumber(getCurrentPageFromUrl() + 1);
-        });
-
-        QQ.set.byId.click('movePrevious', () => {
-            router.navigateToPageNumber(getCurrentPageFromUrl() - 1);
-        });
-    }
+    QQ.set.byId.innerHtml("Pagination", pagination);
+  }
 }

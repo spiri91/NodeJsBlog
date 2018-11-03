@@ -16,7 +16,7 @@ const articleSchema = new Schema({
     content: { type: String, required: true },
     date: { type: Date, default: Date.now() }
   }],
-  visible: {type: Boolean, default: true}
+  visible: { type: Boolean, default: true }
 });
 
 let Article = mongoose.model('Article', articleSchema);
