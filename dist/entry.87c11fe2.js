@@ -20460,6 +20460,11 @@ var _default = {
       checkedState: function checkedState(id) {
         return document.getElementById(id).checked;
       }
+    },
+    byAttribute: {
+      element: function element(attributeName, value) {
+        return document.querySelectorAll("[".concat(attributeName, "=\"").concat(value, "\"]"));
+      }
     }
   },
   set: {
@@ -20937,16 +20942,7 @@ var _default = {
   }
 };
 exports.default = _default;
-},{"@babel/runtime/regenerator":"../node_modules/@babel/runtime/regenerator/index.js","@babel/runtime/helpers/asyncToGenerator":"../node_modules/@babel/runtime/helpers/asyncToGenerator.js","../lib/js/myQuery":"lib/js/myQuery.js","../lib/js/call":"lib/js/call.js","./comment":"src/comment.js"}],"lib/templates/pagination.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.pagination = void 0;
-var pagination = "\n  <nav aria-label=\"Page navigation example\">\n    <ul class=\"pagination\">\n        <li class=\"page-item disabled\" disabled><a class=\"page-link\" disabled>Page: </a></li>\n        <li class=\"page-item\"><a class=\"page-link\" href=\"#/page/{{pageNr}}\">{{pageNr}}</a></li>\n    </ul>\n  </nav>\n";
-exports.pagination = pagination;
-},{}],"src/homePage.js":[function(require,module,exports) {
+},{"@babel/runtime/regenerator":"../node_modules/@babel/runtime/regenerator/index.js","@babel/runtime/helpers/asyncToGenerator":"../node_modules/@babel/runtime/helpers/asyncToGenerator.js","../lib/js/myQuery":"lib/js/myQuery.js","../lib/js/call":"lib/js/call.js","./comment":"src/comment.js"}],"src/homePage.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -20958,34 +20954,80 @@ var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"))
 
 var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
 
-var _myQuery = _interopRequireDefault(require("../lib/js/myQuery"));
-
-var _pagination = require("../lib/templates/pagination");
+var _underscore = _interopRequireDefault(require("underscore"));
 
 var _call = _interopRequireDefault(require("../lib/js/call"));
 
+var _myQuery = _interopRequireDefault(require("../lib/js/myQuery"));
+
+var _templates = _interopRequireDefault(require("../lib/js/templates"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function getPaginationArray() {
+  return _getPaginationArray.apply(this, arguments);
+}
+
+function _getPaginationArray() {
+  _getPaginationArray = (0, _asyncToGenerator2.default)(
+  /*#__PURE__*/
+  _regenerator.default.mark(function _callee2() {
+    var res, pages, pagesArray;
+    return _regenerator.default.wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            _context2.next = 2;
+            return _call.default.getCount();
+
+          case 2:
+            res = _context2.sent;
+            pages = res.count / 10 + 1;
+            pagesArray = _underscore.default.range(1, pages);
+
+            _templates.default.setPagination(pagesArray);
+
+          case 6:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2, this);
+  }));
+  return _getPaginationArray.apply(this, arguments);
+}
+
+function getPageFromUrl() {
+  var page = window.location.href.substr(window.location.href.lastIndexOf('/') + 1);
+  if (!page) return 1;
+  return page;
+}
+
+function setActivePage() {
+  var pageNr = getPageFromUrl();
+
+  var element = _myQuery.default.get.byAttribute.element("data-page-link", pageNr);
+
+  if (element.length === 0) return;
+  element[0].classList.add('active');
+}
 
 var _default = {
   init: function () {
     var _init = (0, _asyncToGenerator2.default)(
     /*#__PURE__*/
     _regenerator.default.mark(function _callee() {
-      var res;
       return _regenerator.default.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return _call.default.getCount();
+              return getPaginationArray();
 
             case 2:
-              res = _context.sent;
-              alert(res.count);
+              setActivePage();
 
-              _myQuery.default.set.byId.innerHtml("Pagination", _pagination.pagination);
-
-            case 5:
+            case 3:
             case "end":
               return _context.stop();
           }
@@ -20999,7 +21041,7 @@ var _default = {
   }()
 };
 exports.default = _default;
-},{"@babel/runtime/regenerator":"../node_modules/@babel/runtime/regenerator/index.js","@babel/runtime/helpers/asyncToGenerator":"../node_modules/@babel/runtime/helpers/asyncToGenerator.js","../lib/js/myQuery":"lib/js/myQuery.js","../lib/templates/pagination":"lib/templates/pagination.js","../lib/js/call":"lib/js/call.js"}],"src/editArticlePage.js":[function(require,module,exports) {
+},{"@babel/runtime/regenerator":"../node_modules/@babel/runtime/regenerator/index.js","@babel/runtime/helpers/asyncToGenerator":"../node_modules/@babel/runtime/helpers/asyncToGenerator.js","underscore":"../node_modules/underscore/underscore.js","../lib/js/call":"lib/js/call.js","../lib/js/myQuery":"lib/js/myQuery.js","../lib/js/templates":"lib/js/templates.js"}],"src/editArticlePage.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -21134,6 +21176,15 @@ var _default = {
   show: "<div>\n        <h3>{{title}}<h3>\n        <span>{{description}}</span></br><br>\n        <div class='articleContent' id='articleContent'></div><br>\n        <input type='text' placeholder='comment' id='newCommentText'/><br>\n        <input type='text' placeholder='name' id='newCommentPoster'/> <br>\n        <input type='button' value='Post' id='newCommentPost' /><br> \n        <br>\n        <span>END</span>\n        <h3>Comments<h3>\n        <ul>\n        {{#comments}}\n            <li>{{by}}: {{content}}  || {{date}}}</li>\n        {{/comments}}\n        </ul>\n    </div>"
 };
 exports.default = _default;
+},{}],"lib/templates/pagination.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.pagination = void 0;
+var pagination = "\n  <nav aria-label=\"Page navigation example\">\n    <ul class=\"pagination\">\n        <li class=\"page-item disabled\" disabled><a class=\"page-link\" disabled>Page: </a></li>\n        {{#.}}\n        <li class=\"page-item\" data-page-link=\"{{.}}\"><a class=\"page-link\" href=\"#/page/{{.}}\">{{.}}</a></li>\n        {{/.}}\n    </ul>\n  </nav>\n";
+exports.pagination = pagination;
 },{}],"lib/js/templates.js":[function(require,module,exports) {
 "use strict";
 
@@ -21162,12 +21213,18 @@ var _editArticleTemplate = _interopRequireDefault(require("../templates/editArti
 
 var _showArticleTemplate = _interopRequireDefault(require("../templates/showArticleTemplate"));
 
+var _pagination = require("../templates/pagination");
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function set(value) {
   _myQuery.default.set.byId.innerHtml(consts.mainContent, value);
+}
+
+function setById(value, id) {
+  _myQuery.default.set.byId.innerHtml(id, value);
 }
 
 var _default = {
@@ -21198,10 +21255,15 @@ var _default = {
     set(output);
 
     _editArticlePage.default.init(obj);
+  },
+  setPagination: function setPagination(paginationArray) {
+    var output = _mustache.default.render(_pagination.pagination, paginationArray);
+
+    setById(output, "Pagination");
   }
 };
 exports.default = _default;
-},{"mustache":"../node_modules/mustache/mustache.js","./constants":"lib/js/constants.js","../../src/singleArticlePage":"src/singleArticlePage.js","../../src/homePage":"src/homePage.js","../../src/editArticlePage":"src/editArticlePage.js","../../src/createArticlePage":"src/createArticlePage.js","./myQuery":"lib/js/myQuery.js","../templates/homeTemplate":"lib/templates/homeTemplate.js","../templates/editArticleTemplate":"lib/templates/editArticleTemplate.js","../templates/showArticleTemplate":"lib/templates/showArticleTemplate.js"}],"../node_modules/moment/moment.js":[function(require,module,exports) {
+},{"mustache":"../node_modules/mustache/mustache.js","./constants":"lib/js/constants.js","../../src/singleArticlePage":"src/singleArticlePage.js","../../src/homePage":"src/homePage.js","../../src/editArticlePage":"src/editArticlePage.js","../../src/createArticlePage":"src/createArticlePage.js","./myQuery":"lib/js/myQuery.js","../templates/homeTemplate":"lib/templates/homeTemplate.js","../templates/editArticleTemplate":"lib/templates/editArticleTemplate.js","../templates/showArticleTemplate":"lib/templates/showArticleTemplate.js","../templates/pagination":"lib/templates/pagination.js"}],"../node_modules/moment/moment.js":[function(require,module,exports) {
 var define;
 var global = arguments[3];
 //! moment.js
@@ -25932,7 +25994,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54783" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50283" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

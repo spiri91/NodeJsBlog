@@ -9,9 +9,14 @@ import QQ from './myQuery';
 import homeTemplate from '../templates/homeTemplate';
 import editTemplate from '../templates/editArticleTemplate';
 import showTemplate from '../templates/showArticleTemplate';
+import { pagination } from '../templates/pagination';
 
 function set(value) {
   QQ.set.byId.innerHtml(consts.mainContent, value);
+}
+
+function setById(value, id) {
+  QQ.set.byId.innerHtml(id, value);
 }
 
 export default {
@@ -40,5 +45,11 @@ export default {
     set(output);
 
     editArticle.init(obj);
+  },
+
+  setPagination: (paginationArray) => {
+    let output = Mustache.render(pagination, paginationArray);
+
+    setById(output, "Pagination");
   }
 };

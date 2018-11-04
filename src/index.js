@@ -1,5 +1,4 @@
 require('dotenv').config({ path: '.env.default' });
-const checkAuth = require("./misc/checkAuth").checkAuth();
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -8,12 +7,6 @@ const articlesRouter = require('./api/articles/articles');
 
 const port = process.env.PORT;
 const app = express();
-
-app.use('/', (req, res, next) => {
-  if (req.method === "POST" || req.method === "PUT") checkAuth(req);
-
-  next();
-})
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());

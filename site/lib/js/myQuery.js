@@ -5,6 +5,9 @@ export default {
       innerHtml: id => document.getElementById(id).innerHTML,
       checkedState: id => document.getElementById(id).checked
     },
+    byAttribute: {
+      element: (attributeName, value) => document.querySelectorAll(`[${attributeName}="${value}"]`)
+    }
   },
   set: {
     byId: {

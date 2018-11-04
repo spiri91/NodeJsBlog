@@ -13,7 +13,7 @@ exports.getDTOsWithPagination = function (take, skip, callback) {
   Article.find({})
     .select('_id title smug createdAt description')
     .where('visible').equals(true)
-    .sort('createdAt')
+    .sort({ 'createdAt': -1 })
     .limit(Number(take))
     .skip(Number(skip))
     .exec(callback);

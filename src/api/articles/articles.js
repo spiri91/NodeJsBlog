@@ -3,6 +3,7 @@ const status = require('http-status-codes');
 const repo = require('./articlesRepository');
 const errorChecking = require('../../misc/checkErrorResponse').checkErrorResponse;
 const router = express.Router();
+const checkAuth = require("../../misc/checkAuth").checkAuth();
 
 const handleResult = function (err, res, statusCode, responseBody, next) {
   if (err && err.message.indexOf('validation failed') > 0) return errorChecking({ code: 400, message: err.message }, res, next);
@@ -36,13 +37,15 @@ router.get('/count', (req, res, next) => {
   repo.count((err, result) => handleResult(err, res, status.OK, { 'count': result }, next));
 })
 
-router.post('/', (req, res, next) => repo.post(req.body, err => handleResult(err, res, status.CREATED, null, next)))
+router.post('/', (req, res, next) => { checkAuth(req); repo.post(req.body, err => handleResult(err, res, status.CREATED, null, next)); });
 
 router.post('/:id/comments', (req, res, next) => repo.postComment(req.params.id, req.body,
   err => handleResult(err, res, status.CREATED, null, next)))
 
-router.put('/:id', (req, res, next) => repo.put(req.params.id, req.body,
-  err => handleResult(err, res, status.ACCEPTED, null, next)))
+router.put('/:id', (req, res, next) => {
+  checkAuth(req); repo.put(req.params.id, req.body,
+    err => handleResult(err, res, status.ACCEPTED, null, next));
+})
 
 router.delete('/:id', (req, res, next) => repo.delete(req.params.id,
   err => handleResult(err, res, status.ACCEPTED, null, next)))
