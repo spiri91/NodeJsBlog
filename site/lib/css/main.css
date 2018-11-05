@@ -7,3 +7,11 @@
 .disabled{
     pointer-events: none;
 }
+
+.article {
+    margin-top: 0.2rem;
+}
+
+.row{
+    width: 100% !important;
+}

@@ -14,7 +14,7 @@ router
     'article/:smug': params => call.getOneBySmug(params.smug).then(sanitizer.sanitiseArticle).then(templates.showArticle),
     'article/create/new': () => templates.articleCreate(),
     'article/:id/edit': params => call.getOneById(params.id).then(sanitizer.sanitiseArticle).then(templates.articleEdit),
-    'page/:number': params => call.getPage(params.number).then(templates.showStartPage),
+    'page/:number': params => call.getPage(params.number).then(sanitizer.sanitiseArticles).then(templates.showStartPage),
     '*': () => call.getPage(1).then(sanitizer.sanitiseArticles).then(templates.showStartPage)
   })
   .resolve();
