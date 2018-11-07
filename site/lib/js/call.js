@@ -1,4 +1,5 @@
 import * as consts from './constants';
+import localRepo from './localStorageRepo';
 
 let base = consts.backendApiAddress;
 
@@ -36,9 +37,15 @@ let getOneById = async (id) => {
 }
 
 let getOneBySmug = async (smug) => {
-  let res = await fetch(`${base}/smug/${smug}`);
+  let res = localRepo.get(smug);
+  if (res) return res;
 
-  return handleResult(res);
+  res = await fetch(`${base}/smug/${smug}`);
+  
+  let result = handleResult(res);
+  localRepo.set(smug, result);
+
+  return result;
 }
 
 let put = async (id, article, token) => {
