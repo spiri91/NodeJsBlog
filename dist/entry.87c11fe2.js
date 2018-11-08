@@ -20514,32 +20514,96 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+
+var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
+
+var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 var _default = {
-  get: function get(key) {
-    debugger;
-    var obj = localStorage.getItem(key);
-    return JSON.parse(obj);
-  },
-  getAll: function getAll() {
-    var archive = [];
-    var keys = Object.keys(localStorage);
-    var i = 0;
-    var key;
+  get: function () {
+    var _get = (0, _asyncToGenerator2.default)(
+    /*#__PURE__*/
+    _regenerator.default.mark(function _callee(key) {
+      var obj;
+      return _regenerator.default.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              obj = localStorage.getItem(key);
+              return _context.abrupt("return", JSON.parse(obj));
 
-    for (; key = keys[i]; i++) {
-      archive.push(localStorage.getItem(key));
-    }
+            case 2:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee, this);
+    }));
 
-    return archive;
-  },
-  set: function set(key, value) {
-    debugger;
-    var obj = JSON.stringify(value);
-    localStorage.setItem(key, obj);
-  }
+    return function get(_x) {
+      return _get.apply(this, arguments);
+    };
+  }(),
+  getAll: function () {
+    var _getAll = (0, _asyncToGenerator2.default)(
+    /*#__PURE__*/
+    _regenerator.default.mark(function _callee2() {
+      var archive, keys, i, key;
+      return _regenerator.default.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              archive = [];
+              keys = Object.keys(localStorage);
+              i = 0;
+
+              for (; key = keys[i]; i++) {
+                archive.push(JSON.parse(localStorage.getItem(key)));
+              }
+
+              return _context2.abrupt("return", archive);
+
+            case 5:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2, this);
+    }));
+
+    return function getAll() {
+      return _getAll.apply(this, arguments);
+    };
+  }(),
+  set: function () {
+    var _set = (0, _asyncToGenerator2.default)(
+    /*#__PURE__*/
+    _regenerator.default.mark(function _callee3(key, value) {
+      var obj;
+      return _regenerator.default.wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              obj = JSON.stringify(value);
+              localStorage.setItem(key, obj);
+
+            case 2:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3, this);
+    }));
+
+    return function set(_x2, _x3) {
+      return _set.apply(this, arguments);
+    };
+  }()
 };
 exports.default = _default;
-},{}],"lib/js/call.js":[function(require,module,exports) {
+},{"@babel/runtime/regenerator":"../node_modules/@babel/runtime/regenerator/index.js","@babel/runtime/helpers/asyncToGenerator":"../node_modules/@babel/runtime/helpers/asyncToGenerator.js"}],"lib/js/call.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -20674,33 +20738,32 @@ function () {
   var _ref4 = (0, _asyncToGenerator2.default)(
   /*#__PURE__*/
   _regenerator.default.mark(function _callee4(smug) {
-    var res, result;
+    var res;
     return _regenerator.default.wrap(function _callee4$(_context4) {
       while (1) {
         switch (_context4.prev = _context4.next) {
           case 0:
-            res = _localStorageRepo.default.get(smug);
+            _context4.next = 2;
+            return _localStorageRepo.default.get(smug);
+
+          case 2:
+            res = _context4.sent;
 
             if (!res) {
-              _context4.next = 3;
+              _context4.next = 5;
               break;
             }
 
             return _context4.abrupt("return", res);
 
-          case 3:
-            _context4.next = 5;
-            return fetch("".concat(base, "/smug/").concat(smug));
-
           case 5:
-            res = _context4.sent;
-            result = handleResult(res);
+            return _context4.abrupt("return", fetch("".concat(base, "/smug/").concat(smug)).then(handleResult).then(function (x) {
+              _localStorageRepo.default.set(smug, x);
 
-            _localStorageRepo.default.set(smug, result);
+              return x;
+            }));
 
-            return _context4.abrupt("return", result);
-
-          case 9:
+          case 6:
           case "end":
             return _context4.stop();
         }
@@ -20799,12 +20862,20 @@ function () {
       while (1) {
         switch (_context7.prev = _context7.next) {
           case 0:
+            if (!(Navigator.onLine === false)) {
+              _context7.next = 2;
+              break;
+            }
+
+            return _context7.abrupt("return", _localStorageRepo.default.getAll());
+
+          case 2:
             if (pageNumber < 1) pageNumber = 1;
             take = consts.pageSize;
             skip = (pageNumber - 1) * consts.pageSize;
             return _context7.abrupt("return", get(take, skip));
 
-          case 4:
+          case 6:
           case "end":
             return _context7.stop();
         }
@@ -21069,13 +21140,21 @@ var _default = {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _context.next = 2;
-              return getPaginationArray();
+              if (!(Navigator.onLine === false)) {
+                _context.next = 2;
+                break;
+              }
+
+              return _context.abrupt("return");
 
             case 2:
+              _context.next = 4;
+              return getPaginationArray();
+
+            case 4:
               setActivePage();
 
-            case 3:
+            case 5:
             case "end":
               return _context.stop();
           }
@@ -26042,7 +26121,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60523" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63336" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

@@ -22,7 +22,9 @@
         "no-underscore-dangle": "off",
         "no-param-reassign": "off",
         "import/prefer-default-export": "off",
-        "import/no-cycle": "off"
+        "import/no-cycle": "off",
+        "no-cond-assign": "off",
+        "no-plusplus": "off"
     },
     "env": {
         "mocha": true,

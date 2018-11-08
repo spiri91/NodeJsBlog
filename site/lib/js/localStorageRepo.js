@@ -1,25 +1,23 @@
 export default {
-  get: (key) => {
-    debugger;
+  get: async (key) => {
     let obj = localStorage.getItem(key);
     return JSON.parse(obj);
   },
 
-  getAll: () => {
+  getAll: async () => {
     let archive = [];
     let keys = Object.keys(localStorage);
     let i = 0;
     let key;
 
     for (; key = keys[i]; i++) {
-      archive.push(localStorage.getItem(key));
+      archive.push(JSON.parse(localStorage.getItem(key)));
     }
 
     return archive;
   },
 
-  set: (key, value) => {
-    debugger;
+  set: async (key, value) => {
     let obj = JSON.stringify(value);
 
     localStorage.setItem(key, obj);

@@ -37,15 +37,15 @@ let getOneById = async (id) => {
 }
 
 let getOneBySmug = async (smug) => {
-  let res = localRepo.get(smug);
+  let res = await localRepo.get(smug);
   if (res) return res;
 
-  res = await fetch(`${base}/smug/${smug}`);
-  
-  let result = handleResult(res);
-  localRepo.set(smug, result);
-
-  return result;
+  return fetch(`${base}/smug/${smug}`)
+    .then(handleResult)
+    .then((x) => { 
+      localRepo.set(smug, x); 
+      return x; 
+    });
 }
 
 let put = async (id, article, token) => {
@@ -74,6 +74,8 @@ let deleteIt = async (id, token) => {
 }
 
 let getPage = async (pageNumber) => {
+  if (Navigator.onLine === false) return localRepo.getAll();
+
   if (pageNumber < 1) pageNumber = 1;
 
   let take = consts.pageSize;

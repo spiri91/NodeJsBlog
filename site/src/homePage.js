@@ -28,6 +28,11 @@ function setActivePage() {
 
 export default {
   init: async () => {
+    if (Navigator.onLine === false) {
+      // showOfflineMessage();
+      return;
+    }
+
     await getPaginationArray();
     setActivePage();
   }
