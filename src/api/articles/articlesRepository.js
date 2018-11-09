@@ -19,6 +19,12 @@ exports.getDTOsWithPagination = function (take, skip, callback) {
     .exec(callback);
 }
 
+exports.findAllWith = function (titleQueryPart, callback) {
+  Article.find({ title: { $regex: '.*' + titleQueryPart + '.*' } })
+    .select('_id title smug createdAt description')
+    .exec(callback);
+}
+
 exports.count = function (callback) {
   const { db } = mongoose.connection;
 

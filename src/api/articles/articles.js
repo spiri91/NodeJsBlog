@@ -18,6 +18,11 @@ router.get('/', (req, res, next) => {
   repo.getAll((err, results) => handleResult(err, res, status.OK, results, next))
 })
 
+router.get('/search/:titlePart', (req, res, next) => {
+  repo.findAllWith(req.params.titlePart, 
+    (err, result) => handleResult(err, res, status.OK, result, next))
+})
+
 router.get('/id/:id', (req, res, next) => {
   repo.getOne({ _id: req.params.id },
     (err, result) => handleResult(err, res, status.OK, result, next))

@@ -30,7 +30,7 @@ export default {
   showStartPage: (obj) => {
     let output = Mustache.render(homeTemplate.home, obj);
     set(output);
-    homePage.init();
+    homePage.init(true);
   },
 
   articleCreate: () => {
