@@ -74,7 +74,7 @@ let deleteIt = async (id, token) => {
 }
 
 let getPage = async (pageNumber) => {
-  if (Navigator.onLine === false) return localRepo.getAll();
+  if (navigator.onLine === false) return localRepo.getAll();
 
   if (pageNumber < 1) pageNumber = 1;
 

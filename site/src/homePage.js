@@ -28,7 +28,7 @@ function setActivePage() {
 
 export default {
   init: async () => {
-    if (Navigator.onLine === false) {
+    if (navigator.onLine === false) {
       // showOfflineMessage();
       return;
     }
