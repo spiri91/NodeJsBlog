@@ -102,6 +102,12 @@ let getCount = async () => {
   return handleResult(res);
 }
 
+let search = async (titlePart) => {
+  let res = await fetch(`${base}/search/${titlePart}`);
+
+  return handleResult(res);
+}
+
 export default {
   post,
   put,
@@ -111,4 +117,5 @@ export default {
   deleteIt,
   addComment,
   getCount,
+  search
 }

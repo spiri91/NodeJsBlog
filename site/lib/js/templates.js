@@ -33,6 +33,13 @@ export default {
     homePage.init(true);
   },
 
+  showStartPageAfterSearch: (obj) => {
+    let output = Mustache.render(homeTemplate.home, obj);
+    set(output);
+
+    homePage.init(false);
+  },
+
   articleCreate: () => {
     let output = Mustache.render(editTemplate.edit, {});
     set(output);

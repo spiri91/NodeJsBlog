@@ -1,39 +1,30 @@
-var cacheName = 'pl-cache';
+let cacheName = 'pl-cache';
 
-var filesToCache = [
-    
+let filesToCache = [
+
 ];
 
-self.addEventListener('install', function (e) {
-    e.waitUntil(
-        caches.open(cacheName).then(function (cache) {
-            return cache.addAll(filesToCache);
-        })
-    );
+self.addEventListener('install', (e) => {
+  e.waitUntil(
+    caches.open(cacheName).then(cache => cache.addAll(filesToCache))
+  );
 });
 
-self.addEventListener('activate', function (e) {
-    e.waitUntil(
-        caches.keys().then(function (keyList) {
-            return Promise.all(keyList.map(function (key) {
-                if (key !== cacheName) {
-                    return caches.delete(key);
-                }
-            }));
-        })
-    );
-    return self.clients.claim();
+self.addEventListener('activate', (e) => {
+  e.waitUntil(
+    caches.keys().then(keyList => Promise.all(keyList.map((key) => {
+      if (key !== cacheName) {
+        return caches.delete(key);
+      }
+    })))
+  );
+  return self.clients.claim();
 });
 
-self.addEventListener('fetch', function (e) {
-    if ((e.request.method === "PUT" || e.request.method === "POST") && false === navigator.onLine) {
-        e.respondWith(alert("No internet :("));
-        new Error('No internet connectivity!');
-    }
-    else
-        e.respondWith(
-            caches.match(e.request).then(function (response) {
-                return response || fetch(e.request);
-            })
-        );
+self.addEventListener('fetch', (e) => {
+  if ((e.request.method === "PUT" || e.request.method === "POST") && false === navigator.onLine) {
+    new Error('No internet connectivity!');
+  } else e.respondWith(
+    caches.match(e.request).then(response => response || fetch(e.request))
+  );
 });

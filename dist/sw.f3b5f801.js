@@ -106,7 +106,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   return newRequire;
 })({"../sw.js":[function(require,module,exports) {
 var cacheName = 'pl-cache';
-var filesToCache = ['/manifest.json'];
+var filesToCache = [];
 self.addEventListener('install', function (e) {
   e.waitUntil(caches.open(cacheName).then(function (cache) {
     return cache.addAll(filesToCache);
@@ -124,13 +124,12 @@ self.addEventListener('activate', function (e) {
 });
 self.addEventListener('fetch', function (e) {
   if ((e.request.method === "PUT" || e.request.method === "POST") && false === navigator.onLine) {
-    e.respondWith(alert("No internet :("));
     new Error('No internet connectivity!');
   } else e.respondWith(caches.match(e.request).then(function (response) {
     return response || fetch(e.request);
   }));
 });
-},{}],"../../../Users/ionuts/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{}],"C:/Users/Spirica/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -157,7 +156,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51838" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50756" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
@@ -299,5 +298,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.parcelRequire, id);
   });
 }
-},{}]},{},["../../../Users/ionuts/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","../sw.js"], null)
+},{}]},{},["C:/Users/Spirica/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","../sw.js"], null)
 //# sourceMappingURL=/sw.f3b5f801.map
