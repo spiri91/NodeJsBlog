@@ -42,9 +42,9 @@ let getOneBySmug = async (smug) => {
 
   return fetch(`${base}/smug/${smug}`)
     .then(handleResult)
-    .then((x) => { 
-      localRepo.set(smug, x); 
-      return x; 
+    .then((x) => {
+      localRepo.set(smug, x);
+      return x;
     });
 }
 
@@ -84,6 +84,15 @@ let getPage = async (pageNumber) => {
   return get(take, skip);
 }
 
+let incrementViews = (articleId) => {
+  fetch(`${base}/${articleId}/incrementViews`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json; charset=utf-8"
+    }
+  });
+}
+
 let addComment = async (articleId, comment) => {
   let res = await fetch(`${base}/${articleId}/comments`, {
     method: "POST",
@@ -117,5 +126,6 @@ export default {
   deleteIt,
   addComment,
   getCount,
-  search
+  search,
+  incrementViews
 }

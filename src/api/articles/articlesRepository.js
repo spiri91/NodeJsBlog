@@ -19,6 +19,18 @@ exports.getDTOsWithPagination = function (take, skip, callback) {
     .exec(callback);
 }
 
+exports.incrementClicks = function (article) {
+  Article.update({
+    _id: article._id
+  }, {
+    $set: {
+      clicks: article.clicks + 1
+    }
+  }, (err) => {
+    if (err) throw err;
+  })
+}
+
 exports.findAllWith = function (titleQueryPart, callback) {
   Article.find({ title: { $regex: '.*' + titleQueryPart + '.*' } })
     .select('_id title smug createdAt description')

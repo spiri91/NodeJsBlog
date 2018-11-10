@@ -24,7 +24,11 @@ self.addEventListener('activate', (e) => {
 self.addEventListener('fetch', (e) => {
   if ((e.request.method === "PUT" || e.request.method === "POST") && false === navigator.onLine) {
     new Error('No internet connectivity!');
-  } else e.respondWith(
-    caches.match(e.request).then(response => response || fetch(e.request))
-  );
+  } else if (e.request.method === "GET") {
+    e.respondWith(
+      caches.match(e.request).then(response => response || fetch(e.request))
+    );
+  } else {
+    fetch(e.request);
+  }
 });

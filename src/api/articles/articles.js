@@ -19,7 +19,7 @@ router.get('/', (req, res, next) => {
 })
 
 router.get('/search/:titlePart', (req, res, next) => {
-  repo.findAllWith(req.params.titlePart, 
+  repo.findAllWith(req.params.titlePart,
     (err, result) => handleResult(err, res, status.OK, result, next))
 })
 
@@ -30,7 +30,16 @@ router.get('/id/:id', (req, res, next) => {
 
 router.get('/smug/:smug', (req, res, next) => {
   repo.getOne({ smug: req.params.smug },
-    (err, result) => handleResult(err, res, status.OK, result, next))
+    (err, result) => {
+      handleResult(err, res, status.OK, result, next);
+    })
+})
+
+router.post('/:id/incrementViews', (req, res, next) => {
+  repo.getOne({ _id: req.params.id }, (err, result) => {
+    if (!err) repo.incrementClicks(result);
+    return handleResult(err, res, status.OK, null, next);
+  });
 })
 
 router.get('/dtos/:take/:skip', (req, res, next) => {

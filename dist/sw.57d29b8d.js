@@ -303,4 +303,4 @@ function hmrAccept(bundle, id) {
   });
 }
 },{}]},{},["C:/Users/Spirica/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","sw.js"], null)
-//# sourceMappingURL=/sw.map
+//# sourceMappingURL=/sw.57d29b8d.map
