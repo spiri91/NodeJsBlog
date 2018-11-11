@@ -37,8 +37,11 @@ let getOneById = async (id) => {
 }
 
 let getOneBySmug = async (smug) => {
-  let res = await localRepo.get(smug);
-  if (res) return res;
+  if (false === navigator.onLine) {
+    let res = await localRepo.get(smug);
+    
+    return res;
+  }
 
   return fetch(`${base}/smug/${smug}`)
     .then(handleResult)

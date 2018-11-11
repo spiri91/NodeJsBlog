@@ -1,5 +1,5 @@
 export default {
-    show: 
+  show: 
     `<div>
         <h3>{{title}}<h3>
         <span>{{description}}</span></br><br>
@@ -12,7 +12,7 @@ export default {
         <h3>Comments<h3>
         <ul>
         {{#comments}}
-            <li>{{by}}: {{content}}  || {{date}}}</li>
+            <li>{{by}}: {{content}}  || {{date}}</li>
         {{/comments}}
         </ul>
     </div>`

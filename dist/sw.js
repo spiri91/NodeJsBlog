@@ -125,13 +125,9 @@ self.addEventListener('activate', function (e) {
 self.addEventListener('fetch', function (e) {
   if ((e.request.method === "PUT" || e.request.method === "POST") && false === navigator.onLine) {
     new Error('No internet connectivity!');
-  } else if (e.request.method === "GET") {
-    e.respondWith(caches.match(e.request).then(function (response) {
-      return response || fetch(e.request);
-    }));
-  } else {
-    fetch(e.request);
-  }
+  } else e.respondWith(caches.match(e.request).then(function (response) {
+    return response || fetch(e.request);
+  }));
 });
 },{}],"C:/Users/Spirica/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -160,7 +156,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65244" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60044" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

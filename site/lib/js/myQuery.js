@@ -21,7 +21,7 @@ export default {
     byClass: {
       click: (className, event) => {
         let elements = document.getElementsByClassName(className);
-        for(let e of elements) e.addEventListener('click', event);
+        for (let e of elements) e.addEventListener('click', event);
       }
     }
   }

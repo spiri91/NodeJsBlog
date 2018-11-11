@@ -1,14 +1,15 @@
 import QQ from '../lib/js/myQuery';
 import call from '../lib/js/call';
 import Comment from './comment';
-import { debug } from 'util';
+import templates from '../lib/js/templates';
+import sanitizer from '../lib/js/sanitizer';
 
 let _article;
 
 function setActionsIfOnline() {
   call.incrementViews(_article._id);
 
-  QQ.set.byId.click('newCommentPost', async () => {
+  QQ.set.byId.click('newCommentPost', () => {
     let commentValue = QQ.get.byId.value('newCommentText');
     let by = QQ.get.byId.value('newCommentPoster');
 
@@ -16,9 +17,9 @@ function setActionsIfOnline() {
 
     let comment = new Comment(by, commentValue);
 
-    await call.addComment(_article._id, comment);
-
-    alert('added');
+    call.addComment(_article._id, comment);
+    _article.comments.push(sanitizer.sanitiseComment(comment));
+    templates.showArticle(_article);
   });
 }
 
