@@ -15,6 +15,7 @@ router
     'article/create/new': () => templates.articleCreate(),
     'article/:id/edit': params => call.getOneById(params.id).then(sanitizer.sanitiseArticle).then(templates.articleEdit),
     'page/:number': params => call.getPage(params.number).then(sanitizer.sanitiseArticles).then(templates.showStartPage),
+    'search/:searchBy': params => call.search(params.searchBy).then(sanitizer.sanitiseArticles).then(templates.showStartPageAfterSearch),
     '*': () => call.getPage(1).then(sanitizer.sanitiseArticles).then(templates.showStartPage)
   })
   .resolve();
@@ -25,5 +26,8 @@ export default {
   },
   navigateToPageNumber: (pageNumber) => {
     router.navigate(`/page/${pageNumber}`);
+  },
+  navigateWitheSearch: (query) => {
+    router.navigate(`/search/${query}`);
   }
 }

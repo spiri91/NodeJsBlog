@@ -1,17 +1,13 @@
 import { nav } from '../templates/nav';
 import { footer } from '../templates/footer';
 import QQ from './myQuery';
-import call from './call';
-import templates from './templates';
-import sanitizer from './sanitizer';
+import router from './router';
 
 function addNavBarEvents() {
   QQ.set.byId.click("SearchButton", (event) => {
     event.preventDefault();
     let titlePart = QQ.get.byId.value('SearchInput');
-    call.search(titlePart).then((res) => {
-      templates.showStartPageAfterSearch(sanitizer.sanitiseArticles(res));
-    })
+    router.navigateWitheSearch(titlePart);
   });
 }
 

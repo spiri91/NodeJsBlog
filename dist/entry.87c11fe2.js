@@ -28738,6 +28738,9 @@ router.on({
   'page/:number': function pageNumber(params) {
     return _call.default.getPage(params.number).then(_sanitizer.default.sanitiseArticles).then(_templates.default.showStartPage);
   },
+  'search/:searchBy': function searchSearchBy(params) {
+    return _call.default.search(params.searchBy).then(_sanitizer.default.sanitiseArticles).then(_templates.default.showStartPageAfterSearch);
+  },
   '*': function _() {
     return _call.default.getPage(1).then(_sanitizer.default.sanitiseArticles).then(_templates.default.showStartPage);
   }
@@ -28748,6 +28751,9 @@ var _default = {
   },
   navigateToPageNumber: function navigateToPageNumber(pageNumber) {
     router.navigate("/page/".concat(pageNumber));
+  },
+  navigateWitheSearch: function navigateWitheSearch(query) {
+    router.navigate("/search/".concat(query));
   }
 };
 exports.default = _default;
@@ -28783,11 +28789,7 @@ var _footer = require("../templates/footer");
 
 var _myQuery = _interopRequireDefault(require("./myQuery"));
 
-var _call = _interopRequireDefault(require("./call"));
-
-var _templates = _interopRequireDefault(require("./templates"));
-
-var _sanitizer = _interopRequireDefault(require("./sanitizer"));
+var _router = _interopRequireDefault(require("./router"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -28797,9 +28799,7 @@ function addNavBarEvents() {
 
     var titlePart = _myQuery.default.get.byId.value('SearchInput');
 
-    _call.default.search(titlePart).then(function (res) {
-      _templates.default.showStartPageAfterSearch(_sanitizer.default.sanitiseArticles(res));
-    });
+    _router.default.navigateWitheSearch(titlePart);
   });
 }
 
@@ -28824,7 +28824,7 @@ var _default = {
   buildBoth: buildBoth
 };
 exports.default = _default;
-},{"../templates/nav":"lib/templates/nav.js","../templates/footer":"lib/templates/footer.js","./myQuery":"lib/js/myQuery.js","./call":"lib/js/call.js","./templates":"lib/js/templates.js","./sanitizer":"lib/js/sanitizer.js"}],"entry.js":[function(require,module,exports) {
+},{"../templates/nav":"lib/templates/nav.js","../templates/footer":"lib/templates/footer.js","./myQuery":"lib/js/myQuery.js","./router":"lib/js/router.js"}],"entry.js":[function(require,module,exports) {
 "use strict";
 
 var _bootstrap = _interopRequireDefault(require("bootstrap"));
@@ -28875,7 +28875,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51827" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65244" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
