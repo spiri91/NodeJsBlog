@@ -18,6 +18,9 @@ export default {
                 <button id="submit"> Submit </button>
             </div>
             <div class='col-xs-6'>
+                <button id="show"> Preview </button>
+            </div>
+            <div class='col-xs-6'>
                 <input type="checkbox" id="isVisible" {{#visible}} checked {{/visible}}> Visible
             </div>
         </div>

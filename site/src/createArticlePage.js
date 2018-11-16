@@ -21,11 +21,16 @@ function submit() {
     .catch((e) => { console.log(e); alert('check console'); });
 }
 
+function preview() {
+  let previewWindow = window.open();
+  previewWindow.document.body.innerHTML = QQ.get.byId.value('content');
+}
+
 let init = () => {
   jte.jteF($);
-
   $('#content').jqte();
   QQ.set.byId.click('submit', submit);
+  QQ.set.byId.click('show', preview);
 }
 
 export default {

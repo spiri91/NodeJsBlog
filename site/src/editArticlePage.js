@@ -14,11 +14,16 @@ function submit() {
   etArticle.description = QQ.get.byId.value('description');
   etArticle.content = QQ.get.byId.value('content');
   etArticle.visible = QQ.get.byId.checkedState('isVisible');
-  etArticle.smug = etArticle.title.replace(' ','-');
+  etArticle.smug = etArticle.title.replace(' ', '-');
 
   return call.put(etArticle._id, etArticle, token)
     .then(() => alert('edited'))
     .catch((e) => { console.log(e); alert('check console'); });
+}
+
+function preview() {
+  let previewWindow = window.open();
+  previewWindow.document.body.innerHTML = QQ.get.byId.value('content');
 }
 
 let init = (article) => {
@@ -30,6 +35,7 @@ let init = (article) => {
   QQ.set.byClass.innerHtml('jqte_editor', article.content);
   etArticle = article;
   QQ.set.byId.click('submit', submit)
+  QQ.set.byId.click('show', preview);
 }
 
 export default {
