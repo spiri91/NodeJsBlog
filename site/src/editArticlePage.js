@@ -17,8 +17,8 @@ function submit() {
   etArticle.smug = etArticle.title.replace(' ', '-');
 
   return call.put(etArticle._id, etArticle, token)
-    .then(() => alert('edited'))
-    .catch((e) => { console.log(e); alert('check console'); });
+    .then(() => QQ.alert.success('edited'))
+    .catch((e) => { console.log(e); QQ.alert.error(e.message); });
 }
 
 function preview() {

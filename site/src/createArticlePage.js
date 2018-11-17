@@ -5,7 +5,6 @@ import call from '../lib/js/call';
 import '../lib/css/jquery-te-1.4.0.css';
 import jte from '../dist/js/jquery-te-1.4.0.min.js';
 
-
 function submit() {
   let token = QQ.get.byId.value('token');
 
@@ -17,8 +16,8 @@ function submit() {
   );
 
   return call.post(article, token)
-    .then(() => alert('created'))
-    .catch((e) => { console.log(e); alert('check console'); });
+    .then(() => QQ.alert.success('created'))
+    .catch((e) => { console.log(e); QQ.alert.error(e.message); });
 }
 
 function preview() {

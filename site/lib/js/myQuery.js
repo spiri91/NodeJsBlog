@@ -1,3 +1,7 @@
+import AWN from "awesome-notifications"
+ 
+let notifier = new AWN()
+
 export default {
   get: {
     byId: {
@@ -9,7 +13,7 @@ export default {
       element: (attributeName, value) => document.querySelectorAll(`[${attributeName}="${value}"]`)
     },
     byClass: {
-      innerHtml: (className) => document.getElementsByClassName(className)[0].innerHTML
+      innerHtml: className => document.getElementsByClassName(className)[0].innerHTML
     }
   },
   set: {
@@ -26,7 +30,14 @@ export default {
         let elements = document.getElementsByClassName(className);
         for (let e of elements) e.addEventListener('click', event);
       },
-      innerHtml: (className, value) => document.getElementsByClassName(className)[0].innerHTML = value
+      innerHtml: (className, value) => 
+        document.getElementsByClassName(className)[0].innerHTML = value
     }
+  },
+
+  alert: {
+    success: msg => notifier.success(msg),
+    warning: msg => notifier.warning(msg),
+    error: msg => notifier.alert(msg)
   }
 }
