@@ -27,20 +27,37 @@ export default {
             margin-right: 1rem !important;
         }
 
-        .marginBomttom-05Rem{
+        .marginBottom-05Rem{
             margin-bottom: 0.5rem;
         }    
+
+        .marginBottom-2Rem{
+            margin-bottom: 2rem;
+        }
 
         .marginTop-2rem{
             margin-top: 2rem;
         }
+
         .singleArticle .description {
             font-size: larger;
             font-family: cursive;
         }
 
+        .italic {
+            font-style: italic;
+        }
+
+        .newComment{
+            backgrond-color: #F0F0F0;
+        }
+
         .singleArticle .articleContent{
 
+        }
+
+        .row{
+            background-color: #F0F0F0;
         }
     </style>
 
@@ -68,15 +85,16 @@ export default {
         <div> 
         <div class='row commentsSection'>
             {{#comments}}
-                <div class='col-sm-12 marginBomttom-05Rem'>
-                    <span>by: </span>  <span class='fontWeight-700'>{{by}}</span> =>
-                    <span class='marginRight-1Rem'> {{content}}</span>
-                    <span> | on: </span> <span class='fontWeight-700'> {{date}}</span>
+                <div class='col-sm-12 marginBottom-05Rem'>
+                    <span class='fontWeight-700'>{{by}} </span>
+                    <span> on </span> <span class='fontWeight-700'> {{date}}</span> :
+                    <span class='marginRight-1Rem italic'> {{content}}</span>
                 </div>
+                <hr>
             {{/comments}}
         </div>
 
-        <div class='newComment marginTop-2rem'>
+        <div class='newComment'>
             <div class='row'>
                 <div class='col-sm-4 col-xs-12'>
                     <input type='text' placeholder='name' class='form-control' id='newCommentPoster'/>
@@ -87,7 +105,7 @@ export default {
                     <input type='text' class='form-control' placeholder='comment' id='newCommentText'/>
                 </div>
             </div>
-            <div class='row'>
+            <div class='row marginBottom-2Rem'>
                 <div class='col-xs-12 col-sm-6'>
                     <input type='button' class='btn btn-success' value='Post' id='newCommentPost' />
                 </div>
