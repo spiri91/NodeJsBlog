@@ -104,7 +104,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   // Override the current require with this new one
   return newRequire;
-})({"C:/Users/Spirica/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+})({"../../../Users/ionuts/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 
 function getBundleURLCached() {
@@ -136,7 +136,7 @@ function getBaseURL(url) {
 
 exports.getBundleURL = getBundleURLCached;
 exports.getBaseURL = getBaseURL;
-},{}],"C:/Users/Spirica/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
+},{}],"../../../Users/ionuts/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
 var bundle = require('./bundle-url');
 
 function updateLink(link) {
@@ -171,22 +171,22 @@ function reloadCSS() {
 }
 
 module.exports = reloadCSS;
-},{"./bundle-url":"C:/Users/Spirica/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"lib/css/bootstrap.min.css":[function(require,module,exports) {
+},{"./bundle-url":"../../../Users/ionuts/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"lib/css/bootstrap.min.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"C:/Users/Spirica/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"lib/css/main.css":[function(require,module,exports) {
+},{"_css_loader":"../../../Users/ionuts/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"lib/css/main.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"C:/Users/Spirica/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"lib/css/awn.css":[function(require,module,exports) {
+},{"_css_loader":"../../../Users/ionuts/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"lib/css/awn.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"C:/Users/Spirica/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"C:/Users/Spirica/AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/process/browser.js":[function(require,module,exports) {
+},{"_css_loader":"../../../Users/ionuts/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../../../Users/ionuts/AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/process/browser.js":[function(require,module,exports) {
 
 // shim for using process in browser
 var process = module.exports = {}; // cached from whatever global is present so that test runners that stub it
@@ -10765,7 +10765,7 @@ if ( !noGlobal ) {
 return jQuery;
 } );
 
-},{"process":"C:/Users/Spirica/AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/process/browser.js"}],"../node_modules/popper.js/dist/esm/popper.js":[function(require,module,exports) {
+},{"process":"../../../Users/ionuts/AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/process/browser.js"}],"../node_modules/popper.js/dist/esm/popper.js":[function(require,module,exports) {
 var global = arguments[3];
 "use strict";
 
@@ -26536,7 +26536,7 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"./jquery-te.png":[["jquery-te.09523d1d.png","lib/css/jquery-te.png"],"lib/css/jquery-te.png"],"_css_loader":"C:/Users/Spirica/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"dist/js/jquery-te-1.4.0.min.js":[function(require,module,exports) {
+},{"./jquery-te.png":[["jquery-te.09523d1d.png","lib/css/jquery-te.png"],"lib/css/jquery-te.png"],"_css_loader":"../../../Users/ionuts/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"dist/js/jquery-te-1.4.0.min.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -27459,7 +27459,16 @@ var _default = {
   init: init
 };
 exports.default = _default;
-},{"jquery":"../node_modules/jquery/dist/jquery.js","../lib/js/myQuery":"lib/js/myQuery.js","./article":"src/article.js","../lib/js/call":"lib/js/call.js","../lib/css/jquery-te-1.4.0.css":"lib/css/jquery-te-1.4.0.css","../dist/js/jquery-te-1.4.0.min.js":"dist/js/jquery-te-1.4.0.min.js"}],"lib/templates/homeTemplate.js":[function(require,module,exports) {
+},{"jquery":"../node_modules/jquery/dist/jquery.js","../lib/js/myQuery":"lib/js/myQuery.js","./article":"src/article.js","../lib/js/call":"lib/js/call.js","../lib/css/jquery-te-1.4.0.css":"lib/css/jquery-te-1.4.0.css","../dist/js/jquery-te-1.4.0.min.js":"dist/js/jquery-te-1.4.0.min.js"}],"lib/templates/mainArticle.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.mainArticle = void 0;
+var mainArticle = "\n <style>\n \n </style>\n\n <div class='row'>\n    <div class=\"col-sm-12 col-xs-12\">\n        <a class=\"card\" href='#/article/{{smug}}'>\n            <div class=\"card-body\">\n            <h5 class=\"card-title\">{{title}}</h5>\n            <p class=\"card-text\">{{description}}</p>\n            <p>on: {{date}}</p>\n            </div>\n        </a>\n    </div>\n <div>\n";
+exports.mainArticle = mainArticle;
+},{}],"lib/templates/homeTemplate.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -27467,7 +27476,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _default = {
-  home: "<div class='mainPageArticles'>\n    <div class='row'>\n        {{#.}}\n        <div class=\"col-sm-4 col-xs-12\">\n            <a class=\"card\" href='#/article/{{smug}}'>\n                <div class=\"card-body\">\n                <h5 class=\"card-title\">{{title}}</h5>\n                <p class=\"card-text\">{{description}}</p>\n                <p>on: {{date}}</p>\n                </div>\n            </a>\n        </div>\n        {{/.}}\n    </div>\n\n        <br> <br>\n        <div id=\"Pagination\"></div>\n    </div>"
+  home: "\n    <style>\n        .mainPageArticles .card:first-child{\n            width:100% !important;\n        }\n    </style>\n\n    <div class='mainPageArticles'>\n        \n        <div id='firstArticle' class='col-sm-12'></div>\n\n        <div class='row'>\n            {{#.}}\n            <div class=\"col-sm-4 col-xs-12\">\n                <a class=\"card\" href='#/article/{{smug}}'>\n                    <div class=\"card-body\">\n                    <h5 class=\"card-title\">{{title}}</h5>\n                    <p class=\"card-text\">{{description}}</p>\n                    <p>on: {{date}}</p>\n                    </div>\n                </a>\n            </div>\n            {{/.}}\n        </div>\n\n        <br> <br>\n        <div id=\"Pagination\"></div>\n    </div>"
 };
 exports.default = _default;
 },{}],"lib/templates/editArticleTemplate.js":[function(require,module,exports) {
@@ -27499,7 +27508,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.pagination = void 0;
-var pagination = "\n<div class='row'>\n  <div class='col-xs-12 col-sm-12'>\n    <nav aria-label=\"Page navigation example\">\n      <ul class=\"pagination\">\n          <li class=\"page-item disabled\" disabled><a class=\"page-link\" disabled>Page: </a></li>\n          {{#.}}\n          <li class=\"page-item\" data-page-link=\"{{.}}\"><a class=\"page-link\" href=\"#/page/{{.}}\">{{.}}</a></li>\n          {{/.}}\n      </ul>\n    </nav>\n  </div>\n</div>\n";
+var pagination = "\n<div class='row'>\n  <div class='col-xs-12 col-sm-12'>\n    <nav aria-label=\"Page navigation example\">\n      <ul class=\"pagination\">\n          <li class=\"page-item disabled\" disabled><a class=\"page-link\" disabled>Pagina: </a></li>\n          {{#.}}\n          <li class=\"page-item\" data-page-link=\"{{.}}\"><a class=\"page-link\" href=\"#/page/{{.}}\">{{.}}</a></li>\n          {{/.}}\n      </ul>\n    </nav>\n  </div>\n</div>\n";
 exports.pagination = pagination;
 },{}],"lib/js/templates.js":[function(require,module,exports) {
 "use strict";
@@ -27520,6 +27529,8 @@ var _homePage = _interopRequireDefault(require("../../src/homePage"));
 var _editArticlePage = _interopRequireDefault(require("../../src/editArticlePage"));
 
 var _createArticlePage = _interopRequireDefault(require("../../src/createArticlePage"));
+
+var _mainArticle = require("../templates/mainArticle");
 
 var _myQuery = _interopRequireDefault(require("./myQuery"));
 
@@ -27543,6 +27554,12 @@ function setById(value, id) {
   _myQuery.default.set.byId.innerHtml(id, value);
 }
 
+function setMainArticle(obj) {
+  var output = _mustache.default.render(_mainArticle.mainArticle, obj);
+
+  setById(output, 'firstArticle');
+}
+
 var _default = {
   showArticle: function showArticle(article) {
     var output = _mustache.default.render(_showArticleTemplate.default.show, article);
@@ -27557,11 +27574,14 @@ var _default = {
     set(output);
 
     _homePage.default.init(true);
+
+    obj.length > 0 && setMainArticle(obj[0]);
   },
   showStartPageAfterSearch: function showStartPageAfterSearch(obj) {
     var output = _mustache.default.render(_homeTemplate.default.home, obj);
 
     set(output);
+    if (obj.length == 0) _myQuery.default.alert.warning(':-( Nu am gasit nimic.');
 
     _homePage.default.init(false);
   },
@@ -27586,7 +27606,7 @@ var _default = {
   }
 };
 exports.default = _default;
-},{"mustache":"../node_modules/mustache/mustache.js","./constants":"lib/js/constants.js","../../src/singleArticlePage":"src/singleArticlePage.js","../../src/homePage":"src/homePage.js","../../src/editArticlePage":"src/editArticlePage.js","../../src/createArticlePage":"src/createArticlePage.js","./myQuery":"lib/js/myQuery.js","../templates/homeTemplate":"lib/templates/homeTemplate.js","../templates/editArticleTemplate":"lib/templates/editArticleTemplate.js","../templates/showArticleTemplate":"lib/templates/showArticleTemplate.js","../templates/pagination":"lib/templates/pagination.js"}],"lib/js/router.js":[function(require,module,exports) {
+},{"mustache":"../node_modules/mustache/mustache.js","./constants":"lib/js/constants.js","../../src/singleArticlePage":"src/singleArticlePage.js","../../src/homePage":"src/homePage.js","../../src/editArticlePage":"src/editArticlePage.js","../../src/createArticlePage":"src/createArticlePage.js","../templates/mainArticle":"lib/templates/mainArticle.js","./myQuery":"lib/js/myQuery.js","../templates/homeTemplate":"lib/templates/homeTemplate.js","../templates/editArticleTemplate":"lib/templates/editArticleTemplate.js","../templates/showArticleTemplate":"lib/templates/showArticleTemplate.js","../templates/pagination":"lib/templates/pagination.js"}],"lib/js/router.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -27737,7 +27757,7 @@ if ('serviceWorker' in navigator) {
 }
 
 _NavAndFooter.default.buildBoth();
-},{"./lib/css/bootstrap.min.css":"lib/css/bootstrap.min.css","./lib/css/main.css":"lib/css/main.css","./lib/css/awn.css":"lib/css/awn.css","bootstrap":"../node_modules/bootstrap/dist/js/bootstrap.js","./lib/js/router":"lib/js/router.js","./lib/js/NavAndFooter":"lib/js/NavAndFooter.js","./sw.js":[["sw.js","sw.js"],"sw.map","sw.js"]}],"C:/Users/Spirica/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./lib/css/bootstrap.min.css":"lib/css/bootstrap.min.css","./lib/css/main.css":"lib/css/main.css","./lib/css/awn.css":"lib/css/awn.css","bootstrap":"../node_modules/bootstrap/dist/js/bootstrap.js","./lib/js/router":"lib/js/router.js","./lib/js/NavAndFooter":"lib/js/NavAndFooter.js","./sw.js":[["sw.js","sw.js"],"sw.map","sw.js"]}],"../../../Users/ionuts/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -27764,7 +27784,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58771" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52854" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
@@ -27906,5 +27926,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.parcelRequire, id);
   });
 }
-},{}]},{},["C:/Users/Spirica/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","entry.js"], null)
+},{}]},{},["../../../Users/ionuts/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","entry.js"], null)
 //# sourceMappingURL=/entry.87c11fe2.map

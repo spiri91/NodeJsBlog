@@ -4,6 +4,7 @@ import articlePage from '../../src/singleArticlePage';
 import homePage from '../../src/homePage';
 import editArticle from '../../src/editArticlePage';
 import createArticle from '../../src/createArticlePage'
+import { mainArticle } from '../templates/mainArticle'
 import QQ from './myQuery';
 
 import homeTemplate from '../templates/homeTemplate';
@@ -19,6 +20,13 @@ function setById(value, id) {
   QQ.set.byId.innerHtml(id, value);
 }
 
+function setMainArticle(obj){
+  let output = Mustache.render(mainArticle, obj);
+
+  setById(output, 'firstArticle');
+}
+
+
 export default {
   showArticle: (article) => {
     let output = Mustache.render(showTemplate.show, article);
@@ -31,11 +39,15 @@ export default {
     let output = Mustache.render(homeTemplate.home, obj);
     set(output);
     homePage.init(true);
+
+    obj.length > 0 && setMainArticle(obj[0]);
   },
 
   showStartPageAfterSearch: (obj) => {
     let output = Mustache.render(homeTemplate.home, obj);
     set(output);
+
+    if(obj.length == 0) QQ.alert.warning(':-( Nu am gasit nimic.');
 
     homePage.init(false);
   },
