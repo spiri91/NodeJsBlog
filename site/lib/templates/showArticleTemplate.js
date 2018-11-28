@@ -80,7 +80,7 @@ export default {
         <div class='row'> 
             <div class='col-sm-12'>
                 <hr>
-                <span class='commmentsStart fontWeight-700'> Comments: </span 
+                <span class='commmentsStart fontWeight-700'> Comentarii: </span 
             </div>
         <div> 
         <div class='row commentsSection'>
@@ -97,17 +97,17 @@ export default {
         <div class='newComment'>
             <div class='row'>
                 <div class='col-sm-4 col-xs-12'>
-                    <input type='text' placeholder='name' class='form-control' id='newCommentPoster'/>
+                    <input type='text' placeholder='nume' class='form-control' id='newCommentPoster'/>
                 </div>
             </div>
             <div class='row'>
                 <div class='col-xs-12 col-sm-4'> 
-                    <input type='text' class='form-control' placeholder='comment' id='newCommentText'/>
+                    <input type='text' class='form-control' placeholder='comentariu' id='newCommentText'/>
                 </div>
             </div>
             <div class='row marginBottom-2Rem'>
                 <div class='col-xs-12 col-sm-6'>
-                    <input type='button' class='btn btn-success' value='Post' id='newCommentPost' />
+                    <input type='button' class='btn btn-success' value='Adaugă' id='newCommentPost' />
                 </div>
             </div>
         </div>

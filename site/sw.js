@@ -1,4 +1,4 @@
-let cacheName = 'pl-cache';
+let cacheName = 'bz-cache';
 
 let filesToCache = [
 

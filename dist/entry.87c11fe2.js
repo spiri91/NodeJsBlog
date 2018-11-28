@@ -104,7 +104,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   // Override the current require with this new one
   return newRequire;
-})({"../../../Users/ionuts/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+})({"C:/Users/Spirica/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 
 function getBundleURLCached() {
@@ -136,7 +136,7 @@ function getBaseURL(url) {
 
 exports.getBundleURL = getBundleURLCached;
 exports.getBaseURL = getBaseURL;
-},{}],"../../../Users/ionuts/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
+},{}],"C:/Users/Spirica/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
 var bundle = require('./bundle-url');
 
 function updateLink(link) {
@@ -171,22 +171,22 @@ function reloadCSS() {
 }
 
 module.exports = reloadCSS;
-},{"./bundle-url":"../../../Users/ionuts/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"lib/css/bootstrap.min.css":[function(require,module,exports) {
+},{"./bundle-url":"C:/Users/Spirica/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"lib/css/bootstrap.min.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../../../Users/ionuts/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"lib/css/main.css":[function(require,module,exports) {
+},{"_css_loader":"C:/Users/Spirica/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"lib/css/main.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../../../Users/ionuts/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"lib/css/awn.css":[function(require,module,exports) {
+},{"_css_loader":"C:/Users/Spirica/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"lib/css/awn.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../../../Users/ionuts/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../../../Users/ionuts/AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/process/browser.js":[function(require,module,exports) {
+},{"_css_loader":"C:/Users/Spirica/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"C:/Users/Spirica/AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/process/browser.js":[function(require,module,exports) {
 
 // shim for using process in browser
 var process = module.exports = {}; // cached from whatever global is present so that test runners that stub it
@@ -10765,7 +10765,7 @@ if ( !noGlobal ) {
 return jQuery;
 } );
 
-},{"process":"../../../Users/ionuts/AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/process/browser.js"}],"../node_modules/popper.js/dist/esm/popper.js":[function(require,module,exports) {
+},{"process":"C:/Users/Spirica/AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/process/browser.js"}],"../node_modules/popper.js/dist/esm/popper.js":[function(require,module,exports) {
 var global = arguments[3];
 "use strict";
 
@@ -26536,7 +26536,7 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"./jquery-te.png":[["jquery-te.09523d1d.png","lib/css/jquery-te.png"],"lib/css/jquery-te.png"],"_css_loader":"../../../Users/ionuts/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"dist/js/jquery-te-1.4.0.min.js":[function(require,module,exports) {
+},{"./jquery-te.png":[["jquery-te.09523d1d.png","lib/css/jquery-te.png"],"lib/css/jquery-te.png"],"_css_loader":"C:/Users/Spirica/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"dist/js/jquery-te-1.4.0.min.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -27466,7 +27466,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.mainArticle = void 0;
-var mainArticle = "\n <style>\n \n </style>\n\n <div class='row'>\n    <div class=\"col-sm-12 col-xs-12\">\n        <a class=\"card\" href='#/article/{{smug}}'>\n            <div class=\"card-body\">\n            <h5 class=\"card-title\">{{title}}</h5>\n            <p class=\"card-text\">{{description}}</p>\n            <p>on: {{date}}</p>\n            </div>\n        </a>\n    </div>\n <div>\n";
+var mainArticle = "\n <style>\n    .mainArticle{\n        font-size: larger;\n    }\n </style>\n\n <div class='row'>\n    <div class=\"col-sm-12 col-xs-12\">\n        <a class=\"card mainArticle\" href='#/article/{{smug}}'>\n            <div class=\"card-body\">\n            <h4 class=\"card-title\">{{title}}</h4>\n            <p class=\"card-text\">{{description}}</p>\n            <p>pe: {{date}}</p>\n            </div>\n        </a>\n    </div>\n <div>\n";
 exports.mainArticle = mainArticle;
 },{}],"lib/templates/homeTemplate.js":[function(require,module,exports) {
 "use strict";
@@ -27476,7 +27476,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _default = {
-  home: "\n    <style>\n        .mainPageArticles .card:first-child{\n            width:100% !important;\n        }\n    </style>\n\n    <div class='mainPageArticles'>\n        \n        <div id='firstArticle' class='col-sm-12'></div>\n\n        <div class='row'>\n            {{#.}}\n            <div class=\"col-sm-4 col-xs-12\">\n                <a class=\"card\" href='#/article/{{smug}}'>\n                    <div class=\"card-body\">\n                    <h5 class=\"card-title\">{{title}}</h5>\n                    <p class=\"card-text\">{{description}}</p>\n                    <p>on: {{date}}</p>\n                    </div>\n                </a>\n            </div>\n            {{/.}}\n        </div>\n\n        <br> <br>\n        <div id=\"Pagination\"></div>\n    </div>"
+  home: "\n    <style>\n        .mainPageArticles .card:first-child{\n            width:100% !important;\n        }\n\n        .homePage a{\n            color: #212529;\n        }\n\n        .card, .card *{\n            background-color: #F0F0F0;\n        }\n\n        .card{\n            transition-duration: 0.3s;\n        }\n\n        .card:hover {\n            background-color: #8b0000 !important;\n            transition-duration: 0.3s;\n        }\n\n        .title{\n            padding: 1.5rem;\n            pointer-events: none;\n        }\n    </style>\n    <div class='homePage'>\n        <div class='row'>\n            <div class='col-sm-12'>\n                <div class='title'>\n                    <h3>BuzeReci.ro</h3>\n                <div>\n            </div>\n        </div>\n        <div class='mainPageArticles'>\n            \n            <div id='firstArticle' class='col-sm-12'></div>\n\n            <div class='row'>\n                {{#.}}\n                <div class=\"col-sm-4 col-xs-12\">\n                    <a class=\"card\" href='#/article/{{smug}}'>\n                        <div class=\"card-body\">\n                        <h5 class=\"card-title\">{{title}}</h5>\n                        <p class=\"card-text\">{{description}}</p>\n                        <p>pe: {{date}}</p>\n                        </div>\n                    </a>\n                </div>\n                {{/.}}\n            </div>\n\n            <br>\n            <div id=\"Pagination\"></div>\n        </div>\n    </div>"
 };
 exports.default = _default;
 },{}],"lib/templates/editArticleTemplate.js":[function(require,module,exports) {
@@ -27498,7 +27498,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _default = {
-  show: "\n    <style>\n        .singleArticle .row{\n            padding-top: 1rem !important;\n            padding-bottom: 0rem !important;\n            padding-left: 1rem !important;\n            padding-right: 1rem !important;\n        }\n\n        .centered{\n            text-align: center;\n            align-items: center;\n            align-self: center;\n        }    \n\n        .singleArticle .title {\n\n        }\n\n        .fontWeight-700{\n            font-weight: 700;\n        }\n\n        .marginRight-1Rem{\n            margin-right: 1rem !important;\n        }\n\n        .marginBottom-05Rem{\n            margin-bottom: 0.5rem;\n        }    \n\n        .marginBottom-2Rem{\n            margin-bottom: 2rem;\n        }\n\n        .marginTop-2rem{\n            margin-top: 2rem;\n        }\n\n        .singleArticle .description {\n            font-size: larger;\n            font-family: cursive;\n        }\n\n        .italic {\n            font-style: italic;\n        }\n\n        .newComment{\n            backgrond-color: #F0F0F0;\n        }\n\n        .singleArticle .articleContent{\n\n        }\n\n        .row{\n            background-color: #F0F0F0;\n        }\n    </style>\n\n    <div class=\"singleArticle\">\n        <div class='row'>\n            <div class='col-sm-12'>\n                <h1 class='title centered'>{{title}}<h1>\n            </div>\n        </div>\n        <div class='row'>\n            <div class='col-sm-12'> \n                <span class='description'>{{description}}</span>\n            </div>\n        </div>\n        <div class='row'>\n            <div class='col-sm-12'>\n                <div class='articleContent' id='articleContent'></div>\n            </div>\n        </div>\n        <div class='row'> \n            <div class='col-sm-12'>\n                <hr>\n                <span class='commmentsStart fontWeight-700'> Comments: </span \n            </div>\n        <div> \n        <div class='row commentsSection'>\n            {{#comments}}\n                <div class='col-sm-12 marginBottom-05Rem'>\n                    <span class='fontWeight-700'>{{by}} </span>\n                    <span> on </span> <span class='fontWeight-700'> {{date}}</span> :\n                    <span class='marginRight-1Rem italic'> {{content}}</span>\n                </div>\n                <hr>\n            {{/comments}}\n        </div>\n\n        <div class='newComment'>\n            <div class='row'>\n                <div class='col-sm-4 col-xs-12'>\n                    <input type='text' placeholder='name' class='form-control' id='newCommentPoster'/>\n                </div>\n            </div>\n            <div class='row'>\n                <div class='col-xs-12 col-sm-4'> \n                    <input type='text' class='form-control' placeholder='comment' id='newCommentText'/>\n                </div>\n            </div>\n            <div class='row marginBottom-2Rem'>\n                <div class='col-xs-12 col-sm-6'>\n                    <input type='button' class='btn btn-success' value='Post' id='newCommentPost' />\n                </div>\n            </div>\n        </div>\n    </div>"
+  show: "\n    <style>\n        .singleArticle .row{\n            padding-top: 1rem !important;\n            padding-bottom: 0rem !important;\n            padding-left: 1rem !important;\n            padding-right: 1rem !important;\n        }\n\n        .centered{\n            text-align: center;\n            align-items: center;\n            align-self: center;\n        }    \n\n        .singleArticle .title {\n\n        }\n\n        .fontWeight-700{\n            font-weight: 700;\n        }\n\n        .marginRight-1Rem{\n            margin-right: 1rem !important;\n        }\n\n        .marginBottom-05Rem{\n            margin-bottom: 0.5rem;\n        }    \n\n        .marginBottom-2Rem{\n            margin-bottom: 2rem;\n        }\n\n        .marginTop-2rem{\n            margin-top: 2rem;\n        }\n\n        .singleArticle .description {\n            font-size: larger;\n            font-family: cursive;\n        }\n\n        .italic {\n            font-style: italic;\n        }\n\n        .newComment{\n            backgrond-color: #F0F0F0;\n        }\n\n        .singleArticle .articleContent{\n\n        }\n\n        .row{\n            background-color: #F0F0F0;\n        }\n    </style>\n\n    <div class=\"singleArticle\">\n        <div class='row'>\n            <div class='col-sm-12'>\n                <h1 class='title centered'>{{title}}<h1>\n            </div>\n        </div>\n        <div class='row'>\n            <div class='col-sm-12'> \n                <span class='description'>{{description}}</span>\n            </div>\n        </div>\n        <div class='row'>\n            <div class='col-sm-12'>\n                <div class='articleContent' id='articleContent'></div>\n            </div>\n        </div>\n        <div class='row'> \n            <div class='col-sm-12'>\n                <hr>\n                <span class='commmentsStart fontWeight-700'> Comentarii: </span \n            </div>\n        <div> \n        <div class='row commentsSection'>\n            {{#comments}}\n                <div class='col-sm-12 marginBottom-05Rem'>\n                    <span class='fontWeight-700'>{{by}} </span>\n                    <span> on </span> <span class='fontWeight-700'> {{date}}</span> :\n                    <span class='marginRight-1Rem italic'> {{content}}</span>\n                </div>\n                <hr>\n            {{/comments}}\n        </div>\n\n        <div class='newComment'>\n            <div class='row'>\n                <div class='col-sm-4 col-xs-12'>\n                    <input type='text' placeholder='nume' class='form-control' id='newCommentPoster'/>\n                </div>\n            </div>\n            <div class='row'>\n                <div class='col-xs-12 col-sm-4'> \n                    <input type='text' class='form-control' placeholder='comentariu' id='newCommentText'/>\n                </div>\n            </div>\n            <div class='row marginBottom-2Rem'>\n                <div class='col-xs-12 col-sm-6'>\n                    <input type='button' class='btn btn-success' value='Adaug\u0103' id='newCommentPost' />\n                </div>\n            </div>\n        </div>\n    </div>"
 };
 exports.default = _default;
 },{}],"lib/templates/pagination.js":[function(require,module,exports) {
@@ -27508,7 +27508,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.pagination = void 0;
-var pagination = "\n<div class='row'>\n  <div class='col-xs-12 col-sm-12'>\n    <nav aria-label=\"Page navigation example\">\n      <ul class=\"pagination\">\n          <li class=\"page-item disabled\" disabled><a class=\"page-link\" disabled>Pagina: </a></li>\n          {{#.}}\n          <li class=\"page-item\" data-page-link=\"{{.}}\"><a class=\"page-link\" href=\"#/page/{{.}}\">{{.}}</a></li>\n          {{/.}}\n      </ul>\n    </nav>\n  </div>\n</div>\n";
+var pagination = "\n\n<style>\n  .pagination{\n    margin-left: 1rem !important;\n    margin-bottom: 3.5rem;\n    z-index: 10;\n  }\n\n</style>\n<div class='row'>\n  <div class='col-xs-12 col-sm-12'>\n    <nav>\n      <ul class=\"pagination\">\n          <li class=\"page-item disabled\" disabled><a class=\"page-link\" disabled>Pagina: </a></li>\n          {{#.}}\n          <li class=\"page-item\" data-page-link=\"{{.}}\"><a class=\"page-link\" href=\"#/page/{{.}}\">{{.}}</a></li>\n          {{/.}}\n      </ul>\n    </nav>\n  </div>\n</div>\n";
 exports.pagination = pagination;
 },{}],"lib/js/templates.js":[function(require,module,exports) {
 "use strict";
@@ -27671,7 +27671,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.nav = void 0;
-var nav = "\n<style>\n  .nav-link:hover{\n    color: blanchedalmond !important;\n    transition-duration: 0.2s;\n  }\n</style>\n\n<div class='row'>\n  <div class='col-sm-12 col-xs-12'>\n    <nav class=\"navbar navbar-expand-lg navbar navbar-dark bg-dark\">\n      <a class=\"navbar-brand\" href=\"#\">Navbar</a>\n      <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n        <span class=\"navbar-toggler-icon\"></span>\n      </button>\n\n      <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n        <ul class=\"navbar-nav mr-auto\">\n          <li class=\"nav-item active\">\n            <a class=\"nav-link\" href=\"#\">Despre mine <span class=\"sr-only\">(current)</span></a>\n          </li>\n          <li class=\"nav-item active\">\n            <a class=\"nav-link\" href=\"#\">Scrie-mi <span class=\"sr-only\">(current)</span></a>\n          </li>\n        </ul>\n        <form class=\"form-inline my-2 my-lg-0\">\n          <input class=\"form-control mr-sm-2\" type=\"search\" id=\"SearchInput\" placeholder=\"Caut\u0103\" aria-label=\"Search\">\n          <button class=\"btn btn-outline-success my-2 my-sm-0\" id=\"SearchButton\">Caut\u0103</button>\n        </form>\n      </div>\n    </nav>\n  </div>\n</div>\n";
+var nav = "\n<style>\n  .nav-link:hover{\n    color: blanchedalmond !important;\n    transition-duration: 0.2s;\n  }\n\n  .navbar-brand{\n    border: 1px solid white;\n    border-radius: 50px;\n    text-align: center;\n    width: 4rem;\n    font-size: 1.4rem;\n    transition-duration: 0.3s;\n  }\n\n  .navbar-brand:hover{\n    background-color: #a2d2df;\n    transition-duration: 0.3s;\n  }\n</style>\n\n<div class='row'>\n  <div class='col-sm-12 col-xs-12'>\n    <nav class=\"navbar navbar-expand-lg navbar navbar-dark bg-dark\">\n      <a class=\"navbar-brand\" href=\"#\">BZ</a>\n      <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n        <span class=\"navbar-toggler-icon\"></span>\n      </button>\n\n      <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n        <ul class=\"navbar-nav mr-auto\">\n          <li class=\"nav-item active\">\n            <a class=\"nav-link\" href=\"#\">Despre mine <span class=\"sr-only\">(current)</span></a>\n          </li>\n          <li class=\"nav-item active\">\n            <a class=\"nav-link\" href=\"#\">Scrie-mi <span class=\"sr-only\">(current)</span></a>\n          </li>\n        </ul>\n        <form class=\"form-inline my-2 my-lg-0\">\n          <input class=\"form-control mr-sm-2\" type=\"search\" id=\"SearchInput\" placeholder=\"Caut\u0103\" aria-label=\"Search\">\n          <button class=\"btn btn-outline-success my-2 my-sm-0\" id=\"SearchButton\">Caut\u0103</button>\n        </form>\n      </div>\n    </nav>\n  </div>\n</div>\n";
 exports.nav = nav;
 },{}],"lib/templates/footer.js":[function(require,module,exports) {
 "use strict";
@@ -27757,7 +27757,7 @@ if ('serviceWorker' in navigator) {
 }
 
 _NavAndFooter.default.buildBoth();
-},{"./lib/css/bootstrap.min.css":"lib/css/bootstrap.min.css","./lib/css/main.css":"lib/css/main.css","./lib/css/awn.css":"lib/css/awn.css","bootstrap":"../node_modules/bootstrap/dist/js/bootstrap.js","./lib/js/router":"lib/js/router.js","./lib/js/NavAndFooter":"lib/js/NavAndFooter.js","./sw.js":[["sw.js","sw.js"],"sw.map","sw.js"]}],"../../../Users/ionuts/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./lib/css/bootstrap.min.css":"lib/css/bootstrap.min.css","./lib/css/main.css":"lib/css/main.css","./lib/css/awn.css":"lib/css/awn.css","bootstrap":"../node_modules/bootstrap/dist/js/bootstrap.js","./lib/js/router":"lib/js/router.js","./lib/js/NavAndFooter":"lib/js/NavAndFooter.js","./sw.js":[["sw.js","sw.js"],"sw.map","sw.js"]}],"C:/Users/Spirica/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -27784,7 +27784,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52854" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63442" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
@@ -27926,5 +27926,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.parcelRequire, id);
   });
 }
-},{}]},{},["../../../Users/ionuts/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","entry.js"], null)
+},{}]},{},["C:/Users/Spirica/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","entry.js"], null)
 //# sourceMappingURL=/entry.87c11fe2.map
