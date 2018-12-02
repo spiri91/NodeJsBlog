@@ -41,9 +41,18 @@ export default {
         <div class='col-xs-12 col-sm-12'>
             <textarea class="content" id="content"></textarea>
         </div>
+        <div class='col-xs-12 col-sm-12'>
+            <span>Select image</span><br>
+            <input type="file" id="imageUploader">
+        </div>
+        <div class='col-xs-12 col-sm-12'>
+            <img src="" height="200px" alt="Image preview..." id="imagePreview">
+        </div>
+        <br>
         <div class='col-xs-6 col-sm-2'>
             <button id="submit" class='btn btn-success'> Submit </button>
         </div>
+        <br>
         <div class='col-xs-6 col-sm-2'>
             <button id="show" class='btn btn-default'> Preview </button>
         </div>

@@ -20399,6 +20399,9 @@ var _default = {
       },
       click: function click(id, event) {
         document.getElementById(id).addEventListener('click', event);
+      },
+      change: function change(id, event) {
+        document.getElementById(id).addEventListener('change', event);
       }
     },
     byClass: {
@@ -27334,7 +27337,7 @@ var _call = _interopRequireDefault(require("../lib/js/call"));
 
 require("../lib/css/jquery-te-1.4.0.css");
 
-var _jqueryTe140Min = _interopRequireDefault(require("../dist/js/jquery-te-1.4.0.min.js"));
+var _jqueryTe2 = _interopRequireDefault(require("../dist/js/jquery-te-1.4.0.min"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -27362,10 +27365,23 @@ function preview() {
   previewWindow.document.body.innerHTML = _myQuery.default.get.byId.value('content');
 }
 
+function upload() {
+  var uploader = document.getElementById("imageUploader");
+  if (uploader.files.length === 0) return;
+  var image = uploader.files[0];
+  var reader = new FileReader();
+  reader.addEventListener('load', function () {
+    etArticle.image = reader.result;
+    var img = document.getElementById('imagePreview');
+    img.src = reader.result;
+  }, false);
+  if (image) reader.readAsDataURL(image);
+}
+
 var init = function init(article) {
   delete article.comments;
 
-  _jqueryTe140Min.default.jteF(_jquery.default);
+  _jqueryTe2.default.jteF(_jquery.default);
 
   (0, _jquery.default)('#content').jqte();
 
@@ -27376,13 +27392,15 @@ var init = function init(article) {
   _myQuery.default.set.byId.click('submit', submit);
 
   _myQuery.default.set.byId.click('show', preview);
+
+  _myQuery.default.set.byId.change('imageUploader', upload);
 };
 
 var _default = {
   init: init
 };
 exports.default = _default;
-},{"jquery":"../node_modules/jquery/dist/jquery.js","../lib/js/myQuery":"lib/js/myQuery.js","../lib/js/call":"lib/js/call.js","../lib/css/jquery-te-1.4.0.css":"lib/css/jquery-te-1.4.0.css","../dist/js/jquery-te-1.4.0.min.js":"dist/js/jquery-te-1.4.0.min.js"}],"src/article.js":[function(require,module,exports) {
+},{"jquery":"../node_modules/jquery/dist/jquery.js","../lib/js/myQuery":"lib/js/myQuery.js","../lib/js/call":"lib/js/call.js","../lib/css/jquery-te-1.4.0.css":"lib/css/jquery-te-1.4.0.css","../dist/js/jquery-te-1.4.0.min":"dist/js/jquery-te-1.4.0.min.js"}],"src/article.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -27394,7 +27412,7 @@ var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/cl
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Article = function Article(title, description, content, visible) {
+var Article = function Article(title, description, content, visible, css, image) {
   (0, _classCallCheck2.default)(this, Article);
   this.title = title.trim();
   this.description = description.trim();
@@ -27402,6 +27420,8 @@ var Article = function Article(title, description, content, visible) {
   this.smug = this.title ? this.title.replace(' ', '-') : "";
   this.createdAt = Date.now();
   this.visible = visible;
+  this.css = css;
+  this.image = image;
 };
 
 exports.default = Article;
@@ -27427,10 +27447,12 @@ var _jqueryTe140Min = _interopRequireDefault(require("../dist/js/jquery-te-1.4.0
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var theImage = null;
+
 function submit() {
   var token = _myQuery.default.get.byId.value('token');
 
-  var article = new _article.default(_myQuery.default.get.byId.value('title'), _myQuery.default.get.byId.value('description'), _myQuery.default.get.byClass.innerHtml('jqte_editor'), _myQuery.default.get.byId.checkedState('isVisible'));
+  var article = new _article.default(_myQuery.default.get.byId.value('title'), _myQuery.default.get.byId.value('description'), _myQuery.default.get.byClass.innerHtml('jqte_editor'), _myQuery.default.get.byId.checkedState('isVisible'), null, theImage);
   return _call.default.post(article, token).then(function () {
     return _myQuery.default.alert.success('created');
   }).catch(function (e) {
@@ -27445,6 +27467,19 @@ function preview() {
   previewWindow.document.body.innerHTML = _myQuery.default.get.byId.value('content');
 }
 
+function upload() {
+  var uploader = document.getElementById("imageUploader");
+  if (uploader.files.length === 0) return;
+  var image = uploader.files[0];
+  var reader = new FileReader();
+  reader.addEventListener('load', function () {
+    theImage = reader.result;
+    var img = document.getElementById('imagePreview');
+    img.src = reader.result;
+  }, false);
+  if (image) reader.readAsDataURL(image);
+}
+
 var init = function init() {
   _jqueryTe140Min.default.jteF(_jquery.default);
 
@@ -27453,6 +27488,8 @@ var init = function init() {
   _myQuery.default.set.byId.click('submit', submit);
 
   _myQuery.default.set.byId.click('show', preview);
+
+  _myQuery.default.set.byId.change('imageUploader', upload);
 };
 
 var _default = {
@@ -27466,7 +27503,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.mainArticle = void 0;
-var mainArticle = "\n <style>\n    .mainArticle{\n        font-size: larger;\n    }\n </style>\n\n <div class='row'>\n    <div class=\"col-sm-12 col-xs-12\">\n        <a class=\"card mainArticle\" href='#/article/{{smug}}'>\n            <div class=\"card-body\">\n            <h4 class=\"card-title\">{{title}}</h4>\n            <p class=\"card-text\">{{description}}</p>\n            <p>pe: {{date}}</p>\n            </div>\n        </a>\n    </div>\n <div>\n";
+var mainArticle = "\n <style>\n    .mainArticle{\n        font-size: larger;\n    }\n </style>\n\n <div class='row'>\n    <div class=\"col-sm-12 col-xs-12 card\">\n        <div class='row'>\n            <div class='col-xs-6'>\n                <a class=\"mainArticle\" href='#/article/{{smug}}'>\n                    <div class=\"card-body\">\n                    <h4 class=\"card-title\">{{title}}</h4>\n                    <p class=\"card-text\">{{description}}</p>\n                    <p>pe: {{date}}</p>\n                    </div>\n                </a>\n            </div>\n            <div class='col-xs-6'>\n                <image class='cardImage' src=\"{{image}}\">\n            </div>\n        </div>\n        \n        \n    </div>\n <div>\n";
 exports.mainArticle = mainArticle;
 },{}],"lib/templates/homeTemplate.js":[function(require,module,exports) {
 "use strict";
@@ -27476,7 +27513,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _default = {
-  home: "\n    <style>\n        .mainPageArticles .card:first-child{\n            width:100% !important;\n        }\n\n        .homePage a{\n            color: #212529;\n        }\n\n        .card, .card *{\n            background-color: #F0F0F0;\n        }\n\n        .card{\n            transition-duration: 0.3s;\n        }\n\n        .card:hover {\n            background-color: #8b0000 !important;\n            transition-duration: 0.3s;\n        }\n\n        .title{\n            padding: 1.5rem;\n            pointer-events: none;\n        }\n    </style>\n    <div class='homePage'>\n        <div class='row'>\n            <div class='col-sm-12'>\n                <div class='title'>\n                    <h3>BuzeReci.ro</h3>\n                <div>\n            </div>\n        </div>\n        <div class='mainPageArticles'>\n            \n            <div id='firstArticle' class='col-sm-12'></div>\n\n            <div class='row'>\n                {{#.}}\n                <div class=\"col-sm-4 col-xs-12\">\n                    <a class=\"card\" href='#/article/{{smug}}'>\n                        <div class=\"card-body\">\n                        <h5 class=\"card-title\">{{title}}</h5>\n                        <p class=\"card-text\">{{description}}</p>\n                        <p>pe: {{date}}</p>\n                        </div>\n                    </a>\n                </div>\n                {{/.}}\n            </div>\n\n            <br>\n            <div id=\"Pagination\"></div>\n        </div>\n    </div>"
+  home: "\n    <style>\n        .mainPageArticles .card:first-child{\n            width:100% !important;\n        }\n\n        .homePage a{\n            color: #212529;\n        }\n\n        .card, .card *{\n            background-color: #F0F0F0;\n        }\n\n        .card{\n            transition-duration: 0.3s;\n        }\n\n        .card:hover {\n            background-color: #8b0000 !important;\n            transition-duration: 0.3s;\n        }\n\n        .title{\n            padding: 1.5rem;\n            pointer-events: none;\n        }\n    </style>\n    <div class='homePage'>\n        <div class='row'>\n            <div class='col-sm-12'>\n                <div class='title'>\n                    <h3>BuzeReci.ro</h3>\n                <div>\n            </div>\n        </div>\n        <div class='mainPageArticles'>\n            \n            <div id='firstArticle' class='col-sm-12'></div>\n\n            <div class='row'>\n                {{#.}}\n                <div class=\"col-sm-4 col-xs-12 card\">\n                    <div class='row'>\n                        <div class='col-xs-6'>\n                            <a class href='#/article/{{smug}}'>\n                                <div class=\"card-body\">\n                                <h5 class=\"card-title\">{{title}}</h5>\n                                <p class=\"card-text\">{{description}}</p>\n                                <p>pe: {{date}}</p>\n                                </div>\n                            </a>\n                        </div>\n                        <div class='col-xs-6'>\n                            <image class='cardImage' src=\"{{image}}\">\n                        </div>\n                    </div>\n                    \n                </div>\n                {{/.}}\n            </div>\n\n            <br>\n            <div id=\"Pagination\"></div>\n        </div>\n    </div>"
 };
 exports.default = _default;
 },{}],"lib/templates/editArticleTemplate.js":[function(require,module,exports) {
@@ -27487,7 +27524,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _default = {
-  edit: "\n    <style>\n        #MainContent .row{\n            padding: 0.2rem;\n        }\n\n        #MainContent .col-sm-6, #MainContent .col-xs-12, #MainContent .col-sm-2{\n            padding: 0.2rem !important;\n        }\n\n        .jqte_editor{\n            height: 150rem;\n        }\n\n        #Footer{\n            display: none;\n        }\n    </style>\n    <div class='row'> \n        <div class='col-xs-12 col-sm-6'>\n            <input type=\"text\" placeholder=\"token\" id=\"token\" class=\"form-control\">\n        </div>\n        <div class='col-xs-12 col-sm-6'>\n            <input type=\"text\" class=\"form-control\" placeholder=\"title\" value=\"{{title}}\" id=\"title\">\n        </div>\n        <div class='col-xs-12 col-sm-6'>\n            <input type=\"text\" class=\"form-control\" placeholder=\"description\" value=\"{{description}}\" id=\"description\">\n        </div>\n        <div class='col-xs-12 col-sm-6'>\n            <div class='row'>\n                <div class='col-xs-2 col-sm-2'>\n                    <input type=\"checkbox\" class='form-control' id=\"isVisible\" {{#visible}} checked {{/visible}}>\n                </div>\n                <div class='col-xs-6 col-sm-6'>\n                    <h5>Visible</h5>\n                </div>\n            </div>\n        </div>\n        <div class='col-xs-12 col-sm-12'>\n            <textarea class=\"content\" id=\"content\"></textarea>\n        </div>\n        <div class='col-xs-6 col-sm-2'>\n            <button id=\"submit\" class='btn btn-success'> Submit </button>\n        </div>\n        <div class='col-xs-6 col-sm-2'>\n            <button id=\"show\" class='btn btn-default'> Preview </button>\n        </div>\n    </div>"
+  edit: "\n    <style>\n        #MainContent .row{\n            padding: 0.2rem;\n        }\n\n        #MainContent .col-sm-6, #MainContent .col-xs-12, #MainContent .col-sm-2{\n            padding: 0.2rem !important;\n        }\n\n        .jqte_editor{\n            height: 150rem;\n        }\n\n        #Footer{\n            display: none;\n        }\n    </style>\n    <div class='row'> \n        <div class='col-xs-12 col-sm-6'>\n            <input type=\"text\" placeholder=\"token\" id=\"token\" class=\"form-control\">\n        </div>\n        <div class='col-xs-12 col-sm-6'>\n            <input type=\"text\" class=\"form-control\" placeholder=\"title\" value=\"{{title}}\" id=\"title\">\n        </div>\n        <div class='col-xs-12 col-sm-6'>\n            <input type=\"text\" class=\"form-control\" placeholder=\"description\" value=\"{{description}}\" id=\"description\">\n        </div>\n        <div class='col-xs-12 col-sm-6'>\n            <div class='row'>\n                <div class='col-xs-2 col-sm-2'>\n                    <input type=\"checkbox\" class='form-control' id=\"isVisible\" {{#visible}} checked {{/visible}}>\n                </div>\n                <div class='col-xs-6 col-sm-6'>\n                    <h5>Visible</h5>\n                </div>\n            </div>\n        </div>\n        <div class='col-xs-12 col-sm-12'>\n            <textarea class=\"content\" id=\"content\"></textarea>\n        </div>\n        <div class='col-xs-12 col-sm-12'>\n            <span>Select image</span><br>\n            <input type=\"file\" id=\"imageUploader\">\n        </div>\n        <div class='col-xs-12 col-sm-12'>\n            <img src=\"\" height=\"200px\" alt=\"Image preview...\" id=\"imagePreview\">\n        </div>\n        <br>\n        <div class='col-xs-6 col-sm-2'>\n            <button id=\"submit\" class='btn btn-success'> Submit </button>\n        </div>\n        <br>\n        <div class='col-xs-6 col-sm-2'>\n            <button id=\"show\" class='btn btn-default'> Preview </button>\n        </div>\n    </div>"
 };
 exports.default = _default;
 },{}],"lib/templates/showArticleTemplate.js":[function(require,module,exports) {
@@ -27784,7 +27821,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63442" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62796" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

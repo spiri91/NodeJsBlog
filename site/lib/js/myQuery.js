@@ -23,6 +23,9 @@ export default {
       },
       click: (id, event) => {
         document.getElementById(id).addEventListener('click', event);
+      },
+      change: (id, event) => {
+        document.getElementById(id).addEventListener('change', event);
       }
     },
     byClass: {

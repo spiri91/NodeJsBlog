@@ -2,8 +2,7 @@ import $ from 'jquery';
 import QQ from '../lib/js/myQuery';
 import call from '../lib/js/call';
 import '../lib/css/jquery-te-1.4.0.css';
-import jte from '../dist/js/jquery-te-1.4.0.min.js';
-
+import jte from '../dist/js/jquery-te-1.4.0.min';
 
 let etArticle;
 
@@ -26,6 +25,23 @@ function preview() {
   previewWindow.document.body.innerHTML = QQ.get.byId.value('content');
 }
 
+function upload() {
+  let uploader = document.getElementById("imageUploader");
+  if (uploader.files.length === 0) return;
+
+  let image = uploader.files[0];
+
+  let reader = new FileReader();
+
+  reader.addEventListener('load', () => {
+    etArticle.image = reader.result;
+    let img = document.getElementById('imagePreview');
+    img.src = reader.result;
+  }, false)
+
+  if (image) reader.readAsDataURL(image);
+}
+
 let init = (article) => {
   delete article.comments;
 
@@ -36,6 +52,7 @@ let init = (article) => {
   etArticle = article;
   QQ.set.byId.click('submit', submit)
   QQ.set.byId.click('show', preview);
+  QQ.set.byId.change('imageUploader', upload);
 }
 
 export default {
