@@ -3,7 +3,7 @@ import QQ from '../lib/js/myQuery';
 import Article from './article';
 import call from '../lib/js/call';
 import '../lib/css/jquery-te-1.4.0.css';
-import jte from '../dist/js/jquery-te-1.4.0.min.js';
+import jte from '../dist/js/jquery-te-1.4.0.min';
 
 let theImage = null;
 
@@ -15,7 +15,7 @@ function submit() {
     QQ.get.byId.value('description'),
     QQ.get.byClass.innerHtml('jqte_editor'),
     QQ.get.byId.checkedState('isVisible'),
-    null,
+    QQ.get.byId.value('cssInputContainer'),
     theImage
   );
 
@@ -26,15 +26,20 @@ function submit() {
 
 function preview() {
   let previewWindow = window.open();
-  previewWindow.document.body.innerHTML = QQ.get.byId.value('content');
+  let css = QQ.get.byId.value('cssInputContainer');
+  let content = QQ.get.byId.value('content');
+
+  let html = `<style>${css}</style><div>${content}</div>`
+
+  previewWindow.document.body.innerHTML = html;
 }
 
 function upload() {
   let uploader = document.getElementById("imageUploader");
+
   if (uploader.files.length === 0) return;
 
   let image = uploader.files[0];
-
   let reader = new FileReader();
 
   reader.addEventListener('load', () => {
@@ -52,6 +57,7 @@ let init = () => {
   QQ.set.byId.click('submit', submit);
   QQ.set.byId.click('show', preview);
   QQ.set.byId.change('imageUploader', upload);
+  QQ.set.byId.checked('isVisible', true);
 }
 
 export default {

@@ -20402,6 +20402,9 @@ var _default = {
       },
       change: function change(id, event) {
         document.getElementById(id).addEventListener('change', event);
+      },
+      checked: function checked(id, checkedState) {
+        document.getElementById(id).checked = checkedState;
       }
     },
     byClass: {
@@ -20432,7 +20435,7 @@ var _default = {
         }
       },
       innerHtml: function innerHtml(className, value) {
-        return document.getElementsByClassName(className)[0].innerHTML = value;
+        document.getElementsByClassName(className)[0].innerHTML = value;
       }
     }
   },
@@ -27351,6 +27354,7 @@ function submit() {
   etArticle.content = _myQuery.default.get.byId.value('content');
   etArticle.visible = _myQuery.default.get.byId.checkedState('isVisible');
   etArticle.smug = etArticle.title.replace(' ', '-');
+  etArticle.css = _myQuery.default.get.byId.value('cssInputContainer');
   return _call.default.put(etArticle._id, etArticle, token).then(function () {
     return _myQuery.default.alert.success('edited');
   }).catch(function (e) {
@@ -27362,7 +27366,13 @@ function submit() {
 
 function preview() {
   var previewWindow = window.open();
-  previewWindow.document.body.innerHTML = _myQuery.default.get.byId.value('content');
+
+  var css = _myQuery.default.get.byId.value('cssInputContainer');
+
+  var content = _myQuery.default.get.byId.value('content');
+
+  var html = "<style>".concat(css, "</style><div>").concat(content, "</div>");
+  previewWindow.document.body.innerHTML = html;
 }
 
 function upload() {
@@ -27380,6 +27390,7 @@ function upload() {
 
 var init = function init(article) {
   delete article.comments;
+  etArticle = article;
 
   _jqueryTe2.default.jteF(_jquery.default);
 
@@ -27387,7 +27398,7 @@ var init = function init(article) {
 
   _myQuery.default.set.byClass.innerHtml('jqte_editor', article.content);
 
-  etArticle = article;
+  _myQuery.default.set.byId.innerHtml('cssInputContainer', article.css);
 
   _myQuery.default.set.byId.click('submit', submit);
 
@@ -27443,7 +27454,7 @@ var _call = _interopRequireDefault(require("../lib/js/call"));
 
 require("../lib/css/jquery-te-1.4.0.css");
 
-var _jqueryTe140Min = _interopRequireDefault(require("../dist/js/jquery-te-1.4.0.min.js"));
+var _jqueryTe2 = _interopRequireDefault(require("../dist/js/jquery-te-1.4.0.min"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -27452,7 +27463,7 @@ var theImage = null;
 function submit() {
   var token = _myQuery.default.get.byId.value('token');
 
-  var article = new _article.default(_myQuery.default.get.byId.value('title'), _myQuery.default.get.byId.value('description'), _myQuery.default.get.byClass.innerHtml('jqte_editor'), _myQuery.default.get.byId.checkedState('isVisible'), null, theImage);
+  var article = new _article.default(_myQuery.default.get.byId.value('title'), _myQuery.default.get.byId.value('description'), _myQuery.default.get.byClass.innerHtml('jqte_editor'), _myQuery.default.get.byId.checkedState('isVisible'), _myQuery.default.get.byId.value('cssInputContainer'), theImage);
   return _call.default.post(article, token).then(function () {
     return _myQuery.default.alert.success('created');
   }).catch(function (e) {
@@ -27464,7 +27475,13 @@ function submit() {
 
 function preview() {
   var previewWindow = window.open();
-  previewWindow.document.body.innerHTML = _myQuery.default.get.byId.value('content');
+
+  var css = _myQuery.default.get.byId.value('cssInputContainer');
+
+  var content = _myQuery.default.get.byId.value('content');
+
+  var html = "<style>".concat(css, "</style><div>").concat(content, "</div>");
+  previewWindow.document.body.innerHTML = html;
 }
 
 function upload() {
@@ -27481,7 +27498,7 @@ function upload() {
 }
 
 var init = function init() {
-  _jqueryTe140Min.default.jteF(_jquery.default);
+  _jqueryTe2.default.jteF(_jquery.default);
 
   (0, _jquery.default)('#content').jqte();
 
@@ -27490,13 +27507,15 @@ var init = function init() {
   _myQuery.default.set.byId.click('show', preview);
 
   _myQuery.default.set.byId.change('imageUploader', upload);
+
+  _myQuery.default.set.byId.checked('isVisible', true);
 };
 
 var _default = {
   init: init
 };
 exports.default = _default;
-},{"jquery":"../node_modules/jquery/dist/jquery.js","../lib/js/myQuery":"lib/js/myQuery.js","./article":"src/article.js","../lib/js/call":"lib/js/call.js","../lib/css/jquery-te-1.4.0.css":"lib/css/jquery-te-1.4.0.css","../dist/js/jquery-te-1.4.0.min.js":"dist/js/jquery-te-1.4.0.min.js"}],"lib/templates/mainArticle.js":[function(require,module,exports) {
+},{"jquery":"../node_modules/jquery/dist/jquery.js","../lib/js/myQuery":"lib/js/myQuery.js","./article":"src/article.js","../lib/js/call":"lib/js/call.js","../lib/css/jquery-te-1.4.0.css":"lib/css/jquery-te-1.4.0.css","../dist/js/jquery-te-1.4.0.min":"dist/js/jquery-te-1.4.0.min.js"}],"lib/templates/mainArticle.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -27524,7 +27543,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _default = {
-  edit: "\n    <style>\n        #MainContent .row{\n            padding: 0.2rem;\n        }\n\n        #MainContent .col-sm-6, #MainContent .col-xs-12, #MainContent .col-sm-2{\n            padding: 0.2rem !important;\n        }\n\n        .jqte_editor{\n            height: 150rem;\n        }\n\n        #Footer{\n            display: none;\n        }\n    </style>\n    <div class='row'> \n        <div class='col-xs-12 col-sm-6'>\n            <input type=\"text\" placeholder=\"token\" id=\"token\" class=\"form-control\">\n        </div>\n        <div class='col-xs-12 col-sm-6'>\n            <input type=\"text\" class=\"form-control\" placeholder=\"title\" value=\"{{title}}\" id=\"title\">\n        </div>\n        <div class='col-xs-12 col-sm-6'>\n            <input type=\"text\" class=\"form-control\" placeholder=\"description\" value=\"{{description}}\" id=\"description\">\n        </div>\n        <div class='col-xs-12 col-sm-6'>\n            <div class='row'>\n                <div class='col-xs-2 col-sm-2'>\n                    <input type=\"checkbox\" class='form-control' id=\"isVisible\" {{#visible}} checked {{/visible}}>\n                </div>\n                <div class='col-xs-6 col-sm-6'>\n                    <h5>Visible</h5>\n                </div>\n            </div>\n        </div>\n        <div class='col-xs-12 col-sm-12'>\n            <textarea class=\"content\" id=\"content\"></textarea>\n        </div>\n        <div class='col-xs-12 col-sm-12'>\n            <span>Select image</span><br>\n            <input type=\"file\" id=\"imageUploader\">\n        </div>\n        <div class='col-xs-12 col-sm-12'>\n            <img src=\"\" height=\"200px\" alt=\"Image preview...\" id=\"imagePreview\">\n        </div>\n        <br>\n        <div class='col-xs-6 col-sm-2'>\n            <button id=\"submit\" class='btn btn-success'> Submit </button>\n        </div>\n        <br>\n        <div class='col-xs-6 col-sm-2'>\n            <button id=\"show\" class='btn btn-default'> Preview </button>\n        </div>\n    </div>"
+  edit: "\n    <style>\n        #MainContent .row{\n            padding: 0.2rem;\n            padding-left: 1rem !important;\n            padding-right: 1rem !important;\n        }\n\n        #MainContent .col-sm-6, #MainContent .col-xs-12, #MainContent .col-sm-2{\n            padding: 0.2rem !important;\n        }\n\n        .jqte_editor{\n            height: 20rem;\n        }\n\n        #Footer{\n            display: none;\n        }\n\n        .emptyDiv{\n            height: 4rem !important;\n        }\n    </style>\n    <div class='row'> \n        <div class='col-xs-12 col-sm-6'>\n            <input type=\"text\" placeholder=\"token\" id=\"token\" class=\"form-control\">\n        </div>\n        <div class='col-xs-12 col-sm-6'>\n            <input type=\"text\" class=\"form-control\" placeholder=\"title\" value=\"{{title}}\" id=\"title\">\n        </div>\n        <div class='col-xs-12 col-sm-6'>\n            <input type=\"text\" class=\"form-control\" placeholder=\"description\" value=\"{{description}}\" id=\"description\">\n        </div>\n        <div class='col-xs-12 col-sm-6'>\n            <div class='row'>\n                <div class='col-xs-2 col-sm-2'>\n                    <input type=\"checkbox\" class='form-control' id=\"isVisible\" {{#visible}} checked {{/visible}}>\n                </div>\n                <div class='col-xs-6 col-sm-6'>\n                    <h5>Visible</h5>\n                </div>\n            </div>\n        </div>\n        <div class='col-xs-12 col-sm-12'>\n            <textarea class=\"content\" id=\"content\"></textarea>\n        </div>\n        <div class='emptyDiv'></div>\n        <div class='col-sm-8 col-xs-8'>\n            <textarea class=\"form-control\" id=\"cssInputContainer\" placeholder='styles'></textarea>\n        </div>\n        <div class='emptyDiv'></div>\n        <div class='col-xs-12 col-sm-12'>\n            <span>Select image</span><br>\n            <input type=\"file\" id=\"imageUploader\">\n        </div>\n        <div class='col-xs-12 col-sm-12'>\n            <img src=\"\" height=\"200px\" alt=\"Image preview...\" id=\"imagePreview\">\n        </div>\n        <div class='emptyDiv'></div>\n        <div class='col-xs-6 col-sm-2'>\n            <button id=\"submit\" class='btn btn-success'> Submit </button>\n        </div>\n        <div class='col-xs-6 col-sm-2'>\n            <button id=\"show\" class='btn btn-default'> Preview </button>\n        </div>\n    </div>"
 };
 exports.default = _default;
 },{}],"lib/templates/showArticleTemplate.js":[function(require,module,exports) {
@@ -27535,7 +27554,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _default = {
-  show: "\n    <style>\n        .singleArticle .row{\n            padding-top: 1rem !important;\n            padding-bottom: 0rem !important;\n            padding-left: 1rem !important;\n            padding-right: 1rem !important;\n        }\n\n        .centered{\n            text-align: center;\n            align-items: center;\n            align-self: center;\n        }    \n\n        .singleArticle .title {\n\n        }\n\n        .fontWeight-700{\n            font-weight: 700;\n        }\n\n        .marginRight-1Rem{\n            margin-right: 1rem !important;\n        }\n\n        .marginBottom-05Rem{\n            margin-bottom: 0.5rem;\n        }    \n\n        .marginBottom-2Rem{\n            margin-bottom: 2rem;\n        }\n\n        .marginTop-2rem{\n            margin-top: 2rem;\n        }\n\n        .singleArticle .description {\n            font-size: larger;\n            font-family: cursive;\n        }\n\n        .italic {\n            font-style: italic;\n        }\n\n        .newComment{\n            backgrond-color: #F0F0F0;\n        }\n\n        .singleArticle .articleContent{\n\n        }\n\n        .row{\n            background-color: #F0F0F0;\n        }\n    </style>\n\n    <div class=\"singleArticle\">\n        <div class='row'>\n            <div class='col-sm-12'>\n                <h1 class='title centered'>{{title}}<h1>\n            </div>\n        </div>\n        <div class='row'>\n            <div class='col-sm-12'> \n                <span class='description'>{{description}}</span>\n            </div>\n        </div>\n        <div class='row'>\n            <div class='col-sm-12'>\n                <div class='articleContent' id='articleContent'></div>\n            </div>\n        </div>\n        <div class='row'> \n            <div class='col-sm-12'>\n                <hr>\n                <span class='commmentsStart fontWeight-700'> Comentarii: </span \n            </div>\n        <div> \n        <div class='row commentsSection'>\n            {{#comments}}\n                <div class='col-sm-12 marginBottom-05Rem'>\n                    <span class='fontWeight-700'>{{by}} </span>\n                    <span> on </span> <span class='fontWeight-700'> {{date}}</span> :\n                    <span class='marginRight-1Rem italic'> {{content}}</span>\n                </div>\n                <hr>\n            {{/comments}}\n        </div>\n\n        <div class='newComment'>\n            <div class='row'>\n                <div class='col-sm-4 col-xs-12'>\n                    <input type='text' placeholder='nume' class='form-control' id='newCommentPoster'/>\n                </div>\n            </div>\n            <div class='row'>\n                <div class='col-xs-12 col-sm-4'> \n                    <input type='text' class='form-control' placeholder='comentariu' id='newCommentText'/>\n                </div>\n            </div>\n            <div class='row marginBottom-2Rem'>\n                <div class='col-xs-12 col-sm-6'>\n                    <input type='button' class='btn btn-success' value='Adaug\u0103' id='newCommentPost' />\n                </div>\n            </div>\n        </div>\n    </div>"
+  show: "\n    <style>\n        .singleArticle .row{\n            padding-top: 1rem !important;\n            padding-bottom: 0rem !important;\n            padding-left: 1rem !important;\n            padding-right: 1rem !important;\n        }\n\n        .centered{\n            text-align: center;\n            align-items: center;\n            align-self: center;\n        }    \n\n        .singleArticle .title {\n\n        }\n\n        .fontWeight-700{\n            font-weight: 700;\n        }\n\n        .marginRight-1Rem{\n            margin-right: 1rem !important;\n        }\n\n        .marginBottom-05Rem{\n            margin-bottom: 0.5rem;\n        }    \n\n        .marginBottom-2Rem{\n            margin-bottom: 2rem;\n        }\n\n        .marginTop-2rem{\n            margin-top: 2rem;\n        }\n\n        .singleArticle .description {\n            font-size: larger;\n            font-family: cursive;\n        }\n\n        .italic {\n            font-style: italic;\n        }\n\n        .newComment{\n            backgrond-color: #F0F0F0;\n        }\n\n        .singleArticle .articleContent{\n\n        }\n\n        .row{\n            background-color: #F0F0F0;\n        }\n    </style>\n\n    <div class=\"singleArticle\">\n        <div class='row'>\n            <div class='col-sm-12'>\n                <h1 class='title centered'>{{title}}<h1>\n            </div>\n        </div>\n        <div class='row'>\n            <div class='col-sm-12'> \n                <span class='description'>{{description}}</span>\n            </div>\n        </div>\n        <div class='row'>\n            <div class='col-sm-12'>\n                <div class='articleContent' id='articleContent'></div>\n            </div>\n        </div>\n        <div class='row'> \n            <div class='col-sm-12'>\n                <hr>\n                <span class='commmentsStart fontWeight-700'> Comentarii: </span \n            </div>\n        <div> \n        <div class='row commentsSection'>\n            {{#comments}}\n                <div class='col-sm-12 marginBottom-05Rem'>\n                    <span class='fontWeight-700'>{{by}} </span>\n                    <span> pe </span> <span class='fontWeight-700'> {{date}}</span> :\n                    <span class='marginRight-1Rem italic'> {{content}}</span>\n                </div>\n                <hr>\n            {{/comments}}\n        </div>\n\n        <div class='newComment'>\n            <div class='row'>\n                <div class='col-sm-4 col-xs-12'>\n                    <input type='text' placeholder='nume' class='form-control' id='newCommentPoster'/>\n                </div>\n            </div>\n            <div class='row'>\n                <div class='col-xs-12 col-sm-4'> \n                    <input type='text' class='form-control' placeholder='comentariu' id='newCommentText'/>\n                </div>\n            </div>\n            <div class='row marginBottom-2Rem'>\n                <div class='col-xs-12 col-sm-6'>\n                    <input type='button' class='btn btn-success' value='Adaug\u0103' id='newCommentPost' />\n                </div>\n            </div>\n        </div>\n    </div>"
 };
 exports.default = _default;
 },{}],"lib/templates/pagination.js":[function(require,module,exports) {
@@ -27821,7 +27840,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62796" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56929" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

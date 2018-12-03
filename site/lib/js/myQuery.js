@@ -1,5 +1,5 @@
 import AWN from "awesome-notifications"
- 
+
 let notifier = new AWN()
 
 export default {
@@ -26,6 +26,9 @@ export default {
       },
       change: (id, event) => {
         document.getElementById(id).addEventListener('change', event);
+      },
+      checked: (id, checkedState) => {
+        document.getElementById(id).checked = checkedState;
       }
     },
     byClass: {
@@ -33,8 +36,9 @@ export default {
         let elements = document.getElementsByClassName(className);
         for (let e of elements) e.addEventListener('click', event);
       },
-      innerHtml: (className, value) => 
-        document.getElementsByClassName(className)[0].innerHTML = value
+      innerHtml: (className, value) => {
+        document.getElementsByClassName(className)[0].innerHTML = value;
+      }
     }
   },
 

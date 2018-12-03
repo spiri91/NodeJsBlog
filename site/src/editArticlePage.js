@@ -14,6 +14,7 @@ function submit() {
   etArticle.content = QQ.get.byId.value('content');
   etArticle.visible = QQ.get.byId.checkedState('isVisible');
   etArticle.smug = etArticle.title.replace(' ', '-');
+  etArticle.css = QQ.get.byId.value('cssInputContainer');
 
   return call.put(etArticle._id, etArticle, token)
     .then(() => QQ.alert.success('edited'))
@@ -22,7 +23,12 @@ function submit() {
 
 function preview() {
   let previewWindow = window.open();
-  previewWindow.document.body.innerHTML = QQ.get.byId.value('content');
+  let css = QQ.get.byId.value('cssInputContainer');
+  let content = QQ.get.byId.value('content');
+
+  let html = `<style>${css}</style><div>${content}</div>`
+
+  previewWindow.document.body.innerHTML = html;
 }
 
 function upload() {
@@ -45,11 +51,13 @@ function upload() {
 let init = (article) => {
   delete article.comments;
 
+  etArticle = article;
+
   jte.jteF($);
   $('#content').jqte();
 
   QQ.set.byClass.innerHtml('jqte_editor', article.content);
-  etArticle = article;
+  QQ.set.byId.innerHtml('cssInputContainer', article.css);
   QQ.set.byId.click('submit', submit)
   QQ.set.byId.click('show', preview);
   QQ.set.byId.change('imageUploader', upload);

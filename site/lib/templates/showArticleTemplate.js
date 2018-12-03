@@ -87,7 +87,7 @@ export default {
             {{#comments}}
                 <div class='col-sm-12 marginBottom-05Rem'>
                     <span class='fontWeight-700'>{{by}} </span>
-                    <span> on </span> <span class='fontWeight-700'> {{date}}</span> :
+                    <span> pe </span> <span class='fontWeight-700'> {{date}}</span> :
                     <span class='marginRight-1Rem italic'> {{content}}</span>
                 </div>
                 <hr>
