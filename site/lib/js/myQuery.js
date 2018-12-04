@@ -13,7 +13,15 @@ export default {
       element: (attributeName, value) => document.querySelectorAll(`[${attributeName}="${value}"]`)
     },
     byClass: {
-      innerHtml: className => document.getElementsByClassName(className)[0].innerHTML
+      innerHtml: className => document.getElementsByClassName(className)[0].innerHTML,
+      withCallBack: (className, callBack) => {
+        let element = document.getElementsByClassName(className)[0];
+        callBack(element);
+      },
+      hide: (className) => {
+        let element = document.getElementsByClassName(className)[0];
+        element.style.display = 'none';
+      }
     }
   },
   set: {

@@ -24,13 +24,21 @@ function setActionsIfOnline() {
 }
 
 function setActionsIfOffline() {
+  QQ.get.byClass.hide('newComment');
+}
 
+function addCustomStyling() {
+  let style = document.createElement('style');
+  style.innerText = _article.css;
+
+  QQ.get.byClass.withCallBack('singleArticle', e => e.appendChild(style));
 }
 
 export default {
   init: (article) => {
     _article = article;
     QQ.set.byId.innerHtml('articleContent', article.content);
+    addCustomStyling();
 
     if (navigator.onLine) setActionsIfOnline();
     else setActionsIfOffline();

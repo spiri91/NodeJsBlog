@@ -5,8 +5,8 @@ export default {
         .singleArticle .row{
             padding-top: 1rem !important;
             padding-bottom: 0rem !important;
-            padding-left: 1rem !important;
-            padding-right: 1rem !important;
+            padding-left: 2rem !important;
+            padding-right: 2rem !important;
         }
 
         .centered{
@@ -56,13 +56,26 @@ export default {
 
         }
 
-        .row{
-            background-color: #F0F0F0;
+        .theImage{
+            object-fit: cover;
+            width: 100%;
+            height: 12rem;
+        }
+
+        .titleContainer{
+            margin-top: -5rem
+        }
+
+        .titleContainer .row, .titleContainer .col-sm-12{
+            background-color: transparent;
         }
     </style>
 
     <div class="singleArticle">
-        <div class='row'>
+        <div>
+            <image src="{{image}}" class='theImage'/>
+        </div>
+        <div class='row titleContainer'>
             <div class='col-sm-12'>
                 <h1 class='title centered'>{{title}}<h1>
             </div>
@@ -93,7 +106,7 @@ export default {
                 <hr>
             {{/comments}}
         </div>
-
+        <br><br>
         <div class='newComment'>
             <div class='row'>
                 <div class='col-sm-4 col-xs-12'>
