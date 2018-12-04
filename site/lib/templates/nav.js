@@ -13,11 +13,6 @@ export const nav = `
     font-size: 1.4rem;
     transition-duration: 0.3s;
   }
-
-  .navbar-brand:hover{
-    background-color: #a2d2df;
-    transition-duration: 0.3s;
-  }
 </style>
 
 <div class='row'>

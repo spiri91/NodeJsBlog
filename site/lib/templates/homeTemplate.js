@@ -27,12 +27,30 @@ export default {
             padding: 1.5rem;
             pointer-events: none;
         }
+
+        .cardImage{
+            object-fit: cover;
+            width: 100%;
+            height: 12rem;
+        }
+
+        .forHerP{
+            font-style: italic;
+            font-size: 1.2rem;
+            font-weight: 30;
+            margin-top: 2rem;
+        }
+
+        a:hover{
+            text-decoration: none;
+        }
     </style>
     <div class='homePage'>
         <div class='row'>
             <div class='col-sm-12'>
                 <div class='title'>
                     <h3>BuzeReci.ro</h3>
+                    <p class='forHerP'>Pentru ea... </p>
                 <div>
             </div>
         </div>
@@ -44,7 +62,7 @@ export default {
                 {{#.}}
                 <div class="col-sm-4 col-xs-12 card">
                     <div class='row'>
-                        <div class='col-xs-6'>
+                        <div class='col-xs-6 col-sm-6'>
                             <a class href='#/article/{{smug}}'>
                                 <div class="card-body">
                                 <h5 class="card-title">{{title}}</h5>
@@ -53,7 +71,7 @@ export default {
                                 </div>
                             </a>
                         </div>
-                        <div class='col-xs-6'>
+                        <div class='col-xs-6 col-sm-6'>
                             <image class='cardImage' src="{{image}}">
                         </div>
                     </div>
