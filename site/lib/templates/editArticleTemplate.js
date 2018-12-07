@@ -12,8 +12,30 @@ export default {
             padding: 0.2rem !important;
         }
 
+        .jqte{
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+        
         .jqte_editor{
             height: 20rem;
+        }
+
+         #cssInputContainer{
+            height: 22.4rem;
+        }
+
+        #jsScriptInputContainer, #htmlPreview{
+            height: 12rem;
+        }
+
+        .buttons{
+            text-align: center;
+        }
+
+        .buttons button{
+            margin-right: 5rem;
+            margin-top: 2rem;
         }
 
         #Footer{
@@ -44,27 +66,37 @@ export default {
                 </div>
             </div>
         </div>
-        <div class='col-xs-12 col-sm-12'>
+    </div>
+
+    <div class='row'>
+        <div class='col-sm-6'>
             <textarea class="content" id="content"></textarea>
         </div>
-        <div class='emptyDiv'></div>
-        <div class='col-sm-8 col-xs-8'>
+        <div class='col-sm-6'>
             <textarea class="form-control" id="cssInputContainer" placeholder='styles'></textarea>
         </div>
-        <div class='emptyDiv'></div>
-        <div class='col-xs-12 col-sm-12'>
+    </div>
+    <div class='row'>
+        <div class='col-sm-6'>
+            <textarea class="form-control" id="jsScriptInputContainer" placeholder='js script'></textarea>
+        </div>
+
+        <div class='col-sm-6'>
+            <textarea class="form-control" id="htmlPreview" placeholder='html preview'></textarea>
+        </div>
+    </div>
+    <div class='row'>
+        <div class='col-sm-6'>
             <span>Select image</span><br>
-            <input type="file" id="imageUploader">
-        </div>
-        <div class='col-xs-12 col-sm-12'>
+            <input type="file" id="imageUploader"><br>
             <img src="" height="200px" alt="Image preview..." id="imagePreview">
-        </div>
-        <div class='emptyDiv'></div>
-        <div class='col-xs-6 col-sm-2'>
-            <button id="submit" class='btn btn-success'> Submit </button>
-        </div>
-        <div class='col-xs-6 col-sm-2'>
-            <button id="show" class='btn btn-default'> Preview </button>
+        </div> 
+        <div class='col-sm-6'> 
+            <div class='buttons'>
+                <button id="show" class='btn btn-default'> Preview </button>
+                <button id="submit" class='btn btn-success'> Submit </button>
+            </div>
+            
         </div>
     </div>`
 }

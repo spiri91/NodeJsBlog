@@ -18,7 +18,8 @@ const articleSchema = new Schema({
   }],
   visible: { type: Boolean, default: true },
   css: { type: String },
-  image: { type: String }
+  image: { type: String },
+  jsScript: { type: String }
 });
 
 let Article = mongoose.model('Article', articleSchema);

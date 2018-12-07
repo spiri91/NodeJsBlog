@@ -20444,6 +20444,9 @@ var _default = {
       },
       innerHtml: function innerHtml(className, value) {
         document.getElementsByClassName(className)[0].innerHTML = value;
+      },
+      input: function input(className, event) {
+        document.getElementsByClassName(className)[0].addEventListener('input', event);
       }
     }
   },
@@ -27443,7 +27446,7 @@ var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/cl
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Article = function Article(title, description, content, visible, css, image) {
+var Article = function Article(title, description, content, visible, css, image, jsScript) {
   (0, _classCallCheck2.default)(this, Article);
   this.title = title.trim();
   this.description = description.trim();
@@ -27453,6 +27456,7 @@ var Article = function Article(title, description, content, visible, css, image)
   this.visible = visible;
   this.css = css;
   this.image = image;
+  this.jsScript = jsScript;
 };
 
 exports.default = Article;
@@ -27476,6 +27480,8 @@ require("../lib/css/jquery-te-1.4.0.css");
 
 var _jqueryTe2 = _interopRequireDefault(require("../dist/js/jquery-te-1.4.0.min"));
 
+var _templates = _interopRequireDefault(require("../lib/js/templates"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var theImage = null;
@@ -27494,14 +27500,17 @@ function submit() {
 }
 
 function preview() {
-  var previewWindow = window.open();
-
   var css = _myQuery.default.get.byId.value('cssInputContainer');
 
   var content = _myQuery.default.get.byId.value('content');
 
-  var html = "<style>".concat(css, "</style><div>").concat(content, "</div>");
-  previewWindow.document.body.innerHTML = html;
+  var jsScript = '';
+
+  _templates.default.previewArticle({
+    css: css,
+    content: content,
+    jsScript: jsScript
+  });
 }
 
 function upload() {
@@ -27529,13 +27538,19 @@ var init = function init() {
   _myQuery.default.set.byId.change('imageUploader', upload);
 
   _myQuery.default.set.byId.checked('isVisible', true);
+
+  _myQuery.default.set.byClass.input('jqte_editor', function () {
+    var output = _myQuery.default.get.byClass.innerHtml('jqte_editor');
+
+    _myQuery.default.set.byId.innerHtml('htmlPreview', output);
+  });
 };
 
 var _default = {
   init: init
 };
 exports.default = _default;
-},{"jquery":"../node_modules/jquery/dist/jquery.js","../lib/js/myQuery":"lib/js/myQuery.js","./article":"src/article.js","../lib/js/call":"lib/js/call.js","../lib/css/jquery-te-1.4.0.css":"lib/css/jquery-te-1.4.0.css","../dist/js/jquery-te-1.4.0.min":"dist/js/jquery-te-1.4.0.min.js"}],"lib/templates/mainArticle.js":[function(require,module,exports) {
+},{"jquery":"../node_modules/jquery/dist/jquery.js","../lib/js/myQuery":"lib/js/myQuery.js","./article":"src/article.js","../lib/js/call":"lib/js/call.js","../lib/css/jquery-te-1.4.0.css":"lib/css/jquery-te-1.4.0.css","../dist/js/jquery-te-1.4.0.min":"dist/js/jquery-te-1.4.0.min.js","../lib/js/templates":"lib/js/templates.js"}],"lib/templates/mainArticle.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -27563,7 +27578,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _default = {
-  edit: "\n    <style>\n        #MainContent .row{\n            padding: 0.2rem;\n            padding-left: 1rem !important;\n            padding-right: 1rem !important;\n        }\n\n        #MainContent .col-sm-6, #MainContent .col-xs-12, #MainContent .col-sm-2{\n            padding: 0.2rem !important;\n        }\n\n        .jqte_editor{\n            height: 20rem;\n        }\n\n        #Footer{\n            display: none;\n        }\n\n        .emptyDiv{\n            height: 4rem !important;\n        }\n    </style>\n    <div class='row'> \n        <div class='col-xs-12 col-sm-6'>\n            <input type=\"text\" placeholder=\"token\" id=\"token\" class=\"form-control\">\n        </div>\n        <div class='col-xs-12 col-sm-6'>\n            <input type=\"text\" class=\"form-control\" placeholder=\"title\" value=\"{{title}}\" id=\"title\">\n        </div>\n        <div class='col-xs-12 col-sm-6'>\n            <input type=\"text\" class=\"form-control\" placeholder=\"description\" value=\"{{description}}\" id=\"description\">\n        </div>\n        <div class='col-xs-12 col-sm-6'>\n            <div class='row'>\n                <div class='col-xs-2 col-sm-2'>\n                    <input type=\"checkbox\" class='form-control' id=\"isVisible\" {{#visible}} checked {{/visible}}>\n                </div>\n                <div class='col-xs-6 col-sm-6'>\n                    <h5>Visible</h5>\n                </div>\n            </div>\n        </div>\n        <div class='col-xs-12 col-sm-12'>\n            <textarea class=\"content\" id=\"content\"></textarea>\n        </div>\n        <div class='emptyDiv'></div>\n        <div class='col-sm-8 col-xs-8'>\n            <textarea class=\"form-control\" id=\"cssInputContainer\" placeholder='styles'></textarea>\n        </div>\n        <div class='emptyDiv'></div>\n        <div class='col-xs-12 col-sm-12'>\n            <span>Select image</span><br>\n            <input type=\"file\" id=\"imageUploader\">\n        </div>\n        <div class='col-xs-12 col-sm-12'>\n            <img src=\"\" height=\"200px\" alt=\"Image preview...\" id=\"imagePreview\">\n        </div>\n        <div class='emptyDiv'></div>\n        <div class='col-xs-6 col-sm-2'>\n            <button id=\"submit\" class='btn btn-success'> Submit </button>\n        </div>\n        <div class='col-xs-6 col-sm-2'>\n            <button id=\"show\" class='btn btn-default'> Preview </button>\n        </div>\n    </div>"
+  edit: "\n    <style>\n        #MainContent .row{\n            padding: 0.2rem;\n            padding-left: 1rem !important;\n            padding-right: 1rem !important;\n        }\n\n        #MainContent .col-sm-6, #MainContent .col-xs-12, #MainContent .col-sm-2{\n            padding: 0.2rem !important;\n        }\n\n        .jqte{\n            margin-top: 0;\n            margin-bottom: 0;\n        }\n        \n        .jqte_editor{\n            height: 20rem;\n        }\n\n         #cssInputContainer{\n            height: 22.4rem;\n        }\n\n        #jsScriptInputContainer, #htmlPreview{\n            height: 12rem;\n        }\n\n        .buttons{\n            text-align: center;\n        }\n\n        .buttons button{\n            margin-right: 5rem;\n            margin-top: 2rem;\n        }\n\n        #Footer{\n            display: none;\n        }\n\n        .emptyDiv{\n            height: 4rem !important;\n        }\n    </style>\n    <div class='row'> \n        <div class='col-xs-12 col-sm-6'>\n            <input type=\"text\" placeholder=\"token\" id=\"token\" class=\"form-control\">\n        </div>\n        <div class='col-xs-12 col-sm-6'>\n            <input type=\"text\" class=\"form-control\" placeholder=\"title\" value=\"{{title}}\" id=\"title\">\n        </div>\n        <div class='col-xs-12 col-sm-6'>\n            <input type=\"text\" class=\"form-control\" placeholder=\"description\" value=\"{{description}}\" id=\"description\">\n        </div>\n        <div class='col-xs-12 col-sm-6'>\n            <div class='row'>\n                <div class='col-xs-2 col-sm-2'>\n                    <input type=\"checkbox\" class='form-control' id=\"isVisible\" {{#visible}} checked {{/visible}}>\n                </div>\n                <div class='col-xs-6 col-sm-6'>\n                    <h5>Visible</h5>\n                </div>\n            </div>\n        </div>\n    </div>\n\n    <div class='row'>\n        <div class='col-sm-6'>\n            <textarea class=\"content\" id=\"content\"></textarea>\n        </div>\n        <div class='col-sm-6'>\n            <textarea class=\"form-control\" id=\"cssInputContainer\" placeholder='styles'></textarea>\n        </div>\n    </div>\n    <div class='row'>\n        <div class='col-sm-6'>\n            <textarea class=\"form-control\" id=\"jsScriptInputContainer\" placeholder='js script'></textarea>\n        </div>\n\n        <div class='col-sm-6'>\n            <textarea class=\"form-control\" id=\"htmlPreview\" placeholder='html preview'></textarea>\n        </div>\n    </div>\n    <div class='row'>\n        <div class='col-sm-6'>\n            <span>Select image</span><br>\n            <input type=\"file\" id=\"imageUploader\"><br>\n            <img src=\"\" height=\"200px\" alt=\"Image preview...\" id=\"imagePreview\">\n        </div> \n        <div class='col-sm-6'> \n            <div class='buttons'>\n                <button id=\"show\" class='btn btn-default'> Preview </button>\n                <button id=\"submit\" class='btn btn-success'> Submit </button>\n            </div>\n            \n        </div>\n    </div>"
 };
 exports.default = _default;
 },{}],"lib/templates/showArticleTemplate.js":[function(require,module,exports) {
@@ -27586,6 +27601,15 @@ Object.defineProperty(exports, "__esModule", {
 exports.pagination = void 0;
 var pagination = "\n\n<style>\n  .pagination{\n    margin-left: 1rem !important;\n    margin-bottom: 3.5rem;\n    z-index: 10;\n  }\n\n</style>\n<div class='row'>\n  <div class='col-xs-12 col-sm-12'>\n    <nav>\n      <ul class=\"pagination\">\n          <li class=\"page-item disabled\" disabled><a class=\"page-link\" disabled>Pagina: </a></li>\n          {{#.}}\n          <li class=\"page-item\" data-page-link=\"{{.}}\"><a class=\"page-link\" href=\"#/page/{{.}}\">{{.}}</a></li>\n          {{/.}}\n      </ul>\n    </nav>\n  </div>\n</div>\n";
 exports.pagination = pagination;
+},{}],"lib/templates/previewTemplate.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.previewTemplate = void 0;
+var previewTemplate = "\n  <head>\n    <meta charset=\"utf-8\">\n\n    <title>The HTML5 Herald</title>\n    <meta name=\"description\" content=\"The HTML5 Herald\">\n    <meta name=\"author\" content=\"SitePoint\">\n    <link href=\"https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css\" rel=\"stylesheet\">\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js\"></script>\n    \n    <style>\n      {{css}}\n    </style>\n\n  </head>\n\n  <body>\n    <div class='mainContent'>\n      {{{content}}}\n    </div>\n\n    <script>\n      {{jsScript}}\n    </script>\n\n  </body>\n  </html>\n";
+exports.previewTemplate = previewTemplate;
 },{}],"lib/js/templates.js":[function(require,module,exports) {
 "use strict";
 
@@ -27617,6 +27641,8 @@ var _editArticleTemplate = _interopRequireDefault(require("../templates/editArti
 var _showArticleTemplate = _interopRequireDefault(require("../templates/showArticleTemplate"));
 
 var _pagination = require("../templates/pagination");
+
+var _previewTemplate = require("../templates/previewTemplate");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -27651,13 +27677,13 @@ var _default = {
 
     _homePage.default.init(true);
 
-    obj.length > 0 && setMainArticle(obj[0]);
+    if (obj.length > 0) setMainArticle(obj[0]);
   },
   showStartPageAfterSearch: function showStartPageAfterSearch(obj) {
     var output = _mustache.default.render(_homeTemplate.default.home, obj);
 
     set(output);
-    if (obj.length == 0) _myQuery.default.alert.warning(':-( Nu am gasit nimic.');
+    if (obj.length === 0) _myQuery.default.alert.warning(':-( Nu am gasit nimic.');
 
     _homePage.default.init(false);
   },
@@ -27679,10 +27705,18 @@ var _default = {
     var output = _mustache.default.render(_pagination.pagination, paginationArray);
 
     setById(output, "Pagination");
+  },
+  previewArticle: function previewArticle(article) {
+    var output = _mustache.default.render(_previewTemplate.previewTemplate, article);
+
+    var previewWindow = window.open();
+    previewWindow.document.open();
+    previewWindow.document.write(output);
+    previewWindow.document.close();
   }
 };
 exports.default = _default;
-},{"mustache":"../node_modules/mustache/mustache.js","./constants":"lib/js/constants.js","../../src/singleArticlePage":"src/singleArticlePage.js","../../src/homePage":"src/homePage.js","../../src/editArticlePage":"src/editArticlePage.js","../../src/createArticlePage":"src/createArticlePage.js","../templates/mainArticle":"lib/templates/mainArticle.js","./myQuery":"lib/js/myQuery.js","../templates/homeTemplate":"lib/templates/homeTemplate.js","../templates/editArticleTemplate":"lib/templates/editArticleTemplate.js","../templates/showArticleTemplate":"lib/templates/showArticleTemplate.js","../templates/pagination":"lib/templates/pagination.js"}],"lib/js/router.js":[function(require,module,exports) {
+},{"mustache":"../node_modules/mustache/mustache.js","./constants":"lib/js/constants.js","../../src/singleArticlePage":"src/singleArticlePage.js","../../src/homePage":"src/homePage.js","../../src/editArticlePage":"src/editArticlePage.js","../../src/createArticlePage":"src/createArticlePage.js","../templates/mainArticle":"lib/templates/mainArticle.js","./myQuery":"lib/js/myQuery.js","../templates/homeTemplate":"lib/templates/homeTemplate.js","../templates/editArticleTemplate":"lib/templates/editArticleTemplate.js","../templates/showArticleTemplate":"lib/templates/showArticleTemplate.js","../templates/pagination":"lib/templates/pagination.js","../templates/previewTemplate":"lib/templates/previewTemplate.js"}],"lib/js/router.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -27860,7 +27894,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61924" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56012" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

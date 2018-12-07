@@ -46,6 +46,9 @@ export default {
       },
       innerHtml: (className, value) => {
         document.getElementsByClassName(className)[0].innerHTML = value;
+      },
+      input: (className, event) => {
+        document.getElementsByClassName(className)[0].addEventListener('input', event);
       }
     }
   },

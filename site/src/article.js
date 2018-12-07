@@ -1,5 +1,5 @@
 export default class Article {
-  constructor(title, description, content, visible, css, image) {
+  constructor(title, description, content, visible, css, image, jsScript) {
     this.title = title.trim();
     this.description = description.trim();
     this.content = content.trim();
@@ -8,5 +8,6 @@ export default class Article {
     this.visible = visible;
     this.css = css;
     this.image = image;
+    this.jsScript = jsScript;
   }
 }

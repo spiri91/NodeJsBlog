@@ -4,6 +4,7 @@ import Article from './article';
 import call from '../lib/js/call';
 import '../lib/css/jquery-te-1.4.0.css';
 import jte from '../dist/js/jquery-te-1.4.0.min';
+import templates from '../lib/js/templates';
 
 let theImage = null;
 
@@ -25,13 +26,11 @@ function submit() {
 }
 
 function preview() {
-  let previewWindow = window.open();
   let css = QQ.get.byId.value('cssInputContainer');
   let content = QQ.get.byId.value('content');
+  let jsScript = '';
 
-  let html = `<style>${css}</style><div>${content}</div>`
-
-  previewWindow.document.body.innerHTML = html;
+  templates.previewArticle({ css, content, jsScript });
 }
 
 function upload() {
@@ -58,6 +57,11 @@ let init = () => {
   QQ.set.byId.click('show', preview);
   QQ.set.byId.change('imageUploader', upload);
   QQ.set.byId.checked('isVisible', true);
+
+  QQ.set.byClass.input('jqte_editor', () => {
+    let output = QQ.get.byClass.innerHtml('jqte_editor');
+    QQ.set.byId.innerHtml('htmlPreview', output);
+  });
 }
 
 export default {
