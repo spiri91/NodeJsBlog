@@ -26428,22 +26428,13 @@ function setActionsIfOffline() {
   _myQuery.default.get.byClass.hide('newComment');
 }
 
-function addCustomStyling() {
-  var style = document.createElement('style');
-  style.innerText = _article.css;
-
-  _myQuery.default.get.byClass.withCallBack('singleArticle', function (e) {
-    return e.appendChild(style);
-  });
-}
-
 var _default = {
   init: function init(article) {
     _article = article;
 
-    _myQuery.default.set.byId.innerHtml('articleContent', article.content);
+    var script = _myQuery.default.get.byId.innerHtml('leScript');
 
-    addCustomStyling();
+    eval(script);
     if (navigator.onLine) setActionsIfOnline();else setActionsIfOffline();
   }
 };
@@ -27365,6 +27356,8 @@ require("../lib/css/jquery-te-1.4.0.css");
 
 var _jqueryTe2 = _interopRequireDefault(require("../dist/js/jquery-te-1.4.0.min"));
 
+var _templates = _interopRequireDefault(require("../lib/js/templates"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var etArticle;
@@ -27378,6 +27371,7 @@ function submit() {
   etArticle.visible = _myQuery.default.get.byId.checkedState('isVisible');
   etArticle.smug = etArticle.title.replace(' ', '-');
   etArticle.css = _myQuery.default.get.byId.value('cssInputContainer');
+  etArticle.jsScript = _myQuery.default.get.byId.value('jsScriptInputContainer');
   return _call.default.put(etArticle._id, etArticle, token).then(function () {
     return _myQuery.default.alert.success('edited');
   }).catch(function (e) {
@@ -27388,14 +27382,17 @@ function submit() {
 }
 
 function preview() {
-  var previewWindow = window.open();
-
   var css = _myQuery.default.get.byId.value('cssInputContainer');
 
-  var content = _myQuery.default.get.byId.value('content');
+  var content = _myQuery.default.get.byId.value('htmlContent');
 
-  var html = "<style>".concat(css, "</style><div>").concat(content, "</div>");
-  previewWindow.document.body.innerHTML = html;
+  var jsScript = _myQuery.default.get.byId.value('jsScriptInputContainer');
+
+  _templates.default.previewArticle({
+    css: css,
+    content: content,
+    jsScript: jsScript
+  });
 }
 
 function upload() {
@@ -27423,18 +27420,28 @@ var init = function init(article) {
 
   _myQuery.default.set.byId.innerHtml('cssInputContainer', article.css);
 
+  _myQuery.default.set.byId.innerHtml('jsScriptInputContainer', article.jsScript);
+
+  _myQuery.default.set.byId.innerHtml('htmlContent', article.content);
+
   _myQuery.default.set.byId.click('submit', submit);
 
   _myQuery.default.set.byId.click('show', preview);
 
   _myQuery.default.set.byId.change('imageUploader', upload);
+
+  _myQuery.default.set.byClass.input('jqte_editor', function () {
+    var output = _myQuery.default.get.byClass.innerHtml('jqte_editor');
+
+    _myQuery.default.set.byId.innerHtml('htmlPreview', output);
+  });
 };
 
 var _default = {
   init: init
 };
 exports.default = _default;
-},{"jquery":"../node_modules/jquery/dist/jquery.js","../lib/js/myQuery":"lib/js/myQuery.js","../lib/js/call":"lib/js/call.js","../lib/css/jquery-te-1.4.0.css":"lib/css/jquery-te-1.4.0.css","../dist/js/jquery-te-1.4.0.min":"dist/js/jquery-te-1.4.0.min.js"}],"src/article.js":[function(require,module,exports) {
+},{"jquery":"../node_modules/jquery/dist/jquery.js","../lib/js/myQuery":"lib/js/myQuery.js","../lib/js/call":"lib/js/call.js","../lib/css/jquery-te-1.4.0.css":"lib/css/jquery-te-1.4.0.css","../dist/js/jquery-te-1.4.0.min":"dist/js/jquery-te-1.4.0.min.js","../lib/js/templates":"lib/js/templates.js"}],"src/article.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -27489,7 +27496,7 @@ var theImage = null;
 function submit() {
   var token = _myQuery.default.get.byId.value('token');
 
-  var article = new _article.default(_myQuery.default.get.byId.value('title'), _myQuery.default.get.byId.value('description'), _myQuery.default.get.byClass.innerHtml('jqte_editor'), _myQuery.default.get.byId.checkedState('isVisible'), _myQuery.default.get.byId.value('cssInputContainer'), theImage);
+  var article = new _article.default(_myQuery.default.get.byId.value('title'), _myQuery.default.get.byId.value('description'), _myQuery.default.get.byId.value('htmlContent'), _myQuery.default.get.byId.checkedState('isVisible'), _myQuery.default.get.byId.value('cssInputContainer'), theImage, _myQuery.default.get.byId.value('jsScriptInputContainer'));
   return _call.default.post(article, token).then(function () {
     return _myQuery.default.alert.success('created');
   }).catch(function (e) {
@@ -27502,9 +27509,9 @@ function submit() {
 function preview() {
   var css = _myQuery.default.get.byId.value('cssInputContainer');
 
-  var content = _myQuery.default.get.byId.value('content');
+  var content = _myQuery.default.get.byId.value('htmlContent');
 
-  var jsScript = '';
+  var jsScript = _myQuery.default.get.byId.value('jsScriptInputContainer');
 
   _templates.default.previewArticle({
     css: css,
@@ -27578,7 +27585,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _default = {
-  edit: "\n    <style>\n        #MainContent .row{\n            padding: 0.2rem;\n            padding-left: 1rem !important;\n            padding-right: 1rem !important;\n        }\n\n        #MainContent .col-sm-6, #MainContent .col-xs-12, #MainContent .col-sm-2{\n            padding: 0.2rem !important;\n        }\n\n        .jqte{\n            margin-top: 0;\n            margin-bottom: 0;\n        }\n        \n        .jqte_editor{\n            height: 20rem;\n        }\n\n         #cssInputContainer{\n            height: 22.4rem;\n        }\n\n        #jsScriptInputContainer, #htmlPreview{\n            height: 12rem;\n        }\n\n        .buttons{\n            text-align: center;\n        }\n\n        .buttons button{\n            margin-right: 5rem;\n            margin-top: 2rem;\n        }\n\n        #Footer{\n            display: none;\n        }\n\n        .emptyDiv{\n            height: 4rem !important;\n        }\n    </style>\n    <div class='row'> \n        <div class='col-xs-12 col-sm-6'>\n            <input type=\"text\" placeholder=\"token\" id=\"token\" class=\"form-control\">\n        </div>\n        <div class='col-xs-12 col-sm-6'>\n            <input type=\"text\" class=\"form-control\" placeholder=\"title\" value=\"{{title}}\" id=\"title\">\n        </div>\n        <div class='col-xs-12 col-sm-6'>\n            <input type=\"text\" class=\"form-control\" placeholder=\"description\" value=\"{{description}}\" id=\"description\">\n        </div>\n        <div class='col-xs-12 col-sm-6'>\n            <div class='row'>\n                <div class='col-xs-2 col-sm-2'>\n                    <input type=\"checkbox\" class='form-control' id=\"isVisible\" {{#visible}} checked {{/visible}}>\n                </div>\n                <div class='col-xs-6 col-sm-6'>\n                    <h5>Visible</h5>\n                </div>\n            </div>\n        </div>\n    </div>\n\n    <div class='row'>\n        <div class='col-sm-6'>\n            <textarea class=\"content\" id=\"content\"></textarea>\n        </div>\n        <div class='col-sm-6'>\n            <textarea class=\"form-control\" id=\"cssInputContainer\" placeholder='styles'></textarea>\n        </div>\n    </div>\n    <div class='row'>\n        <div class='col-sm-6'>\n            <textarea class=\"form-control\" id=\"jsScriptInputContainer\" placeholder='js script'></textarea>\n        </div>\n\n        <div class='col-sm-6'>\n            <textarea class=\"form-control\" id=\"htmlPreview\" placeholder='html preview'></textarea>\n        </div>\n    </div>\n    <div class='row'>\n        <div class='col-sm-6'>\n            <span>Select image</span><br>\n            <input type=\"file\" id=\"imageUploader\"><br>\n            <img src=\"\" height=\"200px\" alt=\"Image preview...\" id=\"imagePreview\">\n        </div> \n        <div class='col-sm-6'> \n            <div class='buttons'>\n                <button id=\"show\" class='btn btn-default'> Preview </button>\n                <button id=\"submit\" class='btn btn-success'> Submit </button>\n            </div>\n            \n        </div>\n    </div>"
+  edit: "\n    <style>\n        #MainContent .row{\n            padding: 0.2rem;\n            padding-left: 1rem !important;\n            padding-right: 1rem !important;\n        }\n\n        #MainContent .col-sm-6, #MainContent .col-xs-12, #MainContent .col-sm-2, #MainContent .col-sm-9, #MainContent .col-sm-3{\n            padding: 0.2rem !important;\n        }\n\n        .jqte{\n            margin-top: 0;\n            margin-bottom: 0;\n        }\n        \n        .jqte_editor{\n            height: 20rem;\n        }\n\n         #cssInputContainer{\n            height: 22.2rem;\n        }\n\n        #jsScriptInputContainer, #htmlPreview, #htmlContent{\n            height: 12rem;\n        }\n\n        .buttons{\n            text-align: center;\n        }\n\n        .buttons button{\n            margin-right: 5rem;\n            margin-top: 2rem;\n        }\n\n        #Footer{\n            display: none;\n        }\n\n        .emptyDiv{\n            height: 4rem !important;\n        }\n    </style>\n    <div class='row'> \n        <div class='col-xs-12 col-sm-6'>\n            <input type=\"text\" placeholder=\"token\" id=\"token\" class=\"form-control\">\n        </div>\n        <div class='col-xs-12 col-sm-6'>\n            <input type=\"text\" class=\"form-control\" placeholder=\"title\" value=\"{{title}}\" id=\"title\">\n        </div>\n        <div class='col-xs-12 col-sm-6'>\n            <input type=\"text\" class=\"form-control\" placeholder=\"description\" value=\"{{description}}\" id=\"description\">\n        </div>\n        <div class='col-xs-12 col-sm-6'>\n            <div class='row'>\n                <div class='col-xs-2 col-sm-2'>\n                    <input type=\"checkbox\" class='form-control' id=\"isVisible\" {{#visible}} checked {{/visible}}>\n                </div>\n                <div class='col-xs-6 col-sm-6'>\n                    <h5>Visible</h5>\n                </div>\n            </div>\n        </div>\n    </div>\n\n    <div class='row'>\n        <div class='col-sm-9'>\n            <textarea class=\"content\" id=\"content\"></textarea>\n        </div>\n        <div class='col-sm-3'>\n            <textarea class=\"form-control\" id=\"cssInputContainer\" placeholder='styles'></textarea>\n        </div>\n    </div>\n    <div class='row'>\n        <div class='col-sm-6'>\n            <textarea class=\"form-control\" id=\"jsScriptInputContainer\" placeholder='js script'></textarea>\n        </div>\n\n        <div class='col-sm-6'>\n            <textarea class=\"form-control\" id=\"htmlPreview\" placeholder='text html preview'></textarea>\n        </div>\n    </div>\n    <div class='row'>\n        <div class='col-sm-12'>\n            <textarea class=\"form-control\" id=\"htmlContent\" placeholder='html content'></textarea>\n        </div>\n    </div>\n    <div class='row'>\n        <div class='col-sm-6'>\n            <span>Select image</span><br>\n            <input type=\"file\" id=\"imageUploader\"><br>\n            <img src=\"\" height=\"200px\" alt=\"Image preview...\" id=\"imagePreview\">\n        </div> \n        <div class='col-sm-6'> \n            <div class='buttons'>\n                <button id=\"show\" class='btn btn-default'> Preview articles</button>\n                <button id=\"submit\" class='btn btn-success'> Post article </button>\n            </div>\n        </div>\n    </div>"
 };
 exports.default = _default;
 },{}],"lib/templates/showArticleTemplate.js":[function(require,module,exports) {
@@ -27589,7 +27596,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _default = {
-  show: "\n    <style>\n        .singleArticle .row{\n            padding-top: 1rem !important;\n            padding-bottom: 0rem !important;\n            padding-left: 2rem !important;\n            padding-right: 2rem !important;\n        }\n\n        .centered{\n            text-align: center;\n            align-items: center;\n            align-self: center;\n        }    \n\n        .singleArticle .title {\n\n        }\n\n        .fontWeight-700{\n            font-weight: 700;\n        }\n\n        .marginRight-1Rem{\n            margin-right: 1rem !important;\n        }\n\n        .marginBottom-05Rem{\n            margin-bottom: 0.5rem;\n        }    \n\n        .marginBottom-2Rem{\n            margin-bottom: 2rem;\n        }\n\n        .marginTop-2rem{\n            margin-top: 2rem;\n        }\n\n        .singleArticle .description {\n            font-size: larger;\n            font-family: cursive;\n        }\n\n        .italic {\n            font-style: italic;\n        }\n\n        .newComment{\n            backgrond-color: #F0F0F0;\n        }\n\n        .singleArticle .articleContent{\n\n        }\n\n        .theImage{\n            object-fit: cover;\n            width: 100%;\n            height: 12rem;\n        }\n\n        .titleContainer{\n            margin-top: -5rem\n        }\n\n        .titleContainer .row, .titleContainer .col-sm-12{\n            background-color: transparent;\n        }\n    </style>\n\n    <div class=\"singleArticle\">\n        <div>\n            <image src=\"{{image}}\" class='theImage'/>\n        </div>\n        <div class='row titleContainer'>\n            <div class='col-sm-12'>\n                <h1 class='title centered'>{{title}}<h1>\n            </div>\n        </div>\n        <div class='row'>\n            <div class='col-sm-12'> \n                <span class='description'>{{description}}</span>\n            </div>\n        </div>\n        <div class='row'>\n            <div class='col-sm-12'>\n                <div class='articleContent' id='articleContent'></div>\n            </div>\n        </div>\n        <div class='row'> \n            <div class='col-sm-12'>\n                <hr>\n                <span class='commmentsStart fontWeight-700'> Comentarii: </span \n            </div>\n        <div> \n        <div class='row commentsSection'>\n            {{#comments}}\n                <div class='col-sm-12 marginBottom-05Rem'>\n                    <span class='fontWeight-700'>{{by}} </span>\n                    <span> pe </span> <span class='fontWeight-700'> {{date}}</span> :\n                    <span class='marginRight-1Rem italic'> {{content}}</span>\n                </div>\n                <hr>\n            {{/comments}}\n        </div>\n        <br><br>\n        <div class='newComment'>\n            <div class='row'>\n                <div class='col-sm-4 col-xs-12'>\n                    <input type='text' placeholder='nume' class='form-control' id='newCommentPoster'/>\n                </div>\n            </div>\n            <div class='row'>\n                <div class='col-xs-12 col-sm-4'> \n                    <input type='text' class='form-control' placeholder='comentariu' id='newCommentText'/>\n                </div>\n            </div>\n            <div class='row marginBottom-2Rem'>\n                <div class='col-xs-12 col-sm-6'>\n                    <input type='button' class='btn btn-success' value='Adaug\u0103' id='newCommentPost' />\n                </div>\n            </div>\n        </div>\n    </div>"
+  show: "\n    <style>\n        .singleArticle .row{\n            padding-top: 1rem !important;\n            padding-bottom: 0rem !important;\n            padding-left: 2rem !important;\n            padding-right: 2rem !important;\n        }\n\n        .centered{\n            text-align: center;\n            align-items: center;\n            align-self: center;\n        }    \n\n        .singleArticle .title {\n\n        }\n\n        .fontWeight-700{\n            font-weight: 700;\n        }\n\n        .marginRight-1Rem{\n            margin-right: 1rem !important;\n        }\n\n        .marginBottom-05Rem{\n            margin-bottom: 0.5rem;\n        }    \n\n        .marginBottom-2Rem{\n            margin-bottom: 2rem;\n        }\n\n        .marginTop-2rem{\n            margin-top: 2rem;\n        }\n\n        .singleArticle .description {\n            font-size: larger;\n            font-family: cursive;\n        }\n\n        .italic {\n            font-style: italic;\n        }\n\n        .newComment{\n            backgrond-color: #F0F0F0;\n        }\n\n        .singleArticle .articleContent{\n\n        }\n\n        .theImage{\n            object-fit: cover;\n            width: 100%;\n            height: 12rem;\n        }\n\n        .titleContainer{\n            margin-top: -5rem\n        }\n\n        .titleContainer .row, .titleContainer .col-sm-12{\n            background-color: transparent;\n        }\n\n        {{{css}}}\n    </style>\n\n    <div class=\"singleArticle\">\n        <div>\n            <image src=\"{{image}}\" class='theImage'/>\n        </div>\n        <div class='row titleContainer'>\n            <div class='col-sm-12'>\n                <h1 class='title centered'>{{title}}<h1>\n            </div>\n        </div>\n        <div class='row'>\n            <div class='col-sm-12'> \n                <span class='description'>{{description}}</span>\n            </div>\n        </div>\n        <div class='row'>\n            <div class='col-sm-12'>\n                <div class='articleContent' id='articleContent'>{{{content}}}</div>\n            </div>\n        <script id='leScript'>\n            {{{jsScript}}}\n        </script>\n        </div>\n        <div class='row'> \n            <div class='col-sm-12'>\n                <hr>\n                <span class='commmentsStart fontWeight-700'> Comentarii: </span \n            </div>\n        <div> \n        <div class='row commentsSection'>\n            {{#comments}}\n                <div class='col-sm-12 marginBottom-05Rem'>\n                    <span class='fontWeight-700'>{{by}} </span>\n                    <span> pe </span> <span class='fontWeight-700'> {{date}}</span> :\n                    <span class='marginRight-1Rem italic'> {{content}}</span>\n                </div>\n                <hr>\n            {{/comments}}\n        </div>\n        <br><br>\n        <div class='newComment'>\n            <div class='row'>\n                <div class='col-sm-4 col-xs-12'>\n                    <input type='text' placeholder='nume' class='form-control' id='newCommentPoster'/>\n                </div>\n            </div>\n            <div class='row'>\n                <div class='col-xs-12 col-sm-4'> \n                    <input type='text' class='form-control' placeholder='comentariu' id='newCommentText'/>\n                </div>\n            </div>\n            <div class='row marginBottom-2Rem'>\n                <div class='col-xs-12 col-sm-6'>\n                    <input type='button' class='btn btn-success' value='Adaug\u0103' id='newCommentPost' />\n                </div>\n            </div>\n        </div>\n    </div>\n    "
 };
 exports.default = _default;
 },{}],"lib/templates/pagination.js":[function(require,module,exports) {
@@ -27608,7 +27615,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.previewTemplate = void 0;
-var previewTemplate = "\n  <head>\n    <meta charset=\"utf-8\">\n\n    <title>The HTML5 Herald</title>\n    <meta name=\"description\" content=\"The HTML5 Herald\">\n    <meta name=\"author\" content=\"SitePoint\">\n    <link href=\"https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css\" rel=\"stylesheet\">\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js\"></script>\n    \n    <style>\n      {{css}}\n    </style>\n\n  </head>\n\n  <body>\n    <div class='mainContent'>\n      {{{content}}}\n    </div>\n\n    <script>\n      {{jsScript}}\n    </script>\n\n  </body>\n  </html>\n";
+var previewTemplate = "\n  <head>\n    <meta charset=\"utf-8\">\n\n    <title>The HTML5 Herald</title>\n    <meta name=\"description\" content=\"The HTML5 Herald\">\n    <meta name=\"author\" content=\"SitePoint\">\n    <link href=\"https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css\" rel=\"stylesheet\">\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js\"></script>\n    \n    <style>\n      {{css}}\n    </style>\n\n  </head>\n\n  <body>\n    <div class='mainContent'>\n      {{{content}}}\n    </div>\n\n    <script>\n      {{{jsScript}}}\n    </script>\n\n  </body>\n  </html>\n";
 exports.previewTemplate = previewTemplate;
 },{}],"lib/js/templates.js":[function(require,module,exports) {
 "use strict";
@@ -27894,7 +27901,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56012" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49583" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

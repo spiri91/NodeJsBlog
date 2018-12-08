@@ -8,7 +8,7 @@ export default {
             padding-right: 1rem !important;
         }
 
-        #MainContent .col-sm-6, #MainContent .col-xs-12, #MainContent .col-sm-2{
+        #MainContent .col-sm-6, #MainContent .col-xs-12, #MainContent .col-sm-2, #MainContent .col-sm-9, #MainContent .col-sm-3{
             padding: 0.2rem !important;
         }
 
@@ -22,10 +22,10 @@ export default {
         }
 
          #cssInputContainer{
-            height: 22.4rem;
+            height: 22.2rem;
         }
 
-        #jsScriptInputContainer, #htmlPreview{
+        #jsScriptInputContainer, #htmlPreview, #htmlContent{
             height: 12rem;
         }
 
@@ -69,10 +69,10 @@ export default {
     </div>
 
     <div class='row'>
-        <div class='col-sm-6'>
+        <div class='col-sm-9'>
             <textarea class="content" id="content"></textarea>
         </div>
-        <div class='col-sm-6'>
+        <div class='col-sm-3'>
             <textarea class="form-control" id="cssInputContainer" placeholder='styles'></textarea>
         </div>
     </div>
@@ -82,7 +82,12 @@ export default {
         </div>
 
         <div class='col-sm-6'>
-            <textarea class="form-control" id="htmlPreview" placeholder='html preview'></textarea>
+            <textarea class="form-control" id="htmlPreview" placeholder='text html preview'></textarea>
+        </div>
+    </div>
+    <div class='row'>
+        <div class='col-sm-12'>
+            <textarea class="form-control" id="htmlContent" placeholder='html content'></textarea>
         </div>
     </div>
     <div class='row'>
@@ -93,10 +98,9 @@ export default {
         </div> 
         <div class='col-sm-6'> 
             <div class='buttons'>
-                <button id="show" class='btn btn-default'> Preview </button>
-                <button id="submit" class='btn btn-success'> Submit </button>
+                <button id="show" class='btn btn-default'> Preview articles</button>
+                <button id="submit" class='btn btn-success'> Post article </button>
             </div>
-            
         </div>
     </div>`
 }

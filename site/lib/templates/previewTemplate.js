@@ -20,7 +20,7 @@ export const previewTemplate = `
     </div>
 
     <script>
-      {{jsScript}}
+      {{{jsScript}}}
     </script>
 
   </body>

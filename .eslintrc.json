@@ -26,7 +26,8 @@
         "no-cond-assign": "off",
         "no-plusplus": "off",
         "no-restricted-globals":"off",
-        "no-new":"off"
+        "no-new":"off",
+        "no-eval": "off"
     },
     "env": {
         "mocha": true,

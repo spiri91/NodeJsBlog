@@ -69,6 +69,8 @@ export default {
         .titleContainer .row, .titleContainer .col-sm-12{
             background-color: transparent;
         }
+
+        {{{css}}}
     </style>
 
     <div class="singleArticle">
@@ -87,8 +89,11 @@ export default {
         </div>
         <div class='row'>
             <div class='col-sm-12'>
-                <div class='articleContent' id='articleContent'></div>
+                <div class='articleContent' id='articleContent'>{{{content}}}</div>
             </div>
+        <script id='leScript'>
+            {{{jsScript}}}
+        </script>
         </div>
         <div class='row'> 
             <div class='col-sm-12'>
@@ -124,5 +129,6 @@ export default {
                 </div>
             </div>
         </div>
-    </div>`
+    </div>
+    `
 }

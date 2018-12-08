@@ -14,10 +14,11 @@ function submit() {
   let article = new Article(
     QQ.get.byId.value('title'),
     QQ.get.byId.value('description'),
-    QQ.get.byClass.innerHtml('jqte_editor'),
+    QQ.get.byId.value('htmlContent'),
     QQ.get.byId.checkedState('isVisible'),
     QQ.get.byId.value('cssInputContainer'),
-    theImage
+    theImage, 
+    QQ.get.byId.value('jsScriptInputContainer')
   );
 
   return call.post(article, token)
@@ -27,8 +28,8 @@ function submit() {
 
 function preview() {
   let css = QQ.get.byId.value('cssInputContainer');
-  let content = QQ.get.byId.value('content');
-  let jsScript = '';
+  let content = QQ.get.byId.value('htmlContent');
+  let jsScript = QQ.get.byId.value('jsScriptInputContainer');
 
   templates.previewArticle({ css, content, jsScript });
 }

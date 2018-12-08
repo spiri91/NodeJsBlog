@@ -3,6 +3,7 @@ import QQ from '../lib/js/myQuery';
 import call from '../lib/js/call';
 import '../lib/css/jquery-te-1.4.0.css';
 import jte from '../dist/js/jquery-te-1.4.0.min';
+import templates from '../lib/js/templates';
 
 let etArticle;
 
@@ -15,6 +16,7 @@ function submit() {
   etArticle.visible = QQ.get.byId.checkedState('isVisible');
   etArticle.smug = etArticle.title.replace(' ', '-');
   etArticle.css = QQ.get.byId.value('cssInputContainer');
+  etArticle.jsScript = QQ.get.byId.value('jsScriptInputContainer')
 
   return call.put(etArticle._id, etArticle, token)
     .then(() => QQ.alert.success('edited'))
@@ -22,13 +24,11 @@ function submit() {
 }
 
 function preview() {
-  let previewWindow = window.open();
   let css = QQ.get.byId.value('cssInputContainer');
-  let content = QQ.get.byId.value('content');
+  let content = QQ.get.byId.value('htmlContent');
+  let jsScript = QQ.get.byId.value('jsScriptInputContainer');
 
-  let html = `<style>${css}</style><div>${content}</div>`
-
-  previewWindow.document.body.innerHTML = html;
+  templates.previewArticle({ css, content, jsScript });
 }
 
 function upload() {
@@ -58,9 +58,16 @@ let init = (article) => {
 
   QQ.set.byClass.innerHtml('jqte_editor', article.content);
   QQ.set.byId.innerHtml('cssInputContainer', article.css);
+  QQ.set.byId.innerHtml('jsScriptInputContainer', article.jsScript);
+  QQ.set.byId.innerHtml('htmlContent', article.content);
+
   QQ.set.byId.click('submit', submit)
   QQ.set.byId.click('show', preview);
   QQ.set.byId.change('imageUploader', upload);
+  QQ.set.byClass.input('jqte_editor', () => {
+    let output = QQ.get.byClass.innerHtml('jqte_editor');
+    QQ.set.byId.innerHtml('htmlPreview', output);
+  });
 }
 
 export default {
