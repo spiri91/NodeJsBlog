@@ -27367,7 +27367,7 @@ function submit() {
 
   etArticle.title = _myQuery.default.get.byId.value('title');
   etArticle.description = _myQuery.default.get.byId.value('description');
-  etArticle.content = _myQuery.default.get.byId.value('content');
+  etArticle.content = _myQuery.default.get.byId.value('htmlContent');
   etArticle.visible = _myQuery.default.get.byId.checkedState('isVisible');
   etArticle.smug = etArticle.title.replace(' ', '-');
   etArticle.css = _myQuery.default.get.byId.value('cssInputContainer');
@@ -27585,7 +27585,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _default = {
-  edit: "\n    <style>\n        #MainContent .row{\n            padding: 0.2rem;\n            padding-left: 1rem !important;\n            padding-right: 1rem !important;\n        }\n\n        #MainContent .col-sm-6, #MainContent .col-xs-12, #MainContent .col-sm-2, #MainContent .col-sm-9, #MainContent .col-sm-3{\n            padding: 0.2rem !important;\n        }\n\n        .jqte{\n            margin-top: 0;\n            margin-bottom: 0;\n        }\n        \n        .jqte_editor{\n            height: 20rem;\n        }\n\n         #cssInputContainer{\n            height: 22.2rem;\n        }\n\n        #jsScriptInputContainer, #htmlPreview, #htmlContent{\n            height: 12rem;\n        }\n\n        .buttons{\n            text-align: center;\n        }\n\n        .buttons button{\n            margin-right: 5rem;\n            margin-top: 2rem;\n        }\n\n        #Footer{\n            display: none;\n        }\n\n        .emptyDiv{\n            height: 4rem !important;\n        }\n    </style>\n    <div class='row'> \n        <div class='col-xs-12 col-sm-6'>\n            <input type=\"text\" placeholder=\"token\" id=\"token\" class=\"form-control\">\n        </div>\n        <div class='col-xs-12 col-sm-6'>\n            <input type=\"text\" class=\"form-control\" placeholder=\"title\" value=\"{{title}}\" id=\"title\">\n        </div>\n        <div class='col-xs-12 col-sm-6'>\n            <input type=\"text\" class=\"form-control\" placeholder=\"description\" value=\"{{description}}\" id=\"description\">\n        </div>\n        <div class='col-xs-12 col-sm-6'>\n            <div class='row'>\n                <div class='col-xs-2 col-sm-2'>\n                    <input type=\"checkbox\" class='form-control' id=\"isVisible\" {{#visible}} checked {{/visible}}>\n                </div>\n                <div class='col-xs-6 col-sm-6'>\n                    <h5>Visible</h5>\n                </div>\n            </div>\n        </div>\n    </div>\n\n    <div class='row'>\n        <div class='col-sm-9'>\n            <textarea class=\"content\" id=\"content\"></textarea>\n        </div>\n        <div class='col-sm-3'>\n            <textarea class=\"form-control\" id=\"cssInputContainer\" placeholder='styles'></textarea>\n        </div>\n    </div>\n    <div class='row'>\n        <div class='col-sm-6'>\n            <textarea class=\"form-control\" id=\"jsScriptInputContainer\" placeholder='js script'></textarea>\n        </div>\n\n        <div class='col-sm-6'>\n            <textarea class=\"form-control\" id=\"htmlPreview\" placeholder='text html preview'></textarea>\n        </div>\n    </div>\n    <div class='row'>\n        <div class='col-sm-12'>\n            <textarea class=\"form-control\" id=\"htmlContent\" placeholder='html content'></textarea>\n        </div>\n    </div>\n    <div class='row'>\n        <div class='col-sm-6'>\n            <span>Select image</span><br>\n            <input type=\"file\" id=\"imageUploader\"><br>\n            <img src=\"\" height=\"200px\" alt=\"Image preview...\" id=\"imagePreview\">\n        </div> \n        <div class='col-sm-6'> \n            <div class='buttons'>\n                <button id=\"show\" class='btn btn-default'> Preview articles</button>\n                <button id=\"submit\" class='btn btn-success'> Post article </button>\n            </div>\n        </div>\n    </div>"
+  edit: "\n    <style>\n        #MainContent .row{\n            padding: 0.2rem;\n            padding-left: 1rem !important;\n            padding-right: 1rem !important;\n        }\n\n        #MainContent .col-sm-6, #MainContent .col-xs-12, #MainContent .col-sm-2, #MainContent .col-sm-9, #MainContent .col-sm-3{\n            padding: 0.2rem !important;\n        }\n\n        .jqte{\n            margin-top: 0;\n            margin-bottom: 0;\n        }\n        \n        .jqte_editor{\n            height: 20rem;\n        }\n\n         #cssInputContainer{\n            height: 22.2rem;\n        }\n\n        #jsScriptInputContainer, #htmlPreview, #htmlContent{\n            height: 12rem;\n        }\n\n        .buttons{\n            text-align: center;\n        }\n\n        .buttons button{\n            margin-right: 5rem;\n            margin-top: 2rem;\n        }\n\n        #isVisible{\n            height: 1.8rem;\n        }\n\n        #Footer{\n            display: none;\n        }\n\n        .createLabel{\n            font-weight: 600;\n            padding: 0.5rem;\n        }\n\n        .emptyDiv{\n            height: 4rem !important;\n        }\n    </style>\n    <div class='row'> \n        <div class='col-sm-12'>\n            <p class='createLabel'>Create new article:</p>\n        </div>\n        <div class='col-xs-12 col-sm-6'>\n            <input type=\"text\" placeholder=\"token\" id=\"token\" class=\"form-control\">\n        </div>\n        <div class='col-xs-12 col-sm-6'>\n            <input type=\"text\" class=\"form-control\" placeholder=\"title\" value=\"{{title}}\" id=\"title\">\n        </div>\n        <div class='col-xs-12 col-sm-6'>\n            <input type=\"text\" class=\"form-control\" placeholder=\"description\" value=\"{{description}}\" id=\"description\">\n        </div>\n        <div class='col-xs-12 col-sm-6'>\n            <div class='row'>\n                <div class='col-xs-2 col-sm-2'>\n                    <input type=\"checkbox\" class='form-control' id=\"isVisible\" {{#visible}} checked {{/visible}}>\n                </div>\n                <div class='col-xs-6 col-sm-6'>\n                    <h5>Visible</h5>\n                </div>\n            </div>\n        </div>\n    </div>\n\n    <div class='row'>\n        <div class='col-sm-9'>\n            <textarea class=\"content\" id=\"content\"></textarea>\n        </div>\n        <div class='col-sm-3'>\n            <textarea class=\"form-control\" id=\"cssInputContainer\" placeholder='styles'></textarea>\n        </div>\n    </div>\n    <div class='row'>\n        <div class='col-sm-6'>\n            <textarea class=\"form-control\" id=\"jsScriptInputContainer\" placeholder='js script'></textarea>\n        </div>\n\n        <div class='col-sm-6'>\n            <textarea class=\"form-control\" id=\"htmlPreview\" placeholder='text html preview'></textarea>\n        </div>\n    </div>\n    <div class='row'>\n        <div class='col-sm-12'>\n            <textarea class=\"form-control\" id=\"htmlContent\" placeholder='html content'></textarea>\n        </div>\n    </div>\n    <div class='row'>\n        <div class='col-sm-6'>\n            <span>Select image</span><br>\n            <input type=\"file\" id=\"imageUploader\"><br>\n            <img src=\"\" height=\"200px\" alt=\"Image preview...\" id=\"imagePreview\">\n        </div> \n        <div class='col-sm-6'> \n            <div class='buttons'>\n                <button id=\"show\" class='btn btn-default'> Preview article </button>\n                <button id=\"submit\" class='btn btn-success'> Post article </button>\n            </div>\n        </div>\n    </div>"
 };
 exports.default = _default;
 },{}],"lib/templates/showArticleTemplate.js":[function(require,module,exports) {
@@ -27799,7 +27799,7 @@ Object.defineProperty(exports, "__esModule", {
 exports.footer = void 0;
 var footer = "\n<div class='row'>\n  <div class='col-sm-12 col-xs-12'>\n    <div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">\n    <strong>Holy guacamole!</strong> You should check in on some of those fields below.\n    <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n    </div>\n  </div>\n</div>\n";
 exports.footer = footer;
-},{}],"lib/js/NavAndFooter.js":[function(require,module,exports) {
+},{}],"lib/js/navAndFooter.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -27848,7 +27848,77 @@ var _default = {
   buildBoth: buildBoth
 };
 exports.default = _default;
-},{"../templates/nav":"lib/templates/nav.js","../templates/footer":"lib/templates/footer.js","./myQuery":"lib/js/myQuery.js","./router":"lib/js/router.js"}],"entry.js":[function(require,module,exports) {
+},{"../templates/nav":"lib/templates/nav.js","../templates/footer":"lib/templates/footer.js","./myQuery":"lib/js/myQuery.js","./router":"lib/js/router.js"}],"lib/js/notifications.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+var applicationServerPublicKey = 'BI2msTjOYgXZNepXAoHoZrjJTM0VXM8_ySZtxjzmu__aSCuVbv_R-KyW79R7JMvubsTA2EvR-_m5tHp4v25FclA';
+
+function urlB64ToUint8Array(base64String) {
+  var padding = '='.repeat((4 - base64String.length % 4) % 4);
+  var base64 = (base64String + padding).replace(/-/g, '+').replace(/_/g, '/');
+  var rawData = window.atob(base64);
+  var outputArray = new Uint8Array(rawData.length);
+
+  for (var i = 0; i < rawData.length; ++i) {
+    outputArray[i] = rawData.charCodeAt(i);
+  }
+
+  return outputArray;
+}
+
+function updateSubscriptionOnServer(subscription) {
+  debugger;
+}
+
+function subscribeUser(sw) {
+  var applicationServerKey = urlB64ToUint8Array(applicationServerPublicKey);
+  sw.pushManager.subscribe({
+    userVisibleOnly: true,
+    applicationServerKey: applicationServerKey
+  }).then(function (subscription) {
+    console.log('User is subscribed');
+    updateSubscriptionOnServer(subscription);
+  }).catch(function (err) {
+    console.log('Failed to subscribe the user: ', err);
+  });
+}
+
+function unsubscribeUser(sw) {
+  sw.pushManager.getSubscription().then(function (subscription) {
+    if (subscription) {
+      return subscription.unsubscribe();
+    }
+  }).catch(function (error) {
+    console.log('Error unsubscribing', error);
+  }).then(function () {
+    // updateSubscriptionOnServer(null);
+    console.log('User is unsubscribed.');
+  });
+}
+
+function init(sw) {
+  sw.pushManager.getSubscription().then(function (subscription) {
+    var isSubscribed = !(subscription === null);
+
+    if (isSubscribed) {
+      console.log('User IS subscribed.');
+    } else {
+      Notification.requestPermission().then(function (accept) {
+        if (accept === 'granted') subscribeUser(sw);
+      });
+    }
+  });
+}
+
+var _default = {
+  init: init
+};
+exports.default = _default;
+},{}],"entry.js":[function(require,module,exports) {
 "use strict";
 
 require("./lib/css/bootstrap.min.css");
@@ -27861,20 +27931,27 @@ var _bootstrap = _interopRequireDefault(require("bootstrap"));
 
 var _router = _interopRequireDefault(require("./lib/js/router"));
 
-var _NavAndFooter = _interopRequireDefault(require("./lib/js/NavAndFooter"));
+var _navAndFooter = _interopRequireDefault(require("./lib/js/navAndFooter"));
+
+var _notifications = _interopRequireDefault(require("./lib/js/notifications"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+window.sw = null;
+
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register("/sw.js").then(function (registration) {
+    _notifications.default.init(registration);
+
+    window.sw = registration;
     console.log('Registration successful, scope is:', registration.scope);
   }).catch(function (error) {
     console.log('Service worker registration failed, error:', error);
   });
 }
 
-_NavAndFooter.default.buildBoth();
-},{"./lib/css/bootstrap.min.css":"lib/css/bootstrap.min.css","./lib/css/main.css":"lib/css/main.css","./lib/css/awn.css":"lib/css/awn.css","bootstrap":"../node_modules/bootstrap/dist/js/bootstrap.js","./lib/js/router":"lib/js/router.js","./lib/js/NavAndFooter":"lib/js/NavAndFooter.js","./sw.js":[["sw.js","sw.js"],"sw.map","sw.js"]}],"C:/Users/Spirica/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+_navAndFooter.default.buildBoth();
+},{"./lib/css/bootstrap.min.css":"lib/css/bootstrap.min.css","./lib/css/main.css":"lib/css/main.css","./lib/css/awn.css":"lib/css/awn.css","bootstrap":"../node_modules/bootstrap/dist/js/bootstrap.js","./lib/js/router":"lib/js/router.js","./lib/js/navAndFooter":"lib/js/navAndFooter.js","./lib/js/notifications":"lib/js/notifications.js","./sw.js":[["sw.js","sw.js"],"sw.map","sw.js"]}],"C:/Users/Spirica/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -27901,7 +27978,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49583" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65431" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

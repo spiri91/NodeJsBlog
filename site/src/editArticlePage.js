@@ -12,7 +12,7 @@ function submit() {
 
   etArticle.title = QQ.get.byId.value('title');
   etArticle.description = QQ.get.byId.value('description');
-  etArticle.content = QQ.get.byId.value('content');
+  etArticle.content = QQ.get.byId.value('htmlContent');
   etArticle.visible = QQ.get.byId.checkedState('isVisible');
   etArticle.smug = etArticle.title.replace(' ', '-');
   etArticle.css = QQ.get.byId.value('cssInputContainer');

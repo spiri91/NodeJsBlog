@@ -38,8 +38,17 @@ export default {
             margin-top: 2rem;
         }
 
+        #isVisible{
+            height: 1.8rem;
+        }
+
         #Footer{
             display: none;
+        }
+
+        .createLabel{
+            font-weight: 600;
+            padding: 0.5rem;
         }
 
         .emptyDiv{
@@ -47,6 +56,9 @@ export default {
         }
     </style>
     <div class='row'> 
+        <div class='col-sm-12'>
+            <p class='createLabel'>Create new article:</p>
+        </div>
         <div class='col-xs-12 col-sm-6'>
             <input type="text" placeholder="token" id="token" class="form-control">
         </div>
@@ -98,7 +110,7 @@ export default {
         </div> 
         <div class='col-sm-6'> 
             <div class='buttons'>
-                <button id="show" class='btn btn-default'> Preview articles</button>
+                <button id="show" class='btn btn-default'> Preview article </button>
                 <button id="submit" class='btn btn-success'> Post article </button>
             </div>
         </div>
