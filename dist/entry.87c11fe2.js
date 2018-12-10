@@ -104,7 +104,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   // Override the current require with this new one
   return newRequire;
-})({"C:/Users/Spirica/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+})({"../../../Users/ionuts/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 
 function getBundleURLCached() {
@@ -136,7 +136,7 @@ function getBaseURL(url) {
 
 exports.getBundleURL = getBundleURLCached;
 exports.getBaseURL = getBaseURL;
-},{}],"C:/Users/Spirica/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
+},{}],"../../../Users/ionuts/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
 var bundle = require('./bundle-url');
 
 function updateLink(link) {
@@ -171,22 +171,22 @@ function reloadCSS() {
 }
 
 module.exports = reloadCSS;
-},{"./bundle-url":"C:/Users/Spirica/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"lib/css/bootstrap.min.css":[function(require,module,exports) {
+},{"./bundle-url":"../../../Users/ionuts/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"lib/css/bootstrap.min.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"C:/Users/Spirica/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"lib/css/main.css":[function(require,module,exports) {
+},{"_css_loader":"../../../Users/ionuts/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"lib/css/main.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"C:/Users/Spirica/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"lib/css/awn.css":[function(require,module,exports) {
+},{"_css_loader":"../../../Users/ionuts/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"lib/css/awn.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"C:/Users/Spirica/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"C:/Users/Spirica/AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/process/browser.js":[function(require,module,exports) {
+},{"_css_loader":"../../../Users/ionuts/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../../../Users/ionuts/AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/process/browser.js":[function(require,module,exports) {
 
 // shim for using process in browser
 var process = module.exports = {}; // cached from whatever global is present so that test runners that stub it
@@ -10765,7 +10765,7 @@ if ( !noGlobal ) {
 return jQuery;
 } );
 
-},{"process":"C:/Users/Spirica/AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/process/browser.js"}],"../node_modules/popper.js/dist/esm/popper.js":[function(require,module,exports) {
+},{"process":"../../../Users/ionuts/AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/process/browser.js"}],"../node_modules/popper.js/dist/esm/popper.js":[function(require,module,exports) {
 var global = arguments[3];
 "use strict";
 
@@ -19635,9 +19635,11 @@ var global = arguments[3];
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.pageSize = exports.mainContent = exports.backendApiAddress = void 0;
+exports.pageSize = exports.mainContent = exports.backendApiBaseAddress = exports.backendApiAddress = void 0;
 var backendApiAddress = "http://localhost:3000/api/articles";
 exports.backendApiAddress = backendApiAddress;
+var backendApiBaseAddress = "http://localhost:3000/api";
+exports.backendApiBaseAddress = backendApiBaseAddress;
 var mainContent = 'MainContent';
 exports.mainContent = mainContent;
 var pageSize = 10;
@@ -21755,6 +21757,43 @@ function () {
   };
 }();
 
+var subscribeUser =
+/*#__PURE__*/
+function () {
+  var _ref11 = (0, _asyncToGenerator2.default)(
+  /*#__PURE__*/
+  _regenerator.default.mark(function _callee11(subscription) {
+    var res;
+    return _regenerator.default.wrap(function _callee11$(_context11) {
+      while (1) {
+        switch (_context11.prev = _context11.next) {
+          case 0:
+            _context11.next = 2;
+            return fetch("".concat(consts.backendApiBaseAddress, "/subscribe"), {
+              method: "POST",
+              body: JSON.stringify(subscription),
+              headers: {
+                "Content-Type": "application/json; charset=utf-8"
+              }
+            });
+
+          case 2:
+            res = _context11.sent;
+            return _context11.abrupt("return", handleResult(res));
+
+          case 4:
+          case "end":
+            return _context11.stop();
+        }
+      }
+    }, _callee11, this);
+  }));
+
+  return function subscribeUser(_x16) {
+    return _ref11.apply(this, arguments);
+  };
+}();
+
 var _default = {
   post: post,
   put: put,
@@ -21765,7 +21804,8 @@ var _default = {
   addComment: addComment,
   getCount: getCount,
   search: search,
-  incrementViews: incrementViews
+  incrementViews: incrementViews,
+  subscribeUser: subscribeUser
 };
 exports.default = _default;
 },{"@babel/runtime/regenerator":"../node_modules/@babel/runtime/regenerator/index.js","@babel/runtime/helpers/asyncToGenerator":"../node_modules/@babel/runtime/helpers/asyncToGenerator.js","./constants":"lib/js/constants.js","./localStorageRepo":"lib/js/localStorageRepo.js"}],"../node_modules/@babel/runtime/helpers/classCallCheck.js":[function(require,module,exports) {
@@ -26556,7 +26596,7 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"./jquery-te.png":[["jquery-te.09523d1d.png","lib/css/jquery-te.png"],"lib/css/jquery-te.png"],"_css_loader":"C:/Users/Spirica/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"dist/js/jquery-te-1.4.0.min.js":[function(require,module,exports) {
+},{"./jquery-te.png":[["jquery-te.09523d1d.png","lib/css/jquery-te.png"],"lib/css/jquery-te.png"],"_css_loader":"../../../Users/ionuts/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"dist/js/jquery-te-1.4.0.min.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -27855,7 +27895,16 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var applicationServerPublicKey = 'BI2msTjOYgXZNepXAoHoZrjJTM0VXM8_ySZtxjzmu__aSCuVbv_R-KyW79R7JMvubsTA2EvR-_m5tHp4v25FclA';
+
+var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
+
+var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
+
+var _call = _interopRequireDefault(require("./call"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var applicationServerPublicKey = 'BGFOniM4v86AqO9iTo4vSkL3uKwgBiStcju3h6BGBwbLtfl2BcWVHZErfY6-tDTUrflK3yxuaGGY5g8YBwbtshE';
 
 function urlB64ToUint8Array(base64String) {
   var padding = '='.repeat((4 - base64String.length % 4) % 4);
@@ -27870,8 +27919,29 @@ function urlB64ToUint8Array(base64String) {
   return outputArray;
 }
 
-function updateSubscriptionOnServer(subscription) {
-  debugger;
+function updateSubscriptionOnServer(_x) {
+  return _updateSubscriptionOnServer.apply(this, arguments);
+}
+
+function _updateSubscriptionOnServer() {
+  _updateSubscriptionOnServer = (0, _asyncToGenerator2.default)(
+  /*#__PURE__*/
+  _regenerator.default.mark(function _callee(subscription) {
+    return _regenerator.default.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _context.next = 2;
+            return _call.default.subscribeUser(subscription);
+
+          case 2:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee, this);
+  }));
+  return _updateSubscriptionOnServer.apply(this, arguments);
 }
 
 function subscribeUser(sw) {
@@ -27918,7 +27988,7 @@ var _default = {
   init: init
 };
 exports.default = _default;
-},{}],"entry.js":[function(require,module,exports) {
+},{"@babel/runtime/regenerator":"../node_modules/@babel/runtime/regenerator/index.js","@babel/runtime/helpers/asyncToGenerator":"../node_modules/@babel/runtime/helpers/asyncToGenerator.js","./call":"lib/js/call.js"}],"entry.js":[function(require,module,exports) {
 "use strict";
 
 require("./lib/css/bootstrap.min.css");
@@ -27951,7 +28021,7 @@ if ('serviceWorker' in navigator) {
 }
 
 _navAndFooter.default.buildBoth();
-},{"./lib/css/bootstrap.min.css":"lib/css/bootstrap.min.css","./lib/css/main.css":"lib/css/main.css","./lib/css/awn.css":"lib/css/awn.css","bootstrap":"../node_modules/bootstrap/dist/js/bootstrap.js","./lib/js/router":"lib/js/router.js","./lib/js/navAndFooter":"lib/js/navAndFooter.js","./lib/js/notifications":"lib/js/notifications.js","./sw.js":[["sw.js","sw.js"],"sw.map","sw.js"]}],"C:/Users/Spirica/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./lib/css/bootstrap.min.css":"lib/css/bootstrap.min.css","./lib/css/main.css":"lib/css/main.css","./lib/css/awn.css":"lib/css/awn.css","bootstrap":"../node_modules/bootstrap/dist/js/bootstrap.js","./lib/js/router":"lib/js/router.js","./lib/js/navAndFooter":"lib/js/navAndFooter.js","./lib/js/notifications":"lib/js/notifications.js","./sw.js":[["sw.js","sw.js"],"sw.map","sw.js"]}],"../../../Users/ionuts/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -27978,7 +28048,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65431" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62412" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
@@ -28120,5 +28190,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.parcelRequire, id);
   });
 }
-},{}]},{},["C:/Users/Spirica/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","entry.js"], null)
+},{}]},{},["../../../Users/ionuts/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","entry.js"], null)
 //# sourceMappingURL=/entry.87c11fe2.map

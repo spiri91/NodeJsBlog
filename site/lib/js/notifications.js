@@ -1,4 +1,6 @@
-let applicationServerPublicKey = 'BI2msTjOYgXZNepXAoHoZrjJTM0VXM8_ySZtxjzmu__aSCuVbv_R-KyW79R7JMvubsTA2EvR-_m5tHp4v25FclA';
+import call from './call';
+
+const applicationServerPublicKey = 'BGFOniM4v86AqO9iTo4vSkL3uKwgBiStcju3h6BGBwbLtfl2BcWVHZErfY6-tDTUrflK3yxuaGGY5g8YBwbtshE';
 
 function urlB64ToUint8Array(base64String) {
   const padding = '='.repeat((4 - (base64String.length % 4)) % 4);
@@ -15,8 +17,8 @@ function urlB64ToUint8Array(base64String) {
   return outputArray;
 }
 
-function updateSubscriptionOnServer(subscription){
-  debugger;
+async function updateSubscriptionOnServer(subscription){
+  await call.subscribeUser(subscription);
 }
 
 function subscribeUser(sw) {

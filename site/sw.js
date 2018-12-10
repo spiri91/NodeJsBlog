@@ -31,14 +31,16 @@ self.addEventListener('push', (event) => {
   console.log('[Service Worker] Push Received.');
   console.log(`[Service Worker] Push had this data: "${event.data.text()}"`);
 
-  const title = 'Push Codelab';
+  let notification = JSON.parse(event.data.text())
+
+  const title = notification.title;
   const options = {
-    body: 'Yay it works.',
-    // icon: 'images/icon.png',
-    // badge: 'images/badge.png'
+    body: notification.text,
+    icon: 'icon.png',
+    badge: 'badge.png'
   };
 
-  event.waitUntil(self.registration.showNotification(title, options));
+  self.registration.showNotification(title, options);
 });
 
 self.addEventListener('notificationclick', (event) => {

@@ -120,6 +120,18 @@ let search = async (titlePart) => {
   return handleResult(res);
 }
 
+let subscribeUser = async (subscription) => {
+  let res = await fetch(`${consts.backendApiBaseAddress}/subscribe`, {
+    method: "POST",
+    body: JSON.stringify(subscription),
+    headers: {
+      "Content-Type": "application/json; charset=utf-8"
+    }
+  })
+
+  return handleResult(res);
+}
+
 export default {
   post,
   put,
@@ -130,5 +142,6 @@ export default {
   addComment,
   getCount,
   search,
-  incrementViews
+  incrementViews,
+  subscribeUser
 }

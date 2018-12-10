@@ -132,20 +132,21 @@ self.addEventListener('fetch', function (e) {
 self.addEventListener('push', function (event) {
   console.log('[Service Worker] Push Received.');
   console.log("[Service Worker] Push had this data: \"".concat(event.data.text(), "\""));
-  var title = 'Push Codelab';
+  var notification = JSON.parse(event.data.text());
+  var title = notification.title;
   var options = {
-    body: 'Yay it works.' // icon: 'images/icon.png',
-    // badge: 'images/badge.png'
-
+    body: notification.text,
+    icon: 'icon.png',
+    badge: 'badge.png'
   };
-  event.waitUntil(self.registration.showNotification(title, options));
+  self.registration.showNotification(title, options);
 });
 self.addEventListener('notificationclick', function (event) {
   console.log('[Service Worker] Notification click Received.');
   event.notification.close();
   event.waitUntil(clients.openWindow('https://developers.google.com/web/'));
 });
-},{}],"C:/Users/Spirica/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{}],"../../../Users/ionuts/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -172,7 +173,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65431" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62412" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
@@ -314,5 +315,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.parcelRequire, id);
   });
 }
-},{}]},{},["C:/Users/Spirica/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","sw.js"], null)
+},{}]},{},["../../../Users/ionuts/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","sw.js"], null)
 //# sourceMappingURL=/sw.map
