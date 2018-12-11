@@ -104,7 +104,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   // Override the current require with this new one
   return newRequire;
-})({"../../../Users/ionuts/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+})({"C:/Users/Spirica/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 
 function getBundleURLCached() {
@@ -136,7 +136,7 @@ function getBaseURL(url) {
 
 exports.getBundleURL = getBundleURLCached;
 exports.getBaseURL = getBaseURL;
-},{}],"../../../Users/ionuts/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
+},{}],"C:/Users/Spirica/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
 var bundle = require('./bundle-url');
 
 function updateLink(link) {
@@ -171,22 +171,22 @@ function reloadCSS() {
 }
 
 module.exports = reloadCSS;
-},{"./bundle-url":"../../../Users/ionuts/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"lib/css/bootstrap.min.css":[function(require,module,exports) {
+},{"./bundle-url":"C:/Users/Spirica/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"lib/css/bootstrap.min.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../../../Users/ionuts/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"lib/css/main.css":[function(require,module,exports) {
+},{"_css_loader":"C:/Users/Spirica/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"lib/css/main.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../../../Users/ionuts/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"lib/css/awn.css":[function(require,module,exports) {
+},{"_css_loader":"C:/Users/Spirica/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"lib/css/awn.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../../../Users/ionuts/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../../../Users/ionuts/AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/process/browser.js":[function(require,module,exports) {
+},{"_css_loader":"C:/Users/Spirica/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"C:/Users/Spirica/AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/process/browser.js":[function(require,module,exports) {
 
 // shim for using process in browser
 var process = module.exports = {}; // cached from whatever global is present so that test runners that stub it
@@ -10765,7 +10765,7 @@ if ( !noGlobal ) {
 return jQuery;
 } );
 
-},{"process":"../../../Users/ionuts/AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/process/browser.js"}],"../node_modules/popper.js/dist/esm/popper.js":[function(require,module,exports) {
+},{"process":"C:/Users/Spirica/AppData/Roaming/npm/node_modules/parcel-bundler/node_modules/process/browser.js"}],"../node_modules/popper.js/dist/esm/popper.js":[function(require,module,exports) {
 var global = arguments[3];
 "use strict";
 
@@ -26596,7 +26596,7 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"./jquery-te.png":[["jquery-te.09523d1d.png","lib/css/jquery-te.png"],"lib/css/jquery-te.png"],"_css_loader":"../../../Users/ionuts/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"dist/js/jquery-te-1.4.0.min.js":[function(require,module,exports) {
+},{"./jquery-te.png":[["jquery-te.09523d1d.png","lib/css/jquery-te.png"],"lib/css/jquery-te.png"],"_css_loader":"C:/Users/Spirica/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"dist/js/jquery-te-1.4.0.min.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -28021,7 +28021,7 @@ if ('serviceWorker' in navigator) {
 }
 
 _navAndFooter.default.buildBoth();
-},{"./lib/css/bootstrap.min.css":"lib/css/bootstrap.min.css","./lib/css/main.css":"lib/css/main.css","./lib/css/awn.css":"lib/css/awn.css","bootstrap":"../node_modules/bootstrap/dist/js/bootstrap.js","./lib/js/router":"lib/js/router.js","./lib/js/navAndFooter":"lib/js/navAndFooter.js","./lib/js/notifications":"lib/js/notifications.js","./sw.js":[["sw.js","sw.js"],"sw.map","sw.js"]}],"../../../Users/ionuts/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./lib/css/bootstrap.min.css":"lib/css/bootstrap.min.css","./lib/css/main.css":"lib/css/main.css","./lib/css/awn.css":"lib/css/awn.css","bootstrap":"../node_modules/bootstrap/dist/js/bootstrap.js","./lib/js/router":"lib/js/router.js","./lib/js/navAndFooter":"lib/js/navAndFooter.js","./lib/js/notifications":"lib/js/notifications.js","./sw.js":[["sw.js","sw.js"],"sw.map","sw.js"]}],"C:/Users/Spirica/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -28048,7 +28048,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62412" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55203" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
@@ -28190,5 +28190,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.parcelRequire, id);
   });
 }
-},{}]},{},["../../../Users/ionuts/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","entry.js"], null)
+},{}]},{},["C:/Users/Spirica/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","entry.js"], null)
 //# sourceMappingURL=/entry.87c11fe2.map
