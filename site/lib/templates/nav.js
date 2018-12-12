@@ -17,7 +17,7 @@ export const nav = `
 
 <div class='row'>
   <div class='col-sm-12 col-xs-12'>
-    <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar navbar-light" style="background-color: #4ABDAC ;">
       <a class="navbar-brand" href="#">BZ</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

@@ -10,17 +10,10 @@ export default {
             color: #212529;
         }
 
-        .card, .card *{
-            background-color: #F0F0F0;
-        }
-
-        .card{
-            transition-duration: 0.3s;
-        }
-
-        .card:hover {
-            background-color: #8b0000 !important;
-            transition-duration: 0.3s;
+        .btn-continue{
+            color: white;
+            position: relative;
+            bottom: 10px;
         }
 
         .title{
@@ -44,6 +37,20 @@ export default {
         a:hover{
             text-decoration: none;
         }
+
+        .card-holder{
+            height: 26rem;
+        }
+
+        .card{
+            height: 100%
+        }
+
+        .card .card-img-top{
+            object-fit: cover;
+            width: 100%;
+            height: 13rem;
+        }
     </style>
     <div class='homePage'>
         <div class='row'>
@@ -60,22 +67,17 @@ export default {
 
             <div class='row'>
                 {{#.}}
-                <div class="col-sm-4 col-xs-12 card">
-                    <div class='row'>
-                        <div class='col-xs-6 col-sm-6'>
-                            <a class href='#/article/{{smug}}'>
-                                <div class="card-body">
-                                <h5 class="card-title">{{title}}</h5>
-                                <p class="card-text">{{description}}</p>
-                                <p>pe: {{date}}</p>
-                                </div>
-                            </a>
-                        </div>
-                        <div class='col-xs-6 col-sm-6'>
-                            <image class='cardImage' src="{{image}}">
+                <div class="col-sm-4 col-xs-12 card-holder">
+
+                    <div class="card">
+                        <img class="card-img-top" src="{{image}}" alt="Card image">
+                        <div class="card-body">
+                            <h4 class="card-title">{{title}}</h4>
+                            <p class="card-text">{{description}}</p>
+                            <p class="card-text card-date">{{date}}</p>
+                            <a href='#/article/{{smug}}' class="btn btn-success btn-continue">Continuare</a>
                         </div>
                     </div>
-                    
                 </div>
                 {{/.}}
             </div>
