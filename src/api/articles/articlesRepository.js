@@ -33,7 +33,7 @@ exports.incrementClicks = function (article) {
 
 exports.findAllWith = function (titleQueryPart, callback) {
   Article.find({ title: { $regex: '.*' + titleQueryPart + '.*' } })
-    .select('_id title smug createdAt description')
+    .select('_id title smug createdAt description image')
     .exec(callback);
 }
 
