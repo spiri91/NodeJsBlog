@@ -6,16 +6,6 @@ export default {
             width:100% !important;
         }
 
-        .homePage a{
-            color: #212529;
-        }
-
-        .btn-continue{
-            color: white;
-            position: relative;
-            bottom: 10px;
-        }
-
         .title{
             padding: 1.5rem;
             pointer-events: none;
@@ -50,6 +40,11 @@ export default {
             object-fit: cover;
             width: 100%;
             height: 13rem;
+        }
+
+        .btn-continue{
+            color: white;
+            margin-top: 1rem;
         }
     </style>
     <div class='homePage'>

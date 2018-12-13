@@ -34,7 +34,6 @@ export const nav = `
         </ul>
         <form class="form-inline my-2 my-lg-0">
           <input class="form-control mr-sm-2" type="search" id="SearchInput" placeholder="Caută" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" id="SearchButton">Caută</button>
         </form>
       </div>
     </nav>

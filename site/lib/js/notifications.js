@@ -17,7 +17,7 @@ function urlB64ToUint8Array(base64String) {
   return outputArray;
 }
 
-async function updateSubscriptionOnServer(subscription){
+async function updateSubscriptionOnServer(subscription) {
   await call.subscribeUser(subscription);
 }
 

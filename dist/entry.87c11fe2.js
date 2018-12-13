@@ -20415,6 +20415,9 @@ var _default = {
       },
       checked: function checked(id, checkedState) {
         document.getElementById(id).checked = checkedState;
+      },
+      keypress: function keypress(id, event) {
+        return document.getElementById(id).addEventListener('keypress', event);
       }
     },
     byClass: {
@@ -27448,6 +27451,27 @@ function upload() {
   if (image) reader.readAsDataURL(image);
 }
 
+function addEventToFullModeEditor() {
+  _myQuery.default.set.byId.click('fullModeEditor', function () {
+    _myQuery.default.get.byClass.withCallBack('jqte', function (_) {
+      _.classList.toggle('fullScreen');
+    });
+  });
+}
+
+function addElmToJqteEditor(elm) {
+  _myQuery.default.get.byClass.withCallBack('jqte_toolbar', function (_) {
+    _.insertAdjacentHTML('beforeend', elm);
+
+    addEventToFullModeEditor();
+  });
+}
+
+function addFullModeTextForm() {
+  var elm = "\n  <div class=\"jqte_tool jqte_tool_22 unselectable\" role=\"button\" data-tool=\"21\" unselectable=\"on\" style=\"user-select: none;\">\n    <a unselectable=\"on\" style=\"user-select: none;\" id=\"fullModeEditor\">Full mode</a>\n  </div>\n  ";
+  addElmToJqteEditor(elm);
+}
+
 var init = function init(article) {
   delete article.comments;
   etArticle = article;
@@ -27475,6 +27499,8 @@ var init = function init(article) {
 
     _myQuery.default.set.byId.innerHtml('htmlPreview', output);
   });
+
+  addFullModeTextForm();
 };
 
 var _default = {
@@ -27573,6 +27599,27 @@ function upload() {
   if (image) reader.readAsDataURL(image);
 }
 
+function addEventToFullModeEditor() {
+  _myQuery.default.set.byId.click('fullModeEditor', function () {
+    _myQuery.default.get.byClass.withCallBack('jqte', function (_) {
+      _.classList.toggle('fullScreen');
+    });
+  });
+}
+
+function addElmToJqteEditor(elm) {
+  _myQuery.default.get.byClass.withCallBack('jqte_toolbar', function (_) {
+    _.insertAdjacentHTML('beforeend', elm);
+
+    addEventToFullModeEditor();
+  });
+}
+
+function addFullModeTextForm() {
+  var elm = "\n  <div class=\"jqte_tool jqte_tool_22 unselectable\" role=\"button\" data-tool=\"21\" unselectable=\"on\" style=\"user-select: none;\">\n    <a unselectable=\"on\" style=\"user-select: none;\" id=\"fullModeEditor\">Full mode</a>\n  </div>\n  ";
+  addElmToJqteEditor(elm);
+}
+
 var init = function init() {
   _jqueryTe2.default.jteF(_jquery.default);
 
@@ -27591,6 +27638,8 @@ var init = function init() {
 
     _myQuery.default.set.byId.innerHtml('htmlPreview', output);
   });
+
+  addFullModeTextForm();
 };
 
 var _default = {
@@ -27614,7 +27663,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _default = {
-  home: "\n    <style>\n        .mainPageArticles .card:first-child{\n            width:100% !important;\n        }\n\n        .homePage a{\n            color: #212529;\n        }\n\n        .btn-continue{\n            color: white;\n            position: relative;\n            bottom: 10px;\n        }\n\n        .title{\n            padding: 1.5rem;\n            pointer-events: none;\n        }\n\n        .cardImage{\n            object-fit: cover;\n            width: 100%;\n            height: 12rem;\n        }\n\n        .forHerP{\n            font-style: italic;\n            font-size: 1.2rem;\n            font-weight: 30;\n            margin-top: 2rem;\n        }\n\n        a:hover{\n            text-decoration: none;\n        }\n\n        .card-holder{\n            height: 26rem;\n        }\n\n        .card{\n            height: 100%\n        }\n\n        .card .card-img-top{\n            object-fit: cover;\n            width: 100%;\n            height: 13rem;\n        }\n    </style>\n    <div class='homePage'>\n        <div class='row'>\n            <div class='col-sm-12'>\n                <div class='title'>\n                    <h3>BuzeReci.ro</h3>\n                    <p class='forHerP'>Pentru ea... </p>\n                <div>\n            </div>\n        </div>\n        <div class='mainPageArticles'>\n            \n            <div id='firstArticle' class='col-sm-12'></div>\n\n            <div class='row'>\n                {{#.}}\n                <div class=\"col-sm-4 col-xs-12 card-holder\">\n\n                    <div class=\"card\">\n                        <img class=\"card-img-top\" src=\"{{image}}\" alt=\"Card image\">\n                        <div class=\"card-body\">\n                            <h4 class=\"card-title\">{{title}}</h4>\n                            <p class=\"card-text\">{{description}}</p>\n                            <p class=\"card-text card-date\">{{date}}</p>\n                            <a href='#/article/{{smug}}' class=\"btn btn-success btn-continue\">Continuare</a>\n                        </div>\n                    </div>\n                </div>\n                {{/.}}\n            </div>\n\n            <br>\n            <div id=\"Pagination\"></div>\n        </div>\n    </div>"
+  home: "\n    <style>\n        .mainPageArticles .card:first-child{\n            width:100% !important;\n        }\n\n        .title{\n            padding: 1.5rem;\n            pointer-events: none;\n        }\n\n        .cardImage{\n            object-fit: cover;\n            width: 100%;\n            height: 12rem;\n        }\n\n        .forHerP{\n            font-style: italic;\n            font-size: 1.2rem;\n            font-weight: 30;\n            margin-top: 2rem;\n        }\n\n        a:hover{\n            text-decoration: none;\n        }\n\n        .card-holder{\n            height: 26rem;\n        }\n\n        .card{\n            height: 100%\n        }\n\n        .card .card-img-top{\n            object-fit: cover;\n            width: 100%;\n            height: 13rem;\n        }\n\n        .btn-continue{\n            color: white;\n            margin-top: 1rem;\n        }\n    </style>\n    <div class='homePage'>\n        <div class='row'>\n            <div class='col-sm-12'>\n                <div class='title'>\n                    <h3>BuzeReci.ro</h3>\n                    <p class='forHerP'>Pentru ea... </p>\n                <div>\n            </div>\n        </div>\n        <div class='mainPageArticles'>\n            \n            <div id='firstArticle' class='col-sm-12'></div>\n\n            <div class='row'>\n                {{#.}}\n                <div class=\"col-sm-4 col-xs-12 card-holder\">\n\n                    <div class=\"card\">\n                        <img class=\"card-img-top\" src=\"{{image}}\" alt=\"Card image\">\n                        <div class=\"card-body\">\n                            <h4 class=\"card-title\">{{title}}</h4>\n                            <p class=\"card-text\">{{description}}</p>\n                            <p class=\"card-text card-date\">{{date}}</p>\n                            <a href='#/article/{{smug}}' class=\"btn btn-success btn-continue\">Continuare</a>\n                        </div>\n                    </div>\n                </div>\n                {{/.}}\n            </div>\n\n            <br>\n            <div id=\"Pagination\"></div>\n        </div>\n    </div>"
 };
 exports.default = _default;
 },{}],"lib/templates/editArticleTemplate.js":[function(require,module,exports) {
@@ -27625,7 +27674,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _default = {
-  edit: "\n    <style>\n        #MainContent .row{\n            padding: 0.2rem;\n            padding-left: 1rem !important;\n            padding-right: 1rem !important;\n        }\n\n        #MainContent .col-sm-6, #MainContent .col-xs-12, #MainContent .col-sm-2, #MainContent .col-sm-9, #MainContent .col-sm-3{\n            padding: 0.2rem !important;\n        }\n\n        .jqte{\n            margin-top: 0;\n            margin-bottom: 0;\n        }\n        \n        .jqte_editor{\n            height: 20rem;\n        }\n\n         #cssInputContainer{\n            height: 22.2rem;\n        }\n\n        #jsScriptInputContainer, #htmlPreview, #htmlContent{\n            height: 12rem;\n        }\n\n        .buttons{\n            text-align: center;\n        }\n\n        .buttons button{\n            margin-right: 5rem;\n            margin-top: 2rem;\n        }\n\n        #isVisible{\n            height: 1.8rem;\n        }\n\n        #Footer{\n            display: none;\n        }\n\n        .createLabel{\n            font-weight: 600;\n            padding: 0.5rem;\n        }\n\n        .emptyDiv{\n            height: 4rem !important;\n        }\n    </style>\n    <div class='row'> \n        <div class='col-sm-12'>\n            <p class='createLabel'>Create new article:</p>\n        </div>\n        <div class='col-xs-12 col-sm-6'>\n            <input type=\"text\" placeholder=\"token\" id=\"token\" class=\"form-control\">\n        </div>\n        <div class='col-xs-12 col-sm-6'>\n            <input type=\"text\" class=\"form-control\" placeholder=\"title\" value=\"{{title}}\" id=\"title\">\n        </div>\n        <div class='col-xs-12 col-sm-6'>\n            <input type=\"text\" class=\"form-control\" placeholder=\"description\" value=\"{{description}}\" id=\"description\">\n        </div>\n        <div class='col-xs-12 col-sm-6'>\n            <div class='row'>\n                <div class='col-xs-2 col-sm-2'>\n                    <input type=\"checkbox\" class='form-control' id=\"isVisible\" {{#visible}} checked {{/visible}}>\n                </div>\n                <div class='col-xs-6 col-sm-6'>\n                    <h5>Visible</h5>\n                </div>\n            </div>\n        </div>\n    </div>\n\n    <div class='row'>\n        <div class='col-sm-9'>\n            <textarea class=\"content\" id=\"content\"></textarea>\n        </div>\n        <div class='col-sm-3'>\n            <textarea class=\"form-control\" id=\"cssInputContainer\" placeholder='styles'></textarea>\n        </div>\n    </div>\n    <div class='row'>\n        <div class='col-sm-6'>\n            <textarea class=\"form-control\" id=\"jsScriptInputContainer\" placeholder='js script'></textarea>\n        </div>\n\n        <div class='col-sm-6'>\n            <textarea class=\"form-control\" id=\"htmlPreview\" placeholder='text html preview'></textarea>\n        </div>\n    </div>\n    <div class='row'>\n        <div class='col-sm-12'>\n            <textarea class=\"form-control\" id=\"htmlContent\" placeholder='html content'></textarea>\n        </div>\n    </div>\n    <div class='row'>\n        <div class='col-sm-6'>\n            <span>Select image</span><br>\n            <input type=\"file\" id=\"imageUploader\"><br>\n            <img src=\"\" height=\"200px\" alt=\"Image preview...\" id=\"imagePreview\">\n        </div> \n        <div class='col-sm-6'> \n            <div class='buttons'>\n                <button id=\"show\" class='btn btn-default'> Preview article </button>\n                <button id=\"submit\" class='btn btn-success'> Post article </button>\n            </div>\n        </div>\n    </div>"
+  edit: "\n    <style>\n        #MainContent .row{\n            padding: 0.2rem;\n            padding-left: 1rem !important;\n            padding-right: 1rem !important;\n        }\n\n        #MainContent .col-sm-6, #MainContent .col-xs-12, #MainContent .col-sm-2, #MainContent .col-sm-9, #MainContent .col-sm-3{\n            padding: 0.2rem !important;\n        }\n\n        .jqte{\n            margin-top: 0;\n            margin-bottom: 0;\n        }\n        \n        .jqte_editor{\n            height: 20rem;\n        }\n\n         #cssInputContainer{\n            height: 22.2rem;\n        }\n\n        #jsScriptInputContainer, #htmlPreview, #htmlContent{\n            height: 12rem;\n        }\n\n        .buttons{\n            text-align: center;\n        }\n\n        .buttons button{\n            margin-right: 5rem;\n            margin-top: 2rem;\n        }\n\n        #isVisible{\n            height: 1.8rem;\n        }\n\n        #Footer{\n            display: none;\n        }\n\n        .createLabel{\n            font-weight: 600;\n            padding: 0.5rem;\n        }\n\n        .emptyDiv{\n            height: 4rem !important;\n        }\n\n        .fullScreen{\n            position: fixed;\n            width: 100%;\n            height: 108%;\n            left: 0;\n            top: 0;\n            background: rgba(51,51,51,0.7);\n            z-index: 10;\n        }\n\n        .fullScreen .jqte_editor{\n            height: 100% !important;\n            background-color: black;\n            color: white;\n        }\n    </style>\n    <div class='row'> \n        <div class='col-sm-12'>\n            <p class='createLabel'>Create new article:</p>\n        </div>\n        <div class='col-xs-12 col-sm-6'>\n            <input type=\"text\" placeholder=\"token\" id=\"token\" class=\"form-control\">\n        </div>\n        <div class='col-xs-12 col-sm-6'>\n            <input type=\"text\" class=\"form-control\" placeholder=\"title\" value=\"{{title}}\" id=\"title\">\n        </div>\n        <div class='col-xs-12 col-sm-6'>\n            <input type=\"text\" class=\"form-control\" placeholder=\"description\" value=\"{{description}}\" id=\"description\">\n        </div>\n        <div class='col-xs-12 col-sm-6'>\n            <div class='row'>\n                <div class='col-xs-2 col-sm-2'>\n                    <input type=\"checkbox\" class='form-control' id=\"isVisible\" {{#visible}} checked {{/visible}}>\n                </div>\n                <div class='col-xs-6 col-sm-6'>\n                    <h5>Visible</h5>\n                </div>\n            </div>\n        </div>\n    </div>\n\n    <div class='row'>\n        <div class='col-sm-9'>\n            <textarea class=\"content\" id=\"content\"></textarea>\n        </div>\n        <div class='col-sm-3'>\n            <textarea class=\"form-control\" id=\"cssInputContainer\" placeholder='styles'></textarea>\n        </div>\n    </div>\n    <div class='row'>\n        <div class='col-sm-6'>\n            <textarea class=\"form-control\" id=\"jsScriptInputContainer\" placeholder='js script'></textarea>\n        </div>\n\n        <div class='col-sm-6'>\n            <textarea class=\"form-control\" id=\"htmlPreview\" placeholder='text html preview'></textarea>\n        </div>\n    </div>\n    <div class='row'>\n        <div class='col-sm-12'>\n            <textarea class=\"form-control\" id=\"htmlContent\" placeholder='html content'></textarea>\n        </div>\n    </div>\n    <div class='row'>\n        <div class='col-sm-6'>\n            <span>Select image</span><br>\n            <input type=\"file\" id=\"imageUploader\"><br>\n            <img src=\"\" height=\"200px\" alt=\"Image preview...\" id=\"imagePreview\">\n        </div> \n        <div class='col-sm-6'> \n            <div class='buttons'>\n                <button id=\"show\" class='btn btn-default'> Preview article </button>\n                <button id=\"submit\" class='btn btn-success'> Post article </button>\n            </div>\n        </div>\n    </div>"
 };
 exports.default = _default;
 },{}],"lib/templates/showArticleTemplate.js":[function(require,module,exports) {
@@ -27828,7 +27877,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.nav = void 0;
-var nav = "\n<style>\n  .nav-link:hover{\n    color: blanchedalmond !important;\n    transition-duration: 0.2s;\n  }\n\n  .navbar-brand{\n    border: 1px solid white;\n    border-radius: 50px;\n    text-align: center;\n    width: 4rem;\n    font-size: 1.4rem;\n    transition-duration: 0.3s;\n  }\n</style>\n\n<div class='row'>\n  <div class='col-sm-12 col-xs-12'>\n    <nav class=\"navbar navbar-expand-lg navbar navbar-light\" style=\"background-color: #4ABDAC ;\">\n      <a class=\"navbar-brand\" href=\"#\">BZ</a>\n      <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n        <span class=\"navbar-toggler-icon\"></span>\n      </button>\n\n      <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n        <ul class=\"navbar-nav mr-auto\">\n          <li class=\"nav-item active\">\n            <a class=\"nav-link\" href=\"#\">Despre mine <span class=\"sr-only\">(current)</span></a>\n          </li>\n          <li class=\"nav-item active\">\n            <a class=\"nav-link\" href=\"#\">Scrie-mi <span class=\"sr-only\">(current)</span></a>\n          </li>\n        </ul>\n        <form class=\"form-inline my-2 my-lg-0\">\n          <input class=\"form-control mr-sm-2\" type=\"search\" id=\"SearchInput\" placeholder=\"Caut\u0103\" aria-label=\"Search\">\n          <button class=\"btn btn-outline-success my-2 my-sm-0\" id=\"SearchButton\">Caut\u0103</button>\n        </form>\n      </div>\n    </nav>\n  </div>\n</div>\n";
+var nav = "\n<style>\n  .nav-link:hover{\n    color: blanchedalmond !important;\n    transition-duration: 0.2s;\n  }\n\n  .navbar-brand{\n    border: 1px solid white;\n    border-radius: 50px;\n    text-align: center;\n    width: 4rem;\n    font-size: 1.4rem;\n    transition-duration: 0.3s;\n  }\n</style>\n\n<div class='row'>\n  <div class='col-sm-12 col-xs-12'>\n    <nav class=\"navbar navbar-expand-lg navbar navbar-light\" style=\"background-color: #4ABDAC ;\">\n      <a class=\"navbar-brand\" href=\"#\">BZ</a>\n      <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n        <span class=\"navbar-toggler-icon\"></span>\n      </button>\n\n      <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n        <ul class=\"navbar-nav mr-auto\">\n          <li class=\"nav-item active\">\n            <a class=\"nav-link\" href=\"#\">Despre mine <span class=\"sr-only\">(current)</span></a>\n          </li>\n          <li class=\"nav-item active\">\n            <a class=\"nav-link\" href=\"#\">Scrie-mi <span class=\"sr-only\">(current)</span></a>\n          </li>\n        </ul>\n        <form class=\"form-inline my-2 my-lg-0\">\n          <input class=\"form-control mr-sm-2\" type=\"search\" id=\"SearchInput\" placeholder=\"Caut\u0103\" aria-label=\"Search\">\n        </form>\n      </div>\n    </nav>\n  </div>\n</div>\n";
 exports.nav = nav;
 },{}],"lib/templates/footer.js":[function(require,module,exports) {
 "use strict";
@@ -27858,12 +27907,14 @@ var _router = _interopRequireDefault(require("./router"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function addNavBarEvents() {
-  _myQuery.default.set.byId.click("SearchButton", function (event) {
-    event.preventDefault();
+  _myQuery.default.set.byId.keypress('SearchInput', function (e) {
+    if (e.which === 13 || e.keyCode === 13) {
+      event.preventDefault();
 
-    var titlePart = _myQuery.default.get.byId.value('SearchInput');
+      var titlePart = _myQuery.default.get.byId.value('SearchInput');
 
-    _router.default.navigateWitheSearch(titlePart);
+      _router.default.navigateWitheSearch(titlePart);
+    }
   });
 }
 
@@ -28048,7 +28099,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64591" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59533" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

@@ -37,7 +37,8 @@ export default {
       },
       checked: (id, checkedState) => {
         document.getElementById(id).checked = checkedState;
-      }
+      },
+      keypress: (id, event) => document.getElementById(id).addEventListener('keypress', event)
     },
     byClass: {
       click: (className, event) => {

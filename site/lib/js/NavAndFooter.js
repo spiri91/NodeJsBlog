@@ -4,10 +4,12 @@ import QQ from './myQuery';
 import router from './router';
 
 function addNavBarEvents() {
-  QQ.set.byId.click("SearchButton", (event) => {
-    event.preventDefault();
-    let titlePart = QQ.get.byId.value('SearchInput');
-    router.navigateWitheSearch(titlePart);
+  QQ.set.byId.keypress('SearchInput', (e) => {
+    if (e.which === 13 || e.keyCode === 13) {
+      event.preventDefault();
+      let titlePart = QQ.get.byId.value('SearchInput');
+      router.navigateWitheSearch(titlePart);
+    }
   });
 }
 

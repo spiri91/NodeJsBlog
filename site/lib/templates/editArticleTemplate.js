@@ -54,6 +54,22 @@ export default {
         .emptyDiv{
             height: 4rem !important;
         }
+
+        .fullScreen{
+            position: fixed;
+            width: 100%;
+            height: 108%;
+            left: 0;
+            top: 0;
+            background: rgba(51,51,51,0.7);
+            z-index: 10;
+        }
+
+        .fullScreen .jqte_editor{
+            height: 100% !important;
+            background-color: black;
+            color: white;
+        }
     </style>
     <div class='row'> 
         <div class='col-sm-12'>

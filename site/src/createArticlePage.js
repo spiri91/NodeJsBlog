@@ -17,7 +17,7 @@ function submit() {
     QQ.get.byId.value('htmlContent'),
     QQ.get.byId.checkedState('isVisible'),
     QQ.get.byId.value('cssInputContainer'),
-    theImage, 
+    theImage,
     QQ.get.byId.value('jsScriptInputContainer')
   );
 
@@ -51,6 +51,31 @@ function upload() {
   if (image) reader.readAsDataURL(image);
 }
 
+function addEventToFullModeEditor() {
+  QQ.set.byId.click('fullModeEditor', () => {
+    QQ.get.byClass.withCallBack('jqte', (_) => {
+      _.classList.toggle('fullScreen');
+    })
+  });
+}
+
+function addElmToJqteEditor(elm) {
+  QQ.get.byClass.withCallBack('jqte_toolbar', (_) => {
+    _.insertAdjacentHTML('beforeend', elm);
+    addEventToFullModeEditor();
+  })
+}
+
+function addFullModeTextForm() {
+  let elm = `
+  <div class="jqte_tool jqte_tool_22 unselectable" role="button" data-tool="21" unselectable="on" style="user-select: none;">
+    <a unselectable="on" style="user-select: none;" id="fullModeEditor">Full mode</a>
+  </div>
+  `
+
+  addElmToJqteEditor(elm);
+}
+
 let init = () => {
   jte.jteF($);
   $('#content').jqte();
@@ -63,6 +88,8 @@ let init = () => {
     let output = QQ.get.byClass.innerHtml('jqte_editor');
     QQ.set.byId.innerHtml('htmlPreview', output);
   });
+
+  addFullModeTextForm();
 }
 
 export default {
