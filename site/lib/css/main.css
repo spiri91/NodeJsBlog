@@ -40,3 +40,16 @@ html{
     color: black;
     font-size: 1.2rem;
 }
+
+/* .shareLinks .dropdown-toggle {
+    font-size: larger !important;
+    margin-left: 2rem !important;
+    font-weight: 300 !important;
+    padding: 0.3rem !important;
+    background-color: #28a745 !important;
+    border: none !important;
+}
+
+.shareLinks .dropdown-toggle::after {
+    display: none;
+} */ 

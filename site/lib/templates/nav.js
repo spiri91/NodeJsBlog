@@ -32,6 +32,21 @@ export const nav = `
             <a class="nav-link" href="#">Scrie-mi <span class="sr-only">(current)</span></a>
           </li>
         </ul>
+        <div class="dropdown shareLinks pull-right">
+            <div  class="a2a_kit a2a_kit_size_32 a2a_default_style">
+                <a class="dropdown-toggle btn btn-success" data-toggle="dropdown" href="#">
+                    Sharing is caring
+                </a>
+                <ul class="dropdown-menu">
+                    <a class="a2a_button_facebook"></a>
+                    <a class="a2a_button_twitter"></a>
+                    <a class="a2a_button_email"></a>
+                    <a class="a2a_button_linkedin"></a>
+                    <a class="a2a_button_whatsapp"></a>
+                    <a class="a2a_button_facebook_messenger"></a>
+                </ul>
+            </div>
+        </div>
         <form class="form-inline my-2 my-lg-0">
           <input class="form-control mr-sm-2" type="search" id="SearchInput" placeholder="Caută" aria-label="Search">
         </form>
