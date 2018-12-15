@@ -68,7 +68,7 @@ export default {
         .fullScreen .jqte_editor{
             height: 100% !important;
             background-color: black;
-            color: white;
+            color: #f8f9fa!important;
         }
     </style>
     <div class='row'> 

@@ -7,12 +7,16 @@ export const pagination = `
     z-index: 10;
   }
 
+  .pagination .disabled{
+    color: rgb(33, 37, 41) !important;
+  }
+
 </style>
 <div class='row'>
   <div class='col-xs-12 col-sm-12'>
     <nav>
       <ul class="pagination">
-          <li class="page-item disabled" disabled><a class="page-link" disabled>Pagina: </a></li>
+          <li class="page-item disabled" disabled><a class="page-link disabled" disabled>Pagina: </a></li>
           {{#.}}
           <li class="page-item" data-page-link="{{.}}"><a class="page-link" href="#/page/{{.}}">{{.}}</a></li>
           {{/.}}
