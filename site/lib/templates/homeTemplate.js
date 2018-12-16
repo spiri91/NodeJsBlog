@@ -6,7 +6,7 @@ export default {
             width:100% !important;
         }
 
-        .title{
+        ._title{
             padding: 1.5rem;
             pointer-events: none;
         }
@@ -49,9 +49,9 @@ export default {
         }
 
         .titleContainer{
-            background-image: url('./darkForest.jpg');
-            height: 30rem;
-            color: #f8f9fa!important;
+            background-image: url('./darkForest.jpg') !important;
+            height: 20rem;
+            color: #f8f9fa !important;
             font-family: 'Charm', cursive;
         }
 
@@ -60,41 +60,55 @@ export default {
             font-weight: 600;
             font-size: 3rem;
         }
+
+        .card-body{
+            background-color: rgb(108, 117, 125);
+            color: white;
+            border-radius: 2%;
+            font-weight: 500;
+        }
+        #firstArticle{
+            margin-bottom: 1rem;
+        }
+
     </style>
     <div class='homePage'>
-        <div class='row titleContainer'>
-            <div class='col-sm-12'>
-                <div class='title'>
+        <div class='row titleContainer '>
+            <div class='col-sm-12 transparent'>
+                <div class='_title'>
                     <h1 class='mainTitle'>BuzeReci.ro</h1>
                     <h3 class='forHerP'>Pentru ea... </h3>
                 </div>
             </div>
+            <div id="Pagination"></div>
         </div>
         
         <div class='mainPageArticles'>
             
-            <div id='firstArticle' class='col-sm-12'></div>
-
             <div class='row'>
                 {{#.}}
-                <div class="col-sm-3 col-xs-12">
-                    <div class="card-holder">
-                        <div class="card">
-                            <img class="card-img-top" src="{{image}}" alt="Card image">
-                            <div class="card-body">
-                                <h4 class="card-title">{{title}}</h4>
-                                <p class="card-text">{{description}}</p>
-                                <p class="card-text card-date">{{date}}</p>
-                                <a href='#/article/{{smug}}' class="btn btn-success btn-continue">Continuare</a>
-                            </div>
+
+                <div class="col-sm-4 col-xs-12">
+                    <div class="blog-card spring-fever" style="background: url({{image}}) center no-repeat;">
+                        <div class="title-content">
+                            <h3><a href='#/article/{{smug}}'>{{title}}</a></h3>
+                            <div class="intro"> <a href='#/article/{{smug}}'>Pentru ea</a> </div>
                         </div>
+                        <div class="card-info">
+                            {{description}}
+                            <a href='#/article/{{smug}}' class="btn btn-success">Continuare...</a>
+                        </div>
+                        <div class="utility-info">
+                            <ul class="utility-list">
+                            <li><span class="licon icon-dat"></span>{{date}}</li>
+                            </ul>
+                        </div>
+                        <div class="gradient-overlay"></div>
+                        <div class="color-overlay"></div></div>
                     </div>
-                </div>
                 {{/.}}
             </div>
-
-            <br>
-            <div id="Pagination"></div>
         </div>
+        <br>
     </div>` 
 }

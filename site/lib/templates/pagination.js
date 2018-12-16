@@ -3,12 +3,13 @@ export const pagination = `
 <style>
   .pagination{
     margin-left: 1rem !important;
-    margin-bottom: 3.5rem;
     z-index: 10;
+    opacity: 0.8;
   }
 
   .pagination .disabled{
     color: rgb(33, 37, 41) !important;
+    background-color: transparent;
   }
 
 </style>

@@ -2,6 +2,7 @@ export const mainArticle = `
  <style>
     .mainArticle{
         font-size: larger;
+        margin-bottom: 1rem;
     }
 
     .mainCardImage{
@@ -12,6 +13,7 @@ export const mainArticle = `
     
     .mainArticle .card-body{
         text-align: center;
+        height: 100%;
     }
  </style>
 
@@ -31,8 +33,6 @@ export const mainArticle = `
                 <image class='mainCardImage' src="{{image}}">
             </div>
         </div>
-        
-        
     </div>
  <div>
 `

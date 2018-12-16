@@ -176,11 +176,6 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"C:/Users/Spirica/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"lib/css/main.css":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
 },{"_css_loader":"C:/Users/Spirica/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"lib/css/awn.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
@@ -27646,16 +27641,7 @@ var _default = {
   init: init
 };
 exports.default = _default;
-},{"jquery":"../node_modules/jquery/dist/jquery.js","../lib/js/myQuery":"lib/js/myQuery.js","./article":"src/article.js","../lib/js/call":"lib/js/call.js","../lib/css/jquery-te-1.4.0.css":"lib/css/jquery-te-1.4.0.css","../dist/js/jquery-te-1.4.0.min":"dist/js/jquery-te-1.4.0.min.js","../lib/js/templates":"lib/js/templates.js"}],"lib/templates/mainArticle.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.mainArticle = void 0;
-var mainArticle = "\n <style>\n    .mainArticle{\n        font-size: larger;\n    }\n\n    .mainCardImage{\n        object-fit: cover;\n        width: 100%;\n        height: 12rem;\n    }\n    \n    .mainArticle .card-body{\n        text-align: center;\n    }\n </style>\n\n <div class='row'>\n    <div class=\"col-sm-12 col-xs-12 card\">\n        <div class='row'>\n            <div class='col-sm-5'>\n                <a class=\"mainArticle\" href='#/article/{{smug}}'>\n                    <div class=\"card-body\">\n                        <h4 class=\"card-title\">{{title}}</h4>\n                        <p class=\"card-text\">{{description}}</p>\n                        <p>pe: {{date}}</p>\n                    </div>\n                </a>\n            </div>\n            <div class='col-sm-7'>\n                <image class='mainCardImage' src=\"{{image}}\">\n            </div>\n        </div>\n        \n        \n    </div>\n <div>\n";
-exports.mainArticle = mainArticle;
-},{}],"lib/templates/homeTemplate.js":[function(require,module,exports) {
+},{"jquery":"../node_modules/jquery/dist/jquery.js","../lib/js/myQuery":"lib/js/myQuery.js","./article":"src/article.js","../lib/js/call":"lib/js/call.js","../lib/css/jquery-te-1.4.0.css":"lib/css/jquery-te-1.4.0.css","../dist/js/jquery-te-1.4.0.min":"dist/js/jquery-te-1.4.0.min.js","../lib/js/templates":"lib/js/templates.js"}],"lib/templates/homeTemplate.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -27663,7 +27649,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _default = {
-  home: "\n    <style>\n        .mainPageArticles .card:first-child{\n            width:100% !important;\n        }\n\n        .title{\n            padding: 1.5rem;\n            pointer-events: none;\n        }\n\n        .cardImage{\n            object-fit: cover;\n            width: 100%;\n            height: 12rem;\n        }\n\n        .forHerP{\n            font-style: italic;\n            font-size: 1.2rem;\n            font-weight: 30;\n            margin-top: 2rem;\n        }\n\n        a:hover{\n            text-decoration: none;\n        }\n\n        .card-holder{\n            height: 26rem;\n            padding: 0.2rem;\n        }\n\n        .card{\n            height: 100%\n        }\n\n        .card .card-img-top{\n            object-fit: cover;\n            width: 100%;\n            height: 13rem;\n        }\n\n        .btn-continue{\n            color: #f8f9fa!important;\n            margin-top: 1rem;\n        }\n\n        .titleContainer{\n            background-image: url('./darkForest.jpg');\n            height: 30rem;\n            color: #f8f9fa!important;\n            font-family: 'Charm', cursive;\n        }\n\n        .mainTitle{\n            letter-spacing: 13px;\n            font-weight: 600;\n            font-size: 3rem;\n        }\n    </style>\n    <div class='homePage'>\n        <div class='row titleContainer'>\n            <div class='col-sm-12'>\n                <div class='title'>\n                    <h1 class='mainTitle'>BuzeReci.ro</h1>\n                    <h3 class='forHerP'>Pentru ea... </h3>\n                </div>\n            </div>\n        </div>\n        \n        <div class='mainPageArticles'>\n            \n            <div id='firstArticle' class='col-sm-12'></div>\n\n            <div class='row'>\n                {{#.}}\n                <div class=\"col-sm-3 col-xs-12\">\n                    <div class=\"card-holder\">\n                        <div class=\"card\">\n                            <img class=\"card-img-top\" src=\"{{image}}\" alt=\"Card image\">\n                            <div class=\"card-body\">\n                                <h4 class=\"card-title\">{{title}}</h4>\n                                <p class=\"card-text\">{{description}}</p>\n                                <p class=\"card-text card-date\">{{date}}</p>\n                                <a href='#/article/{{smug}}' class=\"btn btn-success btn-continue\">Continuare</a>\n                            </div>\n                        </div>\n                    </div>\n                </div>\n                {{/.}}\n            </div>\n\n            <br>\n            <div id=\"Pagination\"></div>\n        </div>\n    </div>"
+  home: "\n    <style>\n        .mainPageArticles .card:first-child{\n            width:100% !important;\n        }\n\n        ._title{\n            padding: 1.5rem;\n            pointer-events: none;\n        }\n\n        .cardImage{\n            object-fit: cover;\n            width: 100%;\n            height: 12rem;\n        }\n\n        .forHerP{\n            font-style: italic;\n            font-size: 1.2rem;\n            font-weight: 30;\n            margin-top: 2rem;\n        }\n\n        a:hover{\n            text-decoration: none;\n        }\n\n        .card-holder{\n            height: 26rem;\n            padding: 0.2rem;\n        }\n\n        .card{\n            height: 100%\n        }\n\n        .card .card-img-top{\n            object-fit: cover;\n            width: 100%;\n            height: 13rem;\n        }\n\n        .btn-continue{\n            color: #f8f9fa!important;\n            margin-top: 1rem;\n        }\n\n        .titleContainer{\n            background-image: url('./darkForest.jpg') !important;\n            height: 20rem;\n            color: #f8f9fa !important;\n            font-family: 'Charm', cursive;\n        }\n\n        .mainTitle{\n            letter-spacing: 13px;\n            font-weight: 600;\n            font-size: 3rem;\n        }\n\n        .card-body{\n            background-color: rgb(108, 117, 125);\n            color: white;\n            border-radius: 2%;\n            font-weight: 500;\n        }\n        #firstArticle{\n            margin-bottom: 1rem;\n        }\n\n    </style>\n    <div class='homePage'>\n        <div class='row titleContainer '>\n            <div class='col-sm-12 transparent'>\n                <div class='_title'>\n                    <h1 class='mainTitle'>BuzeReci.ro</h1>\n                    <h3 class='forHerP'>Pentru ea... </h3>\n                </div>\n            </div>\n            <div id=\"Pagination\"></div>\n        </div>\n        \n        <div class='mainPageArticles'>\n            \n            <div class='row'>\n                {{#.}}\n\n                <div class=\"col-sm-4 col-xs-12\">\n                    <div class=\"blog-card spring-fever\" style=\"background: url({{image}}) center no-repeat;\">\n                        <div class=\"title-content\">\n                            <h3><a href='#/article/{{smug}}'>{{title}}</a></h3>\n                            <div class=\"intro\"> <a href='#/article/{{smug}}'>Pentru ea</a> </div>\n                        </div>\n                        <div class=\"card-info\">\n                            {{description}}\n                            <a href='#/article/{{smug}}' class=\"btn btn-success\">Continuare...</a>\n                        </div>\n                        <div class=\"utility-info\">\n                            <ul class=\"utility-list\">\n                            <li><span class=\"licon icon-dat\"></span>{{date}}</li>\n                            </ul>\n                        </div>\n                        <div class=\"gradient-overlay\"></div>\n                        <div class=\"color-overlay\"></div></div>\n                    </div>\n                {{/.}}\n            </div>\n        </div>\n        <br>\n    </div>"
 };
 exports.default = _default;
 },{}],"lib/templates/editArticleTemplate.js":[function(require,module,exports) {
@@ -27695,7 +27681,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.pagination = void 0;
-var pagination = "\n\n<style>\n  .pagination{\n    margin-left: 1rem !important;\n    margin-bottom: 3.5rem;\n    z-index: 10;\n  }\n\n  .pagination .disabled{\n    color: rgb(33, 37, 41) !important;\n  }\n\n</style>\n<div class='row'>\n  <div class='col-xs-12 col-sm-12'>\n    <nav>\n      <ul class=\"pagination\">\n          <li class=\"page-item disabled\" disabled><a class=\"page-link disabled\" disabled>Pagina: </a></li>\n          {{#.}}\n          <li class=\"page-item\" data-page-link=\"{{.}}\"><a class=\"page-link\" href=\"#/page/{{.}}\">{{.}}</a></li>\n          {{/.}}\n      </ul>\n    </nav>\n  </div>\n</div>\n";
+var pagination = "\n\n<style>\n  .pagination{\n    margin-left: 1rem !important;\n    z-index: 10;\n    opacity: 0.8;\n  }\n\n  .pagination .disabled{\n    color: rgb(33, 37, 41) !important;\n    background-color: transparent;\n  }\n\n</style>\n<div class='row'>\n  <div class='col-xs-12 col-sm-12'>\n    <nav>\n      <ul class=\"pagination\">\n          <li class=\"page-item disabled\" disabled><a class=\"page-link disabled\" disabled>Pagina: </a></li>\n          {{#.}}\n          <li class=\"page-item\" data-page-link=\"{{.}}\"><a class=\"page-link\" href=\"#/page/{{.}}\">{{.}}</a></li>\n          {{/.}}\n      </ul>\n    </nav>\n  </div>\n</div>\n";
 exports.pagination = pagination;
 },{}],"lib/templates/previewTemplate.js":[function(require,module,exports) {
 "use strict";
@@ -27726,8 +27712,6 @@ var _editArticlePage = _interopRequireDefault(require("../../src/editArticlePage
 
 var _createArticlePage = _interopRequireDefault(require("../../src/createArticlePage"));
 
-var _mainArticle = require("../templates/mainArticle");
-
 var _myQuery = _interopRequireDefault(require("./myQuery"));
 
 var _homeTemplate = _interopRequireDefault(require("../templates/homeTemplate"));
@@ -27744,19 +27728,18 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+// import { mainArticle } from '../templates/mainArticle'
 function set(value) {
   _myQuery.default.set.byId.innerHtml(consts.mainContent, value);
 }
 
 function setById(value, id) {
   _myQuery.default.set.byId.innerHtml(id, value);
-}
+} // function setMainArticle(obj) {
+//   let output = Mustache.render(mainArticle, obj);
+//   setById(output, 'firstArticle');
+// }
 
-function setMainArticle(obj) {
-  var output = _mustache.default.render(_mainArticle.mainArticle, obj);
-
-  setById(output, 'firstArticle');
-}
 
 var _default = {
   showArticle: function showArticle(article) {
@@ -27771,9 +27754,8 @@ var _default = {
 
     set(output);
 
-    _homePage.default.init(true);
+    _homePage.default.init(true); // if (obj.length > 0) setMainArticle(obj[0]);
 
-    if (obj.length > 0) setMainArticle(obj[0]);
   },
   showStartPageAfterSearch: function showStartPageAfterSearch(obj) {
     var output = _mustache.default.render(_homeTemplate.default.home, obj);
@@ -27812,7 +27794,7 @@ var _default = {
   }
 };
 exports.default = _default;
-},{"mustache":"../node_modules/mustache/mustache.js","./constants":"lib/js/constants.js","../../src/singleArticlePage":"src/singleArticlePage.js","../../src/homePage":"src/homePage.js","../../src/editArticlePage":"src/editArticlePage.js","../../src/createArticlePage":"src/createArticlePage.js","../templates/mainArticle":"lib/templates/mainArticle.js","./myQuery":"lib/js/myQuery.js","../templates/homeTemplate":"lib/templates/homeTemplate.js","../templates/editArticleTemplate":"lib/templates/editArticleTemplate.js","../templates/showArticleTemplate":"lib/templates/showArticleTemplate.js","../templates/pagination":"lib/templates/pagination.js","../templates/previewTemplate":"lib/templates/previewTemplate.js"}],"lib/js/router.js":[function(require,module,exports) {
+},{"mustache":"../node_modules/mustache/mustache.js","./constants":"lib/js/constants.js","../../src/singleArticlePage":"src/singleArticlePage.js","../../src/homePage":"src/homePage.js","../../src/editArticlePage":"src/editArticlePage.js","../../src/createArticlePage":"src/createArticlePage.js","./myQuery":"lib/js/myQuery.js","../templates/homeTemplate":"lib/templates/homeTemplate.js","../templates/editArticleTemplate":"lib/templates/editArticleTemplate.js","../templates/showArticleTemplate":"lib/templates/showArticleTemplate.js","../templates/pagination":"lib/templates/pagination.js","../templates/previewTemplate":"lib/templates/previewTemplate.js"}],"lib/js/router.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -27886,7 +27868,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.footer = void 0;
-var footer = "\n<div class='row'>\n  <div class='col-sm-12 col-xs-12'>\n    <div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">\n      <strong>Holy guacamole!</strong> You should check in on some of those fields below.\n      <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n        <span aria-hidden=\"true\">&times;</span>\n      </button>\n    </div>\n  </div>\n</div>\n";
+var footer = "\n<div class='row'>\n  <div class='col-sm-12 col-xs-12'>\n    <div class=\"alert alert-dark alert-dismissible fade show\" role=\"alert\">\n      <strong>Holy guacamole!</strong> You should check in on some of those fields below.\n      <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n        <span aria-hidden=\"true\">&times;</span>\n      </button>\n    </div>\n  </div>\n</div>\n";
 exports.footer = footer;
 },{}],"lib/js/navAndFooter.js":[function(require,module,exports) {
 "use strict";
@@ -28044,8 +28026,6 @@ exports.default = _default;
 
 require("./lib/css/bootstrap.min.css");
 
-require("./lib/css/main.css");
-
 require("./lib/css/awn.css");
 
 var _bootstrap = _interopRequireDefault(require("bootstrap"));
@@ -28072,7 +28052,7 @@ if ('serviceWorker' in navigator) {
 }
 
 _navAndFooter.default.buildBoth();
-},{"./lib/css/bootstrap.min.css":"lib/css/bootstrap.min.css","./lib/css/main.css":"lib/css/main.css","./lib/css/awn.css":"lib/css/awn.css","bootstrap":"../node_modules/bootstrap/dist/js/bootstrap.js","./lib/js/router":"lib/js/router.js","./lib/js/navAndFooter":"lib/js/navAndFooter.js","./lib/js/notifications":"lib/js/notifications.js","./sw.js":[["sw.js","sw.js"],"sw.map","sw.js"]}],"C:/Users/Spirica/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./lib/css/bootstrap.min.css":"lib/css/bootstrap.min.css","./lib/css/awn.css":"lib/css/awn.css","bootstrap":"../node_modules/bootstrap/dist/js/bootstrap.js","./lib/js/router":"lib/js/router.js","./lib/js/navAndFooter":"lib/js/navAndFooter.js","./lib/js/notifications":"lib/js/notifications.js","./sw.js":[["sw.js","sw.js"],"sw.map","sw.js"]}],"C:/Users/Spirica/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -28099,7 +28079,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58902" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57127" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
