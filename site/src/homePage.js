@@ -2,6 +2,8 @@ import _ from 'underscore';
 import call from '../lib/js/call';
 import QQ from '../lib/js/myQuery';
 import templates from '../lib/js/templates';
+import builder from '../lib/js/navAndFooter';
+import router from '../lib/js/router';
 
 async function getPaginationArray() {
   let res = await call.getCount();
@@ -16,6 +18,14 @@ function getPageFromUrl() {
   if (!page) return 1;
 
   return page;
+}
+
+function addGotoEvents() {
+  let elms = QQ.get.byAttribute.all('go-to');
+  for (let e of elms) {
+    let smug = e.getAttribute('go-to');
+    e.addEventListener('click', () => router.navigateToArticleBySmug(smug));
+  }
 }
 
 function setActivePage() {
@@ -37,5 +47,9 @@ export default {
       await getPaginationArray();
       setActivePage();
     }
+
+    builder.buildBoth();
+
+    addGotoEvents();
   }
 }

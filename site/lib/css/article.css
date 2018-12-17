@@ -85,7 +85,7 @@ color:#fff;
 .blog-card h3 a:hover{
   text-shadow: 0px 8px 20px rgba(0, 0, 0, 0.95);
 }
-h3:after {
+.blog-card h3:after {
   content: " ";
   display: block; 
   width: 10%;
@@ -261,7 +261,10 @@ h3:after {
   margin-top:40px
 }
 .blog-card{
-  height:300px
+  height:300px;
+}
+.blog-card:hover{
+  cursor: pointer !important;
 }
 .blog-card h3{
   font-size:1.3em

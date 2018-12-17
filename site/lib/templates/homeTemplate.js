@@ -67,11 +67,16 @@ export default {
             border-radius: 2%;
             font-weight: 500;
         }
+
         #firstArticle{
             margin-bottom: 1rem;
         }
-
+        
+        .blog-card:hover{
+            cursor: pointer !important;
+        }
     </style>
+
     <div class='homePage'>
         <div class='row titleContainer '>
             <div class='col-sm-12 transparent'>
@@ -89,7 +94,7 @@ export default {
                 {{#.}}
 
                 <div class="col-sm-4 col-xs-12">
-                    <div class="blog-card spring-fever" style="background: url({{image}}) center no-repeat;">
+                    <div class="blog-card spring-fever" style="background: url({{image}}) center no-repeat;" go-to="{{smug}}">
                         <div class="title-content">
                             <h3><a href='#/article/{{smug}}'>{{title}}</a></h3>
                             <div class="intro"> <a href='#/article/{{smug}}'>Pentru ea</a> </div>

@@ -12,6 +12,7 @@ import editTemplate from '../templates/editArticleTemplate';
 import showTemplate from '../templates/showArticleTemplate';
 import { pagination } from '../templates/pagination';
 import { previewTemplate } from '../templates/previewTemplate';
+import { about } from '../templates/aboutPage';
 
 function set(value) {
   QQ.set.byId.innerHtml(consts.mainContent, value);
@@ -80,5 +81,9 @@ export default {
     previewWindow.document.open();
     previewWindow.document.write(output);
     previewWindow.document.close();
+  },
+
+  showAboutPage: () => {
+    set(about);
   }
 };

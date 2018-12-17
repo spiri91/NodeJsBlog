@@ -16,6 +16,7 @@ router
     'article/:id/edit': params => call.getOneById(params.id).then(sanitizer.sanitiseArticle).then(templates.articleEdit),
     'page/:number': params => call.getPage(params.number).then(sanitizer.sanitiseArticles).then(templates.showStartPage),
     'search/:searchBy': params => call.search(params.searchBy).then(sanitizer.sanitiseArticles).then(templates.showStartPageAfterSearch),
+    'about': () => templates.showAboutPage(),
     '*': () => call.getPage(1).then(sanitizer.sanitiseArticles).then(templates.showStartPage)
   })
   .resolve();

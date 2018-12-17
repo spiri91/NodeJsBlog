@@ -10,7 +10,8 @@ export default {
       checkedState: id => document.getElementById(id).checked
     },
     byAttribute: {
-      element: (attributeName, value) => document.querySelectorAll(`[${attributeName}="${value}"]`)
+      element: (attributeName, value) => document.querySelectorAll(`[${attributeName}="${value}"]`),
+      all: attributeName => document.querySelectorAll(`[${attributeName}]`)
     },
     byClass: {
       innerHtml: className => document.getElementsByClassName(className)[0].innerHTML,

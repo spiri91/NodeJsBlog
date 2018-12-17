@@ -3,6 +3,7 @@ export const pagination = `
 <style>
   .pagination{
     margin-left: 1rem !important;
+    margin-bottom: -3rem !important;
     z-index: 10;
     opacity: 0.8;
   }
@@ -13,8 +14,6 @@ export const pagination = `
   }
 
 </style>
-<div class='row'>
-  <div class='col-xs-12 col-sm-12'>
     <nav>
       <ul class="pagination">
           <li class="page-item disabled" disabled><a class="page-link disabled" disabled>Pagina: </a></li>
@@ -23,6 +22,4 @@ export const pagination = `
           {{/.}}
       </ul>
     </nav>
-  </div>
-</div>
 `

@@ -20381,6 +20381,9 @@ var _default = {
     byAttribute: {
       element: function element(attributeName, value) {
         return document.querySelectorAll("[".concat(attributeName, "=\"").concat(value, "\"]"));
+      },
+      all: function all(attributeName) {
+        return document.querySelectorAll("[".concat(attributeName, "]"));
       }
     },
     byClass: {
@@ -26477,7 +26480,76 @@ var _default = {
   }
 };
 exports.default = _default;
-},{"../lib/js/myQuery":"lib/js/myQuery.js","../lib/js/call":"lib/js/call.js","./comment":"src/comment.js","../lib/js/templates":"lib/js/templates.js","../lib/js/sanitizer":"lib/js/sanitizer.js"}],"src/homePage.js":[function(require,module,exports) {
+},{"../lib/js/myQuery":"lib/js/myQuery.js","../lib/js/call":"lib/js/call.js","./comment":"src/comment.js","../lib/js/templates":"lib/js/templates.js","../lib/js/sanitizer":"lib/js/sanitizer.js"}],"lib/templates/nav.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.nav = void 0;
+var nav = "\n<style>\n  .nav-link:hover{\n    color: blanchedalmond !important;\n    transition-duration: 0.2s;\n  }\n\n  .navbar-brand{\n    border: 1px solid white;\n    border-radius: 50px;\n    text-align: center;\n    width: 4rem;\n    font-size: 1.4rem;\n    transition-duration: 0.3s;\n  }\n\n  .nav-link{\n    color: #f8f9fa !important;\n  }\n\n  .shareLinksDropDown{\n    background-color: inherit;\n    border: none;\n    margin-right: 6rem;\n  }\n\n  .shareLinksContainer{\n    background-color: #202020 !important;\n  }\n\n  .shareLinksContainer a{\n    padding: 0.2rem;\n  }\n\n  .nav-item{\n    margin-right: 2rem;\n  }\n</style>\n\n<div class='row'>\n  <div class='col-sm-12 col-xs-12'>\n    <nav class=\"navbar navbar-expand-lg navbar navbar-light\" style=\"background-color: #202020;\">\n      <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n        <span class=\"navbar-toggler-icon\"></span>\n      </button>\n\n      <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n        <ul class=\"navbar-nav mr-auto\">\n          <li class=\"nav-item active\">\n            <a class=\"nav-link\" href=\"#/about\">Despre... <span class=\"sr-only\">(current)</span></a>\n          </li>\n          <li class=\"nav-item active\">\n            <a class=\"nav-link\" href=\"#\">Nu uita sa imi scrii <span class=\"sr-only\">(current)</span></a>\n          </li>\n        </ul>\n        <div class=\"dropdown shareLinks pull-right\">\n            <div  class=\"a2a_kit a2a_kit_size_32 a2a_default_style\">\n                <a class=\"dropdown-toggle btn btn-success shareLinksDropDown\" data-toggle=\"dropdown\" href=\"#\">\n                    Sharing is caring\n                </a>\n                <ul class=\"dropdown-menu shareLinksContainer\">\n                    <a class=\"a2a_button_facebook\"></a>\n                    <a class=\"a2a_button_twitter\"></a>\n                    <a class=\"a2a_button_email\"></a>\n                    <a class=\"a2a_button_linkedin\"></a>\n                    <a class=\"a2a_button_whatsapp\"></a>\n                    <a class=\"a2a_button_facebook_messenger\"></a>\n                </ul>\n            </div>\n        </div>\n        <form class=\"form-inline my-2 my-lg-0\">\n          <input class=\"form-control mr-sm-2\" type=\"search\" id=\"SearchInput\" placeholder=\"Caut\u0103\" aria-label=\"Search\">\n        </form>\n      </div>\n    </nav>\n  </div>\n</div>\n";
+exports.nav = nav;
+},{}],"lib/templates/footer.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.footer = void 0;
+var footer = "\n<div class='row'>\n  <div class='col-sm-12 col-xs-12'>\n    <div class=\"alert alert-dark alert-dismissible fade show\" role=\"alert\">\n      Doneaza... bla bla\n      <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n        <span aria-hidden=\"true\">&times;</span>\n      </button>\n    </div>\n  </div>\n</div>\n";
+exports.footer = footer;
+},{}],"lib/js/navAndFooter.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _nav = require("../templates/nav");
+
+var _footer = require("../templates/footer");
+
+var _myQuery = _interopRequireDefault(require("./myQuery"));
+
+var _router = _interopRequireDefault(require("./router"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function addNavBarEvents() {
+  _myQuery.default.set.byId.keypress('SearchInput', function (e) {
+    if (e.which === 13 || e.keyCode === 13) {
+      event.preventDefault();
+
+      var titlePart = _myQuery.default.get.byId.value('SearchInput');
+
+      _router.default.navigateWitheSearch(titlePart);
+    }
+  });
+}
+
+function buildNav() {
+  _myQuery.default.set.byId.innerHtml('Nav', _nav.nav);
+
+  addNavBarEvents();
+}
+
+function buildFooter() {
+  _myQuery.default.set.byId.innerHtml('Footer', _footer.footer);
+}
+
+function buildBoth() {
+  buildNav();
+  buildFooter();
+}
+
+var _default = {
+  buildNav: buildNav,
+  buildFooter: buildFooter,
+  buildBoth: buildBoth
+};
+exports.default = _default;
+},{"../templates/nav":"lib/templates/nav.js","../templates/footer":"lib/templates/footer.js","./myQuery":"lib/js/myQuery.js","./router":"lib/js/router.js"}],"src/homePage.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -26496,6 +26568,10 @@ var _call = _interopRequireDefault(require("../lib/js/call"));
 var _myQuery = _interopRequireDefault(require("../lib/js/myQuery"));
 
 var _templates = _interopRequireDefault(require("../lib/js/templates"));
+
+var _navAndFooter = _interopRequireDefault(require("../lib/js/navAndFooter"));
+
+var _router = _interopRequireDefault(require("../lib/js/router"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -26538,6 +26614,41 @@ function getPageFromUrl() {
   return page;
 }
 
+function addGotoEvents() {
+  var elms = _myQuery.default.get.byAttribute.all('go-to');
+
+  var _iteratorNormalCompletion = true;
+  var _didIteratorError = false;
+  var _iteratorError = undefined;
+
+  try {
+    var _loop = function _loop() {
+      var e = _step.value;
+      var smug = e.getAttribute('go-to');
+      e.addEventListener('click', function () {
+        return _router.default.navigateToArticleBySmug(smug);
+      });
+    };
+
+    for (var _iterator = elms[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+      _loop();
+    }
+  } catch (err) {
+    _didIteratorError = true;
+    _iteratorError = err;
+  } finally {
+    try {
+      if (!_iteratorNormalCompletion && _iterator.return != null) {
+        _iterator.return();
+      }
+    } finally {
+      if (_didIteratorError) {
+        throw _iteratorError;
+      }
+    }
+  }
+}
+
 function setActivePage() {
   var pageNr = getPageFromUrl();
 
@@ -26576,6 +26687,11 @@ var _default = {
               setActivePage();
 
             case 6:
+              _navAndFooter.default.buildBoth();
+
+              addGotoEvents();
+
+            case 8:
             case "end":
               return _context.stop();
           }
@@ -26589,7 +26705,7 @@ var _default = {
   }()
 };
 exports.default = _default;
-},{"@babel/runtime/regenerator":"../node_modules/@babel/runtime/regenerator/index.js","@babel/runtime/helpers/asyncToGenerator":"../node_modules/@babel/runtime/helpers/asyncToGenerator.js","underscore":"../node_modules/underscore/underscore.js","../lib/js/call":"lib/js/call.js","../lib/js/myQuery":"lib/js/myQuery.js","../lib/js/templates":"lib/js/templates.js"}],"lib/css/jquery-te-1.4.0.css":[function(require,module,exports) {
+},{"@babel/runtime/regenerator":"../node_modules/@babel/runtime/regenerator/index.js","@babel/runtime/helpers/asyncToGenerator":"../node_modules/@babel/runtime/helpers/asyncToGenerator.js","underscore":"../node_modules/underscore/underscore.js","../lib/js/call":"lib/js/call.js","../lib/js/myQuery":"lib/js/myQuery.js","../lib/js/templates":"lib/js/templates.js","../lib/js/navAndFooter":"lib/js/navAndFooter.js","../lib/js/router":"lib/js/router.js"}],"lib/css/jquery-te-1.4.0.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -27649,7 +27765,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _default = {
-  home: "\n    <style>\n        .mainPageArticles .card:first-child{\n            width:100% !important;\n        }\n\n        ._title{\n            padding: 1.5rem;\n            pointer-events: none;\n        }\n\n        .cardImage{\n            object-fit: cover;\n            width: 100%;\n            height: 12rem;\n        }\n\n        .forHerP{\n            font-style: italic;\n            font-size: 1.2rem;\n            font-weight: 30;\n            margin-top: 2rem;\n        }\n\n        a:hover{\n            text-decoration: none;\n        }\n\n        .card-holder{\n            height: 26rem;\n            padding: 0.2rem;\n        }\n\n        .card{\n            height: 100%\n        }\n\n        .card .card-img-top{\n            object-fit: cover;\n            width: 100%;\n            height: 13rem;\n        }\n\n        .btn-continue{\n            color: #f8f9fa!important;\n            margin-top: 1rem;\n        }\n\n        .titleContainer{\n            background-image: url('./darkForest.jpg') !important;\n            height: 20rem;\n            color: #f8f9fa !important;\n            font-family: 'Charm', cursive;\n        }\n\n        .mainTitle{\n            letter-spacing: 13px;\n            font-weight: 600;\n            font-size: 3rem;\n        }\n\n        .card-body{\n            background-color: rgb(108, 117, 125);\n            color: white;\n            border-radius: 2%;\n            font-weight: 500;\n        }\n        #firstArticle{\n            margin-bottom: 1rem;\n        }\n\n    </style>\n    <div class='homePage'>\n        <div class='row titleContainer '>\n            <div class='col-sm-12 transparent'>\n                <div class='_title'>\n                    <h1 class='mainTitle'>BuzeReci.ro</h1>\n                    <h3 class='forHerP'>Pentru ea... </h3>\n                </div>\n            </div>\n            <div id=\"Pagination\"></div>\n        </div>\n        \n        <div class='mainPageArticles'>\n            \n            <div class='row'>\n                {{#.}}\n\n                <div class=\"col-sm-4 col-xs-12\">\n                    <div class=\"blog-card spring-fever\" style=\"background: url({{image}}) center no-repeat;\">\n                        <div class=\"title-content\">\n                            <h3><a href='#/article/{{smug}}'>{{title}}</a></h3>\n                            <div class=\"intro\"> <a href='#/article/{{smug}}'>Pentru ea</a> </div>\n                        </div>\n                        <div class=\"card-info\">\n                            {{description}}\n                            <a href='#/article/{{smug}}' class=\"btn btn-success\">Continuare...</a>\n                        </div>\n                        <div class=\"utility-info\">\n                            <ul class=\"utility-list\">\n                            <li><span class=\"licon icon-dat\"></span>{{date}}</li>\n                            </ul>\n                        </div>\n                        <div class=\"gradient-overlay\"></div>\n                        <div class=\"color-overlay\"></div></div>\n                    </div>\n                {{/.}}\n            </div>\n        </div>\n        <br>\n    </div>"
+  home: "\n    <style>\n        .mainPageArticles .card:first-child{\n            width:100% !important;\n        }\n\n        ._title{\n            padding: 1.5rem;\n            pointer-events: none;\n        }\n\n        .cardImage{\n            object-fit: cover;\n            width: 100%;\n            height: 12rem;\n        }\n\n        .forHerP{\n            font-style: italic;\n            font-size: 1.2rem;\n            font-weight: 30;\n            margin-top: 2rem;\n        }\n\n        a:hover{\n            text-decoration: none;\n        }\n\n        .card-holder{\n            height: 26rem;\n            padding: 0.2rem;\n        }\n\n        .card{\n            height: 100%\n        }\n\n        .card .card-img-top{\n            object-fit: cover;\n            width: 100%;\n            height: 13rem;\n        }\n\n        .btn-continue{\n            color: #f8f9fa!important;\n            margin-top: 1rem;\n        }\n\n        .titleContainer{\n            background-image: url('./darkForest.jpg') !important;\n            height: 20rem;\n            color: #f8f9fa !important;\n            font-family: 'Charm', cursive;\n        }\n\n        .mainTitle{\n            letter-spacing: 13px;\n            font-weight: 600;\n            font-size: 3rem;\n        }\n\n        .card-body{\n            background-color: rgb(108, 117, 125);\n            color: white;\n            border-radius: 2%;\n            font-weight: 500;\n        }\n\n        #firstArticle{\n            margin-bottom: 1rem;\n        }\n        \n        .blog-card:hover{\n            cursor: pointer !important;\n        }\n    </style>\n\n    <div class='homePage'>\n        <div class='row titleContainer '>\n            <div class='col-sm-12 transparent'>\n                <div class='_title'>\n                    <h1 class='mainTitle'>BuzeReci.ro</h1>\n                    <h3 class='forHerP'>Pentru ea... </h3>\n                </div>\n            </div>\n            <div id=\"Pagination\"></div>\n        </div>\n        \n        <div class='mainPageArticles'>\n            \n            <div class='row'>\n                {{#.}}\n\n                <div class=\"col-sm-4 col-xs-12\">\n                    <div class=\"blog-card spring-fever\" style=\"background: url({{image}}) center no-repeat;\" go-to=\"{{smug}}\">\n                        <div class=\"title-content\">\n                            <h3><a href='#/article/{{smug}}'>{{title}}</a></h3>\n                            <div class=\"intro\"> <a href='#/article/{{smug}}'>Pentru ea</a> </div>\n                        </div>\n                        <div class=\"card-info\">\n                            {{description}}\n                            <a href='#/article/{{smug}}' class=\"btn btn-success\">Continuare...</a>\n                        </div>\n                        <div class=\"utility-info\">\n                            <ul class=\"utility-list\">\n                            <li><span class=\"licon icon-dat\"></span>{{date}}</li>\n                            </ul>\n                        </div>\n                        <div class=\"gradient-overlay\"></div>\n                        <div class=\"color-overlay\"></div></div>\n                    </div>\n                {{/.}}\n            </div>\n        </div>\n        <br>\n    </div>"
 };
 exports.default = _default;
 },{}],"lib/templates/editArticleTemplate.js":[function(require,module,exports) {
@@ -27681,7 +27797,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.pagination = void 0;
-var pagination = "\n\n<style>\n  .pagination{\n    margin-left: 1rem !important;\n    z-index: 10;\n    opacity: 0.8;\n  }\n\n  .pagination .disabled{\n    color: rgb(33, 37, 41) !important;\n    background-color: transparent;\n  }\n\n</style>\n<div class='row'>\n  <div class='col-xs-12 col-sm-12'>\n    <nav>\n      <ul class=\"pagination\">\n          <li class=\"page-item disabled\" disabled><a class=\"page-link disabled\" disabled>Pagina: </a></li>\n          {{#.}}\n          <li class=\"page-item\" data-page-link=\"{{.}}\"><a class=\"page-link\" href=\"#/page/{{.}}\">{{.}}</a></li>\n          {{/.}}\n      </ul>\n    </nav>\n  </div>\n</div>\n";
+var pagination = "\n\n<style>\n  .pagination{\n    margin-left: 1rem !important;\n    margin-bottom: -3rem !important;\n    z-index: 10;\n    opacity: 0.8;\n  }\n\n  .pagination .disabled{\n    color: rgb(33, 37, 41) !important;\n    background-color: transparent;\n  }\n\n</style>\n    <nav>\n      <ul class=\"pagination\">\n          <li class=\"page-item disabled\" disabled><a class=\"page-link disabled\" disabled>Pagina: </a></li>\n          {{#.}}\n          <li class=\"page-item\" data-page-link=\"{{.}}\"><a class=\"page-link\" href=\"#/page/{{.}}\">{{.}}</a></li>\n          {{/.}}\n      </ul>\n    </nav>\n";
 exports.pagination = pagination;
 },{}],"lib/templates/previewTemplate.js":[function(require,module,exports) {
 "use strict";
@@ -27692,6 +27808,15 @@ Object.defineProperty(exports, "__esModule", {
 exports.previewTemplate = void 0;
 var previewTemplate = "\n  <head>\n    <meta charset=\"utf-8\">\n\n    <title>The HTML5 Herald</title>\n    <meta name=\"description\" content=\"The HTML5 Herald\">\n    <meta name=\"author\" content=\"SitePoint\">\n    <link href=\"https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css\" rel=\"stylesheet\">\n    <script src=\"https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js\"></script>\n    \n    <style>\n      {{css}}\n    </style>\n\n  </head>\n\n  <body>\n    <div class='mainContent'>\n      {{{content}}}\n    </div>\n\n    <script>\n      {{{jsScript}}}\n    </script>\n\n  </body>\n  </html>\n";
 exports.previewTemplate = previewTemplate;
+},{}],"lib/templates/aboutPage.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.about = void 0;
+var about = "\n  <h2> my about page </h2>\n";
+exports.about = about;
 },{}],"lib/js/templates.js":[function(require,module,exports) {
 "use strict";
 
@@ -27723,6 +27848,8 @@ var _showArticleTemplate = _interopRequireDefault(require("../templates/showArti
 var _pagination = require("../templates/pagination");
 
 var _previewTemplate = require("../templates/previewTemplate");
+
+var _aboutPage = require("../templates/aboutPage");
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = Object.defineProperty && Object.getOwnPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : {}; if (desc.get || desc.set) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } } newObj.default = obj; return newObj; } }
 
@@ -27791,10 +27918,13 @@ var _default = {
     previewWindow.document.open();
     previewWindow.document.write(output);
     previewWindow.document.close();
+  },
+  showAboutPage: function showAboutPage() {
+    set(_aboutPage.about);
   }
 };
 exports.default = _default;
-},{"mustache":"../node_modules/mustache/mustache.js","./constants":"lib/js/constants.js","../../src/singleArticlePage":"src/singleArticlePage.js","../../src/homePage":"src/homePage.js","../../src/editArticlePage":"src/editArticlePage.js","../../src/createArticlePage":"src/createArticlePage.js","./myQuery":"lib/js/myQuery.js","../templates/homeTemplate":"lib/templates/homeTemplate.js","../templates/editArticleTemplate":"lib/templates/editArticleTemplate.js","../templates/showArticleTemplate":"lib/templates/showArticleTemplate.js","../templates/pagination":"lib/templates/pagination.js","../templates/previewTemplate":"lib/templates/previewTemplate.js"}],"lib/js/router.js":[function(require,module,exports) {
+},{"mustache":"../node_modules/mustache/mustache.js","./constants":"lib/js/constants.js","../../src/singleArticlePage":"src/singleArticlePage.js","../../src/homePage":"src/homePage.js","../../src/editArticlePage":"src/editArticlePage.js","../../src/createArticlePage":"src/createArticlePage.js","./myQuery":"lib/js/myQuery.js","../templates/homeTemplate":"lib/templates/homeTemplate.js","../templates/editArticleTemplate":"lib/templates/editArticleTemplate.js","../templates/showArticleTemplate":"lib/templates/showArticleTemplate.js","../templates/pagination":"lib/templates/pagination.js","../templates/previewTemplate":"lib/templates/previewTemplate.js","../templates/aboutPage":"lib/templates/aboutPage.js"}],"lib/js/router.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -27836,6 +27966,9 @@ router.on({
   'search/:searchBy': function searchSearchBy(params) {
     return _call.default.search(params.searchBy).then(_sanitizer.default.sanitiseArticles).then(_templates.default.showStartPageAfterSearch);
   },
+  'about': function about() {
+    return _templates.default.showAboutPage();
+  },
   '*': function _() {
     return _call.default.getPage(1).then(_sanitizer.default.sanitiseArticles).then(_templates.default.showStartPage);
   }
@@ -27852,76 +27985,7 @@ var _default = {
   }
 };
 exports.default = _default;
-},{"navigo":"../node_modules/navigo/lib/navigo.min.js","underscore":"../node_modules/underscore/underscore.js","./templates":"lib/js/templates.js","./call":"lib/js/call.js","./sanitizer":"lib/js/sanitizer.js"}],"lib/templates/nav.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.nav = void 0;
-var nav = "\n<style>\n  .nav-link:hover{\n    color: blanchedalmond !important;\n    transition-duration: 0.2s;\n  }\n\n  .navbar-brand{\n    border: 1px solid white;\n    border-radius: 50px;\n    text-align: center;\n    width: 4rem;\n    font-size: 1.4rem;\n    transition-duration: 0.3s;\n  }\n\n  .nav-link{\n    color: #f8f9fa !important;\n  }\n\n  .shareLinksDropDown{\n    background-color: inherit;\n    border: none;\n    margin-right: 6rem;\n  }\n\n  .shareLinksContainer{\n    background-color: #202020 !important;\n  }\n\n  .shareLinksContainer a{\n    padding: 0.2rem;\n  }\n\n  .nav-item{\n    margin-right: 2rem;\n  }\n</style>\n\n<div class='row'>\n  <div class='col-sm-12 col-xs-12'>\n    <nav class=\"navbar navbar-expand-lg navbar navbar-light\" style=\"background-color: #202020;\">\n      <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n        <span class=\"navbar-toggler-icon\"></span>\n      </button>\n\n      <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n        <ul class=\"navbar-nav mr-auto\">\n          <li class=\"nav-item active\">\n            <a class=\"nav-link\" href=\"#\">Despre... <span class=\"sr-only\">(current)</span></a>\n          </li>\n          <li class=\"nav-item active\">\n            <a class=\"nav-link\" href=\"#\">Nu uita sa imi scrii <span class=\"sr-only\">(current)</span></a>\n          </li>\n        </ul>\n        <div class=\"dropdown shareLinks pull-right\">\n            <div  class=\"a2a_kit a2a_kit_size_32 a2a_default_style\">\n                <a class=\"dropdown-toggle btn btn-success shareLinksDropDown\" data-toggle=\"dropdown\" href=\"#\">\n                    Sharing is caring\n                </a>\n                <ul class=\"dropdown-menu shareLinksContainer\">\n                    <a class=\"a2a_button_facebook\"></a>\n                    <a class=\"a2a_button_twitter\"></a>\n                    <a class=\"a2a_button_email\"></a>\n                    <a class=\"a2a_button_linkedin\"></a>\n                    <a class=\"a2a_button_whatsapp\"></a>\n                    <a class=\"a2a_button_facebook_messenger\"></a>\n                </ul>\n            </div>\n        </div>\n        <form class=\"form-inline my-2 my-lg-0\">\n          <input class=\"form-control mr-sm-2\" type=\"search\" id=\"SearchInput\" placeholder=\"Caut\u0103\" aria-label=\"Search\">\n        </form>\n      </div>\n    </nav>\n  </div>\n</div>\n";
-exports.nav = nav;
-},{}],"lib/templates/footer.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.footer = void 0;
-var footer = "\n<div class='row'>\n  <div class='col-sm-12 col-xs-12'>\n    <div class=\"alert alert-dark alert-dismissible fade show\" role=\"alert\">\n      <strong>Holy guacamole!</strong> You should check in on some of those fields below.\n      <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n        <span aria-hidden=\"true\">&times;</span>\n      </button>\n    </div>\n  </div>\n</div>\n";
-exports.footer = footer;
-},{}],"lib/js/navAndFooter.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _nav = require("../templates/nav");
-
-var _footer = require("../templates/footer");
-
-var _myQuery = _interopRequireDefault(require("./myQuery"));
-
-var _router = _interopRequireDefault(require("./router"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function addNavBarEvents() {
-  _myQuery.default.set.byId.keypress('SearchInput', function (e) {
-    if (e.which === 13 || e.keyCode === 13) {
-      event.preventDefault();
-
-      var titlePart = _myQuery.default.get.byId.value('SearchInput');
-
-      _router.default.navigateWitheSearch(titlePart);
-    }
-  });
-}
-
-function buildNav() {
-  _myQuery.default.set.byId.innerHtml('Nav', _nav.nav);
-
-  addNavBarEvents();
-}
-
-function buildFooter() {
-  _myQuery.default.set.byId.innerHtml('Footer', _footer.footer);
-}
-
-function buildBoth() {
-  buildNav();
-  buildFooter();
-}
-
-var _default = {
-  buildNav: buildNav,
-  buildFooter: buildFooter,
-  buildBoth: buildBoth
-};
-exports.default = _default;
-},{"../templates/nav":"lib/templates/nav.js","../templates/footer":"lib/templates/footer.js","./myQuery":"lib/js/myQuery.js","./router":"lib/js/router.js"}],"lib/js/notifications.js":[function(require,module,exports) {
+},{"navigo":"../node_modules/navigo/lib/navigo.min.js","underscore":"../node_modules/underscore/underscore.js","./templates":"lib/js/templates.js","./call":"lib/js/call.js","./sanitizer":"lib/js/sanitizer.js"}],"lib/js/notifications.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -28079,7 +28143,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57127" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60438" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

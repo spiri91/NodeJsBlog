@@ -47,7 +47,7 @@ export const nav = `
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Despre... <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="#/about">Despre... <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="#">Nu uita sa imi scrii <span class="sr-only">(current)</span></a>
