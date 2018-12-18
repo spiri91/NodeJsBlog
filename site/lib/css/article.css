@@ -162,7 +162,6 @@ color:#fff;
 }
 .utility-info:after{
   content:" ";
-  background: url(https://nodws.github.io/NodPen/postItem/crown.svg) center no-repeat;
   background-size: 30px auto;
   display:block;
   opacity: 0.4;
@@ -361,7 +360,7 @@ color:#fff;
   font-size:1.2rem;
 }
 .profile-bio, .profile-nav-1 a.active,.profile-nav-1 a:hover {
-    color: rgba(20, 20, 21, 0.59) !important;
+    /* color: rgba(20, 20, 21, 0.59) !important; */
     font-size: 1.2rem
 }
 .meta .pen-title {

@@ -13,6 +13,7 @@ import showTemplate from '../templates/showArticleTemplate';
 import { pagination } from '../templates/pagination';
 import { previewTemplate } from '../templates/previewTemplate';
 import { about } from '../templates/aboutPage';
+import { ads } from '../templates/ads';
 
 function set(value) {
   QQ.set.byId.innerHtml(consts.mainContent, value);
@@ -85,5 +86,9 @@ export default {
 
   showAboutPage: () => {
     set(about);
+  },
+
+  showAds: () => {
+    set(ads);
   }
 };

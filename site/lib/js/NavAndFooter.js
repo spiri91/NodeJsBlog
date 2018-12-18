@@ -1,3 +1,4 @@
+import $ from 'jquery';
 import { nav } from '../templates/nav';
 import { footer } from '../templates/footer';
 import QQ from './myQuery';
@@ -13,9 +14,16 @@ function addNavBarEvents() {
   });
 }
 
+function getSharingLinksScript() {
+  let script = document.createElement('script');
+  script.src = 'https://static.addtoany.com/menu/page.js';
+  document.body.appendChild(script);
+}
+
 function buildNav() {
   QQ.set.byId.innerHtml('Nav', nav);
   addNavBarEvents();
+  getSharingLinksScript();
 }
 
 function buildFooter() {
