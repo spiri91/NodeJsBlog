@@ -35,11 +35,28 @@ export const nav = `
   .nav-item{
     margin-right: 2rem;
   }
+
+  .navbar-toggler{
+    border: none;
+    padding-left: 0px;
+  }
+
+  @media screen and (max-width: 650px) {
+      .navbar{
+        padding-top: 2px !important;
+        padding-bottom: 2px !important;
+      }
+
+      #Nav{
+        margin-bottom: -1px;
+      }
+  }
+
 </style>
 
 <div class='row'>
   <div class='col-sm-12 col-xs-12'>
-    <nav class="navbar navbar-expand-lg navbar navbar-light" style="background-color: #202020;">
+    <nav class="navbar navbar-expand-lg navbar navbar-dark" style="background-color: #202020; !important">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>

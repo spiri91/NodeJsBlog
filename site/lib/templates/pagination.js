@@ -13,6 +13,12 @@ export const pagination = `
     background-color: transparent;
   }
 
+  @media screen and (max-width: 650px) {
+      .pagination {
+         margin-bottom: 0rem !important;
+      }
+  }
+
 </style>
     <nav>
       <ul class="pagination">

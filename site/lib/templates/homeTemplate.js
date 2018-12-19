@@ -75,6 +75,16 @@ export default {
         .blog-card:hover{
             cursor: pointer !important;
         }
+
+        @media screen and (max-width: 650px) {
+            .mainTitle{
+                letter-spacing: 1px;
+            }
+
+            .titleContainer{
+                height: 14rem;
+            }
+        }
     </style>
 
     <div class='homePage'>
@@ -97,10 +107,10 @@ export default {
                     <div class="blog-card spring-fever" style="background: url({{image}}) center no-repeat;" go-to="{{smug}}">
                         <div class="title-content">
                             <h3><a href='#/article/{{smug}}'>{{title}}</a></h3>
-                            <div class="intro"> <a href='#/article/{{smug}}'>Pentru ea</a> </div>
+                            <div class="intro"> <a href='#/article/{{smug}}'>{{description}}</a> </div>
                         </div>
                         <div class="card-info">
-                            {{description}}
+                            Pentru ea
                             <a href='#/article/{{smug}}' class="btn btn-success">Continuare...</a>
                         </div>
                         <div class="utility-info">
