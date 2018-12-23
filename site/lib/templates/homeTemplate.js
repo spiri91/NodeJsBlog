@@ -49,10 +49,11 @@ export default {
         }
 
         .titleContainer{
-            background-image: url('./darkForest.jpg') !important;
+            background-image: url('./darkForest3.jpeg') !important;
             height: 20rem;
             color: #f8f9fa !important;
             font-family: 'Charm', cursive;
+            background-size: 100% 120%;
         }
 
         .mainTitle{
@@ -110,6 +111,9 @@ export default {
                             <div class="intro"> <a href='#/article/{{smug}}'>{{description}}</a> </div>
                         </div>
                         <div class="card-info">
+                            <br>
+                            <img src="icon512x512.png" height="180px" alt="Image preview..." id="imagePreview">
+                            <br>
                             Pentru ea
                             <a href='#/article/{{smug}}' class="btn btn-success">Continuare...</a>
                         </div>

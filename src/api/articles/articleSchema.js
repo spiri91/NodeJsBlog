@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 mongoose.set('useCreateIndex', true);
-mongoose.connect(process.env.DB_HOST, { useNewUrlParser: true });
+mongoose.connect(process.env.DB_HOST + "articles", { useNewUrlParser: true });
 
 const Schema = mongoose.Schema;
 

@@ -11,19 +11,16 @@ function notifyEveryone(message) {
 }
 
 exports.subscribe = (subscription, res) => {
-  subscriptionRepo.save(subscription, (err, result) => {
-    exports.sendNotification(subscription, '{"title":"Thank you","text":"You are awesome!"}');
-
-    exports.notify({ title: 'works', text: 'brilliant' });
-
-    return res.status(status.CREATED).send(null);
+  subscriptionRepo.save(subscription, () => {
+    res.status(status.CREATED).send(null);
   });
 }
 
 exports.sendNotification = (subscription, message) => {
   webpush.sendNotification(subscription, message)
     .catch((err) => {
-      // if err (410) unsubscribe;
+      if (err.statusCode === 410 || err.statusCode === 404) subscriptionRepo.delete(subscription);
+
       console.log(err.message);
     })
 }

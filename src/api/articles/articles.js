@@ -3,6 +3,7 @@ const status = require('http-status-codes');
 const repo = require('./articlesRepository');
 const errorChecking = require('../../misc/checkErrorResponse').checkErrorResponse;
 const router = express.Router();
+const notifier = require("../subscriptions/subscribe");
 const checkAuth = require("../../misc/checkAuth").checkAuth();
 
 const handleResult = function (err, res, statusCode, responseBody, next) {
@@ -51,7 +52,13 @@ router.get('/count', (req, res, next) => {
   repo.count((err, result) => handleResult(err, res, status.OK, { 'count': result }, next));
 })
 
-router.post('/', (req, res, next) => { checkAuth(req); repo.post(req.body, err => handleResult(err, res, status.CREATED, null, next)); });
+router.post('/', (req, res, next) => {
+  checkAuth(req); repo.post(req.body, (err) => {
+    handleResult(err, res, status.CREATED, null, next);
+
+    if (!err) notifier.notify({ title: req.body.title, text: req.body.description })
+  });
+})
 
 router.post('/:id/comments', (req, res, next) => repo.postComment(req.params.id, req.body,
   err => handleResult(err, res, status.CREATED, null, next)))

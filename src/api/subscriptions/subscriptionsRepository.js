@@ -13,3 +13,7 @@ exports.save = (obj, callback) => {
 
   subscription.save(callback);
 }
+
+exports.delete = (obj) => {
+  Subscription.findOneAndRemove({ _id: obj._id }, () => { });
+}
