@@ -1,8 +1,35 @@
 {
-    "name": "NoName",
-    "short_name": "NoName",
+    "name": "BuzeReci",
+    "short_name": "BZ",
     "start_url": "/",
     "theme_color": "#673ab6",
     "background_color": "#2196F3",
-    "display": "standalone"
+    "display": "standalone",
+     "icons": [
+    {
+      "src": "./lib/images/icon/icon128x128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "./lib/images/icon/icon144x144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "./lib/images/icon/icon152x152.png",
+      "sizes": "152x152",
+      "type": "image/png"
+    },
+    {
+      "src": "./lib/images/icon/icon192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "./lib/images/icon/icon512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+]
 }

@@ -3,12 +3,14 @@ require('dotenv').config({ path: '.env.default' });
 const express = require('express');
 const bodyParser = require('body-parser');
 const webpush = require('web-push');
+const fs = require('fs')
+const https = require('https')
 
 const checkError = require('./misc/checkErrorResponse');
 const articlesRouter = require('./api/articles/articles');
 const subscriber = require('./api/subscriptions/subscribe');
 
-webpush.setVapidDetails(process.env.NOTIFICATIONSUBJECT, 
+webpush.setVapidDetails(process.env.NOTIFICATIONSUBJECT,
   process.env.PUBLICVAPIDKEY, process.env.PRIVATEVAPIDKEY);
 
 const port = process.env.PORT;
@@ -29,6 +31,11 @@ app.use((err, req, res, next) => {
   checkError.checkErrorResponse({ code: err.message }, res);
 });
 
-app.listen(port);
+app.listen(process.env.PORT);
+
+// https.createServer({
+//   key: fs.readFileSync('server.key'),
+//   cert: fs.readFileSync('server.cert')
+// }, app).listen(process.env.PORT)
 
 module.exports = app;

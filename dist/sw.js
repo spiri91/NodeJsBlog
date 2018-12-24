@@ -106,7 +106,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   return newRequire;
 })({"sw.js":[function(require,module,exports) {
 var cacheName = 'bz-cache';
-var filesToCache = [];
+var filesToCache = ['/'];
 self.addEventListener('install', function (e) {
   e.waitUntil(caches.open(cacheName).then(function (cache) {
     return cache.addAll(filesToCache);
@@ -173,7 +173,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54605" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58443" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
