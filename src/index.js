@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const webpush = require('web-push');
 const fs = require('fs')
 const https = require('https')
+const http = require('http')
 
 const checkError = require('./misc/checkErrorResponse');
 const articlesRouter = require('./api/articles/articles');
@@ -13,7 +14,15 @@ const subscriber = require('./api/subscriptions/subscribe');
 webpush.setVapidDetails(process.env.NOTIFICATIONSUBJECT,
   process.env.PUBLICVAPIDKEY, process.env.PRIVATEVAPIDKEY);
 
-const port = process.env.PORT;
+let privateKey = fs.readFileSync('sslCert/server.key', 'utf8');
+let certificate = fs.readFileSync('sslCert/server.cert', 'utf8');
+let credentials = {
+  key: privateKey,
+  cert: certificate,
+  requestCert: false,
+  rejectUnauthorized: false
+};
+
 const app = express();
 
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }))
@@ -31,11 +40,10 @@ app.use((err, req, res, next) => {
   checkError.checkErrorResponse({ code: err.message }, res);
 });
 
-app.listen(process.env.PORT);
+let httpServer = http.createServer(app);
+let httpsServer = https.createServer(credentials, app);
 
-// https.createServer({
-//   key: fs.readFileSync('server.key'),
-//   cert: fs.readFileSync('server.cert')
-// }, app).listen(process.env.PORT)
+httpServer.listen(process.env.HTTP_PORT);
+httpsServer.listen(process.env.HTTPS_PORT);
 
 module.exports = app;

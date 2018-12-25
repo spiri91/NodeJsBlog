@@ -1,7 +1,7 @@
 let cacheName = 'bz-cache';
 
 let filesToCache = [
-  '/',
+  "/",
 ];
 
 self.addEventListener('install', (e) => {

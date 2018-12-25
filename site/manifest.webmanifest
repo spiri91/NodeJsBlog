@@ -10,7 +10,7 @@
       "src": "./lib/images/icon/icon128x128.png",
       "sizes": "128x128",
       "type": "image/png"
-    },
+    }, 
     {
       "src": "./lib/images/icon/icon144x144.png",
       "sizes": "144x144",
