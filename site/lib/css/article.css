@@ -407,6 +407,10 @@ color:#fff;
 .meta{
   box-shadow:none !important
 }
+
+.utility-info{
+        border-bottom: 1px solid #800000
+  }
  
 @media screen and (max-width: 650px) {
   .blog-card {
@@ -436,6 +440,7 @@ color:#fff;
     text-decoration:underline
   }
 
+  
   .utility-info a{
     text-decoration:underline
   }

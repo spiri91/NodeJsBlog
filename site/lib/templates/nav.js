@@ -50,6 +50,11 @@ export const nav = `
       #Nav{
         margin-bottom: -1px;
       }
+
+      .shareLinksDropDown{
+        margin-top: 0.4rem;
+        margin-bottom: 0.4rem;
+      }
   }
 
 </style>

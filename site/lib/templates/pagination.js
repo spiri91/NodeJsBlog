@@ -15,7 +15,7 @@ export const pagination = `
 
   @media screen and (max-width: 650px) {
       .pagination {
-         margin-bottom: 0rem !important;
+         margin-bottom: 1rem !important;
       }
   }
 
