@@ -20435,6 +20435,10 @@ var _default = {
       hide: function hide(className) {
         var element = document.getElementsByClassName(className)[0];
         element.style.display = 'none';
+      },
+      show: function show(className) {
+        var element = document.getElementsByClassName(className)[0];
+        element.style.display = 'block';
       }
     }
   },
@@ -26489,6 +26493,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var _article;
 
+var commentsAreShown = false;
+var addCommentIsShown = false;
+
 function setActionsIfOnline() {
   _call.default.incrementViews(_article._id);
 
@@ -26512,6 +26519,66 @@ function setActionsIfOffline() {
   _myQuery.default.get.byClass.hide('newComment');
 }
 
+function removeBodyMist() {
+  document.body.classList.remove('mist');
+}
+
+function addBodyMist() {
+  document.body.classList.add('mist');
+}
+
+function showOrHideComments() {
+  if (commentsAreShown) {
+    removeBodyMist();
+
+    _myQuery.default.get.byClass.hide('commentsSection');
+
+    _myQuery.default.get.byClass.hide('newComment');
+  } else {
+    addBodyMist();
+
+    _myQuery.default.get.byClass.hide('newComment');
+
+    _myQuery.default.get.byClass.show('commentsSection');
+  }
+
+  addCommentIsShown = false;
+  commentsAreShown = !commentsAreShown;
+}
+
+function showOrHideNewComment() {
+  if (addCommentIsShown) {
+    removeBodyMist();
+
+    _myQuery.default.get.byClass.hide('commentsSection');
+
+    _myQuery.default.get.byClass.hide('newComment');
+  } else {
+    addBodyMist();
+
+    _myQuery.default.get.byClass.hide('commentsSection');
+
+    _myQuery.default.get.byClass.show('newComment');
+  }
+
+  commentsAreShown = false;
+  addCommentIsShown = !addCommentIsShown;
+}
+
+function addEventsForShowCreateComments() {
+  _myQuery.default.set.byClass.click('show-comments-js', showOrHideComments);
+
+  _myQuery.default.set.byClass.click('add-comment-js', showOrHideNewComment);
+}
+
+function eventsForCreateAndShowComments() {
+  _myQuery.default.get.byClass.hide('commentsSection');
+
+  _myQuery.default.get.byClass.hide('newComment');
+
+  addEventsForShowCreateComments();
+}
+
 var _default = {
   init: function init(article) {
     _article = article;
@@ -26520,6 +26587,7 @@ var _default = {
 
     eval(script);
     if (navigator.onLine) setActionsIfOnline();else setActionsIfOffline();
+    eventsForCreateAndShowComments();
   }
 };
 exports.default = _default;
@@ -27852,7 +27920,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _default = {
-  show: "\n    <style>\n        .singleArticle .row{\n            padding-top: 1rem !important;\n            padding-bottom: 0rem !important;\n            padding-left: 2rem !important;\n            padding-right: 2rem !important;\n        }\n\n        .centered{\n            text-align: center;\n            align-items: center;\n            align-self: center;\n        }    \n\n        .singleArticle .title {\n\n        }\n\n        .fontWeight-700{\n            font-weight: 700;\n        }\n\n        .marginRight-1Rem{\n            margin-right: 1rem !important;\n        }\n\n        .marginBottom-05Rem{\n            margin-bottom: 0.5rem;\n        }    \n\n        .marginBottom-2Rem{\n            margin-bottom: 2rem;\n        }\n\n        .marginTop-2rem{\n            margin-top: 2rem;\n        }\n\n        .singleArticle .description {\n            font-size: larger;\n            font-family: cursive;\n        }\n\n        .italic {\n            font-style: italic;\n        }\n\n        .newComment{\n            backgrond-color: #F0F0F0;\n        }\n\n        .singleArticle .articleContent{\n\n        }\n\n        .theImage{\n            object-fit: cover;\n            width: 100%;\n            height: 12rem;\n        }\n\n        .titleContainer{\n            margin-top: -5rem\n        }\n\n        .titleContainer .row, .titleContainer .col-sm-12{\n            background-color: transparent;\n        }\n\n        {{{css}}}\n    </style>\n\n    <div class=\"singleArticle\">\n        <div>\n            <image src=\"{{image}}\" class='theImage'/>\n        </div>\n        <div class='row titleContainer'>\n            <div class='col-sm-12'>\n                <h1 class='title centered'>{{title}}<h1>\n            </div>\n        </div>\n        <div class='row'>\n            <div class='col-sm-12'> \n                <span class='description'>{{description}}</span>\n            </div>\n        </div>\n        <div class='row'>\n            <div class='col-sm-12'>\n                <div class='articleContent' id='articleContent'>{{{content}}}</div>\n            </div>\n        <script id='leScript'>\n            {{{jsScript}}}\n        </script>\n        </div>\n        <div class='row'> \n            <div class='col-sm-12'>\n                <hr>\n                <span class='commmentsStart fontWeight-700'> Comentarii: </span \n            </div>\n        <div> \n        <div class='row commentsSection'>\n            {{#comments}}\n                <div class='col-sm-12 marginBottom-05Rem'>\n                    <span class='fontWeight-700'>{{by}} </span>\n                    <span> pe </span> <span class='fontWeight-700'> {{date}}</span> :\n                    <span class='marginRight-1Rem italic'> {{content}}</span>\n                </div>\n                <hr>\n            {{/comments}}\n        </div>\n        <br><br>\n        <div class='newComment'>\n            <div class='row'>\n                <div class='col-sm-4 col-xs-12'>\n                    <input type='text' placeholder='nume' class='form-control' id='newCommentPoster'/>\n                </div>\n            </div>\n            <div class='row'>\n                <div class='col-xs-12 col-sm-4'> \n                    <input type='text' class='form-control' placeholder='comentariu' id='newCommentText'/>\n                </div>\n            </div>\n            <div class='row marginBottom-2Rem'>\n                <div class='col-xs-12 col-sm-6'>\n                    <input type='button' class='btn btn-success' value='Adaug\u0103' id='newCommentPost' />\n                </div>\n            </div>\n        </div>\n    </div>\n    "
+  show: "\n    <style>\n        .singleArticle .row{\n            padding-top: 1rem !important;\n            padding-bottom: 0rem !important;\n            padding-left: 2rem !important;\n            padding-right: 2rem !important;\n        }\n\n        .centered{\n            text-align: center;\n            align-items: center;\n            align-self: center;\n        }    \n\n        .singleArticle .title {\n\n        }\n\n        .fontWeight-700{\n            font-weight: 700;\n        }\n\n        .marginRight-1Rem{\n            margin-right: 1rem !important;\n        }\n\n        .marginBottom-05Rem{\n            margin-bottom: 0.5rem;\n        }    \n\n        .marginBottom-2Rem{\n            margin-bottom: 2rem;\n        }\n\n        .marginTop-2rem{\n            margin-top: 2rem;\n        }\n\n        .singleArticle .description {\n            font-size: larger;\n            font-family: cursive;\n        }\n\n        .italic {\n            font-style: italic;\n        }\n\n        .newComment{\n            backgrond-color: #F0F0F0;\n        }\n\n        .singleArticle .articleContent{\n\n        }\n\n        .theImage{\n            object-fit: cover;\n            width: 100%;\n            height: 12rem;\n        }\n\n        .titleContainer{\n            margin-top: -5rem\n        }\n\n        .titleContainer .row, .titleContainer .col-sm-12{\n            background-color: transparent;\n        }\n\n        .newComment {\n            right: 0.4rem;\n            display: block;\n            position: fixed;\n            bottom: 3rem;\n            height: 13rem;\n            width: 25rem;\n            background-color: #D3D3D3;\n            padding: 1rem;\n            border-radius: 15px;\n        }\n\n        .newComment .form-control {\n            margin-top: 1rem;\n        }\n\n        .newComment .btn {\n            margin-top: 1rem;\n        }\n\n        .stickyFooter{\n            position: fixed;\n            bottom: 0.1rem;\n            right: 0.3rem;\n        }\n\n        .commentsSection{\n            display: block;\n            height: 15rem;\n            position: fixed;\n            bottom: 3rem;\n            overflow-y: scroll;\n            width: 100%;\n            background-color: #D3D3D3;\n            padding: 1rem;\n        }\n\n        .mist .stickyFooter button {\n            opacity: 1;\n        }\n\n        .mist #Nav{\n            opacity: 0.5;\n        }\n\n        .mist .singleArticle {\n            opacity: 0.5;\n        }\n\n        .mist .newComment {\n            opacity: 1;\n        }\n\n        .mist .commentsSection {\n            opacity: 1;\n        }\n\n        @media screen and (max-width: 650px){\n            .newComment {\n                width: 22rem;\n            }\n\n           \n        }\n\n        @media screen and (min-width: 650px){\n            .commentsSection{\n                display: block;\n                width: 30rem;\n                position: fixed;\n                right: 1rem;\n                bottom: 3rem;\n            }\n        }\n        {{{css}}}\n    </style>\n\n    <div class=\"singleArticle\">\n        <div>\n            <image src=\"{{image}}\" class='theImage'/>\n        </div>\n        <div class='row titleContainer'>\n            <div class='col-sm-12'>\n                <h1 class='title centered'>{{title}}<h1>\n            </div>\n        </div>\n        <div class='row'>\n            <div class='col-sm-12'> \n                <span class='description'>{{description}}</span>\n            </div>\n        </div>\n        <div class='row'>\n            <div class='col-sm-12'>\n                <div class='articleContent' id='articleContent'>{{{content}}}</div>\n            </div>\n\n            <script id='leScript'>\n                {{{jsScript}}}\n            </script>\n        </div>\n        \n    </div>\n\n    <div class='stickyFooter'>\n        <button type=\"button\" class=\"btn btn-sm btn-primary show-comments-js\">\n            Comentarii <span class=\"badge badge-light\">{{commentsCount}}</span>\n        </button>\n\n        <button type='button' class=\"btn btn-sm btn-success add-comment-js\">\n            Adauga comentariu\n        </button>\n     </div>\n\n    <div class='commentsSection'>\n        <div class='row'>\n            {{#comments}}\n                <div class='col-sm-12'>\n                    <span class='fontWeight-700'>{{by}} </span>\n                    <span> pe </span> <span class='fontWeight-700'> {{date}}</span> :\n                    <span class='marginRight-1Rem italic'> {{content}}</span>\n                </div>\n                <hr>\n            {{/comments}}\n        </div>\n    </div>\n\n    <div class='newComment'>\n        <div class='row'>\n            <div class='col-sm-12'>\n                <input type='text' placeholder='nume' class='form-control' id='newCommentPoster'/>\n            </div>\n        </div>\n        <div class='row'>\n            <div class='col-sm-12'> \n                <input type='text' class='form-control' placeholder='comentariu' id='newCommentText'/>\n            </div>\n        </div>\n        <div class='row'>\n            <div class='col-sm-12'>\n                <input type='button' class='btn btn-success' value='Adaug\u0103' id='newCommentPost' />\n            </div>\n        </div>\n    </div>\n    "
 };
 exports.default = _default;
 },{}],"lib/templates/pagination.js":[function(require,module,exports) {
@@ -27946,6 +28014,8 @@ function setById(value, id) {
 
 var _default = {
   showArticle: function showArticle(article) {
+    article.commentsCount = article.comments.length;
+
     var output = _mustache.default.render(_showArticleTemplate.default.show, article);
 
     set(output);
@@ -28225,7 +28295,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62921" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49278" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

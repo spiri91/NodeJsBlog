@@ -70,6 +70,80 @@ export default {
             background-color: transparent;
         }
 
+        .newComment {
+            right: 0.4rem;
+            display: block;
+            position: fixed;
+            bottom: 3rem;
+            height: 13rem;
+            width: 25rem;
+            background-color: #D3D3D3;
+            padding: 1rem;
+            border-radius: 15px;
+        }
+
+        .newComment .form-control {
+            margin-top: 1rem;
+        }
+
+        .newComment .btn {
+            margin-top: 1rem;
+        }
+
+        .stickyFooter{
+            position: fixed;
+            bottom: 0.1rem;
+            right: 0.3rem;
+        }
+
+        .commentsSection{
+            display: block;
+            height: 15rem;
+            position: fixed;
+            bottom: 3rem;
+            overflow-y: scroll;
+            width: 100%;
+            background-color: #D3D3D3;
+            padding: 1rem;
+        }
+
+        .mist .stickyFooter button {
+            opacity: 1;
+        }
+
+        .mist #Nav{
+            opacity: 0.5;
+        }
+
+        .mist .singleArticle {
+            opacity: 0.5;
+        }
+
+        .mist .newComment {
+            opacity: 1;
+        }
+
+        .mist .commentsSection {
+            opacity: 1;
+        }
+
+        @media screen and (max-width: 650px){
+            .newComment {
+                width: 22rem;
+            }
+
+           
+        }
+
+        @media screen and (min-width: 650px){
+            .commentsSection{
+                display: block;
+                width: 30rem;
+                position: fixed;
+                right: 1rem;
+                bottom: 3rem;
+            }
+        }
         {{{css}}}
     </style>
 
@@ -91,19 +165,28 @@ export default {
             <div class='col-sm-12'>
                 <div class='articleContent' id='articleContent'>{{{content}}}</div>
             </div>
-        <script id='leScript'>
-            {{{jsScript}}}
-        </script>
+
+            <script id='leScript'>
+                {{{jsScript}}}
+            </script>
         </div>
-        <div class='row'> 
-            <div class='col-sm-12'>
-                <hr>
-                <span class='commmentsStart fontWeight-700'> Comentarii: </span 
-            </div>
-        <div> 
-        <div class='row commentsSection'>
+        
+    </div>
+
+    <div class='stickyFooter'>
+        <button type="button" class="btn btn-sm btn-primary show-comments-js">
+            Comentarii <span class="badge badge-light">{{commentsCount}}</span>
+        </button>
+
+        <button type='button' class="btn btn-sm btn-success add-comment-js">
+            Adauga comentariu
+        </button>
+     </div>
+
+    <div class='commentsSection'>
+        <div class='row'>
             {{#comments}}
-                <div class='col-sm-12 marginBottom-05Rem'>
+                <div class='col-sm-12'>
                     <span class='fontWeight-700'>{{by}} </span>
                     <span> pe </span> <span class='fontWeight-700'> {{date}}</span> :
                     <span class='marginRight-1Rem italic'> {{content}}</span>
@@ -111,22 +194,22 @@ export default {
                 <hr>
             {{/comments}}
         </div>
-        <br><br>
-        <div class='newComment'>
-            <div class='row'>
-                <div class='col-sm-4 col-xs-12'>
-                    <input type='text' placeholder='nume' class='form-control' id='newCommentPoster'/>
-                </div>
+    </div>
+
+    <div class='newComment'>
+        <div class='row'>
+            <div class='col-sm-12'>
+                <input type='text' placeholder='nume' class='form-control' id='newCommentPoster'/>
             </div>
-            <div class='row'>
-                <div class='col-xs-12 col-sm-4'> 
-                    <input type='text' class='form-control' placeholder='comentariu' id='newCommentText'/>
-                </div>
+        </div>
+        <div class='row'>
+            <div class='col-sm-12'> 
+                <input type='text' class='form-control' placeholder='comentariu' id='newCommentText'/>
             </div>
-            <div class='row marginBottom-2Rem'>
-                <div class='col-xs-12 col-sm-6'>
-                    <input type='button' class='btn btn-success' value='Adaugă' id='newCommentPost' />
-                </div>
+        </div>
+        <div class='row'>
+            <div class='col-sm-12'>
+                <input type='button' class='btn btn-success' value='Adaugă' id='newCommentPost' />
             </div>
         </div>
     </div>

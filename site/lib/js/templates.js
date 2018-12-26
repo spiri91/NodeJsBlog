@@ -31,6 +31,8 @@ function setById(value, id) {
 
 export default {
   showArticle: (article) => {
+    article.commentsCount = article.comments.length;
+
     let output = Mustache.render(showTemplate.show, article);
     set(output);
 

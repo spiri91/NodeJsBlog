@@ -6,6 +6,9 @@ import sanitizer from '../lib/js/sanitizer';
 
 let _article;
 
+let commentsAreShown = false;
+let addCommentIsShown = false;
+
 function setActionsIfOnline() {
   call.incrementViews(_article._id);
 
@@ -27,13 +30,66 @@ function setActionsIfOffline() {
   QQ.get.byClass.hide('newComment');
 }
 
+function removeBodyMist() {
+  document.body.classList.remove('mist');
+}
+
+function addBodyMist() {
+  document.body.classList.add('mist');
+}
+
+function showOrHideComments() {
+  if (commentsAreShown) {
+    removeBodyMist();
+    QQ.get.byClass.hide('commentsSection');
+    QQ.get.byClass.hide('newComment');
+  } else {
+    addBodyMist();
+    QQ.get.byClass.hide('newComment');
+    QQ.get.byClass.show('commentsSection');
+  }
+
+  addCommentIsShown = false;
+  commentsAreShown = !commentsAreShown;
+}
+
+function showOrHideNewComment() {
+  if (addCommentIsShown) {
+    removeBodyMist();
+    QQ.get.byClass.hide('commentsSection');
+    QQ.get.byClass.hide('newComment');
+  } else {
+    addBodyMist();
+    QQ.get.byClass.hide('commentsSection');
+    QQ.get.byClass.show('newComment');
+  }
+
+  commentsAreShown = false;
+  addCommentIsShown = !addCommentIsShown;
+}
+
+function addEventsForShowCreateComments() {
+  QQ.set.byClass.click('show-comments-js', showOrHideComments);
+  QQ.set.byClass.click('add-comment-js', showOrHideNewComment);
+}
+
+function eventsForCreateAndShowComments() {
+  QQ.get.byClass.hide('commentsSection');
+  QQ.get.byClass.hide('newComment')
+
+  addEventsForShowCreateComments();
+}
+
+
 export default {
   init: (article) => {
     _article = article;
     let script = QQ.get.byId.innerHtml('leScript');
     eval(script);
-   
+
     if (navigator.onLine) setActionsIfOnline();
     else setActionsIfOffline();
+
+    eventsForCreateAndShowComments();
   }
 }

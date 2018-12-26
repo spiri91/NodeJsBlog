@@ -22,6 +22,10 @@ export default {
       hide: (className) => {
         let element = document.getElementsByClassName(className)[0];
         element.style.display = 'none';
+      },
+      show: (className) => {
+        let element = document.getElementsByClassName(className)[0];
+        element.style.display = 'block';
       }
     }
   },
