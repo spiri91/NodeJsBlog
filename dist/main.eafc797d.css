@@ -1,8 +1,4 @@
-#Footer {
-    position: fixed;
-    bottom: -15px;
-    width: 100%;
-}
+
 
 .disabled{
     pointer-events: none;

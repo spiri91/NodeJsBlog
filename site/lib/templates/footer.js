@@ -1,5 +1,11 @@
 export const footer = `
 <style>
+  #Footer {
+    position: fixed;
+    bottom: -25px;
+    width: 100%;
+  }
+
   a {
     cursor: pointer !important;
   }
@@ -24,11 +30,9 @@ export const footer = `
     margin-left: 2rem;
   }
 
-  @media screen and (max-width: 650px) { 
-    .alert-dismissible .row{
-        background-color: transparent;
-    }
-  }
+  .alert-dismissible .row{
+      background-color: transparent;
+  } 
 </style>
     <div class="alert alert-primary alert-dismissible fade show black-color" role="alert">
       <div class='row'>

@@ -1,16 +1,14 @@
-import _ from 'underscore';
+import $ from 'jquery'
 import call from '../lib/js/call';
 import QQ from '../lib/js/myQuery';
-import templates from '../lib/js/templates';
 import builder from '../lib/js/navAndFooter';
 import router from '../lib/js/router';
 
 async function getPaginationArray() {
   let res = await call.getCount();
   let pages = (res.count / 10) + 1;
-  let pagesArray = _.range(1, pages);
 
-  templates.setPagination(pagesArray);
+  return Math.floor(pages);
 }
 
 function getPageFromUrl() {
@@ -28,19 +26,35 @@ function addGotoEvents() {
   }
 }
 
-function setActivePage() {
-  let pageNr = getPageFromUrl();
-  let element = QQ.get.byAttribute.element("data-page-link", pageNr);
-  if (element.length === 0) return;
+function showSharingLinks(e) {
+  e.stopPropagation();
+  e.preventDefault();
+  if ($('.navbar-toggler').length > 0)
+    $('.navbar-toggler').click();
 
-  element[0].classList.add('active');
+  $('.shareLinksDropDown').click();
+}
+
+function disableNavigationBtnsBasedOnPage(numberOfPages, currentPageNumber) {
+  if (currentPageNumber === 1) QQ.get.byClass.withCallBack('next-page', (b) => { b.style.display = 'none' })
+  if (currentPageNumber === numberOfPages) QQ.get.byClass.withCallBack('previous-page', (b) => { b.style.display = 'none' })
+}
+
+function addBtnForNavigationAndSharing(numberOfPages) {
+  let currentPage = getPageFromUrl();
+
+  QQ.set.byClass.click('next-page', () => router.navigateToPageNumber(currentPage + 1));
+  QQ.set.byClass.click('previous-page', () => router.navigateToPageNumber(currentPage - 1));
+  QQ.set.byClass.click('share', showSharingLinks);
+
+  disableNavigationBtnsBasedOnPage(numberOfPages, currentPage);
 }
 
 export default {
   init: async (showPagination) => {
     if (true === showPagination && true === navigator.onLine) {
-      await getPaginationArray();
-      setActivePage();
+      let pages = await getPaginationArray();
+      addBtnForNavigationAndSharing(pages);
     }
 
     builder.buildBoth();

@@ -22,10 +22,12 @@ export const nav = `
     background-color: inherit;
     border: none;
     margin-right: 6rem;
+    color: rgb(248, 249, 250) !important;
   }
 
   .shareLinksContainer{
     background-color: #202020 !important;
+    transition-duration: 0.2s;
   }
 
   .shareLinksContainer a{
@@ -77,7 +79,7 @@ export const nav = `
         </ul>
         <div class="dropdown shareLinks pull-right">
             <div  class="a2a_kit a2a_kit_size_32 a2a_default_style">
-                <a class="dropdown-toggle btn btn-success shareLinksDropDown" data-toggle="dropdown" href="#">
+                <a class="dropdown-toggle btn btn-success shareLinksDropDown" data-toggle="dropdown">
                     Sharing is caring
                 </a>
                 <ul class="dropdown-menu shareLinksContainer">

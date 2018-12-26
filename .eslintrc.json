@@ -27,7 +27,8 @@
         "no-plusplus": "off",
         "no-restricted-globals":"off",
         "no-new":"off",
-        "no-eval": "off"
+        "no-eval": "off",
+        "nonblock-statement-body-position": "off"
     },
     "env": {
         "mocha": true,

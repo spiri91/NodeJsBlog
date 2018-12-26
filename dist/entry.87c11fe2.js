@@ -26530,7 +26530,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.nav = void 0;
-var nav = "\n<style>\n  .nav-link:hover{\n    color: blanchedalmond !important;\n    transition-duration: 0.2s;\n  }\n\n  .navbar-brand{\n    border: 1px solid white;\n    border-radius: 50px;\n    text-align: center;\n    width: 4rem;\n    font-size: 1.4rem;\n    transition-duration: 0.3s;\n  }\n\n  .nav-link{\n    color: #f8f9fa !important;\n  }\n\n  .shareLinksDropDown{\n    background-color: inherit;\n    border: none;\n    margin-right: 6rem;\n  }\n\n  .shareLinksContainer{\n    background-color: #202020 !important;\n  }\n\n  .shareLinksContainer a{\n    padding: 0.2rem;\n  }\n\n  .nav-item{\n    margin-right: 2rem;\n  }\n\n  .navbar-toggler{\n    border: none;\n    padding-left: 0px;\n  }\n\n  @media screen and (max-width: 650px) {\n      .navbar{\n        padding-top: 2px !important;\n        padding-bottom: 2px !important;\n      }\n\n      #Nav{\n        margin-bottom: -1px;\n      }\n\n      .shareLinksDropDown{\n        margin-top: 0.4rem;\n        margin-bottom: 0.4rem;\n      }\n  }\n\n</style>\n\n<div class='row'>\n  <div class='col-sm-12 col-xs-12'>\n    <nav class=\"navbar navbar-expand-lg navbar navbar-dark\" style=\"background-color: #383838; !important\">\n      <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n        <span class=\"navbar-toggler-icon\"></span>\n      </button>\n\n      <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n        <ul class=\"navbar-nav mr-auto\">\n          <li class=\"nav-item active\">\n            <a class=\"nav-link\" href=\"#/about\">Despre... <span class=\"sr-only\">(current)</span></a>\n          </li>\n          <li class=\"nav-item active\">\n            <a class=\"nav-link\" href=\"#\">Nu uita sa imi scrii <span class=\"sr-only\">(current)</span></a>\n          </li>\n        </ul>\n        <div class=\"dropdown shareLinks pull-right\">\n            <div  class=\"a2a_kit a2a_kit_size_32 a2a_default_style\">\n                <a class=\"dropdown-toggle btn btn-success shareLinksDropDown\" data-toggle=\"dropdown\" href=\"#\">\n                    Sharing is caring\n                </a>\n                <ul class=\"dropdown-menu shareLinksContainer\">\n                    <a class=\"a2a_button_facebook\"></a>\n                    <a class=\"a2a_button_twitter\"></a>\n                    <a class=\"a2a_button_email\"></a>\n                    <a class=\"a2a_button_linkedin\"></a>\n                    <a class=\"a2a_button_whatsapp\"></a>\n                    <a class=\"a2a_button_facebook_messenger\"></a>\n                </ul>\n            </div>\n        </div>\n        <form class=\"form-inline my-2 my-lg-0\">\n          <input class=\"form-control mr-sm-2\" type=\"search\" id=\"SearchInput\" placeholder=\"Caut\u0103\" aria-label=\"Search\">\n        </form>\n      </div>\n    </nav>\n  </div>\n</div>\n";
+var nav = "\n<style>\n  .nav-link:hover{\n    color: blanchedalmond !important;\n    transition-duration: 0.2s;\n  }\n\n  .navbar-brand{\n    border: 1px solid white;\n    border-radius: 50px;\n    text-align: center;\n    width: 4rem;\n    font-size: 1.4rem;\n    transition-duration: 0.3s;\n  }\n\n  .nav-link{\n    color: #f8f9fa !important;\n  }\n\n  .shareLinksDropDown{\n    background-color: inherit;\n    border: none;\n    margin-right: 6rem;\n    color: rgb(248, 249, 250) !important;\n  }\n\n  .shareLinksContainer{\n    background-color: #202020 !important;\n    transition-duration: 0.2s;\n  }\n\n  .shareLinksContainer a{\n    padding: 0.2rem;\n  }\n\n  .nav-item{\n    margin-right: 2rem;\n  }\n\n  .navbar-toggler{\n    border: none;\n    padding-left: 0px;\n  }\n\n  @media screen and (max-width: 650px) {\n      .navbar{\n        padding-top: 2px !important;\n        padding-bottom: 2px !important;\n      }\n\n      #Nav{\n        margin-bottom: -1px;\n      }\n\n      .shareLinksDropDown{\n        margin-top: 0.4rem;\n        margin-bottom: 0.4rem;\n      }\n  }\n\n</style>\n\n<div class='row'>\n  <div class='col-sm-12 col-xs-12'>\n    <nav class=\"navbar navbar-expand-lg navbar navbar-dark\" style=\"background-color: #383838; !important\">\n      <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarSupportedContent\" aria-controls=\"navbarSupportedContent\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n        <span class=\"navbar-toggler-icon\"></span>\n      </button>\n\n      <div class=\"collapse navbar-collapse\" id=\"navbarSupportedContent\">\n        <ul class=\"navbar-nav mr-auto\">\n          <li class=\"nav-item active\">\n            <a class=\"nav-link\" href=\"#/about\">Despre... <span class=\"sr-only\">(current)</span></a>\n          </li>\n          <li class=\"nav-item active\">\n            <a class=\"nav-link\" href=\"#\">Nu uita sa imi scrii <span class=\"sr-only\">(current)</span></a>\n          </li>\n        </ul>\n        <div class=\"dropdown shareLinks pull-right\">\n            <div  class=\"a2a_kit a2a_kit_size_32 a2a_default_style\">\n                <a class=\"dropdown-toggle btn btn-success shareLinksDropDown\" data-toggle=\"dropdown\">\n                    Sharing is caring\n                </a>\n                <ul class=\"dropdown-menu shareLinksContainer\">\n                    <a class=\"a2a_button_facebook\"></a>\n                    <a class=\"a2a_button_twitter\"></a>\n                    <a class=\"a2a_button_email\"></a>\n                    <a class=\"a2a_button_linkedin\"></a>\n                    <a class=\"a2a_button_whatsapp\"></a>\n                    <a class=\"a2a_button_facebook_messenger\"></a>\n                </ul>\n            </div>\n        </div>\n        <form class=\"form-inline my-2 my-lg-0\">\n          <input class=\"form-control mr-sm-2\" type=\"search\" id=\"SearchInput\" placeholder=\"Caut\u0103\" aria-label=\"Search\">\n        </form>\n      </div>\n    </nav>\n  </div>\n</div>\n";
 exports.nav = nav;
 },{}],"lib/templates/footer.js":[function(require,module,exports) {
 "use strict";
@@ -26539,7 +26539,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.footer = void 0;
-var footer = "\n<style>\n  a {\n    cursor: pointer !important;\n  }\n\n  .black-color{\n    color: black;\n  }\n\n  .donate{\n    float: left;\n    margin-left: 2rem;\n    margin-right: 0.3rem;\n  }\n\n  .as1{\n    float: left;\n  }\n\n  .some-ads-btn{\n    color: black;\n    font-style: italic;\n    margin-left: 2rem;\n  }\n\n  @media screen and (max-width: 650px) { \n    .alert-dismissible .row{\n        background-color: transparent;\n    }\n  }\n</style>\n    <div class=\"alert alert-primary alert-dismissible fade show black-color\" role=\"alert\">\n      <div class='row'>\n        <div class='col-xs-12 col-sm-2'>\n          <span class='as1'>Sustine, </span> \n          <div class=\"donate\">\n                <form action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\" target=\"_top\" class=\"ng-pristine ng-valid\">\n                    <input type=\"hidden\" name=\"cmd\" value=\"_s-xclick\" autocomplete=\"off\">\n                    <input type=\"hidden\" name=\"hosted_button_id\" value=\"WW33LR9UJUDBY\" autocomplete=\"off\">\n                    <input type=\"image\" src=\"https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif\" border=\"0\" name=\"submit\" alt=\"PayPal - The safer, easier way to pay online!\">\n                    <img alt=\"\" border=\"0\" src=\"https://www.paypalobjects.com/en_US/i/scr/pixel.gif\" width=\"1\" height=\"1\">\n                </form>\n          </div>\n        </div>\n\n        <div class='col-xs-12 col-sm-2'>\n          <span class='as2'> sau click on </span>  \n          <a class='alert-link some-ads-btn' href='#/ads'>Some ads</a>\n          \n        </div>\n      </div>\n      <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n            <span aria-hidden=\"true\">&times;</span>\n      </button>\n    </div>\n";
+var footer = "\n<style>\n  #Footer {\n    position: fixed;\n    bottom: -25px;\n    width: 100%;\n  }\n\n  a {\n    cursor: pointer !important;\n  }\n\n  .black-color{\n    color: black;\n  }\n\n  .donate{\n    float: left;\n    margin-left: 2rem;\n    margin-right: 0.3rem;\n  }\n\n  .as1{\n    float: left;\n  }\n\n  .some-ads-btn{\n    color: black;\n    font-style: italic;\n    margin-left: 2rem;\n  }\n\n  .alert-dismissible .row{\n      background-color: transparent;\n  } \n</style>\n    <div class=\"alert alert-primary alert-dismissible fade show black-color\" role=\"alert\">\n      <div class='row'>\n        <div class='col-xs-12 col-sm-2'>\n          <span class='as1'>Sustine, </span> \n          <div class=\"donate\">\n                <form action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\" target=\"_top\" class=\"ng-pristine ng-valid\">\n                    <input type=\"hidden\" name=\"cmd\" value=\"_s-xclick\" autocomplete=\"off\">\n                    <input type=\"hidden\" name=\"hosted_button_id\" value=\"WW33LR9UJUDBY\" autocomplete=\"off\">\n                    <input type=\"image\" src=\"https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif\" border=\"0\" name=\"submit\" alt=\"PayPal - The safer, easier way to pay online!\">\n                    <img alt=\"\" border=\"0\" src=\"https://www.paypalobjects.com/en_US/i/scr/pixel.gif\" width=\"1\" height=\"1\">\n                </form>\n          </div>\n        </div>\n\n        <div class='col-xs-12 col-sm-2'>\n          <span class='as2'> sau click on </span>  \n          <a class='alert-link some-ads-btn' href='#/ads'>Some ads</a>\n          \n        </div>\n      </div>\n      <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n            <span aria-hidden=\"true\">&times;</span>\n      </button>\n    </div>\n";
 exports.footer = footer;
 },{}],"lib/js/navAndFooter.js":[function(require,module,exports) {
 "use strict";
@@ -26613,13 +26613,11 @@ var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"))
 
 var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
 
-var _underscore = _interopRequireDefault(require("underscore"));
+var _jquery = _interopRequireDefault(require("jquery"));
 
 var _call = _interopRequireDefault(require("../lib/js/call"));
 
 var _myQuery = _interopRequireDefault(require("../lib/js/myQuery"));
-
-var _templates = _interopRequireDefault(require("../lib/js/templates"));
 
 var _navAndFooter = _interopRequireDefault(require("../lib/js/navAndFooter"));
 
@@ -26635,7 +26633,7 @@ function _getPaginationArray() {
   _getPaginationArray = (0, _asyncToGenerator2.default)(
   /*#__PURE__*/
   _regenerator.default.mark(function _callee2() {
-    var res, pages, pagesArray;
+    var res, pages;
     return _regenerator.default.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
@@ -26646,11 +26644,9 @@ function _getPaginationArray() {
           case 2:
             res = _context2.sent;
             pages = res.count / 10 + 1;
-            pagesArray = _underscore.default.range(1, pages);
+            return _context2.abrupt("return", Math.floor(pages));
 
-            _templates.default.setPagination(pagesArray);
-
-          case 6:
+          case 5:
           case "end":
             return _context2.stop();
         }
@@ -26701,13 +26697,36 @@ function addGotoEvents() {
   }
 }
 
-function setActivePage() {
-  var pageNr = getPageFromUrl();
+function showSharingLinks(e) {
+  e.stopPropagation();
+  e.preventDefault();
+  if ((0, _jquery.default)('.navbar-toggler').length > 0) (0, _jquery.default)('.navbar-toggler').click();
+  (0, _jquery.default)('.shareLinksDropDown').click();
+}
 
-  var element = _myQuery.default.get.byAttribute.element("data-page-link", pageNr);
+function disableNavigationBtnsBasedOnPage(numberOfPages, currentPageNumber) {
+  if (currentPageNumber === 1) _myQuery.default.get.byClass.withCallBack('next-page', function (b) {
+    b.style.display = 'none';
+  });
+  if (currentPageNumber === numberOfPages) _myQuery.default.get.byClass.withCallBack('previous-page', function (b) {
+    b.style.display = 'none';
+  });
+}
 
-  if (element.length === 0) return;
-  element[0].classList.add('active');
+function addBtnForNavigationAndSharing(numberOfPages) {
+  var currentPage = getPageFromUrl();
+
+  _myQuery.default.set.byClass.click('next-page', function () {
+    return _router.default.navigateToPageNumber(currentPage + 1);
+  });
+
+  _myQuery.default.set.byClass.click('previous-page', function () {
+    return _router.default.navigateToPageNumber(currentPage - 1);
+  });
+
+  _myQuery.default.set.byClass.click('share', showSharingLinks);
+
+  disableNavigationBtnsBasedOnPage(numberOfPages, currentPage);
 }
 
 var _default = {
@@ -26715,12 +26734,13 @@ var _default = {
     var _init = (0, _asyncToGenerator2.default)(
     /*#__PURE__*/
     _regenerator.default.mark(function _callee(showPagination) {
+      var pages;
       return _regenerator.default.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
               if (!(true === showPagination && true === navigator.onLine)) {
-                _context.next = 4;
+                _context.next = 5;
                 break;
               }
 
@@ -26728,14 +26748,15 @@ var _default = {
               return getPaginationArray();
 
             case 3:
-              setActivePage();
+              pages = _context.sent;
+              addBtnForNavigationAndSharing(pages);
 
-            case 4:
+            case 5:
               _navAndFooter.default.buildBoth();
 
               addGotoEvents();
 
-            case 6:
+            case 7:
             case "end":
               return _context.stop();
           }
@@ -26749,7 +26770,7 @@ var _default = {
   }()
 };
 exports.default = _default;
-},{"@babel/runtime/regenerator":"../node_modules/@babel/runtime/regenerator/index.js","@babel/runtime/helpers/asyncToGenerator":"../node_modules/@babel/runtime/helpers/asyncToGenerator.js","underscore":"../node_modules/underscore/underscore.js","../lib/js/call":"lib/js/call.js","../lib/js/myQuery":"lib/js/myQuery.js","../lib/js/templates":"lib/js/templates.js","../lib/js/navAndFooter":"lib/js/navAndFooter.js","../lib/js/router":"lib/js/router.js"}],"lib/css/jquery-te-1.4.0.css":[function(require,module,exports) {
+},{"@babel/runtime/regenerator":"../node_modules/@babel/runtime/regenerator/index.js","@babel/runtime/helpers/asyncToGenerator":"../node_modules/@babel/runtime/helpers/asyncToGenerator.js","jquery":"../node_modules/jquery/dist/jquery.js","../lib/js/call":"lib/js/call.js","../lib/js/myQuery":"lib/js/myQuery.js","../lib/js/navAndFooter":"lib/js/navAndFooter.js","../lib/js/router":"lib/js/router.js"}],"lib/css/jquery-te-1.4.0.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -27809,7 +27830,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _default = {
-  home: "\n    <style>\n        .mainPageArticles .card:first-child{\n            width:100% !important;\n        }\n\n        ._title{\n            padding: 1.5rem;\n            pointer-events: none;\n        }\n\n        .cardImage{\n            object-fit: cover;\n            width: 100%;\n            height: 12rem;\n        }\n\n        .forHerP{\n            font-style: italic;\n            font-size: 1.2rem;\n            font-weight: 30;\n            margin-top: 2rem;\n        }\n\n        a:hover{\n            text-decoration: none;\n        }\n\n        .card-holder{\n            height: 26rem;\n            padding: 0.2rem;\n        }\n\n        .card{\n            height: 100%\n        }\n\n        .card .card-img-top{\n            object-fit: cover;\n            width: 100%;\n            height: 13rem;\n        }\n\n        .btn-continue{\n            color: #f8f9fa!important;\n            margin-top: 1rem;\n        }\n\n        .titleContainer{\n            background-image: url('./darkForest3.jpeg') !important;\n            height: 20rem;\n            color: #f8f9fa !important;\n            font-family: 'Charm', cursive;\n            background-size: 100% 120%;\n        }\n\n        .mainTitle{\n            letter-spacing: 13px;\n            font-weight: 600;\n            font-size: 3rem;\n        }\n\n        .card-body{\n            background-color: rgb(108, 117, 125);\n            color: white;\n            border-radius: 2%;\n            font-weight: 500;\n        }\n\n        #firstArticle{\n            margin-bottom: 1rem;\n        }\n        \n        .blog-card:hover{\n            cursor: pointer !important;\n        }\n\n        @media screen and (max-width: 650px) {\n            .mainTitle{\n                letter-spacing: 1px;\n            }\n\n            .titleContainer{\n                height: 14rem;\n            }\n        }\n    </style>\n\n    <div class='homePage'>\n        <div class='row titleContainer '>\n            <div class='col-sm-12 transparent'>\n                <div class='_title'>\n                    <h1 class='mainTitle'>BuzeReci.ro</h1>\n                    <h3 class='forHerP'>Pentru ea... </h3>\n                </div>\n            </div>\n            <div id=\"Pagination\"></div>\n        </div>\n        \n        <div class='mainPageArticles'>\n            \n            <div class='row'>\n                {{#.}}\n\n                <div class=\"col-xs-12 col-sm-6 col-md-4\">\n                    <div class=\"blog-card spring-fever\" style=\"background: url({{image}}) center no-repeat;\" go-to=\"{{smug}}\">\n                        <div class=\"title-content\">\n                            <h3><a href='#/article/{{smug}}'>{{title}}</a></h3>\n                            <div class=\"intro\"> <a href='#/article/{{smug}}'>{{description}}</a> </div>\n                        </div>\n                        <div class=\"card-info\">\n                            <br>\n                            <img src=\"icon512x512.png\" height=\"180px\" alt=\"Image preview...\" id=\"imagePreview\">\n                            <br>\n                            Pentru ea\n                            <a href='#/article/{{smug}}' class=\"btn btn-success\">Continuare...</a>\n                        </div>\n                        <div class=\"utility-info\">\n                            <ul class=\"utility-list\">\n                            <li><span class=\"licon icon-dat\"></span>{{date}}</li>\n                            </ul>\n                        </div>\n                        <div class=\"gradient-overlay\"></div>\n                        <div class=\"color-overlay\"></div></div>\n                    </div>\n                {{/.}}\n            </div>\n        </div>\n        <br>\n    </div>"
+  home: "\n    <style>\n        .mainPageArticles .card:first-child{\n            width:100% !important;\n        }\n\n        ._title{\n            padding: 1.5rem;\n            pointer-events: none;\n        }\n\n        .cardImage{\n            object-fit: cover;\n            width: 100%;\n            height: 12rem;\n        }\n\n        .forHerP{\n            font-style: italic;\n            font-size: 1.2rem;\n            font-weight: 30;\n            margin-top: 2rem;\n        }\n\n        a:hover{\n            text-decoration: none;\n        }\n\n        .card-holder{\n            height: 26rem;\n            padding: 0.2rem;\n        }\n\n        .card{\n            height: 100%\n        }\n\n        .card .card-img-top{\n            object-fit: cover;\n            width: 100%;\n            height: 13rem;\n        }\n\n        .btn-continue{\n            color: #f8f9fa!important;\n            margin-top: 1rem;\n        }\n\n        .titleContainer{\n            background-image: url('./darkForest3.jpeg') !important;\n            height: 20rem;\n            color: #f8f9fa !important;\n            font-family: 'Charm', cursive;\n            background-size: 100% 120%;\n        }\n\n        .mainTitle{\n            letter-spacing: 13px;\n            font-weight: 600;\n            font-size: 3rem;\n        }\n\n        .card-body{\n            background-color: rgb(108, 117, 125);\n            color: white;\n            border-radius: 2%;\n            font-weight: 500;\n        }\n\n        #firstArticle{\n            margin-bottom: 1rem;\n        }\n        \n        .blog-card:hover{\n            cursor: pointer !important;\n        }\n\n        .action-btn-container{\n            position: fixed;\n            bottom: 2rem;\n            right: 2rem;\n        }\n\n        .buttons {\n            box-shadow: 0px 5px 11px -2px rgba(0, 0, 0, 0.18), \n                        0px 4px 12px -7px rgba(0, 0, 0, 0.15);\n            border-radius: 50%;\n            display: block;\n            width: 56px;\n            height: 56px;\n            margin: 20px auto 0;\n            position: relative;\n            -webkit-transition: all .1s ease-out;\n                    transition: all .1s ease-out;  \n        }\n\n        .buttons:active, \n        .buttons:focus \n        {\n            box-shadow: 0 0 4px rgba(0,0,0,.14),\n                0 4px 8px rgba(0,0,0,.28);\n        }\n\n        .buttons:not(:last-child) {\n            width: 40px;\n            height: 40px;\n            margin: 20px auto 0;\n            opacity: 0;\n            -webkit-transform: translateY(50px);\n                -ms-transform: translateY(50px);\n                    transform: translateY(50px);\n        }\n\n        .container:hover \n        .buttons:not(:last-child) {\n            opacity: 1;\n            -webkit-transform: none;\n                -ms-transform: none;\n                    transform: none;\n            margin: 15px auto 0;\n        }\n\n        /* Unessential styling for sliding up buttons at differnt speeds */\n\n        .buttons:nth-last-child(1) {\n            -webkit-transition-delay: 25ms;\n                    transition-delay: 25ms;\n            background-image: url(icon192x192.png);\n            background-size: contain;\n        }\n\n        .buttons:hover{\n            transform: rotate(20deg);\n            transition-duration: 0.2s;\n        }\n\n        .buttons{\n            transition-duration: 0.2s;\n        }\n\n        .buttons:not(:last-child):nth-last-child(2) {\n            -webkit-transition-delay: 50ms;\n                    transition-delay: 20ms;\n            background-image: url('next-arrow.png');\n            background-size: contain;\n        }\n\n        .buttons:not(:last-child):nth-last-child(3) {\n            -webkit-transition-delay: 75ms;\n                    transition-delay: 40ms;\n            background-image: url('back-arrow.png');\n            background-size: contain;\n        }\n\n        .buttons:not(:last-child):nth-last-child(4) {\n            -webkit-transition-delay: 100ms;\n                    transition-delay: 60ms;\n            background-image: url('share.png');\n            background-size: contain;\n        }\n\n        /* Show tooltip content on hover */\n\n        [tooltip]:before {\n            bottom: 25%;\n            font-family: arial;\n            font-weight: 600;\n            border-radius: 2px;\n            background: #585858;\n            color: #fff;\n            content: attr(tooltip);\n            font-size: 12px;\n            visibility: hidden;\n            opacity: 0;\n            padding: 5px 7px;\n            margin-right: 12px;\n            position: absolute;\n            right: 100%;\n            white-space: nowrap;\n        }\n\n        [tooltip]:hover:before,\n        [tooltip]:hover:after {\n            visibility: visible;\n            opacity: 1;\n        }\n\n        @media screen and (max-width: 650px) {\n            .mainTitle{\n                letter-spacing: 1px;\n            }\n\n            .titleContainer{\n                height: 14rem;\n            }\n\n            .action-btn-container{\n                right: 1rem;\n            }\n        }\n    </style>\n\n    <div class='homePage'>\n        <div class='row titleContainer '>\n            <div class='col-sm-12 transparent'>\n                <div class='_title'>\n                    <h1 class='mainTitle'>BuzeReci.ro</h1>\n                    <h3 class='forHerP'>Pentru ea... </h3>\n                </div>\n            </div>\n            <div id=\"Pagination\"></div>\n        </div>\n        \n        <div class='mainPageArticles'>\n            \n            <div class='row'>\n                {{#.}}\n\n                <div class=\"col-xs-12 col-sm-6 col-md-4\">\n                    <div class=\"blog-card spring-fever\" style=\"background: url({{image}}) center no-repeat;\" go-to=\"{{smug}}\">\n                        <div class=\"title-content\">\n                            <h3><a href='#/article/{{smug}}'>{{title}}</a></h3>\n                            <div class=\"intro\"> <a href='#/article/{{smug}}'>{{description}}</a> </div>\n                        </div>\n                        <div class=\"card-info\">\n                            <br>\n                            <img src=\"icon512x512.png\" height=\"180px\" alt=\"Image preview...\" id=\"imagePreview\">\n                            <br>\n                            Pentru ea\n                            <a href='#/article/{{smug}}' class=\"btn btn-success\">Continuare...</a>\n                        </div>\n                        <div class=\"utility-info\">\n                            <ul class=\"utility-list\">\n                            <li><span class=\"licon icon-dat\"></span>{{date}}</li>\n                            </ul>\n                        </div>\n                        <div class=\"gradient-overlay\"></div>\n                        <div class=\"color-overlay\"></div></div>\n                    </div>\n                {{/.}}\n            </div>\n        </div>\n        <div class='action-btn-container'>\n            <nav class=\"container\"  > \n                <button class=\"buttons share\" tooltip=\"sharing is caring\"></button>\n                <button class=\"buttons previous-page\" tooltip=\"inapoi\"></button>\n                <button class=\"buttons next-page\" tooltip=\"pagina urmatoare\"></button>\n                <button class=\"buttons main-action-btn\"></button>\n            </nav>\n        </div>\n    </div>"
 };
 exports.default = _default;
 },{}],"lib/templates/editArticleTemplate.js":[function(require,module,exports) {
@@ -28204,7 +28225,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51272" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62921" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
