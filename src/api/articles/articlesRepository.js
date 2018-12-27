@@ -9,6 +9,13 @@ exports.getOne = function (condition, callback) {
   Article.findOne(condition, callback);
 }
 
+exports.getArticlesNotVisible = function (callback) {
+  Article.find({})
+    .select('_id title')
+    .where('visible').equals(false)
+    .exec(callback);
+}
+
 exports.getDTOsWithPagination = function (take, skip, callback) {
   Article.find({})
     .select('_id title smug createdAt description image')

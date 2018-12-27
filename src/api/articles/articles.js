@@ -43,6 +43,10 @@ router.post('/:id/incrementViews', (req, res, next) => {
   });
 })
 
+router.get('/inProgress', (req, res, next) => {
+  repo.getArticlesNotVisible((err, result) => handleResult(err, res, status.OK, result, next));
+})
+
 router.get('/dtos/:take/:skip', (req, res, next) => {
   repo.getDTOsWithPagination(req.params.take, req.params.skip,
     (err, result) => handleResult(err, res, status.OK, result, next));
@@ -56,7 +60,8 @@ router.post('/', (req, res, next) => {
   checkAuth(req); repo.post(req.body, (err) => {
     handleResult(err, res, status.CREATED, null, next);
 
-    if (!err) notifier.notify({ title: req.body.title, text: req.body.description })
+    if (!err && req.body.visible === true) 
+      notifier.notify({ title: req.body.title, text: req.body.description })
   });
 })
 
@@ -65,7 +70,12 @@ router.post('/:id/comments', (req, res, next) => repo.postComment(req.params.id,
 
 router.put('/:id', (req, res, next) => {
   checkAuth(req); repo.put(req.params.id, req.body,
-    err => handleResult(err, res, status.ACCEPTED, null, next));
+    (err) => {
+      handleResult(err, res, status.ACCEPTED, null, next);
+
+      if (!err && req.body.visible === true) 
+        notifier.notify({ title: req.body.title, text: req.body.description })
+    });
 })
 
 router.delete('/:id', (req, res, next) => repo.delete(req.params.id,

@@ -26673,7 +26673,7 @@ function buildFooter() {
 
 function footerWasShownInThisSession() {
   var footeWasShown = sessionStorage.getItem('footerWasShown');
-  return footeWasShown !== 'true';
+  return footeWasShown === 'true';
 }
 
 function footerWasShown() {
@@ -26683,7 +26683,7 @@ function footerWasShown() {
 function buildBoth() {
   buildNav();
 
-  if (footerWasShownInThisSession()) {
+  if (footerWasShownInThisSession() === false) {
     buildFooter();
     footerWasShown();
   }
@@ -28377,7 +28377,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54141" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60630" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

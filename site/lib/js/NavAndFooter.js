@@ -33,7 +33,7 @@ function buildFooter() {
 function footerWasShownInThisSession() {
   let footeWasShown = sessionStorage.getItem('footerWasShown');
 
-  return footeWasShown !== 'true';
+  return footeWasShown === 'true';
 }
 
 function footerWasShown() {
@@ -43,7 +43,7 @@ function footerWasShown() {
 function buildBoth() {
   buildNav();
 
-  if (footerWasShownInThisSession()) {
+  if (footerWasShownInThisSession() === false) {
     buildFooter();
     footerWasShown();
   }
