@@ -68,9 +68,20 @@ function showOrHideNewComment() {
   addCommentIsShown = !addCommentIsShown;
 }
 
+function closeModals() {
+  removeBodyMist();
+
+  QQ.get.byClass.hide('commentsSection');
+  QQ.get.byClass.hide('newComment');
+
+  commentsAreShown = false;
+  addCommentIsShown = false;
+}
+
 function addEventsForShowCreateComments() {
   QQ.set.byClass.click('show-comments-js', showOrHideComments);
   QQ.set.byClass.click('add-comment-js', showOrHideNewComment);
+  QQ.set.byClass.click('close-modals-js', closeModals);
 }
 
 function eventsForCreateAndShowComments() {

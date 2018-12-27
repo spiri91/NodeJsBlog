@@ -35,6 +35,15 @@
 .transparent{
     background-color: transparent;
 }
+
+button:focus {
+    outline:0 !important;
+}
+
+.hidden{
+    display: none !important;
+}
+
 /* .shareLinks .dropdown-toggle {
     font-size: larger !important;
     margin-left: 2rem !important;

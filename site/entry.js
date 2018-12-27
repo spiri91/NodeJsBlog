@@ -4,7 +4,8 @@ import './lib/css/bootstrap.min.css';
 import bootstrap from 'bootstrap';
 import router from './lib/js/router';
 import builder from './lib/js/navAndFooter';
-import nott from './lib/js/notifications'
+import nott from './lib/js/notifications';
+import { acceptCookies } from './src/acceptCookies'
 
 window.sw = null;
 
@@ -22,3 +23,5 @@ if ('serviceWorker' in navigator) {
 }
 
 builder.buildBoth();
+
+acceptCookies();

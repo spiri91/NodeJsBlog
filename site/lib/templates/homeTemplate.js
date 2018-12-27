@@ -50,7 +50,7 @@ export default {
 
         .titleContainer{
             background-image: url('./darkForest3.jpeg') !important;
-            height: 20rem;
+            height: 18rem;
             color: #f8f9fa !important;
             font-family: 'Charm', cursive;
             background-size: 100% 120%;
@@ -138,6 +138,7 @@ export default {
 
         .buttons{
             transition-duration: 0.2s;
+            border: none;
         }
 
         .buttons:not(:last-child):nth-last-child(2) {

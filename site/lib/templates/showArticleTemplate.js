@@ -75,7 +75,7 @@ export default {
             display: block;
             position: fixed;
             bottom: 3rem;
-            height: 13rem;
+            height: 14rem;
             width: 25rem;
             background-color: #D3D3D3;
             padding: 1rem;
@@ -144,6 +144,8 @@ export default {
                 bottom: 3rem;
             }
         }
+
+
         {{{css}}}
     </style>
 
@@ -184,6 +186,7 @@ export default {
      </div>
 
     <div class='commentsSection'>
+        <button class="close modals close-modals-js pull-right">x</button>
         <div class='row'>
             {{#comments}}
                 <div class='col-sm-12'>
@@ -197,6 +200,7 @@ export default {
     </div>
 
     <div class='newComment'>
+        <button class="close modals close-modals-js pull-right">x</button>
         <div class='row'>
             <div class='col-sm-12'>
                 <input type='text' placeholder='nume' class='form-control' id='newCommentPoster'/>
