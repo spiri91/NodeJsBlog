@@ -70,10 +70,21 @@ export default {
             background-color: black;
             color: #f8f9fa!important;
         }
+
+        .special-characters-container {
+            width: 20rem;
+            float: left;
+            margin-right: 2rem;
+            margin-bottom: 1rem;
+        }
     </style>
     <div class='row'> 
         <div class='col-sm-12'>
             <p class='createLabel'>Create new article:</p>
+        </div>
+        <div class='col-sm-12'>
+            <input type='text' class='form-control special-characters-container' value='ă Ă â Â î Î ş Ş ţ Ţ'/>
+            <a href='http://www.degraeve.com/reference/specialcharacters.php'>Special html characters</a>
         </div>
         <div class='col-xs-12 col-sm-6'>
             <input type="text" placeholder="token" id="token" class="form-control">

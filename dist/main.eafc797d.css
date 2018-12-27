@@ -44,6 +44,10 @@ button:focus {
     display: none !important;
 }
 
+.text-indented{
+    text-indent: 1rem;
+}
+
 /* .shareLinks .dropdown-toggle {
     font-size: larger !important;
     margin-left: 2rem !important;

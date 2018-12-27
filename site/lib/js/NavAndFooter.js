@@ -30,9 +30,23 @@ function buildFooter() {
   QQ.set.byId.innerHtml('Footer', footer);
 }
 
+function footerWasShownInThisSession() {
+  let footeWasShown = sessionStorage.getItem('footerWasShown');
+
+  return footeWasShown !== 'true';
+}
+
+function footerWasShown() {
+  sessionStorage.setItem('footerWasShown', 'true');
+}
+
 function buildBoth() {
   buildNav();
-  buildFooter();
+
+  if (footerWasShownInThisSession()) {
+    buildFooter();
+    footerWasShown();
+  }
 }
 
 export default {

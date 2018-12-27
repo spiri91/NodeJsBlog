@@ -26671,9 +26671,22 @@ function buildFooter() {
   _myQuery.default.set.byId.innerHtml('Footer', _footer.footer);
 }
 
+function footerWasShownInThisSession() {
+  var footeWasShown = sessionStorage.getItem('footerWasShown');
+  return footeWasShown !== 'true';
+}
+
+function footerWasShown() {
+  sessionStorage.setItem('footerWasShown', 'true');
+}
+
 function buildBoth() {
   buildNav();
-  buildFooter();
+
+  if (footerWasShownInThisSession()) {
+    buildFooter();
+    footerWasShown();
+  }
 }
 
 var _default = {
@@ -27922,7 +27935,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _default = {
-  edit: "\n    <style>\n        #MainContent .row{\n            padding: 0.2rem;\n            padding-left: 1rem !important;\n            padding-right: 1rem !important;\n        }\n\n        #MainContent .col-sm-6, #MainContent .col-xs-12, #MainContent .col-sm-2, #MainContent .col-sm-9, #MainContent .col-sm-3{\n            padding: 0.2rem !important;\n        }\n\n        .jqte{\n            margin-top: 0;\n            margin-bottom: 0;\n        }\n        \n        .jqte_editor{\n            height: 20rem;\n        }\n\n         #cssInputContainer{\n            height: 22.2rem;\n        }\n\n        #jsScriptInputContainer, #htmlPreview, #htmlContent{\n            height: 12rem;\n        }\n\n        .buttons{\n            text-align: center;\n        }\n\n        .buttons button{\n            margin-right: 5rem;\n            margin-top: 2rem;\n        }\n\n        #isVisible{\n            height: 1.8rem;\n        }\n\n        #Footer{\n            display: none;\n        }\n\n        .createLabel{\n            font-weight: 600;\n            padding: 0.5rem;\n        }\n\n        .emptyDiv{\n            height: 4rem !important;\n        }\n\n        .fullScreen{\n            position: fixed;\n            width: 100%;\n            height: 108%;\n            left: 0;\n            top: 0;\n            background: rgba(51,51,51,0.7);\n            z-index: 10;\n        }\n\n        .fullScreen .jqte_editor{\n            height: 100% !important;\n            background-color: black;\n            color: #f8f9fa!important;\n        }\n    </style>\n    <div class='row'> \n        <div class='col-sm-12'>\n            <p class='createLabel'>Create new article:</p>\n        </div>\n        <div class='col-xs-12 col-sm-6'>\n            <input type=\"text\" placeholder=\"token\" id=\"token\" class=\"form-control\">\n        </div>\n        <div class='col-xs-12 col-sm-6'>\n            <input type=\"text\" class=\"form-control\" placeholder=\"title\" value=\"{{title}}\" id=\"title\">\n        </div>\n        <div class='col-xs-12 col-sm-6'>\n            <input type=\"text\" class=\"form-control\" placeholder=\"description\" value=\"{{description}}\" id=\"description\">\n        </div>\n        <div class='col-xs-12 col-sm-6'>\n            <div class='row'>\n                <div class='col-xs-2 col-sm-2'>\n                    <input type=\"checkbox\" class='form-control' id=\"isVisible\" {{#visible}} checked {{/visible}}>\n                </div>\n                <div class='col-xs-6 col-sm-6'>\n                    <h5>Visible</h5>\n                </div>\n            </div>\n        </div>\n    </div>\n\n    <div class='row'>\n        <div class='col-sm-9'>\n            <textarea class=\"content\" id=\"content\"></textarea>\n        </div>\n        <div class='col-sm-3'>\n            <textarea class=\"form-control\" id=\"cssInputContainer\" placeholder='styles'></textarea>\n        </div>\n    </div>\n    <div class='row'>\n        <div class='col-sm-6'>\n            <textarea class=\"form-control\" id=\"jsScriptInputContainer\" placeholder='js script'></textarea>\n        </div>\n\n        <div class='col-sm-6'>\n            <textarea class=\"form-control\" id=\"htmlPreview\" placeholder='text html preview'></textarea>\n        </div>\n    </div>\n    <div class='row'>\n        <div class='col-sm-12'>\n            <textarea class=\"form-control\" id=\"htmlContent\" placeholder='html content'></textarea>\n        </div>\n    </div>\n    <div class='row'>\n        <div class='col-sm-6'>\n            <span>Select image</span><br>\n            <input type=\"file\" id=\"imageUploader\"><br>\n            <img src=\"\" height=\"200px\" alt=\"Image preview...\" id=\"imagePreview\">\n        </div> \n        <div class='col-sm-6'> \n            <div class='buttons'>\n                <button id=\"show\" class='btn btn-default'> Preview article </button>\n                <button id=\"submit\" class='btn btn-success'> Post article </button>\n            </div>\n        </div>\n    </div>"
+  edit: "\n    <style>\n        #MainContent .row{\n            padding: 0.2rem;\n            padding-left: 1rem !important;\n            padding-right: 1rem !important;\n        }\n\n        #MainContent .col-sm-6, #MainContent .col-xs-12, #MainContent .col-sm-2, #MainContent .col-sm-9, #MainContent .col-sm-3{\n            padding: 0.2rem !important;\n        }\n\n        .jqte{\n            margin-top: 0;\n            margin-bottom: 0;\n        }\n        \n        .jqte_editor{\n            height: 20rem;\n        }\n\n         #cssInputContainer{\n            height: 22.2rem;\n        }\n\n        #jsScriptInputContainer, #htmlPreview, #htmlContent{\n            height: 12rem;\n        }\n\n        .buttons{\n            text-align: center;\n        }\n\n        .buttons button{\n            margin-right: 5rem;\n            margin-top: 2rem;\n        }\n\n        #isVisible{\n            height: 1.8rem;\n        }\n\n        #Footer{\n            display: none;\n        }\n\n        .createLabel{\n            font-weight: 600;\n            padding: 0.5rem;\n        }\n\n        .emptyDiv{\n            height: 4rem !important;\n        }\n\n        .fullScreen{\n            position: fixed;\n            width: 100%;\n            height: 108%;\n            left: 0;\n            top: 0;\n            background: rgba(51,51,51,0.7);\n            z-index: 10;\n        }\n\n        .fullScreen .jqte_editor{\n            height: 100% !important;\n            background-color: black;\n            color: #f8f9fa!important;\n        }\n\n        .special-characters-container {\n            width: 20rem;\n            float: left;\n            margin-right: 2rem;\n            margin-bottom: 1rem;\n        }\n    </style>\n    <div class='row'> \n        <div class='col-sm-12'>\n            <p class='createLabel'>Create new article:</p>\n        </div>\n        <div class='col-sm-12'>\n            <input type='text' class='form-control special-characters-container' value='\u0103 \u0102 \xE2 \xC2 \xEE \xCE \u015F \u015E \u0163 \u0162'/>\n            <a href='http://www.degraeve.com/reference/specialcharacters.php'>Special html characters</a>\n        </div>\n        <div class='col-xs-12 col-sm-6'>\n            <input type=\"text\" placeholder=\"token\" id=\"token\" class=\"form-control\">\n        </div>\n        <div class='col-xs-12 col-sm-6'>\n            <input type=\"text\" class=\"form-control\" placeholder=\"title\" value=\"{{title}}\" id=\"title\">\n        </div>\n        <div class='col-xs-12 col-sm-6'>\n            <input type=\"text\" class=\"form-control\" placeholder=\"description\" value=\"{{description}}\" id=\"description\">\n        </div>\n        <div class='col-xs-12 col-sm-6'>\n            <div class='row'>\n                <div class='col-xs-2 col-sm-2'>\n                    <input type=\"checkbox\" class='form-control' id=\"isVisible\" {{#visible}} checked {{/visible}}>\n                </div>\n                <div class='col-xs-6 col-sm-6'>\n                    <h5>Visible</h5>\n                </div>\n            </div>\n        </div>\n    </div>\n\n    <div class='row'>\n        <div class='col-sm-9'>\n            <textarea class=\"content\" id=\"content\"></textarea>\n        </div>\n        <div class='col-sm-3'>\n            <textarea class=\"form-control\" id=\"cssInputContainer\" placeholder='styles'></textarea>\n        </div>\n    </div>\n    <div class='row'>\n        <div class='col-sm-6'>\n            <textarea class=\"form-control\" id=\"jsScriptInputContainer\" placeholder='js script'></textarea>\n        </div>\n\n        <div class='col-sm-6'>\n            <textarea class=\"form-control\" id=\"htmlPreview\" placeholder='text html preview'></textarea>\n        </div>\n    </div>\n    <div class='row'>\n        <div class='col-sm-12'>\n            <textarea class=\"form-control\" id=\"htmlContent\" placeholder='html content'></textarea>\n        </div>\n    </div>\n    <div class='row'>\n        <div class='col-sm-6'>\n            <span>Select image</span><br>\n            <input type=\"file\" id=\"imageUploader\"><br>\n            <img src=\"\" height=\"200px\" alt=\"Image preview...\" id=\"imagePreview\">\n        </div> \n        <div class='col-sm-6'> \n            <div class='buttons'>\n                <button id=\"show\" class='btn btn-default'> Preview article </button>\n                <button id=\"submit\" class='btn btn-success'> Post article </button>\n            </div>\n        </div>\n    </div>"
 };
 exports.default = _default;
 },{}],"lib/templates/showArticleTemplate.js":[function(require,module,exports) {
@@ -28298,9 +28311,9 @@ function showModal() {
 }
 
 function acceptCookies() {
-  if (getCookie('bzCookies') === true) return;
+  if (getCookie('bzCookies') === 'true') return;
   showModal();
-  setCookie('bzCookies', true, 365);
+  setCookie('bzCookies', 'true', 365);
 }
 },{"../lib/js/myQuery":"lib/js/myQuery.js"}],"entry.js":[function(require,module,exports) {
 "use strict";
@@ -28364,7 +28377,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59737" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54141" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
