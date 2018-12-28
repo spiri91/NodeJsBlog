@@ -105,6 +105,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   // Override the current require with this new one
   return newRequire;
 })({"sw.js":[function(require,module,exports) {
+var frontendAddress = "http://localhost:1234/#/";
 var cacheName = 'bz-cache';
 var filesToCache = ["/"];
 self.addEventListener('install', function (e) {
@@ -136,15 +137,15 @@ self.addEventListener('push', function (event) {
   var title = notification.title;
   var options = {
     body: notification.text,
-    icon: 'icon.png',
-    badge: 'badge.png'
+    icon: 'icon512x512.png',
+    badge: 'icon192x192.png'
   };
   self.registration.showNotification(title, options);
 });
 self.addEventListener('notificationclick', function (event) {
-  console.log('[Service Worker] Notification click Received.');
+  var smug = event.notification.title.replace(/ /g, '-');
   event.notification.close();
-  event.waitUntil(clients.openWindow('https://developers.google.com/web/'));
+  clients.openWindow("".concat(frontendAddress, "article/").concat(smug));
 });
 },{}],"C:/Users/Spirica/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
@@ -173,7 +174,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60630" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59330" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

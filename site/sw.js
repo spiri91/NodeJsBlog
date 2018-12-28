@@ -1,4 +1,5 @@
-let cacheName = 'bz-cache';
+const frontendAddress = "http://localhost:1234/#/"
+const cacheName = 'bz-cache';
 
 let filesToCache = [
   "/",
@@ -36,19 +37,16 @@ self.addEventListener('push', (event) => {
   const title = notification.title;
   const options = {
     body: notification.text,
-    icon: 'icon.png',
-    badge: 'badge.png'
+    icon: 'icon512x512.png',
+    badge: 'icon192x192.png'
   };
 
   self.registration.showNotification(title, options);
 });
 
 self.addEventListener('notificationclick', (event) => {
-  console.log('[Service Worker] Notification click Received.');
+  let smug = event.notification.title.replace(/ /g, '-')
 
   event.notification.close();
-
-  event.waitUntil(
-    clients.openWindow('https://developers.google.com/web/')
-  );
+  clients.openWindow(`${frontendAddress}article/${smug}`)
 });

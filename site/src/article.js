@@ -3,7 +3,7 @@ export default class Article {
     this.title = title.trim();
     this.description = description.trim();
     this.content = content.trim();
-    this.smug = this.title ? this.title.replace(' ', '-') : "";
+    this.smug = this.title ? this.title.replace(/ /g, '-') : "";
     this.createdAt = Date.now(); 
     this.visible = visible;
     this.css = css;

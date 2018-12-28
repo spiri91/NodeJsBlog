@@ -14,7 +14,7 @@ function submit() {
   etArticle.description = QQ.get.byId.value('description');
   etArticle.content = QQ.get.byId.value('htmlContent');
   etArticle.visible = QQ.get.byId.checkedState('isVisible');
-  etArticle.smug = etArticle.title.replace(' ', '-');
+  etArticle.smug = etArticle.title.replace(/ /g, '-');
   etArticle.css = QQ.get.byId.value('cssInputContainer');
   etArticle.jsScript = QQ.get.byId.value('jsScriptInputContainer')
 

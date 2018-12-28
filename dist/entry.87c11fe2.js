@@ -19668,11 +19668,13 @@ var global = arguments[3];
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.pageSize = exports.mainContent = exports.backendApiBaseAddress = exports.backendApiAddress = void 0;
+exports.pageSize = exports.mainContent = exports.frontendAddress = exports.backendApiBaseAddress = exports.backendApiAddress = void 0;
 var backendApiAddress = "http://localhost:3000/api/articles";
 exports.backendApiAddress = backendApiAddress;
 var backendApiBaseAddress = "http://localhost:3000/api";
 exports.backendApiBaseAddress = backendApiBaseAddress;
+var frontendAddress = "http://localhost:1234/#/";
+exports.frontendAddress = frontendAddress;
 var mainContent = 'MainContent';
 exports.mainContent = mainContent;
 var pageSize = 10;
@@ -27682,7 +27684,7 @@ function submit() {
   etArticle.description = _myQuery.default.get.byId.value('description');
   etArticle.content = _myQuery.default.get.byId.value('htmlContent');
   etArticle.visible = _myQuery.default.get.byId.checkedState('isVisible');
-  etArticle.smug = etArticle.title.replace(' ', '-');
+  etArticle.smug = etArticle.title.replace(/ /g, '-');
   etArticle.css = _myQuery.default.get.byId.value('cssInputContainer');
   etArticle.jsScript = _myQuery.default.get.byId.value('jsScriptInputContainer');
   return _call.default.put(etArticle._id, etArticle, token).then(function () {
@@ -27794,7 +27796,7 @@ var Article = function Article(title, description, content, visible, css, image,
   this.title = title.trim();
   this.description = description.trim();
   this.content = content.trim();
-  this.smug = this.title ? this.title.replace(' ', '-') : "";
+  this.smug = this.title ? this.title.replace(/ /g, '-') : "";
   this.createdAt = Date.now();
   this.visible = visible;
   this.css = css;
@@ -28377,7 +28379,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60630" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59330" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
