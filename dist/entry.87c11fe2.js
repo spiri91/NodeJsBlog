@@ -26622,7 +26622,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.footer = void 0;
-var footer = "\n<style>\n  #Footer {\n    position: fixed;\n    bottom: -25px;\n    width: 100%;\n  }\n\n  a {\n    cursor: pointer !important;\n  }\n\n  .black-color{\n    color: black;\n  }\n\n  .donate{\n    float: left;\n    margin-left: 2rem;\n    margin-right: 0.3rem;\n  }\n\n  .as1{\n    float: left;\n  }\n\n  .some-ads-btn{\n    color: black;\n    font-style: italic;\n    margin-left: 2rem;\n  }\n\n  .alert-dismissible .row{\n      background-color: transparent;\n  } \n</style>\n    <div class=\"alert alert-primary alert-dismissible fade show black-color\" role=\"alert\">\n      <div class='row'>\n        <div class='col-xs-12 col-sm-2'>\n          <span class='as1'>Sustine, </span> \n          <div class=\"donate\">\n                <form action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\" target=\"_top\" class=\"ng-pristine ng-valid\">\n                    <input type=\"hidden\" name=\"cmd\" value=\"_s-xclick\" autocomplete=\"off\">\n                    <input type=\"hidden\" name=\"hosted_button_id\" value=\"WW33LR9UJUDBY\" autocomplete=\"off\">\n                    <input type=\"image\" src=\"https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif\" border=\"0\" name=\"submit\" alt=\"PayPal - The safer, easier way to pay online!\">\n                    <img alt=\"\" border=\"0\" src=\"https://www.paypalobjects.com/en_US/i/scr/pixel.gif\" width=\"1\" height=\"1\">\n                </form>\n          </div>\n        </div>\n\n        <div class='col-xs-12 col-sm-2'>\n          <span class='as2'> sau click on </span>  \n          <a class='alert-link some-ads-btn' href='#/ads'>Some ads</a>\n          \n        </div>\n      </div>\n      <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n            <span aria-hidden=\"true\">&times;</span>\n      </button>\n    </div>\n";
+var footer = "\n<style>\n  #Footer {\n    position: fixed;\n    bottom: -25px;\n    width: 100%;\n  }\n\n  a {\n    cursor: pointer !important;\n  }\n\n  .black-color{\n    color: black;\n  }\n\n  .donate{\n    float: left;\n    margin-left: 1rem;\n    margin-right: 0.3rem;\n  }\n\n  .as1{\n    float: left;\n    text-indent: 1rem;\n  }\n\n  .some-ads-btn{\n    color: black;\n    font-style: italic;\n    margin-left: 2rem;\n  }\n\n  .alert-dismissible .row{\n      background-color: transparent;\n  } \n\n  @media screen and (max-width: 650px) {\n      .donate{\n        margin-left: 3rem;\n      }\n\n      .as1{\n        text-indent: 0;\n      }\n  }\n</style>\n    <div class=\"alert alert-primary alert-dismissible fade show black-color\" role=\"alert\">\n      <div class='row'>\n        <div class='col-xs-12 col-sm-2'>\n          <span class='as1'>Sustine, </span> \n          <div class=\"donate\">\n                <form action=\"https://www.paypal.com/cgi-bin/webscr\" method=\"post\" target=\"_top\" class=\"ng-pristine ng-valid\">\n                    <input type=\"hidden\" name=\"cmd\" value=\"_s-xclick\" autocomplete=\"off\">\n                    <input type=\"hidden\" name=\"hosted_button_id\" value=\"WW33LR9UJUDBY\" autocomplete=\"off\">\n                    <input type=\"image\" src=\"https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif\" border=\"0\" name=\"submit\" alt=\"PayPal - The safer, easier way to pay online!\">\n                    <img alt=\"\" border=\"0\" src=\"https://www.paypalobjects.com/en_US/i/scr/pixel.gif\" width=\"1\" height=\"1\">\n                </form>\n          </div>\n        </div>\n\n        <div class='col-xs-12 col-sm-2'>\n          <span class='as2'> sau click on </span>  \n          <a class='alert-link some-ads-btn' href='#/ads'>Some ads</a>\n          \n        </div>\n      </div>\n      <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">\n            <span aria-hidden=\"true\">&times;</span>\n      </button>\n    </div>\n";
 exports.footer = footer;
 },{}],"lib/js/navAndFooter.js":[function(require,module,exports) {
 "use strict";
@@ -27673,6 +27673,8 @@ var _jqueryTe2 = _interopRequireDefault(require("../dist/js/jquery-te-1.4.0.min"
 
 var _templates = _interopRequireDefault(require("../lib/js/templates"));
 
+var _constants = require("../lib/js/constants");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var etArticle;
@@ -27744,6 +27746,12 @@ function addFullModeTextForm() {
   addElmToJqteEditor(elm);
 }
 
+function showAfterSave() {
+  var url = "".concat(_constants.frontendAddress, "article/").concat(etArticle.smug);
+  var win = window.open(url, '_blank');
+  win.focus();
+}
+
 var init = function init(article) {
   delete article.comments;
   etArticle = article;
@@ -27764,6 +27772,8 @@ var init = function init(article) {
 
   _myQuery.default.set.byId.click('show', preview);
 
+  _myQuery.default.set.byId.click('showAfterSave', showAfterSave);
+
   _myQuery.default.set.byId.change('imageUploader', upload);
 
   _myQuery.default.set.byClass.input('jqte_editor', function () {
@@ -27779,7 +27789,7 @@ var _default = {
   init: init
 };
 exports.default = _default;
-},{"jquery":"../node_modules/jquery/dist/jquery.js","../lib/js/myQuery":"lib/js/myQuery.js","../lib/js/call":"lib/js/call.js","../lib/css/jquery-te-1.4.0.css":"lib/css/jquery-te-1.4.0.css","../dist/js/jquery-te-1.4.0.min":"dist/js/jquery-te-1.4.0.min.js","../lib/js/templates":"lib/js/templates.js"}],"src/article.js":[function(require,module,exports) {
+},{"jquery":"../node_modules/jquery/dist/jquery.js","../lib/js/myQuery":"lib/js/myQuery.js","../lib/js/call":"lib/js/call.js","../lib/css/jquery-te-1.4.0.css":"lib/css/jquery-te-1.4.0.css","../dist/js/jquery-te-1.4.0.min":"dist/js/jquery-te-1.4.0.min.js","../lib/js/templates":"lib/js/templates.js","../lib/js/constants":"lib/js/constants.js"}],"src/article.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -27813,6 +27823,10 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 
+var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
+
+var _asyncToGenerator2 = _interopRequireDefault(require("@babel/runtime/helpers/asyncToGenerator"));
+
 var _jquery = _interopRequireDefault(require("jquery"));
 
 var _myQuery = _interopRequireDefault(require("../lib/js/myQuery"));
@@ -27826,6 +27840,10 @@ require("../lib/css/jquery-te-1.4.0.css");
 var _jqueryTe2 = _interopRequireDefault(require("../dist/js/jquery-te-1.4.0.min"));
 
 var _templates = _interopRequireDefault(require("../lib/js/templates"));
+
+var _constants = require("../lib/js/constants");
+
+var _router = _interopRequireDefault(require("../lib/js/router"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -27892,6 +27910,51 @@ function addFullModeTextForm() {
   addElmToJqteEditor(elm);
 }
 
+function addCssClassesToEditor() {
+  var classes = "\n    #Nav {}\n\n    #MainContent {}\n\n    .singleArticle {}\n\n    .theImage {}\n\n    .titleContainer {}\n\n    .title {}\n\n    .commentsSection {}\n\n    .newComment {}\n  ";
+
+  _myQuery.default.set.byId.innerHtml('cssInputContainer', classes);
+}
+
+function showAfterSave() {
+  var smug = _myQuery.default.get.byId.value('title').replace(/ /g, '-');
+
+  var url = "".concat(_constants.frontendAddress, "article/").concat(smug);
+  var win = window.open(url, '_blank');
+  win.focus();
+}
+
+function openInEditMode() {
+  return _openInEditMode.apply(this, arguments);
+}
+
+function _openInEditMode() {
+  _openInEditMode = (0, _asyncToGenerator2.default)(
+  /*#__PURE__*/
+  _regenerator.default.mark(function _callee() {
+    var smug, art;
+    return _regenerator.default.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            smug = _myQuery.default.get.byId.value('title').replace(/ /g, '-');
+            _context.next = 3;
+            return _call.default.getOneBySmug(smug);
+
+          case 3:
+            art = _context.sent;
+            if (art) _router.default.navigateToArticleForEdit(art._id);
+
+          case 5:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee, this);
+  }));
+  return _openInEditMode.apply(this, arguments);
+}
+
 var init = function init() {
   _jqueryTe2.default.jteF(_jquery.default);
 
@@ -27900,6 +27963,10 @@ var init = function init() {
   _myQuery.default.set.byId.click('submit', submit);
 
   _myQuery.default.set.byId.click('show', preview);
+
+  _myQuery.default.set.byId.click('showAfterSave', showAfterSave);
+
+  _myQuery.default.set.byId.click('openInEdit', openInEditMode);
 
   _myQuery.default.set.byId.change('imageUploader', upload);
 
@@ -27912,13 +27979,14 @@ var init = function init() {
   });
 
   addFullModeTextForm();
+  addCssClassesToEditor();
 };
 
 var _default = {
   init: init
 };
 exports.default = _default;
-},{"jquery":"../node_modules/jquery/dist/jquery.js","../lib/js/myQuery":"lib/js/myQuery.js","./article":"src/article.js","../lib/js/call":"lib/js/call.js","../lib/css/jquery-te-1.4.0.css":"lib/css/jquery-te-1.4.0.css","../dist/js/jquery-te-1.4.0.min":"dist/js/jquery-te-1.4.0.min.js","../lib/js/templates":"lib/js/templates.js"}],"lib/templates/homeTemplate.js":[function(require,module,exports) {
+},{"@babel/runtime/regenerator":"../node_modules/@babel/runtime/regenerator/index.js","@babel/runtime/helpers/asyncToGenerator":"../node_modules/@babel/runtime/helpers/asyncToGenerator.js","jquery":"../node_modules/jquery/dist/jquery.js","../lib/js/myQuery":"lib/js/myQuery.js","./article":"src/article.js","../lib/js/call":"lib/js/call.js","../lib/css/jquery-te-1.4.0.css":"lib/css/jquery-te-1.4.0.css","../dist/js/jquery-te-1.4.0.min":"dist/js/jquery-te-1.4.0.min.js","../lib/js/templates":"lib/js/templates.js","../lib/js/constants":"lib/js/constants.js","../lib/js/router":"lib/js/router.js"}],"lib/templates/homeTemplate.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -27937,7 +28005,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = void 0;
 var _default = {
-  edit: "\n    <style>\n        #MainContent .row{\n            padding: 0.2rem;\n            padding-left: 1rem !important;\n            padding-right: 1rem !important;\n        }\n\n        #MainContent .col-sm-6, #MainContent .col-xs-12, #MainContent .col-sm-2, #MainContent .col-sm-9, #MainContent .col-sm-3{\n            padding: 0.2rem !important;\n        }\n\n        .jqte{\n            margin-top: 0;\n            margin-bottom: 0;\n        }\n        \n        .jqte_editor{\n            height: 20rem;\n        }\n\n         #cssInputContainer{\n            height: 22.2rem;\n        }\n\n        #jsScriptInputContainer, #htmlPreview, #htmlContent{\n            height: 12rem;\n        }\n\n        .buttons{\n            text-align: center;\n        }\n\n        .buttons button{\n            margin-right: 5rem;\n            margin-top: 2rem;\n        }\n\n        #isVisible{\n            height: 1.8rem;\n        }\n\n        #Footer{\n            display: none;\n        }\n\n        .createLabel{\n            font-weight: 600;\n            padding: 0.5rem;\n        }\n\n        .emptyDiv{\n            height: 4rem !important;\n        }\n\n        .fullScreen{\n            position: fixed;\n            width: 100%;\n            height: 108%;\n            left: 0;\n            top: 0;\n            background: rgba(51,51,51,0.7);\n            z-index: 10;\n        }\n\n        .fullScreen .jqte_editor{\n            height: 100% !important;\n            background-color: black;\n            color: #f8f9fa!important;\n        }\n\n        .special-characters-container {\n            width: 20rem;\n            float: left;\n            margin-right: 2rem;\n            margin-bottom: 1rem;\n        }\n    </style>\n    <div class='row'> \n        <div class='col-sm-12'>\n            <p class='createLabel'>Create new article:</p>\n        </div>\n        <div class='col-sm-12'>\n            <input type='text' class='form-control special-characters-container' value='\u0103 \u0102 \xE2 \xC2 \xEE \xCE \u015F \u015E \u0163 \u0162'/>\n            <a href='http://www.degraeve.com/reference/specialcharacters.php'>Special html characters</a>\n        </div>\n        <div class='col-xs-12 col-sm-6'>\n            <input type=\"text\" placeholder=\"token\" id=\"token\" class=\"form-control\">\n        </div>\n        <div class='col-xs-12 col-sm-6'>\n            <input type=\"text\" class=\"form-control\" placeholder=\"title\" value=\"{{title}}\" id=\"title\">\n        </div>\n        <div class='col-xs-12 col-sm-6'>\n            <input type=\"text\" class=\"form-control\" placeholder=\"description\" value=\"{{description}}\" id=\"description\">\n        </div>\n        <div class='col-xs-12 col-sm-6'>\n            <div class='row'>\n                <div class='col-xs-2 col-sm-2'>\n                    <input type=\"checkbox\" class='form-control' id=\"isVisible\" {{#visible}} checked {{/visible}}>\n                </div>\n                <div class='col-xs-6 col-sm-6'>\n                    <h5>Visible</h5>\n                </div>\n            </div>\n        </div>\n    </div>\n\n    <div class='row'>\n        <div class='col-sm-9'>\n            <textarea class=\"content\" id=\"content\"></textarea>\n        </div>\n        <div class='col-sm-3'>\n            <textarea class=\"form-control\" id=\"cssInputContainer\" placeholder='styles'></textarea>\n        </div>\n    </div>\n    <div class='row'>\n        <div class='col-sm-6'>\n            <textarea class=\"form-control\" id=\"jsScriptInputContainer\" placeholder='js script'></textarea>\n        </div>\n\n        <div class='col-sm-6'>\n            <textarea class=\"form-control\" id=\"htmlPreview\" placeholder='text html preview'></textarea>\n        </div>\n    </div>\n    <div class='row'>\n        <div class='col-sm-12'>\n            <textarea class=\"form-control\" id=\"htmlContent\" placeholder='html content'></textarea>\n        </div>\n    </div>\n    <div class='row'>\n        <div class='col-sm-6'>\n            <span>Select image</span><br>\n            <input type=\"file\" id=\"imageUploader\"><br>\n            <img src=\"\" height=\"200px\" alt=\"Image preview...\" id=\"imagePreview\">\n        </div> \n        <div class='col-sm-6'> \n            <div class='buttons'>\n                <button id=\"show\" class='btn btn-default'> Preview article </button>\n                <button id=\"submit\" class='btn btn-success'> Post article </button>\n            </div>\n        </div>\n    </div>"
+  edit: "\n    <style>\n        #MainContent .row{\n            padding: 0.2rem;\n            padding-left: 1rem !important;\n            padding-right: 1rem !important;\n        }\n\n        #MainContent .col-sm-6, #MainContent .col-xs-12, #MainContent .col-sm-2, #MainContent .col-sm-9, #MainContent .col-sm-3{\n            padding: 0.2rem !important;\n        }\n\n        .jqte{\n            margin-top: 0;\n            margin-bottom: 0;\n        }\n        \n        .jqte_editor{\n            height: 20rem;\n        }\n\n         #cssInputContainer{\n            height: 22.2rem;\n        }\n\n        #jsScriptInputContainer, #htmlPreview, #htmlContent{\n            height: 12rem;\n        }\n\n        .buttons{\n            text-align: center;\n        }\n\n        .buttons button{\n            margin-right: 2rem;\n        }\n\n        #isVisible{\n            height: 1.8rem;\n        }\n\n        #Footer{\n            display: none;\n        }\n\n        .createLabel{\n            font-weight: 600;\n            padding: 0.5rem;\n        }\n\n        .emptyDiv{\n            height: 4rem !important;\n        }\n\n        .fullScreen{\n            position: fixed;\n            width: 100%;\n            height: 108%;\n            left: 0;\n            top: 0;\n            background: rgba(51,51,51,0.7);\n            z-index: 10;\n        }\n\n        .fullScreen .jqte_editor{\n            height: 100% !important;\n            background-color: black;\n            color: #f8f9fa!important;\n        }\n\n        .special-characters-container {\n            width: 20rem;\n            float: left;\n            margin-right: 2rem;\n            margin-bottom: 1rem;\n        }\n    </style>\n    <div class='row'> \n        <div class='col-sm-12'>\n            <p class='createLabel'>Create new article:</p>\n        </div>\n        <div class='col-sm-12'>\n            <input type='text' class='form-control special-characters-container' value='\u0103 \u0102 \xE2 \xC2 \xEE \xCE \u015F \u015E \u0163 \u0162'/>\n            <a href='http://www.degraeve.com/reference/specialcharacters.php'>Special html characters</a>\n        </div>\n        <div class='col-xs-12 col-sm-6'>\n            <input type=\"text\" placeholder=\"token\" id=\"token\" class=\"form-control\">\n        </div>\n        <div class='col-xs-12 col-sm-6'>\n            <input type=\"text\" class=\"form-control\" placeholder=\"title\" value=\"{{title}}\" id=\"title\">\n        </div>\n        <div class='col-xs-12 col-sm-6'>\n            <input type=\"text\" class=\"form-control\" placeholder=\"description\" value=\"{{description}}\" id=\"description\">\n        </div>\n        <div class='col-xs-12 col-sm-6'>\n            <div class='row'>\n                <div class='col-xs-2 col-sm-2'>\n                    <input type=\"checkbox\" class='form-control' id=\"isVisible\" {{#visible}} checked {{/visible}}>\n                </div>\n                <div class='col-xs-6 col-sm-6'>\n                    <h5>Visible</h5>\n                </div>\n            </div>\n        </div>\n    </div>\n\n    <div class='row'>\n        <div class='col-sm-9'>\n            <textarea class=\"content\" id=\"content\"></textarea>\n        </div>\n        <div class='col-sm-3'>\n            <textarea class=\"form-control\" id=\"cssInputContainer\" placeholder='styles'></textarea>\n        </div>\n    </div>\n    <div class='row'>\n        <div class='col-sm-6'>\n            <textarea class=\"form-control\" id=\"jsScriptInputContainer\" placeholder='js script'></textarea>\n        </div>\n\n        <div class='col-sm-6'>\n            <textarea class=\"form-control\" id=\"htmlPreview\" placeholder='text html preview'></textarea>\n        </div>\n    </div>\n    <div class='row'>\n        <div class='col-sm-12'>\n            <textarea class=\"form-control\" id=\"htmlContent\" placeholder='html content'></textarea>\n        </div>\n    </div>\n    <div class='row'>\n        <div class='col-sm-6'>\n            <input type=\"file\" id=\"imageUploader\"><br>\n            <img src=\"\" height=\"200px\" alt=\"Image preview...\" id=\"imagePreview\">\n        </div> \n        <div class='col-sm-6'> \n            <div class='buttons pull-right'>\n                <button id=\"show\" class='btn btn-info'> Preview </button>\n                <button id=\"showAfterSave\" class='btn btn-info'> Preview after save </button>\n                <button id=\"openInEdit\" class='btn btn-warning'> Preview after save </button>\n                <button id=\"submit\" class='btn btn-success'> Save </button>\n            </div>\n        </div>\n    </div>"
 };
 exports.default = _default;
 },{}],"lib/templates/showArticleTemplate.js":[function(require,module,exports) {
@@ -28162,6 +28230,9 @@ var _default = {
   },
   navigateWitheSearch: function navigateWitheSearch(query) {
     router.navigate("/search/".concat(query));
+  },
+  navigateToArticleForEdit: function navigateToArticleForEdit(id) {
+    router.navigate("/article/".concat(id, "/edit"));
   }
 };
 exports.default = _default;
@@ -28379,7 +28450,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59330" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49844" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

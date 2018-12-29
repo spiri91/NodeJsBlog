@@ -31,5 +31,8 @@ export default {
   },
   navigateWitheSearch: (query) => {
     router.navigate(`/search/${query}`);
+  },
+  navigateToArticleForEdit: (id) => {
+    router.navigate(`/article/${id}/edit`);
   }
 }

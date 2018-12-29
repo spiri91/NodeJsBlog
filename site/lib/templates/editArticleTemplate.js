@@ -34,8 +34,7 @@ export default {
         }
 
         .buttons button{
-            margin-right: 5rem;
-            margin-top: 2rem;
+            margin-right: 2rem;
         }
 
         #isVisible{
@@ -131,14 +130,15 @@ export default {
     </div>
     <div class='row'>
         <div class='col-sm-6'>
-            <span>Select image</span><br>
             <input type="file" id="imageUploader"><br>
             <img src="" height="200px" alt="Image preview..." id="imagePreview">
         </div> 
         <div class='col-sm-6'> 
-            <div class='buttons'>
-                <button id="show" class='btn btn-default'> Preview article </button>
-                <button id="submit" class='btn btn-success'> Post article </button>
+            <div class='buttons pull-right'>
+                <button id="show" class='btn btn-info'> Preview </button>
+                <button id="showAfterSave" class='btn btn-info'> Preview after save </button>
+                <button id="openInEdit" class='btn btn-warning'> Preview after save </button>
+                <button id="submit" class='btn btn-success'> Save </button>
             </div>
         </div>
     </div>`

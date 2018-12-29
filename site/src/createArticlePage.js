@@ -5,6 +5,8 @@ import call from '../lib/js/call';
 import '../lib/css/jquery-te-1.4.0.css';
 import jte from '../dist/js/jquery-te-1.4.0.min';
 import templates from '../lib/js/templates';
+import { frontendAddress } from '../lib/js/constants';
+import router from '../lib/js/router';
 
 let theImage = null;
 
@@ -76,11 +78,51 @@ function addFullModeTextForm() {
   addElmToJqteEditor(elm);
 }
 
+function addCssClassesToEditor() {
+  let classes = `
+    #Nav {}
+
+    #MainContent {}
+
+    .singleArticle {}
+
+    .theImage {}
+
+    .titleContainer {}
+
+    .title {}
+
+    .commentsSection {}
+
+    .newComment {}
+  `;
+
+  QQ.set.byId.innerHtml('cssInputContainer', classes);
+}
+
+function showAfterSave() {
+  let smug = QQ.get.byId.value('title').replace(/ /g, '-');
+  let url = `${frontendAddress}article/${smug}`;
+  let win = window.open(url, '_blank');
+
+  win.focus();
+}
+
+async function openInEditMode() {
+  let smug = QQ.get.byId.value('title').replace(/ /g, '-');
+
+  let art = await call.getOneBySmug(smug);
+
+  if (art) router.navigateToArticleForEdit(art._id);
+}
+
 let init = () => {
   jte.jteF($);
   $('#content').jqte();
   QQ.set.byId.click('submit', submit);
   QQ.set.byId.click('show', preview);
+  QQ.set.byId.click('showAfterSave', showAfterSave);
+  QQ.set.byId.click('openInEdit', openInEditMode);
   QQ.set.byId.change('imageUploader', upload);
   QQ.set.byId.checked('isVisible', true);
 
@@ -90,6 +132,7 @@ let init = () => {
   });
 
   addFullModeTextForm();
+  addCssClassesToEditor();
 }
 
 export default {

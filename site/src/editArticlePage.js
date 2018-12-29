@@ -4,6 +4,7 @@ import call from '../lib/js/call';
 import '../lib/css/jquery-te-1.4.0.css';
 import jte from '../dist/js/jquery-te-1.4.0.min';
 import templates from '../lib/js/templates';
+import { frontendAddress } from '../lib/js/constants';
 
 let etArticle;
 
@@ -73,6 +74,13 @@ function addFullModeTextForm() {
   addElmToJqteEditor(elm);
 }
 
+function showAfterSave() {
+  let url = `${frontendAddress}article/${etArticle.smug}`;
+
+  let win = window.open(url, '_blank');
+  win.focus();
+}
+
 let init = (article) => {
   delete article.comments;
 
@@ -85,9 +93,9 @@ let init = (article) => {
   QQ.set.byId.innerHtml('cssInputContainer', article.css);
   QQ.set.byId.innerHtml('jsScriptInputContainer', article.jsScript);
   QQ.set.byId.innerHtml('htmlContent', article.content);
-
   QQ.set.byId.click('submit', submit)
   QQ.set.byId.click('show', preview);
+  QQ.set.byId.click('showAfterSave', showAfterSave);
   QQ.set.byId.change('imageUploader', upload);
   QQ.set.byClass.input('jqte_editor', () => {
     let output = QQ.get.byClass.innerHtml('jqte_editor');

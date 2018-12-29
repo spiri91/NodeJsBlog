@@ -16,12 +16,13 @@ export const footer = `
 
   .donate{
     float: left;
-    margin-left: 2rem;
+    margin-left: 1rem;
     margin-right: 0.3rem;
   }
 
   .as1{
     float: left;
+    text-indent: 1rem;
   }
 
   .some-ads-btn{
@@ -33,6 +34,16 @@ export const footer = `
   .alert-dismissible .row{
       background-color: transparent;
   } 
+
+  @media screen and (max-width: 650px) {
+      .donate{
+        margin-left: 3rem;
+      }
+
+      .as1{
+        text-indent: 0;
+      }
+  }
 </style>
     <div class="alert alert-primary alert-dismissible fade show black-color" role="alert">
       <div class='row'>
