@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 mongoose.set('useCreateIndex', true);
-mongoose.connect(process.env.DB_HOST + "subscriptions", { useNewUrlParser: true });
+mongoose.connect(process.env.DB_HOST + "/subscriptions", { useNewUrlParser: true });
 
 const Schema = mongoose.Schema;
 
