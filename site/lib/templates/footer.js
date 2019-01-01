@@ -2,8 +2,10 @@ export const footer = `
 <style>
   #Footer {
     position: fixed;
-    bottom: -25px;
+    bottom: -5px;
     width: 100%;
+    background-color: white !important;
+    color: black;
   }
 
   a {
@@ -16,8 +18,7 @@ export const footer = `
 
   .donate{
     float: left;
-    margin-left: 1rem;
-    margin-right: 0.3rem;
+    margin-right: 1rem;
   }
 
   .as1{
@@ -28,27 +29,46 @@ export const footer = `
   .some-ads-btn{
     color: black;
     font-style: italic;
-    margin-left: 2rem;
+    margin-left: 1rem;
   }
 
   .alert-dismissible .row{
       background-color: transparent;
   } 
 
+  .moneyBtns{
+    float: right;
+    margin-right: 2rem;
+  }
+
   @media screen and (max-width: 650px) {
-      .donate{
-        margin-left: 3rem;
+      .as1{
+        width: 100%;
+        text-indent: 1rem !important;
+        text-align: justify;
       }
 
-      .as1{
-        text-indent: 0;
+      .moneyBtns{
+        margin-right: 0;
+        margin-bottom: 0.5rem;
+      }
+
+      .donate{
+        margin-right: 0.5rem;
+      }
+
+      .some-ads-btn{
+        margin-left: 0.5rem;
+      }
+
+      .random1{
+       
       }
   }
 </style>
-    <div class="alert alert-primary alert-dismissible fade show black-color" role="alert">
-      <div class='row'>
-        <div class='col-xs-12 col-sm-2'>
-          <span class='as1'>Sustine, </span> 
+    <div class="alert alert-dismissible fade show black-color" role="alert">
+        <p class='as1'>Susţine, jumătate din banii donaţi sau câştigaţi prin Google AdSense vor susţine o cauză nobilă aleasă de voi. </p> 
+        <div class='moneyBtns'>
           <div class="donate">
                 <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="ng-pristine ng-valid">
                     <input type="hidden" name="cmd" value="_s-xclick" autocomplete="off">
@@ -57,16 +77,12 @@ export const footer = `
                     <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
                 </form>
           </div>
-        </div>
-
-        <div class='col-xs-12 col-sm-2'>
           <span class='as2'> sau click on </span>  
           <a class='alert-link some-ads-btn' href='#/ads'>Some ads</a>
-          
         </div>
-      </div>
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-      </button>
+
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+        </button>
     </div>
 `
