@@ -42,9 +42,8 @@ export default {
   showStartPage: (obj) => {
     let output = Mustache.render(homeTemplate.home, obj);
     set(output);
-    homePage.init(true);
 
-    // if (obj.length > 0) setMainArticle(obj[0]);
+    homePage.init(true);
   },
 
   showStartPageAfterSearch: (obj) => {
@@ -92,5 +91,17 @@ export default {
 
   showAds: () => {
     set(ads);
+  },
+
+  showSpinner: () => {
+    QQ.get.byClass.show('spinner-js')
+  },
+
+  hideMainContent: () => {
+    set('');
+  },
+
+  hideSpinner: () => {
+    QQ.get.byClass.hide('spinner-js');
   }
 };

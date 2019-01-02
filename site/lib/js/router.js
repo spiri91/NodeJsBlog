@@ -1,5 +1,4 @@
 import Navigo from 'navigo';
-import _ from 'underscore';
 import templates from './templates';
 import call from './call';
 import sanitizer from './sanitizer';
@@ -8,19 +7,36 @@ let root = null;
 let useHash = true;
 let router = new Navigo(root, useHash);
 
-router
-  .on({
-    'article/i/:id': params => call.getOneById(params.id).then(sanitizer.sanitiseArticle).then(templates.showArticle),
-    'article/:smug': params => call.getOneBySmug(params.smug).then(sanitizer.sanitiseArticle).then(templates.showArticle),
-    'article/create/new': () => templates.articleCreate(),
-    'article/:id/edit': params => call.getOneById(params.id).then(sanitizer.sanitiseArticle).then(templates.articleEdit),
-    'page/:number': params => call.getPage(params.number).then(sanitizer.sanitiseArticles).then(templates.showStartPage),
-    'search/:searchBy': params => call.search(params.searchBy).then(sanitizer.sanitiseArticles).then(templates.showStartPageAfterSearch),
-    'about': () => templates.showAboutPage(),
-    'ads': () => templates.showAds(),
-    '*': () => call.getPage(1).then(sanitizer.sanitiseArticles).then(templates.showStartPage)
-  })
-  .resolve();
+router.hooks({
+  before: (done) => {
+    templates.hideMainContent();
+    templates.showSpinner();
+    done();
+  }
+})
+
+router.on({
+  'article/i/:id': params => call.getOneById(params.id)
+    .then(sanitizer.sanitiseArticle)
+    .then(templates.showArticle)
+    .then(templates.hideSpinner),
+  'article/:smug': params => call.getOneBySmug(params.smug)
+    .then(sanitizer.sanitiseArticle)
+    .then(templates.showArticle)
+    .then(templates.hideSpinner),
+  'article/create/new': () => templates.articleCreate(),
+  'article/:id/edit': params => call.getOneById(params.id).then(sanitizer.sanitiseArticle).then(templates.articleEdit),
+  'page/:number': params => call.getPage(params.number).then(sanitizer.sanitiseArticles).then(templates.showStartPage),
+  'search/:searchBy': params => call.search(params.searchBy)
+    .then(sanitizer.sanitiseArticles)
+    .then(templates.showStartPageAfterSearch)
+    .then(templates.hideSpinner),
+  'about': () => templates.showAboutPage(),
+  'ads': () => templates.showAds(),
+  '*': () => call.getPage(1).then(sanitizer.sanitiseArticles)
+    .then(templates.showStartPage)
+    .then(templates.hideSpinner)
+}).resolve();
 
 export default {
   navigateToArticleBySmug: (smug) => {

@@ -47,7 +47,7 @@ exports.findAllWith = function (titleQueryPart, callback) {
 exports.count = function (callback) {
   const { db } = mongoose.connection;
 
-  db.collection('articles').countDocuments(callback);
+  db.collection('articles').count(callback);
 }
 
 exports.put = function (id, obj, callback) {
