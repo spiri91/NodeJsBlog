@@ -60,10 +60,6 @@ export const footer = `
       .some-ads-btn{
         margin-left: 0.5rem;
       }
-
-      .random1{
-       
-      }
   }
 </style>
     <div class="alert alert-dismissible fade show black-color" role="alert">

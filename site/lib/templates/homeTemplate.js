@@ -44,7 +44,7 @@ export default {
         }
 
         .btn-continue{
-            color: #f8f9fa!important;
+            color: #f8f9fa !important;
             margin-top: 1rem;
         }
 
@@ -129,6 +129,8 @@ export default {
                     transition-delay: 25ms;
             background-image: url(icon192x192.png);
             background-size: contain;
+            padding: 0.2rem;
+            background-origin: content-box;
         }
 
         .buttons:hover{
@@ -229,7 +231,6 @@ export default {
                             <br>
                             <img src="icon512x512.png" height="180px" alt="Image preview..." id="imagePreview">
                             <br>
-                            Pentru ea
                             <a href='#/article/{{smug}}' class="btn btn-success">Continuare...</a>
                         </div>
                         <div class="utility-info">
