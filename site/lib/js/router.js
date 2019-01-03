@@ -24,14 +24,20 @@ router.on({
     .then(sanitizer.sanitiseArticle)
     .then(templates.showArticle)
     .then(templates.hideSpinner),
-  'article/create/new': () => templates.articleCreate(),
-  'article/:id/edit': params => call.getOneById(params.id).then(sanitizer.sanitiseArticle).then(templates.articleEdit),
-  'page/:number': params => call.getPage(params.number).then(sanitizer.sanitiseArticles).then(templates.showStartPage),
+  'article/create/new': () => { templates.articleCreate(); templates.hideSpinner(); },
+  'article/:id/edit': params => call.getOneById(params.id)
+    .then(sanitizer.sanitiseArticle)
+    .then(templates.articleEdit)
+    .then(templates.hideSpinner),
+  'page/:number': params => call.getPage(params.number)
+    .then(sanitizer.sanitiseArticles)
+    .then(templates.showStartPage)
+    .then(templates.hideSpinner),
   'search/:searchBy': params => call.search(params.searchBy)
     .then(sanitizer.sanitiseArticles)
     .then(templates.showStartPageAfterSearch)
     .then(templates.hideSpinner),
-  'about': () => templates.showAboutPage(),
+  'about': () => { templates.showAboutPage(); templates.hideSpinner(); },
   'ads': () => templates.showAds(),
   '*': () => call.getPage(1).then(sanitizer.sanitiseArticles)
     .then(templates.showStartPage)

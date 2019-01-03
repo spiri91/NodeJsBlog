@@ -1,4 +1,4 @@
-const frontendAddress = "http://localhost:3000/#/"
+const frontendAddress = self.location.origin + '/#/';
 const cacheName = 'bz-cache';
 
 let filesToCache = [
