@@ -1,22 +1,10 @@
-version: '2'
+version: '2.1'
 
 services:
-
-  node:
-    build:
-      context: .
-      dockerfile:  node.dockerfile
+  nodejsblog:
+    image: nodejsblog
+    build: .
+    environment:
+      NODE_ENV: production
     ports:
-      - "3000:3000"
-    networks:
-      - nodeapp-network
-    depends_on: 
-      - mongodb
-      
-  mongodb:
-    image: mongo
-    networks:
-      - nodeapp-network
-
-networks:
-  nodeapp-network:
+      - 8080:8080

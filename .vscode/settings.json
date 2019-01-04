@@ -1,0 +1,5 @@
+{
+  "appService.defaultWebAppToDeploy": "/subscriptions/83a802fb-7d4e-45d6-a1de-134ba9a2b47d/resourceGroups/bzwin/providers/Microsoft.Web/sites/bzwin",
+  "appService.deploySubpath": "",
+  "docker.defaultRegistryPath": "spiri91"
+}
