@@ -39,6 +39,7 @@ router.on({
     .then(templates.hideSpinner),
   'about': () => { templates.showAboutPage(); templates.hideSpinner(); },
   'ads': () => { templates.showAds(); templates.hideSpinner(); },
+  'notification/new': () => { templates.showNewNotification(); templates.hideSpinner(); },
   '*': () => call.getPage(1).then(sanitizer.sanitiseArticles)
     .then(templates.showStartPage)
     .then(templates.hideSpinner)

@@ -120,6 +120,19 @@ let search = async (titlePart) => {
   return handleResult(res);
 }
 
+let sendNotification = async (token, notification) => {
+  let res = await fetch(`${base}/new/notification`, {
+    method: "POST",
+    body: JSON.stringify(notification),
+    headers: {
+      "auth": token,
+      "Content-Type": "application/json; charset=utf-8"
+    }
+  });
+
+  return handleResult(res);
+}
+
 let subscribeUser = async (subscription) => {
   let res = await fetch(`${consts.backendApiBaseAddress}/subscribe`, {
     method: "POST",
@@ -143,5 +156,6 @@ export default {
   getCount,
   search,
   incrementViews,
-  subscribeUser
+  subscribeUser,
+  sendNotification
 }

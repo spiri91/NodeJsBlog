@@ -4,7 +4,7 @@ import articlePage from '../../src/singleArticlePage';
 import homePage from '../../src/homePage';
 import editArticle from '../../src/editArticlePage';
 import createArticle from '../../src/createArticlePage'
-// import { mainArticle } from '../templates/mainArticle'
+import newNotificationJs from '../../src/newNotification'
 import QQ from './myQuery';
 
 import homeTemplate from '../templates/homeTemplate';
@@ -14,6 +14,7 @@ import { pagination } from '../templates/pagination';
 import { previewTemplate } from '../templates/previewTemplate';
 import { about } from '../templates/aboutPage';
 import { ads } from '../templates/ads';
+import { newNotification } from '../templates/newNotification';
 
 function set(value) {
   QQ.set.byId.innerHtml(consts.mainContent, value);
@@ -22,12 +23,6 @@ function set(value) {
 function setById(value, id) {
   QQ.set.byId.innerHtml(id, value);
 }
-
-// function setMainArticle(obj) {
-//   let output = Mustache.render(mainArticle, obj);
-
-//   setById(output, 'firstArticle');
-// }
 
 export default {
   showArticle: (article) => {
@@ -103,5 +98,11 @@ export default {
 
   hideSpinner: () => {
     QQ.get.byClass.hide('spinner-js');
+  },
+
+  showNewNotification: () => {
+    set(newNotification);
+
+    newNotificationJs.init();
   }
 };

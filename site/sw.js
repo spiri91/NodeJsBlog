@@ -45,6 +45,8 @@ self.addEventListener('push', (event) => {
 });
 
 self.addEventListener('notificationclick', (event) => {
+  if (event.notification.openApp === 'false') return;
+
   let smug = event.notification.title.replace(/ /g, '-')
 
   event.notification.close();

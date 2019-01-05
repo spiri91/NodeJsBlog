@@ -25,8 +25,8 @@ exports.sendNotification = (subscription, message) => {
     })
 }
 
-exports.notify = ({ title, text }) => {
-  let message = '{"title":"' + title + '","text":"' + text + '"}';
+exports.notify = ({ title, text, openApp }) => {
+  let message = '{"title":"' + title + '","text":"' + text + '","openApp":"' + openApp + '"}';
 
   notifyEveryone(message);
 }

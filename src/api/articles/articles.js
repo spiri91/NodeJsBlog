@@ -60,22 +60,28 @@ router.post('/', (req, res, next) => {
   checkAuth(req); repo.post(req.body, (err) => {
     handleResult(err, res, status.CREATED, null, next);
 
-    if (!err && req.body.visible === true) 
+    if (!err && req.body.visible === true)
       notifier.notify({ title: req.body.title, text: req.body.description })
   });
+})
+
+router.post('/new/notification', (req, res, next) => {
+  checkAuth(req);
+
+  notifier.notify({ title: req.body.title, text: req.body.description, openApp: 'false' })
 })
 
 router.post('/:id/comments', (req, res, next) => repo.postComment(req.params.id, req.body,
   err => handleResult(err, res, status.CREATED, null, next)))
 
 router.put('/:id', (req, res, next) => {
-  checkAuth(req); repo.put(req.params.id, req.body,
-    (err) => {
-      handleResult(err, res, status.ACCEPTED, null, next);
+  checkAuth(req);
+  repo.put(req.params.id, req.body, (err) => {
+    handleResult(err, res, status.ACCEPTED, null, next);
 
-      if (!err && req.body.visible === true) 
-        notifier.notify({ title: req.body.title, text: req.body.description })
-    });
+    if (!err && req.body.visible === true)
+      notifier.notify({ title: req.body.title, text: req.body.description, openApp: 'true' })
+  });
 })
 
 router.delete('/:id', (req, res, next) => repo.delete(req.params.id,
