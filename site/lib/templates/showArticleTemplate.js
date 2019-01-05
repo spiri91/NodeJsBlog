@@ -181,7 +181,7 @@ export default {
         </button>
 
         <button type='button' class="btn btn-sm btn-success add-comment-js">
-            Adauga comentariu
+            Adaugă comentariu
         </button>
      </div>
 

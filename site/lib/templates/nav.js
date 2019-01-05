@@ -74,7 +74,7 @@ export const nav = `
             <a class="nav-link" href="#/about">Despre... <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="#">Nu uita sa imi scrii <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="mailto:someone@example.com">Nu uita sa imi scrii <span class="sr-only">(current)</span></a>
           </li>
         </ul>
         <div class="dropdown shareLinks pull-right">

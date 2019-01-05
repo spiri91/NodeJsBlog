@@ -38,7 +38,7 @@ router.on({
     .then(templates.showStartPageAfterSearch)
     .then(templates.hideSpinner),
   'about': () => { templates.showAboutPage(); templates.hideSpinner(); },
-  'ads': () => templates.showAds(),
+  'ads': () => { templates.showAds(); templates.hideSpinner(); },
   '*': () => call.getPage(1).then(sanitizer.sanitiseArticles)
     .then(templates.showStartPage)
     .then(templates.hideSpinner)
