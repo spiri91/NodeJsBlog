@@ -77,9 +77,13 @@ export default {
             bottom: 3rem;
             height: 14rem;
             width: 25rem;
-            background-color: #D3D3D3;
             padding: 1rem;
             border-radius: 15px;
+            background-color: #F5F5F5;
+        }
+
+        .newComment .row {
+            background-color: #F5F5F5;
         }
 
         .newComment .form-control {
@@ -103,8 +107,14 @@ export default {
             bottom: 3rem;
             overflow-y: scroll;
             width: 100%;
-            background-color: #D3D3D3;
             padding: 1rem;
+            display: block;
+            background-color: #F5F5F5;
+            border-radius: 15px;
+        }
+
+        .commentsSection .row{ 
+            background-color: #F5F5F5;
         }
 
         .mist .stickyFooter button {
