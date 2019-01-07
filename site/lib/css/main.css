@@ -1,4 +1,7 @@
-
+#MainContent{
+    min-height: 100vh;
+    background-color: #D3D3D3;
+}
 
 .disabled{
     pointer-events: none;
@@ -51,6 +54,10 @@ button:focus {
 .spinner{
     text-align: center;
     background-color: transparent;
+    display: block;
+    position: fixed;
+    top: 4rem;
+    width: 100%;
 }
 
 .lds-ellipsis {
