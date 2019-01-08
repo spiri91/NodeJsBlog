@@ -25,8 +25,8 @@ export const nav = `
     color: rgb(248, 249, 250) !important;
   }
 
-  .shareLinksContainer{
-    background-color: #202020 !important;
+  .shareLinksContainer {
+    background-color: #383838 !important;
     transition-duration: 0.2s;
   }
 

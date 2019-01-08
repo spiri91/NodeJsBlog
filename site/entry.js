@@ -1,7 +1,7 @@
-import './lib/css/awn.css';
-import './lib/css/bootstrap.min.css';
 import './lib/css/main.css';
 import './lib/css/article.css';
+import './lib/css/awn.css';
+import './lib/css/bootstrap.min.css';
 
 import bootstrap from 'bootstrap';
 import router from './lib/js/router';

@@ -197,7 +197,6 @@ color:#fff;
 }
 .licon:before{
   content:"";
-   background:url(https://nodws.github.io/NodPen/postItem/licons.svg?) -2px -6px no-repeat;
    background-size:250px;
    width:26px;
    height:20px;
@@ -216,18 +215,15 @@ color:#fff;
 }
 .icon-like:before{
   background-position: -183px -6px;
-
 }
 .icon-com:before{
   background-position: -63px -4px;
-
 }
 .icon-dat:before{
   background-position: -94px -7px;
 }
 .icon-tag:before{
   background-position: -33px -6px;
-
 }
 
 @media (max-width:750px)
