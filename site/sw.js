@@ -19,19 +19,18 @@ self.addEventListener('activate', (e) => {
       }
     })))
   );
+
   return self.clients.claim();
 });
 
 self.addEventListener('fetch', (e) => {
-  if ((e.request.method === "PUT" || e.request.method === "POST") && false === navigator.onLine) {
+  if ((e.request.method === "PUT" || e.request.method === "POST") && false === navigator.onLine)
     new Error('No internet connectivity!');
-  } else e.respondWith(caches.match(e.request).then(response => response || fetch(e.request)))
+  else 
+    e.respondWith(caches.match(e.request).then(response => response || fetch(e.request)))
 });
 
 self.addEventListener('push', (event) => {
-  console.log('[Service Worker] Push Received.');
-  console.log(`[Service Worker] Push had this data: "${event.data.text()}"`);
-
   let notification = JSON.parse(event.data.text())
 
   const title = notification.title;
@@ -48,7 +47,7 @@ self.addEventListener('notificationclick', (event) => {
   if (event.notification.openApp === 'false') return;
 
   let smug = event.notification.title.replace(/ /g, '-')
-
   event.notification.close();
+
   clients.openWindow(`${frontendAddress}article/${smug}`)
 });

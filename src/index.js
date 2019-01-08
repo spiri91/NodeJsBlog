@@ -1,8 +1,10 @@
 require('dotenv').config({ path: '.env' });
 
+const compression = require('compression');
 const express = require('express');
 const bodyParser = require('body-parser');
 const webpush = require('web-push');
+
 
 const checkError = require('./misc/checkErrorResponse');
 const articlesRouter = require('./api/articles/articles');
@@ -13,6 +15,7 @@ webpush.setVapidDetails(process.env.NOTIFICATIONSUBJECT,
 
 const app = express();
 
+app.use(compression());
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }))
 app.use(bodyParser.json({ limit: '10mb' }));
 
