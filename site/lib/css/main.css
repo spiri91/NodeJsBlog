@@ -47,8 +47,22 @@ button:focus {
     display: none !important;
 }
 
+.softHidden {
+    display: none;
+}
+
 .text-indented{
     text-indent: 1rem;
+}
+
+.installBtn {
+    position: fixed;
+    top: 4rem;
+    right: -9rem;
+    text-orientation: unset;
+    transform: rotate(90deg);
+    transform-origin: left top 0;
+    padding-bottom: 0px !important;
 }
 
 .spinner{

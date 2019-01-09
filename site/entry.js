@@ -7,7 +7,8 @@ import bootstrap from 'bootstrap';
 import router from './lib/js/router';
 import builder from './lib/js/navAndFooter';
 import nott from './lib/js/notifications';
-import { acceptCookies } from './src/acceptCookies'
+import { acceptCookies } from './src/acceptCookies';
+import installMe from './src/installMe';
 
 window.sw = null;
 
@@ -27,3 +28,5 @@ if ('serviceWorker' in navigator) {
 builder.buildBoth();
 
 acceptCookies();
+
+installMe();
