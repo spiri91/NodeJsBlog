@@ -37,6 +37,8 @@ function footerWasShownInThisSession() {
 }
 
 function footerWasShown() {
+  if(!window.cookiesAccepted || window.cookiesAccepted === false) return;
+
   sessionStorage.setItem('footerWasShown', 'true');
 }
 

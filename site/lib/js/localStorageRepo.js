@@ -18,6 +18,9 @@ export default {
   },
 
   set: async (key, value) => {
+    if(window.cookiesAccepted === false) 
+      return;
+
     let obj = JSON.stringify(value);
 
     localStorage.setItem(key, obj);

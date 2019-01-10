@@ -26,11 +26,27 @@ function showModal() {
   QQ.get.byClass.withCallBack('show-cookies-modal-js', b => b.click());
 }
 
+function userAcceptedCookies() {
+  window.cookiesAccepted = true;
+  
+  setCookie('bzCookies', 'true', 365);
+}
+
+function userDidntAcceptedCookies() {
+  window.cookiesAccepted = false;
+}
+
 function acceptCookies() {
-  if (getCookie('bzCookies') === 'true') return;
+  if (getCookie('bzCookies') === 'true') {
+    window.cookiesAccepted = true;
+
+    return;
+  }
 
   showModal();
-  setCookie('bzCookies', 'true', 365);
+
+  QQ.set.byClass.click('acceptCookies-js', userAcceptedCookies);
+  QQ.set.byClass.click('noAcceptCookies-js', userDidntAcceptedCookies);
 }
 
 export {
