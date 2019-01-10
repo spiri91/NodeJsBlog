@@ -9,6 +9,7 @@ import builder from './lib/js/navAndFooter';
 import nott from './lib/js/notifications';
 import { acceptCookies } from './src/acceptCookies';
 import installMe from './src/installMe';
+import misc from './src/misc';
 
 window.sw = null;
 
@@ -30,3 +31,5 @@ builder.buildBoth();
 acceptCookies();
 
 installMe();
+
+misc();
