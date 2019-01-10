@@ -6,6 +6,7 @@ import editArticle from '../../src/editArticlePage';
 import createArticle from '../../src/createArticlePage'
 import newNotificationJs from '../../src/newNotification'
 import QQ from './myQuery';
+import adsJs from '../../src/ads';
 
 import homeTemplate from '../templates/homeTemplate';
 import editTemplate from '../templates/editArticleTemplate';
@@ -82,6 +83,7 @@ export default {
 
   showAboutPage: () => {
     set(about);
+    adsJs.init();
   },
 
   showAds: () => {
