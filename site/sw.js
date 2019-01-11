@@ -3,6 +3,14 @@ const cacheName = 'bz-cache';
 
 let filesToCache = [
   "/",
+  "sw.js",
+  "back-arrow.png",
+  "next-arrow.png",
+  "share.png",
+  "icon192x192.png",
+  "icon512x512.png",
+  "icon144x144.png",
+  "darkForest3.jpeg"
 ];
 
 self.addEventListener('install', (e) => {

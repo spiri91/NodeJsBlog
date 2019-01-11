@@ -7,7 +7,11 @@ export default {
     byId: {
       value: id => document.getElementById(id).value,
       innerHtml: id => document.getElementById(id).innerHTML,
-      checkedState: id => document.getElementById(id).checked
+      checkedState: id => document.getElementById(id).checked,
+      hide: (id) => {
+        let element = document.getElementById(id);
+        element.style.display = 'none';
+      },
     },
     byAttribute: {
       element: (attributeName, value) => document.querySelectorAll(`[${attributeName}="${value}"]`),

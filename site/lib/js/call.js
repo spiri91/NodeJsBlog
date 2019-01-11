@@ -36,10 +36,16 @@ let getOneById = async (id) => {
   return handleResult(res);
 }
 
+let getOneBySmugAndCacheIt = (smug) => {
+  fetch(`${base}/smug/${smug}`)
+    .then(handleResult)
+    .then(x => localRepo.set(smug, x))
+}
+
 let getOneBySmug = async (smug) => {
   if (false === navigator.onLine) {
     let res = await localRepo.get(smug);
-    
+
     return res;
   }
 
@@ -157,5 +163,6 @@ export default {
   search,
   incrementViews,
   subscribeUser,
-  sendNotification
+  sendNotification,
+  getOneBySmugAndCacheIt
 }

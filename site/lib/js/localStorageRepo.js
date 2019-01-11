@@ -18,7 +18,7 @@ export default {
   },
 
   set: async (key, value) => {
-    if(window.cookiesAccepted === false) 
+    if (window.cookiesAccepted === false) 
       return;
 
     let obj = JSON.stringify(value);

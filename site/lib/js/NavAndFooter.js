@@ -37,9 +37,16 @@ function footerWasShownInThisSession() {
 }
 
 function footerWasShown() {
-  if(!window.cookiesAccepted || window.cookiesAccepted === false) return;
+  if (!window.cookiesAccepted || window.cookiesAccepted === false) return;
 
   sessionStorage.setItem('footerWasShown', 'true');
+}
+
+function hideElementsIfUserIsOffline() {
+  if (false === navigator.onLine) {
+    QQ.get.byId.hide('SearchInput');
+    QQ.get.byClass.hide('shareLinksDropDown');
+  }
 }
 
 function buildBoth() {
@@ -49,6 +56,8 @@ function buildBoth() {
     buildFooter();
     footerWasShown();
   }
+
+  hideElementsIfUserIsOffline();
 }
 
 export default {

@@ -27,7 +27,7 @@ function setActionsIfOnline() {
 }
 
 function setActionsIfOffline() {
-  QQ.get.byClass.hide('newComment');
+  QQ.get.byClass.hide('add-comment-js');
 }
 
 function removeBodyMist() {

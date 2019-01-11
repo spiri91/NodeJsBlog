@@ -19,6 +19,13 @@ function getPageFromUrl() {
   return page;
 }
 
+function precacheTheResults(smugs) {
+  let elms = QQ.get.byAttribute.all('go-to');
+  precacheTheResults(Array.from(elms).map(x => x.getAttribute('go-to')));
+  
+  for (let s of smugs) call.getOneBySmugAndCacheIt(s);
+}
+
 function addGotoEvents() {
   let elms = QQ.get.byAttribute.all('go-to');
   for (let e of elms) {
@@ -30,8 +37,7 @@ function addGotoEvents() {
 function showSharingLinks(e) {
   e.stopPropagation();
   e.preventDefault();
-  if ($('.navbar-toggler').length > 0)
-    $('.navbar-toggler').click();
+  if ($('.navbar-toggler').length > 0) $('.navbar-toggler').click();
 
   $('.shareLinksDropDown').click();
 
@@ -58,10 +64,15 @@ export default {
     if (true === showPagination && true === navigator.onLine) {
       let pages = await getPaginationArray();
       addBtnForNavigationAndSharing(pages);
+      precacheTheResults();
+      
       misc();
+    } else {
+      QQ.alert.warning('Mod offline..');
+      QQ.get.byClass.hide('action-btn-container');
     }
 
-    builder.buildBoth();
     addGotoEvents();
+    builder.buildBoth();
   }
 }
