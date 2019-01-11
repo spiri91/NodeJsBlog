@@ -82,7 +82,7 @@ export const nav = `
                 <a class="dropdown-toggle btn btn-success shareLinksDropDown" data-toggle="dropdown">
                     Sharing is caring
                 </a>
-                <ul class="dropdown-menu shareLinksContainer">
+                <ul class="dropdown-menu shareLinksContainer" id="shareLinksContainer">
                     <a class="a2a_button_facebook"></a>
                     <a class="a2a_button_twitter"></a>
                     <a class="a2a_button_email"></a>

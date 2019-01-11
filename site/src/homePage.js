@@ -3,6 +3,7 @@ import call from '../lib/js/call';
 import QQ from '../lib/js/myQuery';
 import builder from '../lib/js/navAndFooter';
 import router from '../lib/js/router';
+import misc from './misc';
 
 async function getPaginationArray() {
   let res = await call.getCount();
@@ -33,6 +34,8 @@ function showSharingLinks(e) {
     $('.navbar-toggler').click();
 
   $('.shareLinksDropDown').click();
+
+  document.getElementById("shareLinksContainer").scrollIntoView();
 }
 
 function disableNavigationBtnsBasedOnPage(numberOfPages, currentPageNumber) {
@@ -55,10 +58,10 @@ export default {
     if (true === showPagination && true === navigator.onLine) {
       let pages = await getPaginationArray();
       addBtnForNavigationAndSharing(pages);
+      misc();
     }
 
     builder.buildBoth();
-
     addGotoEvents();
   }
 }

@@ -83,7 +83,7 @@ export default {
             right: 2rem;
         }
 
-        .buttons {
+        .buttons, .buttons:not(:hover), .buttons:not(:focus) {
             box-shadow: 0px 5px 11px -2px rgba(0, 0, 0, 0.18), 
                         0px 4px 12px -7px rgba(0, 0, 0, 0.15);
             border-radius: 50%;
@@ -112,8 +112,19 @@ export default {
                 -ms-transform: translateY(50px);
                     transform: translateY(50px);
         }
+        
+        .buttons:not(:last-child) {
+            width: 40px;
+            height: 40px;
+            margin: 20px auto 0;
+            opacity: 0;
+            -webkit-transform: translateY(50px);
+                -ms-transform: translateY(50px);
+                    transform: translateY(50px);
+        }
 
-        .container:hover 
+
+        .containerIsActive
         .buttons:not(:last-child) {
             opacity: 1;
             -webkit-transform: none;
@@ -133,7 +144,7 @@ export default {
             background-origin: content-box;
         }
 
-        .buttons:hover{
+        .containerIsActive .buttons{
             transform: rotate(20deg);
             transition-duration: 0.2s;
         }
@@ -245,7 +256,7 @@ export default {
             </div>
         </div>
         <div class='action-btn-container'>
-            <nav class="container"  > 
+            <nav class="container"> 
                 <button class="buttons share" tooltip="sharing is caring"></button>
                 <button class="buttons previous-page" tooltip="inapoi"></button>
                 <button class="buttons next-page" tooltip="pagina urmatoare"></button>

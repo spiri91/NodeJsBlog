@@ -31,5 +31,3 @@ builder.buildBoth();
 acceptCookies();
 
 installMe();
-
-misc();
