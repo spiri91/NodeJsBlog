@@ -20,7 +20,8 @@ function setActionsIfOnline() {
 
     let comment = new Comment(by, commentValue);
 
-    call.addComment(_article._id, comment);
+    call.addComment(_article._id, comment).then(() => call.forceGetArticle(_article.smug));
+
     _article.comments.push(sanitizer.sanitiseComment(comment));
     templates.showArticle(_article);
   });
@@ -90,7 +91,6 @@ function eventsForCreateAndShowComments() {
 
   addEventsForShowCreateComments();
 }
-
 
 export default {
   init: (article) => {

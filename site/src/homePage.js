@@ -19,11 +19,11 @@ function getPageFromUrl() {
   return page;
 }
 
-function precacheTheResults(smugs) {
+function precacheTheResults() {
   let elms = QQ.get.byAttribute.all('go-to');
-  precacheTheResults(Array.from(elms).map(x => x.getAttribute('go-to')));
+  let smugs = Array.from(elms).map(x => x.getAttribute('go-to'));
   
-  for (let s of smugs) call.getOneBySmugAndCacheIt(s);
+  call.getArticlesThatAreNotInCacheAlready(smugs);
 }
 
 function addGotoEvents() {

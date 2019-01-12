@@ -38,6 +38,10 @@ exports.incrementClicks = function (article) {
   })
 }
 
+exports.findAllInListOfSmugs = function (smugs, callback) {
+  Article.find({ smug: { "$in": smugs } }).exec(callback);
+}
+
 exports.findAllWith = function (titleQueryPart, callback) {
   Article.find({ title: { $regex: '.*' + titleQueryPart + '.*' } })
     .select('_id title smug createdAt description image')

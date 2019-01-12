@@ -36,6 +36,12 @@ router.get('/smug/:smug', (req, res, next) => {
     })
 })
 
+router.post('/smug/listOfSmugs', (req, res, next) => {
+  repo.findAllInListOfSmugs(req.body.smugs, (err, result) => {
+    handleResult(err, res, status.OK, result, next);
+  })
+})
+
 router.post('/:id/incrementViews', (req, res, next) => {
   repo.getOne({ _id: req.params.id }, (err, result) => {
     if (!err) repo.incrementClicks(result);

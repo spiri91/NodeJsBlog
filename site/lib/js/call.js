@@ -36,18 +36,44 @@ let getOneById = async (id) => {
   return handleResult(res);
 }
 
-let getOneBySmugAndCacheIt = (smug) => {
-  fetch(`${base}/smug/${smug}`)
+let forceGetArticle = (smug) => {
+  return fetch(`${base}/smug/${smug}`)
     .then(handleResult)
-    .then(x => localRepo.set(smug, x))
+    .then((x) => {
+      localRepo.set(smug, x);
+      return x;
+    });
+}
+
+let getArticlesAndCacheThem = (articlesNotInLS) => {
+  let articlesMissing = { smugs: articlesNotInLS };
+
+  fetch(`${base}/smug/listOfSmugs`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json; charset=utf-8"
+    },
+    body: JSON.stringify(articlesMissing),
+  })
+    .then(handleResult)
+    .then(localRepo.setAll);
+}
+
+let getArticlesThatAreNotInCacheAlready = (smugs) => {
+  let articlesNotInLS = [];
+  
+  for (let s of smugs) 
+    if (!localRepo.get(s)) 
+      articlesNotInLS.push(s);
+
+  getArticlesAndCacheThem(articlesNotInLS);
 }
 
 let getOneBySmug = async (smug) => {
-  if (false === navigator.onLine) {
-    let res = await localRepo.get(smug);
+  let res = localRepo.get(smug);
+  if (res) return res;  
 
-    return res;
-  }
+  if (false === navigator.onLine) return;
 
   return fetch(`${base}/smug/${smug}`)
     .then(handleResult)
@@ -164,5 +190,6 @@ export default {
   incrementViews,
   subscribeUser,
   sendNotification,
-  getOneBySmugAndCacheIt
+  getArticlesThatAreNotInCacheAlready,
+  forceGetArticle
 }
