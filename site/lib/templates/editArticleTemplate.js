@@ -136,8 +136,8 @@ export default {
         <div class='col-sm-6'> 
             <div class='buttons pull-right'>
                 <button id="show" class='btn btn-info'> Preview </button>
-                <button id="showAfterSave" class='btn btn-info'> Preview after save </button>
-                <button id="openInEdit" class='btn btn-warning'> Preview after save </button>
+                <button id="showAfterSave" class='btn btn-info'> Show after save </button>
+                <button id="openInEdit" class='btn btn-warning'> Open in edit </button>
                 <button id="submit" class='btn btn-success'> Save </button>
             </div>
         </div>

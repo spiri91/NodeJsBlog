@@ -3,7 +3,7 @@ require('dotenv').config({ path: '.env' });
 
 mongoose.set('useCreateIndex', true);
 
-mongoose.connect(process.env.DB_HOST + "?ssl=true", { auth: { user: process.env.DB_USER, password: process.env.DB_PASSWORD }, ssl: true, useNewUrlParser: true });
+mongoose.connect(process.env.DB_HOST+ '/Articles'); //+ "?ssl=true", { auth: { user: process.env.DB_USER, password: process.env.DB_PASSWORD }, ssl: true, useNewUrlParser: true });
 
 const Schema = mongoose.Schema;
 
